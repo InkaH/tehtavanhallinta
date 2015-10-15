@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>G R I N D</title>
-<link rel="stylesheet" type="text/css" href="resources/styles/tyyli.css">
+<link rel="stylesheet" type="text/css" href="/styles/tyyli.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <!-- Optional theme -->
@@ -18,7 +18,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="resources/js/javascript.js"></script> 
+<script src="/js/javascript.js"></script> 
 
 </head>
 <body>
@@ -32,9 +32,9 @@
 					<p>Ei tehtäviä tietokannassa.</p>
 				</c:if>
 				<c:if test="${not empty tehtavat}">
-					<c:forEach var="tehtava" items="${tehtavat}" varStatus="counter">
+					<c:forEach var="tehtava" items="${tehtavat}">
 						<p>
-						<c:out value="${counter.count}. ${tehtava.id}, ${tehtava.kuvaus}, ${tehtava.lisatiedot}, ${tehtava.status}, ${tehtava.pvm}, ${tehtava.aika}"/></p>
+						<c:out value="${tehtava.id}, ${tehtava.kuvaus}, ${tehtava.lisatiedot}, ${tehtava.status}, ${tehtava.pvm}, ${tehtava.aika}"/></p>
 					</c:forEach>
 				</c:if>	
 			</div>
