@@ -17,7 +17,7 @@ import dao.TehtavaDaoImpl;
 
 
 @Controller
-@RequestMapping (value="/tehtavat")
+@RequestMapping (value="/")
 public class TehtavaServlet {
 
 	@Inject
@@ -30,6 +30,12 @@ public class TehtavaServlet {
 	public void setDao(TehtavaDaoImpl dao) {
 		this.dao = dao;
 	}
+	
+	//HENKILöIDEN LISTAUS
+		@RequestMapping(value="/",method=RequestMethod.GET)
+		public String getView(Map<String, Object> model) {
+			model.put("tehtavat", dao.haeKaikki());	
+			return "index";
 	
 	//FORMIN TEKEMINEN
 	/**@RequestMapping(value="uusi", method=RequestMethod.GET)
@@ -57,10 +63,6 @@ public class TehtavaServlet {
 		return "henk/view";
 	}**/
 	
-	//HENKILöIDEN LISTAUS
-	@RequestMapping(value="lista",method=RequestMethod.GET)
-	public String getView(Map<String, Object> model) {
-		model.put("tehtavat", dao.haeKaikki());	
-		return "teht/tehtavalista";
+	
 	}	
 }
