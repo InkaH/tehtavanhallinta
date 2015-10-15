@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+	margin: auto;
+	width: 100%;
+}
+
+.container {
+	  padding: 20px;
+	
+}
+
+.tasks {
+		background: #888a85;
+		border-style: solid;
+		border-color: #babdb6;
+		border-width: 1px;
+		border-radius: 4px;
+	  	padding: 20px;
+}
+
+
+
+.editbtn {
+    border-style: none;
+    float: right;
+    padding: 5px;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.form-group {
+	padding: 10px;
+	
+}
+
+#task {
+	
+}
