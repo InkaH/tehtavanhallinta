@@ -34,7 +34,7 @@
 				<c:if test="${not empty tehtavat}">
 					<c:forEach var="tehtava" items="${tehtavat}">
 						<p>
-						<c:out value="${tehtava.id}, ${tehtava.kuvaus}, ${tehtava.lisatiedot}, ${tehtava.status}, ${tehtava.pvm}, ${tehtava.aika}"/></p>
+						<c:out value="${tehtava.id}, ${tehtava.kuvaus}, ${tehtava.lisatiedot}, ${tehtava.pvm}, ${tehtava.aika}"/></p>
 					</c:forEach>
 				</c:if>	
 			</div>
