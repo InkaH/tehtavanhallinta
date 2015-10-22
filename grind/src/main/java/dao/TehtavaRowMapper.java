@@ -14,11 +14,10 @@ public class TehtavaRowMapper implements RowMapper<Tehtava> {
 		TehtavaImpl tehtava = new TehtavaImpl();
 		tehtava.setId(rs.getInt("t_id"));
 		tehtava.setKuvaus(rs.getString("t_kuvaus"));
-		tehtava.setLisatiedot(rs.getString("t_lisatiedot"));
+		tehtava.setTiedot(rs.getString("t_lisatiedot"));
 		tehtava.setStatus(rs.getInt("t_status"));
-		tehtava.setPvm(rs.getTimestamp("t_deadlinedtm").toLocalDateTime().toLocalDate());
-		tehtava.setAika(rs.getTimestamp("t_deadlinedtm").toLocalDateTime().toLocalTime());
-		//tehtava.setMuistutusPvmaika(rs.getTimestamp("t_muistutusdtm").toLocalDateTime());
+		tehtava.setAjankohta(rs.getTimestamp("t_deadlinedtm"));
+		tehtava.setMuistutus(rs.getTimestamp("t_muistutusdtm"));
 		return tehtava;
 	}
 }
