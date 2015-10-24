@@ -1,14 +1,8 @@
 package controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 import javax.inject.Inject;
-
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,13 +24,6 @@ public class TehtavaController {
 
 	public void setDao(TehtavaDaoImpl dao) {
 		this.dao = dao;
-	}
-
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.yyyy HH:mm");
-		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
