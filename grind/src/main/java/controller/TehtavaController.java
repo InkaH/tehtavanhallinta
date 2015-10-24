@@ -48,7 +48,9 @@ public class TehtavaController {
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String lisaaTehtava(@ModelAttribute("uusiTehtava") TehtavaImpl task) {
-		dao.lisaaTehtava(task);
+		if (!task.getKuvaus().isEmpty()) {
+			dao.lisaaTehtava(task);
+		}
 		return "redirect:/";
 	}
 
