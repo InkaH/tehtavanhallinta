@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.inject.Inject;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import bean.Tehtava;
-
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -33,16 +32,16 @@ public class TehtavaDaoImpl implements TehtavaDao {
 		final String kuvaus = tehtava.getKuvaus();
 		final String tiedot = tehtava.getTiedot();
 		final int status = tehtava.getStatus();
-		final Date ajankohta = tehtava.getAjankohta();
-		final Date muistutus = tehtava.getMuistutus();
+		final LocalDateTime ajankohta = tehtava.getAjankohta();
+		final LocalDateTime muistutus = tehtava.getMuistutus();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql);
 				ps.setString(1, kuvaus);
 				ps.setString(2, tiedot);
 				ps.setInt(3, status);
-				ps.setTimestamp(4, new Timestamp(ajankohta.getTime()));
-				ps.setTimestamp(5, new Timestamp(muistutus.getTime()));
+				ps.setTimestamp(4, Timestamp.valueOf(ajankohta));
+				ps.setTimestamp(5, Timestamp.valueOf(muistutus));
 				return ps;
 			}
 		});

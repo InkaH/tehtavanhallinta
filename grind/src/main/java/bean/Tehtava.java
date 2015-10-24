@@ -1,6 +1,8 @@
 package bean;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public interface Tehtava {
 	
@@ -20,12 +22,28 @@ public interface Tehtava {
 	
 	public abstract void setStatus(int status);
 	
-	public abstract Date getAjankohta();
+	public abstract LocalDateTime getAjankohta();
 	
-	public abstract void setAjankohta(Date ajankohta);
+	public abstract void setAjankohta(LocalDateTime ajankohta);
 	
-	public abstract Date getMuistutus();
+	public abstract LocalDate getAjankohtaPvm();
 	
-	public abstract void setMuistutus(Date muistutus);
+	public abstract void setAjankohtaPvm(LocalDate ajankohtaPvm);
+	
+	public abstract LocalTime getAjankohtaKlo();
+	
+	public abstract void setAjankohtaKlo(LocalTime ajankohtaKlo);
+	
+	public abstract LocalDateTime getMuistutus();
+	
+	public abstract void setMuistutus(LocalDateTime muistutus);
+	
+	public abstract LocalDate getMuistutusPvm();
+	
+	public abstract void setMuistutusPvm(LocalDate muistutusPvm);
+	
+	public abstract LocalTime getMuistutusKlo();
+	
+	public abstract void setMuistutusKlo(LocalTime muistutusKlo);
 
 }

@@ -2,9 +2,7 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.springframework.jdbc.core.RowMapper;
-
 import bean.Tehtava;
 import bean.TehtavaImpl;
 
@@ -16,8 +14,8 @@ public class TehtavaRowMapper implements RowMapper<Tehtava> {
 		tehtava.setKuvaus(rs.getString("t_kuvaus"));
 		tehtava.setTiedot(rs.getString("t_lisatiedot"));
 		tehtava.setStatus(rs.getInt("t_status"));
-		tehtava.setAjankohta(rs.getTimestamp("t_deadlinedtm"));
-		tehtava.setMuistutus(rs.getTimestamp("t_muistutusdtm"));
+		tehtava.setAjankohta(rs.getTimestamp("t_deadlinedtm").toLocalDateTime());
+		tehtava.setMuistutus(rs.getTimestamp("t_muistutusdtm").toLocalDateTime());
 		return tehtava;
 	}
 }
