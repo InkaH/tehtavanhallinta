@@ -55,7 +55,7 @@ public class TehtavaController {
 	}
 
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String delete(@RequestParam String delItem) {
+	public String poistaTehtava(@RequestParam String delItem) {
 		if (!delItem.isEmpty()) {
 			dao.poistaTehtava(Integer.parseInt(delItem));
 		}
