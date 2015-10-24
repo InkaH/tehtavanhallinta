@@ -14,11 +14,6 @@ body {
 	padding: 20px;
 }
 
-.delete{
-	float: right;
-	cursor: pointer;
-}
-
 .tasks {
 	background-color: #DCDCDC;
 	border-style: solid;
@@ -38,8 +33,18 @@ body {
 
 .task {
 	margin-bottom: 15px;
+	position: relative;
+	display: block;
 }
 
 .task:last-child {
 	margin-bottom: 0;
+}
+
+.delete {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
