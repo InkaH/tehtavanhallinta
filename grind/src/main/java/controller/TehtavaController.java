@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.TehtavaDaoImpl;
+import dao.TehtavaDao;
 import bean.TehtavaImpl;
 
 @Controller
@@ -16,13 +16,13 @@ import bean.TehtavaImpl;
 public class TehtavaController {
 
 	@Inject
-	private TehtavaDaoImpl dao;
+	private TehtavaDao dao;
 
-	public TehtavaDaoImpl getDao() {
+	public TehtavaDao getDao() {
 		return dao;
 	}
 
-	public void setDao(TehtavaDaoImpl dao) {
+	public void setDao(TehtavaDao dao) {
 		this.dao = dao;
 	}
 
