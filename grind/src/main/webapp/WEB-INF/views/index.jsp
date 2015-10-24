@@ -67,11 +67,11 @@ Tehtävä ja lisätiedot:<br>
 <form:input path="kuvaus" cssClass="form-control inline" placeholder="Aihe" /> 
 <form:input path="tiedot" cssClass="form-control inline" placeholder="Kuvaus" /> 
 <br>Ajankohta:<br>
-<form:input path="ajankohtaPvm" value="${ajankohtaPvm}" cssClass="form-control inline" placeholder="Ajankohta pvm" />
-<form:input path="ajankohtaKlo" value="${ajankohtaKlo}" cssClass="form-control inline" placeholder="Ajankohta klo" />
+<form:input path="ajankohtaPvm" value="${ajankohtaPvm}" value="${ajankohtaPvm}" cssClass="form-control inline" placeholder="Ajankohta pvm" />
+<form:input path="ajankohtaKlo" value="${ajankohtaKlo}" value="${ajankohtaKlo}" cssClass="form-control inline" placeholder="Ajankohta klo" />
 <br>Muistutus:<br>
-<form:input path="muistutusPvm" value="${muistutusPvm}" cssClass="form-control inline" placeholder="Muistutus pvm" />
-<form:input path="muistutusPvm" value="${muistutusKlo}" cssClass="form-control inline" placeholder="Muistutus klo" />
+<form:input path="muistutusPvm" value="${muistutusPvm}" value="${muistutusPvm}" cssClass="form-control inline" placeholder="Muistutus pvm" />
+<form:input path="muistutusPvm" value="${muistutusKlo}" value="${muistutusKlo}" cssClass="form-control inline" placeholder="Muistutus klo" />
 <br><br>
 <button type="submit" class="btn btn-default">Lisää</button>
 </div>
