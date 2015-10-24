@@ -28,6 +28,12 @@ Ei tehtäviä tietokannassa.
 <c:if test="${not empty tehtavat}">
 <c:forEach var="t" items="${tehtavat}">
 <div class="task">
+<div class="delete">
+<form action="del" method="post">
+<input type="hidden" id="delItem" name="delItem" value="${t.id}" />
+<input style="background-color: transparent; border: 0;" type="submit" value="x" />
+</form>
+</div>
 <c:out value="${t.kuvaus}" />:&nbsp;<c:out value="${t.tiedot}" /><br>
 <!-- [d.M.yyyy] [HH:mm] -->
 <fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
@@ -48,7 +54,7 @@ Ei tehtäviä tietokannassa.
 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
 <div id=addtaskform hidden="">
-<form:form class="form-inline" modelAttribute="uusiTehtava" method="post" accept-charset="UTF-8">
+<form:form class="form-inline" modelAttribute="uusiTehtava" action="add" method="post" accept-charset="UTF-8">
 <div class="form-group">
 <!-- Piilokentat -->
 <form:hidden path="id" value="0" />

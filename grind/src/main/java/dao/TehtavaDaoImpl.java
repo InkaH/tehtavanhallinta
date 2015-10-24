@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 public class TehtavaDaoImpl implements TehtavaDao {
-	
+
 	@Inject
 	private JdbcTemplate jdbcTemplate;
 
@@ -26,7 +26,7 @@ public class TehtavaDaoImpl implements TehtavaDao {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
+
 	public void lisaaTehtava(Tehtava tehtava) {
 		final String sql = "INSERT INTO tehtava(t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_muistutusdtm) values(?, ?, ?, ?, ?)";
 		final String kuvaus = tehtava.getKuvaus();
@@ -46,7 +46,19 @@ public class TehtavaDaoImpl implements TehtavaDao {
 			}
 		});
 	}
-	
+
+	public void poistaTehtava(int id) {
+		final String sql = "DELETE FROM tehtava where t_id = ?";
+		final int index = id;
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setInt(1, index);
+				return ps;
+			}
+		});
+	}
+
 	public List<Tehtava> haeKaikki() {
 		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_muistutusdtm FROM tehtava ORDER BY t_deadlinedtm";
 		RowMapper<Tehtava> mapper = new TehtavaRowMapper();

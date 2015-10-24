@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import dao.TehtavaDaoImpl;
 import bean.TehtavaImpl;
 
@@ -30,23 +32,31 @@ public class TehtavaController {
 		this.dao = dao;
 	}
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.yyyy HH:mm");
-    	dateFormat.setLenient(false);
-    	binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
-	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.yyyy HH:mm");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model) {
 		model.put("tehtavat", dao.haeKaikki());
 		model.put("uusiTehtava", new TehtavaImpl());
 		return "index";
 	}
-	
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String lisaaTehtava(@ModelAttribute("uusiTehtava") TehtavaImpl task) {
-    	dao.lisaaTehtava(task);
-    	return "redirect:/";
-    }
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String lisaaTehtava(@ModelAttribute("uusiTehtava") TehtavaImpl task) {
+		dao.lisaaTehtava(task);
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "del", method = RequestMethod.POST)
+	public String delete(@RequestParam String delItem) {
+		if (!delItem.isEmpty()) {
+			dao.poistaTehtava(Integer.parseInt(delItem));
+		}
+		return "redirect:/";
+	}
 }
