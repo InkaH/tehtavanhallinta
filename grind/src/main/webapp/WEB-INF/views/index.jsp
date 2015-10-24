@@ -28,8 +28,8 @@ Ei tehtäviä tietokannassa.
 <c:if test="${not empty tehtavat}">
 <c:forEach var="t" items="${tehtavat}">
 <div class="task">
-<!-- [d.M.yyyy] [HH:mm] -->
 <c:out value="${t.kuvaus}" />:&nbsp;<c:out value="${t.tiedot}" /><br>
+<!-- [d.M.yyyy] [HH:mm] -->
 <fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 <fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 <fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="date" />
@@ -53,25 +53,15 @@ Ei tehtäviä tietokannassa.
 <!-- Piilokentat -->
 <form:hidden path="id" value="0" />
 <form:hidden path="status" value="0" />
-<!-- [dd.MM.yyyy] [HH:mm] -->
-<fmt:parseDate value="${uusiTehtava.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
-<fmt:formatDate value="${parsedAjankohtaPvm}" var="ajankohtaPvm" pattern="dd.MM.yyyy" type="date" />
-<fmt:parseDate value="${uusiTehtava.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="date" />
-<fmt:formatDate value="${parsedAjankohtaKlo}" var="ajankohtaKlo" pattern="HH:mm" type="date" />
-<fmt:parseDate value="${uusiTehtava.muistutusPvm}" pattern="yyyy-MM-dd" var="parsedMuistutusPvm" type="date" />
-<fmt:formatDate value="${parsedMuistutusPvm}" var="muistutusPvm" pattern="dd.MM.yyyy" type="date" />
-<fmt:parseDate value="${uusiTehtava.muistutusKlo}" pattern="HH:mm" var="parsedMuistutusKlo" type="date" />
-<fmt:formatDate value="${parsedMuistutusKlo}" var="muistutusKlo" pattern="HH:mm" type="date" />
-<!-- Syotekentat -->
 Tehtävä ja lisätiedot:<br>
 <form:input path="kuvaus" cssClass="form-control inline" placeholder="Aihe" /> 
 <form:input path="tiedot" cssClass="form-control inline" placeholder="Kuvaus" /> 
 <br>Ajankohta:<br>
-<form:input path="ajankohtaPvm" value="${ajankohtaPvm}" value="${ajankohtaPvm}" cssClass="form-control inline" placeholder="Ajankohta pvm" />
-<form:input path="ajankohtaKlo" value="${ajankohtaKlo}" value="${ajankohtaKlo}" cssClass="form-control inline" placeholder="Ajankohta klo" />
+<form:input path="ajankohtaPvm" cssClass="form-control inline" placeholder="Ajankohta pvm" />
+<form:input path="ajankohtaKlo" cssClass="form-control inline" placeholder="Ajankohta klo" />
 <br>Muistutus:<br>
-<form:input path="muistutusPvm" value="${muistutusPvm}" value="${muistutusPvm}" cssClass="form-control inline" placeholder="Muistutus pvm" />
-<form:input path="muistutusPvm" value="${muistutusKlo}" value="${muistutusKlo}" cssClass="form-control inline" placeholder="Muistutus klo" />
+<form:input path="muistutusPvm" cssClass="form-control inline" placeholder="Muistutus pvm" />
+<form:input path="muistutusKlo" cssClass="form-control inline" placeholder="Muistutus klo" />
 <br><br>
 <button type="submit" class="btn btn-default">Lisää</button>
 </div>

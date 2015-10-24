@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class TehtavaImpl implements Tehtava, Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -13,9 +15,13 @@ public class TehtavaImpl implements Tehtava, Serializable {
 	private String kuvaus;
 	private String tiedot;
 	private int status; // 0 = Ei tehty, 1 = Tehty
+	@DateTimeFormat(pattern = "d.M.yyyy")
 	private LocalDate ajankohtaPvm;
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime ajankohtaKlo;
+	@DateTimeFormat(pattern = "d.M.yyyy")
 	private LocalDate muistutusPvm;
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime muistutusKlo;
 	
 	public TehtavaImpl() {
