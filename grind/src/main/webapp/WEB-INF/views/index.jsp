@@ -29,7 +29,7 @@ Ei tehtäviä tietokannassa.
 <c:forEach var="t" items="${tehtavat}">
 <div class="task">
 <div class="delete">
-<form action="del" method="post">
+<form action="del" method="post" onsubmit="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}">
 <input type="hidden" id="delItem" name="delItem" value="${t.id}" />
 <input style="background-color: transparent; border: 0;" type="submit" value="x" />
 </form>
