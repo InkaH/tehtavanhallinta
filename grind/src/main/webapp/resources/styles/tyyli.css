@@ -14,14 +14,7 @@ body {
 	padding: 20px;
 }
 
-.tasks {
-	background-color: #DCDCDC;
-	border-style: solid;
-	border-color: #babdb6;
-	border-width: 1px;
-	border-radius: 4px;
-	padding: 20px;
-}
+
 
 .inline {
 	display: inline-block;
@@ -32,9 +25,15 @@ body {
 }
 
 .task {
+	background-color: #DCDCDC;
 	margin-bottom: 15px;
 	position: relative;
 	display: block;
+	border-style: solid;
+	border-color: #babdb6;
+	border-width: 1px;
+	border-radius: 4px;
+	padding: 20px;
 }
 
 .task:last-child {
