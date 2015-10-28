@@ -31,7 +31,8 @@ Ei tehtäviä tietokannassa.
 <div class="delete">
 <form action="del" method="post" onsubmit="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}">
 <input type="hidden" id="delItem" name="delItem" value="${t.id}" />
-<input style="background-color: transparent; border: 0;" type="submit" value="x" />
+<button style="background-color: transparent; border: 0;" type="submit" >
+<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
 </form>
 </div>
 <c:out value="${t.kuvaus}" />:&nbsp;<c:out value="${t.tiedot}" /><br>
