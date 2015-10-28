@@ -30,11 +30,11 @@ Ei tehtäviä tietokannassa.
 <c:forEach var="t" items="${tehtavat}">
 <div class="task">
 <div class="delete">
-<form action="del" method="post" onsubmit="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}">
-<input type="hidden" id="delItem" name="delItem" value="${t.id}" />
-<button style="background-color: transparent; border: 0;" type="submit" >
-<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
-</form>
+	<form action="del" method="post" onsubmit="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}">
+		<input type="hidden" id="delItem" name="delItem" value="${t.id}" />
+		<button id="deletebtn" type="submit" >
+		<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+	</form>
 </div>
 <c:out value="${t.kuvaus}" />:&nbsp;<c:out value="${t.tiedot}" /><br>
 <!-- [d.M.yyyy] [HH:mm] -->
@@ -52,7 +52,7 @@ Ei tehtäviä tietokannassa.
 </c:forEach>
 </c:if>
 </div>	
-<button type="button" class="btn btn-default btn-lg btn-xs" id="addtaskbtn">
+<button type="button" class="btn btn-default btn-xs" id="addtaskbtn">
 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
 <div id=addtaskform hidden="">

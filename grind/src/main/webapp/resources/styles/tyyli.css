@@ -14,8 +14,6 @@ body {
 	padding: 20px;
 }
 
-
-
 .inline {
 	display: inline-block;
 }
@@ -46,4 +44,15 @@ body {
 	position: absolute;
 	right: 0;
 	top: 0;
+	border: none;
+}
+
+#addtaskbtn {
+	margin-top: 8px;
+}
+
+#deletebtn {
+	font-size: 1.5em;
+	border: none;
+	background-color: transparent;
 }
