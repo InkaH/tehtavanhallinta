@@ -32,17 +32,23 @@
 <!-- Piilokentat -->
 <form:hidden path="id" value="0" />
 <form:hidden path="status" value="0" />
+<p>
 Tehtävä ja lisätiedot:<br>
 <form:input path="kuvaus" cssClass="form-control inline" placeholder="Aihe" /> 
 <form:input path="tiedot" cssClass="form-control inline" placeholder="Kuvaus" /> 
-<br>Ajankohta:<br>
+</p>
+<p>
+Ajankohta:<br>
 <form:input path="ajankohtaPvm" cssClass="form-control inline" placeholder="Ajankohta pvm" />
 <form:input path="ajankohtaKlo" cssClass="form-control inline" placeholder="Ajankohta klo" />
-<br>Muistutus:<br>
+</p>
+<p>
+Muistutus:<br>
 <form:input path="muistutusPvm" cssClass="form-control inline" placeholder="Muistutus pvm" />
 <form:input path="muistutusKlo" cssClass="form-control inline" placeholder="Muistutus klo" />
 <br><br>
 <button type="submit" class="btn btn-default"><c:out value="${muokkaus=='0' ? 'Lisää' : 'Tallenna'}" /></button>
+</p>
 </div>
 </form:form>
 </div>
