@@ -18,10 +18,7 @@
 </head>
 <body>
 <div class="container">
-<div class="header">
 <h1>G R I N D</h1>
-</div>
-<div>
 <div id="add" style="height: ${muokkaus=='0' ? '35px' : 'auto'}; color: ${muokkaus=='0' ? '#000000' : '#FF0000'};">
 <div id="addtaskform">
 <c:if test="${muokkaus=='0'}">
@@ -45,7 +42,7 @@ Tehtävä ja lisätiedot:<br>
 <form:input path="muistutusPvm" cssClass="form-control inline" placeholder="Muistutus pvm" />
 <form:input path="muistutusKlo" cssClass="form-control inline" placeholder="Muistutus klo" />
 <br><br>
-<button type="submit" class="btn btn-default">Lisää</button>
+<button type="submit" class="btn btn-default"><c:out value="${muokkaus=='0' ? 'Lisää' : 'Tallenna'}" /></button>
 </div>
 </form:form>
 </div>
@@ -104,6 +101,5 @@ Ei tehtäviä tietokannassa.
 </c:if>
 </div>
 
-</div>	
 </body>
 </html>
