@@ -29,15 +29,14 @@ Ei tehtäviä tietokannassa.
 <c:forEach var="t" items="${tehtavat}">
 <div class="task" style="font: normal 16px 'Trebuchet MS'; margin: 3px;">
 <div class="delete">
-<form action="del" method="post" onsubmit="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}">
- 
+<form action="del" method="post">
 <div class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #696969;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li><a href="#">Muokkaa</a></li>
 <li><a href="#">Jaa...</a></li>
 <li role="separator" class="divider"></li>
-<li><a href="#" onclick="document.forms[0].delItem.value='${t.id}';document.forms[0].submit();">Poista</a></li>
+<li><a href="#" onclick="document.forms[0].delItem.value='${t.id}';if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].submit();}">Poista</a></li>
 </ul>
 </div>
 <input type="hidden" id="delItem" name="delItem" value="0" /> 
