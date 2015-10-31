@@ -21,10 +21,13 @@ body {
 .form-group {
 	padding: 10px;
 }
-
+.muistutus{
+	color: #696969;
+	font-size: 14px;
+}
 .task {
 	background-color: #DCDCDC;
-	margin-bottom: 15px;
+	margin: 0;
 	position: relative;
 	display: block;
 	border-style: solid;
