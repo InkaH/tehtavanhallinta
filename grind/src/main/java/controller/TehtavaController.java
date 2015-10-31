@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
@@ -9,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TehtavaDao;
+import bean.Tehtava;
 import bean.TehtavaImpl;
 
 @Controller
 @RequestMapping(value = "/")
 public class TehtavaController {
+	
+	private TehtavaImpl editItem = new TehtavaImpl();
+	private List<Tehtava> tehtavat;
+	private int editingActive = 0;
 
 	@Inject
 	private TehtavaDao dao;
@@ -28,23 +34,44 @@ public class TehtavaController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model) {
-		model.put("tehtavat", dao.haeKaikki());
-		model.put("uusiTehtava", new TehtavaImpl());
+		tehtavat = dao.haeKaikki();
+		model.put("tehtavat", tehtavat);
+		model.put("uusiTehtava", editItem);
+		model.put("muokkaus", editingActive + "");
 		return "index";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String lisaaTehtava(@ModelAttribute("uusiTehtava") TehtavaImpl task) {
+	public String lisaaTehtava(Map<String, Object> model, @ModelAttribute("uusiTehtava") TehtavaImpl task) {
 		if (!task.getKuvaus().isEmpty()) {
 			dao.lisaaTehtava(task);
 		}
+		editingActive = 0;
+		editItem = new TehtavaImpl();
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String poistaTehtava(@RequestParam String delItem) {
-		if (!delItem.isEmpty()) {
+	@RequestMapping(value = "act", method = RequestMethod.POST)
+	public String operoiTehtava(
+			Map<String, Object> model, 
+			@RequestParam String delItem,
+			@RequestParam String editing) {
+		int edit = Integer.parseInt(editing);
+		int deli = Integer.parseInt(delItem);
+		if (edit > 0){
+			for (Tehtava t : tehtavat){
+				if (t.getId() == deli){
+					editItem = (TehtavaImpl) t;
+					editingActive = 1;
+					dao.poistaTehtava(deli);
+					return "redirect:/";
+				}
+			}
+		} else {
 			dao.poistaTehtava(Integer.parseInt(delItem));
+			editingActive = 0;
+			editItem = new TehtavaImpl();
+			return "redirect:/";
 		}
 		return "redirect:/";
 	}

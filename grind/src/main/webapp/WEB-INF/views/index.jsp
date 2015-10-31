@@ -21,7 +21,36 @@
 <div class="header">
 <h1>G R I N D</h1>
 </div>
-<div class="tasks">
+<div>
+<div id="add" style="height: ${muokkaus=='0' ? '35px' : 'auto'}; color: ${muokkaus=='0' ? '#000000' : '#FF0000'};">
+<div id="addtaskform">
+<c:if test="${muokkaus=='0'}">
+<legend style="color: #000000; font-size: 18px;">+ Lisää tehtävä</legend>
+</c:if>
+<c:if test="${muokkaus=='1'}">
+<legend style="color: #FF0000; font-size: 18px;">Muokkaa tehtävää</legend>
+</c:if>
+<form:form class="form-inline" modelAttribute="uusiTehtava" action="add" method="post" accept-charset="UTF-8">
+<div class="form-group">
+<!-- Piilokentat -->
+<form:hidden path="id" value="0" />
+<form:hidden path="status" value="0" />
+Tehtävä ja lisätiedot:<br>
+<form:input path="kuvaus" cssClass="form-control inline" placeholder="Aihe" /> 
+<form:input path="tiedot" cssClass="form-control inline" placeholder="Kuvaus" /> 
+<br>Ajankohta:<br>
+<form:input path="ajankohtaPvm" cssClass="form-control inline" placeholder="Ajankohta pvm" />
+<form:input path="ajankohtaKlo" cssClass="form-control inline" placeholder="Ajankohta klo" />
+<br>Muistutus:<br>
+<form:input path="muistutusPvm" cssClass="form-control inline" placeholder="Muistutus pvm" />
+<form:input path="muistutusKlo" cssClass="form-control inline" placeholder="Muistutus klo" />
+<br><br>
+<button type="submit" class="btn btn-default">Lisää</button>
+</div>
+</form:form>
+</div>
+</div>
+
 <c:if test="${empty tehtavat}">
 Ei tehtäviä tietokannassa.
 </c:if>
@@ -29,17 +58,33 @@ Ei tehtäviä tietokannassa.
 <c:forEach var="t" items="${tehtavat}">
 <div class="task" style="font: normal 16px 'Trebuchet MS'; margin: 3px;">
 <div class="delete">
-<form action="del" method="post">
+<form action="act" method="post">
+<input type="hidden" id="delItem" name="delItem" value="0" />
+<input type="hidden" id="editing" name="editing" value="0" />
 <div class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #696969;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
-<li><a href="#">Muokkaa</a></li>
-<li><a href="#">Jaa...</a></li>
+<li>
+	<a id="editLink" href="#" onclick="
+		document.forms[1].editing.value='1';
+		document.forms[1].delItem.value='${t.id}';
+		document.forms[1].submit();
+		">Muokkaa</a>
+</li>
+<li><a class="dd-select" href="#">Jaa...</a></li>
 <li role="separator" class="divider"></li>
-<li><a href="#" onclick="document.forms[0].delItem.value='${t.id}';if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].submit();}">Poista</a></li>
+<li>
+	<a href="#" onclick="
+		document.forms[1].editing.value='0';
+		document.forms[1].delItem.value='${t.id}';
+		if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){
+			return false;
+		} else {
+			document.forms[1].submit();
+		}">Poista</a>
+</li>
 </ul>
 </div>
-<input type="hidden" id="delItem" name="delItem" value="0" /> 
 </form>
 </div>
 <c:out value="${t.kuvaus}" />:&nbsp;<c:out value="${t.tiedot}" /><br>
@@ -58,29 +103,7 @@ Ei tehtäviä tietokannassa.
 </c:forEach>
 </c:if>
 </div>
-<button type="button" class="btn btn-default btn-xs" id="addtaskbtn" style="margin: 0;">
-<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-</button>
-<div id=addtaskform hidden="">
-<form:form class="form-inline" modelAttribute="uusiTehtava" action="add" method="post" accept-charset="UTF-8">
-<div class="form-group">
-<!-- Piilokentat -->
-<form:hidden path="id" value="0" />
-<form:hidden path="status" value="0" />
-Tehtävä ja lisätiedot:<br>
-<form:input path="kuvaus" cssClass="form-control inline" placeholder="Aihe" /> 
-<form:input path="tiedot" cssClass="form-control inline" placeholder="Kuvaus" /> 
-<br>Ajankohta:<br>
-<form:input path="ajankohtaPvm" cssClass="form-control inline" placeholder="Ajankohta pvm" />
-<form:input path="ajankohtaKlo" cssClass="form-control inline" placeholder="Ajankohta klo" />
-<br>Muistutus:<br>
-<form:input path="muistutusPvm" cssClass="form-control inline" placeholder="Muistutus pvm" />
-<form:input path="muistutusKlo" cssClass="form-control inline" placeholder="Muistutus klo" />
-<br>
-<button type="submit" class="btn btn-default" style="margin-top: 10px;">Lisää</button>
-</div>
-</form:form>
-</div>
+
 </div>	
 </body>
 </html>
