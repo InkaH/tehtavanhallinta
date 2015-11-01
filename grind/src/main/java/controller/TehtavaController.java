@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TehtavaDao;
 import bean.Tehtava;
-import bean.TehtavaImpl;
 
 @Controller
 @RequestMapping(value = "/")
 public class TehtavaController {
 	
-	private TehtavaImpl editItem = new TehtavaImpl();
+	private Tehtava editItem = new Tehtava();
 	private List<Tehtava> tehtavat;
 	private int editingActive = 0;
 
@@ -42,12 +41,12 @@ public class TehtavaController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String lisaaTehtava(Map<String, Object> model, @ModelAttribute("uusiTehtava") TehtavaImpl task) {
+	public String lisaaTehtava(Map<String, Object> model, @ModelAttribute("uusiTehtava") Tehtava task) {
 		if (!task.getKuvaus().isEmpty()) {
 			dao.lisaaTehtava(task);
 		}
 		editingActive = 0;
-		editItem = new TehtavaImpl();
+		editItem = new Tehtava();
 		return "redirect:/";
 	}
 
@@ -61,7 +60,7 @@ public class TehtavaController {
 		if (edit > 0){
 			for (Tehtava t : tehtavat){
 				if (t.getId() == deli){
-					editItem = (TehtavaImpl) t;
+					editItem = t;
 					editingActive = 1;
 					dao.poistaTehtava(deli);
 					return "redirect:/";
@@ -70,8 +69,7 @@ public class TehtavaController {
 		} else {
 			dao.poistaTehtava(Integer.parseInt(delItem));
 			editingActive = 0;
-			editItem = new TehtavaImpl();
-			return "redirect:/";
+			editItem = new Tehtava();
 		}
 		return "redirect:/";
 	}

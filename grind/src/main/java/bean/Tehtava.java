@@ -1,49 +1,131 @@
 package bean;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public interface Tehtava {
-	
-	public abstract int getId();
-	
-	public abstract void setId(int id);
-	
-	public abstract String getKuvaus();
-	
-	public abstract void setKuvaus(String kuvaus);
-	
-	public abstract String getTiedot();
-	
-	public abstract void setTiedot(String tiedot);
-	
-	public abstract int getStatus();
-	
-	public abstract void setStatus(int status);
-	
-	public abstract LocalDateTime getAjankohta();
-	
-	public abstract void setAjankohta(LocalDateTime ajankohta);
-	
-	public abstract LocalDate getAjankohtaPvm();
-	
-	public abstract void setAjankohtaPvm(LocalDate ajankohtaPvm);
-	
-	public abstract LocalTime getAjankohtaKlo();
-	
-	public abstract void setAjankohtaKlo(LocalTime ajankohtaKlo);
-	
-	public abstract LocalDateTime getMuistutus();
-	
-	public abstract void setMuistutus(LocalDateTime muistutus);
-	
-	public abstract LocalDate getMuistutusPvm();
-	
-	public abstract void setMuistutusPvm(LocalDate muistutusPvm);
-	
-	public abstract LocalTime getMuistutusKlo();
-	
-	public abstract void setMuistutusKlo(LocalTime muistutusKlo);
+import org.springframework.format.annotation.DateTimeFormat;
 
+public class Tehtava implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private int id;
+	private String kuvaus;
+	private String tiedot;
+	private int status; // 0 = Ei tehty, 1 = Tehty
+	@DateTimeFormat(pattern = "d.M.yyyy")
+	private LocalDate ajankohtaPvm;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime ajankohtaKlo;
+	@DateTimeFormat(pattern = "d.M.yyyy")
+	private LocalDate muistutusPvm;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime muistutusKlo;
+	
+	public Tehtava() {
+		this.id = 0;
+		this.kuvaus = "";
+		this.tiedot = "";
+		this.status = 0;
+		LocalDateTime now = LocalDateTime.now();
+		this.ajankohtaPvm = now.toLocalDate();
+		this.ajankohtaKlo = now.toLocalTime();
+		this.muistutusPvm = now.toLocalDate();
+		this.muistutusKlo = now.toLocalTime();
+	}
+
+	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta, LocalDateTime muistutus) {
+		this.id = id;
+		this.kuvaus = kuvaus;
+		this.tiedot = tiedot;
+		this.status = status;
+		this.ajankohtaPvm = ajankohta.toLocalDate();
+		this.ajankohtaKlo = ajankohta.toLocalTime();
+		this.muistutusPvm = muistutus.toLocalDate();
+		this.muistutusKlo = muistutus.toLocalTime();
+	}
+	
+	public LocalDateTime getAjankohta() {
+		return this.ajankohtaPvm.atTime(this.ajankohtaKlo);
+	}
+
+    public void setAjankohta(LocalDateTime ajankohta) {
+    	this.ajankohtaPvm = ajankohta.toLocalDate();
+    	this.ajankohtaKlo = ajankohta.toLocalTime();
+    }
+    
+    public LocalDateTime getMuistutus() {
+    	return this.muistutusPvm.atTime(this.muistutusKlo);
+    }
+
+    public void setMuistutus(LocalDateTime muistutus) {
+    	this.muistutusPvm = muistutus.toLocalDate();
+    	this.muistutusKlo = muistutus.toLocalTime();
+    }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getKuvaus() {
+		return kuvaus;
+	}
+
+	public void setKuvaus(String kuvaus) {
+		this.kuvaus = kuvaus;
+	}
+
+	public String getTiedot() {
+		return tiedot;
+	}
+
+	public void setTiedot(String tiedot) {
+		this.tiedot = tiedot;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public LocalDate getAjankohtaPvm() {
+		return ajankohtaPvm;
+	}
+
+	public void setAjankohtaPvm(LocalDate ajankohtaPvm) {
+		this.ajankohtaPvm = ajankohtaPvm;
+	}
+
+	public LocalTime getAjankohtaKlo() {
+		return ajankohtaKlo;
+	}
+
+	public void setAjankohtaKlo(LocalTime ajankohtaKlo) {
+		this.ajankohtaKlo = ajankohtaKlo;
+	}
+
+	public LocalDate getMuistutusPvm() {
+		return muistutusPvm;
+	}
+
+	public void setMuistutusPvm(LocalDate muistutusPvm) {
+		this.muistutusPvm = muistutusPvm;
+	}
+
+	public LocalTime getMuistutusKlo() {
+		return muistutusKlo;
+	}
+
+	public void setMuistutusKlo(LocalTime muistutusKlo) {
+		this.muistutusKlo = muistutusKlo;
+	}
 }
