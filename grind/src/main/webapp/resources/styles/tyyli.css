@@ -5,9 +5,29 @@ body {
 	padding: 0;
 }
 
-.container {
-	position: relative;
+#container {
+	background-color: transparent;
+	border: 0px dashed #000000;
+	display: block;
+	height: auto;
+	left: 30px;
 	padding: 20px;
+	position: absolute;
+	right: 30px;
+	top: 0;
+}
+
+#add {
+	background-color: inherit;
+	border: 0px dashed #000000;
+	color: #696969;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	font-size: 16px;
+	font-weight: normal;
+	overflow: hidden;
+	padding: 0 20px 20px 0;
 }
 
 .dd-select {
@@ -52,19 +72,7 @@ body {
 	border: none;
 }
 
-#add {
-	background-color: transparent;
-	border: 0px solid #C0C0C0;
-	border-radius: 5px;
-	color: #696969;
-	cursor: pointer;
-	display: block;
-	position: relative;
-	font-size: 16px;
-	font-weight: normal;
-	overflow: hidden;
-	padding: 5px 20px 20px 20px;
-}
+
 
 #addtaskform {
 	padding: 0;

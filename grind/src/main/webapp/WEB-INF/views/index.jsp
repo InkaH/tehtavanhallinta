@@ -14,10 +14,10 @@
 <link href="<c:url value="/resources/img/favicon.ico" />" rel="shortcut icon" type="image/x-icon" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="<c:url value="/resources/js/javascript.js" /> "></script>
+<script src="<c:url value="/resources/js/script.js" /> "></script>
 </head>
 <body>
-<div class="container">
+<div id="container">
 <h1>G R I N D</h1>
 <div id="add" style="height: ${muokkaus=='0' ? '35px' : 'auto'}; color: ${muokkaus=='0' ? '#000000' : '#FF0000'};">
 <div id="addtaskform">
