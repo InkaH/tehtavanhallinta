@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Tehtava implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	
 	private int id;

@@ -1,35 +1,53 @@
 @charset "utf-8";
 
 body {
-	margin: 0;
-	padding: 0;
+	color: #000000;	
+	font-size: 16px;
+	overflow-y: scroll;
 }
 
-#container {
-	background-color: transparent;
-	border: 0px dashed #000000;
-	display: block;
-	height: auto;
-	left: 30px;
-	padding: 20px;
-	position: absolute;
-	right: 30px;
-	top: 0;
+/* BOOTSTRAP OVERWRITE */
+
+.btn {
+	margin-bottom: 20px;
 }
 
+.container {
+	padding-bottom: 50px;
+}
+
+.control-label {
+	font-weight: normal;
+	padding-right: 0;
+}
+
+.form-control {
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.well {
+	margin-bottom: 5px;
+}
+
+/* END OF BOOTSTRAP OVERWRITE */
+
+/*
 #add {
 	background-color: inherit;
 	border: 0px dashed #000000;
 	color: #696969;
 	cursor: pointer;
 	display: block;
-	position: relative;
 	font-size: 16px;
 	font-weight: normal;
+	position: relative;
 	overflow: hidden;
-	padding: 0 20px 20px 0;
+	padding: 0 0 20px 0;
 }
-
+*/
 .dd-select {
 	font: normal 16px 'Trebuchet MS';
 }
@@ -40,6 +58,10 @@ body {
 
 .form-group {
 	padding: 10px;
+}
+
+.form-elem {
+	width: 200px;
 }
 
 .muistutus {
@@ -71,12 +93,6 @@ body {
 	right: 0;
 	top: 0;
 	border: none;
-}
-
-
-
-#addtaskform {
-	padding: 0;
 }
 
 #deletebtn {
