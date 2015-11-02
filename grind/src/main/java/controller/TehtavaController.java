@@ -54,8 +54,6 @@ public class TehtavaController {
 	public String poistaTehtava(@RequestParam String delTask) {
 		int de = Integer.parseInt(delTask);
 		if (de > 0) {
-			System.out.println(tehtavat);
-			System.out.println(delTask);
 			dao.poistaTehtava(de);
 		}
 		editingActive = 0;
@@ -66,8 +64,6 @@ public class TehtavaController {
 	public String muokkaaTehtava(@RequestParam String editTask) {
 		int ed = Integer.parseInt(editTask);
 		if (ed > 0) {
-			System.out.println(tehtavat);
-			System.out.println(editTask);
 			for (Tehtava t : tehtavat) {
 				if (t.getId() == ed) {
 					this.editItem = t;
