@@ -16,6 +16,10 @@ body {
 	margin-bottom: 20px;
 }
 
+.btn-default {
+	background-color: #F1F1F1;
+}
+
 .container {
 	padding-bottom: 50px;
 }
