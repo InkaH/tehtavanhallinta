@@ -28,7 +28,8 @@ public class TehtavaDaoImpl implements TehtavaDao {
 	}
 
 	public void lisaaTehtava(Tehtava tehtava) {
-		final String sql = "INSERT INTO tehtava(t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_muistutusdtm) values(?, ?, ?, ?, ?)";
+		final String sql = "INSERT INTO tehtava(t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_muistutusdtm) values(?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_kuvaus=?, t_lisatiedot=?, t_status=?, t_deadlinedtm=?, t_muistutusdtm=?";
+		final int id = tehtava.getId();
 		final String kuvaus = tehtava.getKuvaus();
 		final String tiedot = tehtava.getTiedot();
 		final int status = tehtava.getStatus();
@@ -37,11 +38,22 @@ public class TehtavaDaoImpl implements TehtavaDao {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql);
-				ps.setString(1, kuvaus);
-				ps.setString(2, tiedot);
-				ps.setInt(3, status);
-				ps.setTimestamp(4, Timestamp.valueOf(ajankohta));
-				ps.setTimestamp(5, Timestamp.valueOf(muistutus));
+				if (id == 0) {
+					ps.setString(1, null);
+				} else {
+					ps.setInt(1, id);
+				}
+				ps.setString(2, kuvaus);
+				ps.setString(3, tiedot);
+				ps.setInt(4, status);
+				ps.setTimestamp(5, Timestamp.valueOf(ajankohta));
+				ps.setTimestamp(6, Timestamp.valueOf(muistutus));
+				// replacement values
+				ps.setString(7, kuvaus);
+				ps.setString(8, tiedot);
+				ps.setInt(9, status);
+				ps.setTimestamp(10, Timestamp.valueOf(ajankohta));
+				ps.setTimestamp(11, Timestamp.valueOf(muistutus));
 				return ps;
 			}
 		});

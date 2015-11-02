@@ -10,7 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Tehtava implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
 	private String kuvaus;
 	private String tiedot;
@@ -23,7 +23,7 @@ public class Tehtava implements Serializable {
 	private LocalDate muistutusPvm;
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime muistutusKlo;
-	
+
 	public Tehtava() {
 		this.id = 0;
 		this.kuvaus = "";
@@ -46,24 +46,36 @@ public class Tehtava implements Serializable {
 		this.muistutusPvm = muistutus.toLocalDate();
 		this.muistutusKlo = muistutus.toLocalTime();
 	}
-	
+
+	public void nollaaTehtava() {
+		this.id = 0;
+		this.kuvaus = "";
+		this.tiedot = "";
+		this.status = 0;
+		LocalDateTime now = LocalDateTime.now();
+		this.ajankohtaPvm = now.toLocalDate();
+		this.ajankohtaKlo = now.toLocalTime();
+		this.muistutusPvm = now.toLocalDate();
+		this.muistutusKlo = now.toLocalTime();
+	}
+
 	public LocalDateTime getAjankohta() {
 		return this.ajankohtaPvm.atTime(this.ajankohtaKlo);
 	}
 
-    public void setAjankohta(LocalDateTime ajankohta) {
-    	this.ajankohtaPvm = ajankohta.toLocalDate();
-    	this.ajankohtaKlo = ajankohta.toLocalTime();
-    }
-    
-    public LocalDateTime getMuistutus() {
-    	return this.muistutusPvm.atTime(this.muistutusKlo);
-    }
+	public void setAjankohta(LocalDateTime ajankohta) {
+		this.ajankohtaPvm = ajankohta.toLocalDate();
+		this.ajankohtaKlo = ajankohta.toLocalTime();
+	}
 
-    public void setMuistutus(LocalDateTime muistutus) {
-    	this.muistutusPvm = muistutus.toLocalDate();
-    	this.muistutusKlo = muistutus.toLocalTime();
-    }
+	public LocalDateTime getMuistutus() {
+		return this.muistutusPvm.atTime(this.muistutusKlo);
+	}
+
+	public void setMuistutus(LocalDateTime muistutus) {
+		this.muistutusPvm = muistutus.toLocalDate();
+		this.muistutusKlo = muistutus.toLocalTime();
+	}
 
 	public int getId() {
 		return id;
@@ -127,5 +139,12 @@ public class Tehtava implements Serializable {
 
 	public void setMuistutusKlo(LocalTime muistutusKlo) {
 		this.muistutusKlo = muistutusKlo;
+	}
+
+	@Override
+	public String toString() {
+		return "Tehtava [id=" + id + ", kuvaus=" + kuvaus + ", tiedot=" + tiedot + ", status=" + status
+				+ ", ajankohtaPvm=" + ajankohtaPvm + ", ajankohtaKlo=" + ajankohtaKlo + ", muistutusPvm=" + muistutusPvm
+				+ ", muistutusKlo=" + muistutusKlo + "]";
 	}
 }

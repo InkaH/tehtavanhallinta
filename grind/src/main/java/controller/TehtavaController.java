@@ -15,7 +15,7 @@ import bean.Tehtava;
 @Controller
 @RequestMapping(value = "/")
 public class TehtavaController {
-	
+
 	private Tehtava editItem = new Tehtava();
 	private List<Tehtava> tehtavat;
 	private int editingActive = 0;
@@ -35,41 +35,42 @@ public class TehtavaController {
 	public String getView(Map<String, Object> model) {
 		tehtavat = dao.haeKaikki();
 		model.put("tehtavat", tehtavat);
-		model.put("uusiTehtava", editItem);
-		model.put("muokkaus", editingActive + "");
+		model.put("uusiTehtava", this.editItem);
+		model.put("edit", Integer.toString(editingActive));
 		return "index";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String lisaaTehtava(Map<String, Object> model, @ModelAttribute("uusiTehtava") Tehtava task) {
+	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task) {
 		if (!task.getKuvaus().isEmpty()) {
 			dao.lisaaTehtava(task);
 		}
 		editingActive = 0;
-		editItem = new Tehtava();
+		editItem.nollaaTehtava();
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "act", method = RequestMethod.POST)
-	public String operoiTehtava(
-			Map<String, Object> model, 
-			@RequestParam String delItem,
-			@RequestParam String editing) {
-		int edit = Integer.parseInt(editing);
-		int deli = Integer.parseInt(delItem);
-		if (edit > 0){
-			for (Tehtava t : tehtavat){
-				if (t.getId() == deli){
-					editItem = t;
+	@RequestMapping(value = "del", method = RequestMethod.POST)
+	public String poistaTehtava(@RequestParam String delTask) {
+		int de = Integer.parseInt(delTask);
+		if (de > 0) {
+			dao.poistaTehtava(de);
+		}
+		editingActive = 0;
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String muokkaaTehtava(@RequestParam String editTask) {
+		int ed = Integer.parseInt(editTask);
+		if (ed > 0) {
+			for (Tehtava t : tehtavat) {
+				if (t.getId() == ed) {
+					this.editItem = t;
 					editingActive = 1;
-					dao.poistaTehtava(deli);
 					return "redirect:/";
 				}
 			}
-		} else {
-			dao.poistaTehtava(Integer.parseInt(delItem));
-			editingActive = 0;
-			editItem = new Tehtava();
 		}
 		return "redirect:/";
 	}

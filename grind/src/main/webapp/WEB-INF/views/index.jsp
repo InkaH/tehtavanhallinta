@@ -30,26 +30,26 @@
 <h1>G R I N D</h1>
 </div>
 </div>
-<div class="row" style="color: ${muokkaus=='0' ? '#000000' : '#FF0000'};">
-<c:if test="${muokkaus=='0'}">
+<div class="row" style="color: ${edit=='0' ? '#000000' : '#FF0000'};">
+<c:if test="${edit=='0'}">
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
 <h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;"> + Luo uusi tehtävä</span></h3>
 </div>
 </div>
 </c:if>
-<c:if test="${muokkaus=='1'}">
+<c:if test="${edit=='1'}">
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
 <h3>Muokkaa tehtävää</h3>
 </div>
 </div>
 </c:if>
-<div id="add" class="${muokkaus=='0' ? 'collapse' : 'collapse in'}">
+<div id="add" class="${edit=='0' ? 'collapse' : 'collapse in'}">
 <form:form role="form" class="form-horizontal" modelAttribute="uusiTehtava" action="add" method="post" accept-charset="UTF-8">
 
-<form:hidden path="id" value="0" />
-<form:hidden path="status" value="0" />
+<form:hidden path="id" />
+<form:hidden path="status" />
 
 <div class="form-group">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Tehtävä:</label>
@@ -114,34 +114,21 @@ Ei tehtäviä tietokannassa.
 <div class="row">
 <div class="col-sm-offset-2 col-sm-8 well">
 <div class="delete">
-<form action="act" method="post">
-<input type="hidden" id="delItem" name="delItem" value="0" />
-<input type="hidden" id="editing" name="editing" value="0" />
+
 <div class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #696969;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
-	<a id="editLink" href="#" onclick="
-		document.forms[1].editing.value='1';
-		document.forms[1].delItem.value='${t.id}';
-		document.forms[1].submit();
-		"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
+<a href="#" onclick="document.getElementById('editForm${t.id}').submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 </li>
 <li><a class="dd-select" href="#"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Jaa...</a></li>
 <li role="separator" class="divider"></li>
 <li>
-	<a href="#" onclick="
-		document.forms[1].editing.value='0';
-		document.forms[1].delItem.value='${t.id}';
-		if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){
-			return false;
-		} else {
-			document.forms[1].submit();
-		}"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Poista</a>
+<a href="#" data-toggle="modal" data-target="#poisto"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Poista</a>
 </li>
 </ul>
 </div>
-</form>
+
 </div>
 <strong><c:out value="${t.kuvaus}" /></strong><br><c:out value="${t.tiedot}" /><br>
 <!-- [d.M.yyyy] [HH:mm] -->
@@ -160,8 +147,39 @@ Ei tehtäviä tietokannassa.
 -->
 </div>
 </div>
+
+<!-- Modal -->
+<div id="poisto" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3 class="modal-title">Tehtävän poisto</h3>
+</div>
+<div class="modal-body">
+<p>Haluatko poistaa tehtävän pysyvästi?</p>
+</div>
+<div class="modal-footer">
+<button onclick="document.getElementById('delForm${t.id}').submit();" class="btn btn-default pull-left" data-dismiss="modal">Hyväksy</button>
+<button class="btn btn-default" data-dismiss="modal">Peruuta</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FORMS -->
+<form id="editForm${t.id}" action="edit" method="post">
+<input type="hidden" id="editTask" name="editTask" value="${t.id}" />
+</form>
+
+<form id="delForm${t.id}" action="del" method="post">
+<input type="hidden" id="delTask" name="delTask" value="${t.id}" />
+</form>
+<!-- END OF FORMS -->
+
 </c:forEach>
 </c:if>
+
 </div>
 
 </body>
