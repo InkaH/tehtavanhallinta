@@ -69,26 +69,29 @@
 </div>
 </div>
 
-<div class="form-group">
+<div class="form-group has-feedback">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Ajankohta:</label>
 <div class="controls bootstrap-timepicker col-sm-3">
 <form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" />
-<i class="icon-time"></i>
+<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 </div>
 <div class="col-sm-3">
-<form:input path="ajankohtaKlo" cssClass="form-control text-center" /> 
+<form:input path="ajankohtaKlo" cssClass="form-control text-center" />
+<i class="form-control-feedback glyphicon glyphicon-time"></i>
 </div>
 <div class="col-sm-3">
 </div>
 </div>
 
-<div class="form-group">
+<div class="form-group has-feedback">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Muistutus:</label>
 <div class="col-sm-3">
 <form:input path="muistutusPvm" cssClass="form-control text-center" /> 
+<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 </div>
 <div class="col-sm-3">
-<form:input path="muistutusKlo" cssClass="form-control text-center" /> 
+<form:input path="muistutusKlo" cssClass="form-control text-center" />
+<i class="form-control-feedback glyphicon glyphicon-time"></i>
 </div>
 <div class="col-sm-3">
 </div>
@@ -96,7 +99,7 @@
 
 <div class="form-group"> 
 <div class="col-sm-offset-3 col-sm-6">
-<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;TALLENNA</button>
+<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 </div>
 </div>
 </form:form>

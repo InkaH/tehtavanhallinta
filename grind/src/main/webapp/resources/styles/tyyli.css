@@ -8,6 +8,10 @@ body {
 
 /* BOOTSTRAP OVERWRITE */
 
+.glyphicon {
+	color: #696969;
+}
+
 .btn {
 	margin-bottom: 20px;
 }
