@@ -28,13 +28,12 @@ public class TehtavaDaoImpl implements TehtavaDao {
 	}
 
 	public void lisaaTehtava(Tehtava tehtava) {
-		final String sql = "INSERT INTO tehtava(t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_muistutusdtm) values(?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_kuvaus=?, t_lisatiedot=?, t_status=?, t_deadlinedtm=?, t_muistutusdtm=?";
+		final String sql = "INSERT INTO tehtava(t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm) values(?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_kuvaus=?, t_lisatiedot=?, t_status=?, t_deadlinedtm=?";
 		final int id = tehtava.getId();
 		final String kuvaus = tehtava.getKuvaus();
 		final String tiedot = tehtava.getTiedot();
 		final int status = tehtava.getStatus();
 		final LocalDateTime ajankohta = tehtava.getAjankohta();
-		final LocalDateTime muistutus = tehtava.getMuistutus();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql);
@@ -47,13 +46,11 @@ public class TehtavaDaoImpl implements TehtavaDao {
 				ps.setString(3, tiedot);
 				ps.setInt(4, status);
 				ps.setTimestamp(5, Timestamp.valueOf(ajankohta));
-				ps.setTimestamp(6, Timestamp.valueOf(muistutus));
 				// replacement values
-				ps.setString(7, kuvaus);
-				ps.setString(8, tiedot);
-				ps.setInt(9, status);
-				ps.setTimestamp(10, Timestamp.valueOf(ajankohta));
-				ps.setTimestamp(11, Timestamp.valueOf(muistutus));
+				ps.setString(6, kuvaus);
+				ps.setString(7, tiedot);
+				ps.setInt(8, status);
+				ps.setTimestamp(9, Timestamp.valueOf(ajankohta));
 				return ps;
 			}
 		});
@@ -72,7 +69,7 @@ public class TehtavaDaoImpl implements TehtavaDao {
 	}
 
 	public List<Tehtava> haeKaikki() {
-		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_muistutusdtm FROM tehtava ORDER BY t_deadlinedtm";
+		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm FROM tehtava ORDER BY t_deadlinedtm";
 		RowMapper<Tehtava> mapper = new TehtavaRowMapper();
 		List<Tehtava> tehtavat = jdbcTemplate.query(sql, mapper);
 		return tehtavat;

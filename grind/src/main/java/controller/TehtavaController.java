@@ -1,5 +1,6 @@
 package controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
@@ -36,7 +37,7 @@ public class TehtavaController {
 	public String getView(Map<String, Object> model) {
 		tehtavat = dao.haeKaikki();
 		model.put("tehtavat", tehtavat); // send all tasks to UI in a variable called 'tehtavat'
-		model.put("uusiTehtava", this.editItem); // send a form pre-fill object to UI in a variable called 'uusiTehtava'
+		model.put("uusiTehtava", this.editItem); // send the form pre-fill object to UI in a variable called 'uusiTehtava'
 		model.put("edit", Integer.toString(editingActive)); // send the state of editing mode to UI in a variable called 'edit'
 		return "index";
 	}
@@ -45,6 +46,9 @@ public class TehtavaController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task) { // get the Tehtava object from the form
 		if (!task.getKuvaus().isEmpty()) {
+			LocalDateTime now = LocalDateTime.now();
+			task.setAjankohtaPvm(now.toLocalDate());
+			task.setAjankohtaKlo(now.toLocalTime());
 			dao.lisaaTehtava(task); // if the header of task is not empty, insert the new task into database
 		}
 		editingActive = 0; // set editing mode off
@@ -68,7 +72,7 @@ public class TehtavaController {
 	public String muokkaaTehtava(@RequestParam String editTask) {
 		int ed = Integer.parseInt(editTask);
 		if (ed > 0) {
-			for (Tehtava t : tehtavat) { // get the right task by id
+			for (Tehtava t : tehtavat) { // search the right task in a loop
 				if (t.getId() == ed) {
 					this.editItem = t; // copy the editable task reference to the form pre-fill object
 					editingActive = 1; // set editing mode on

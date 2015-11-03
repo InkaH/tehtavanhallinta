@@ -112,19 +112,7 @@
 <div class="col-sm-3">
 </div>
 </div>
-<div class="form-group has-feedback">
-<label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Muistutus:</label>
-<div class="col-sm-3">
-<form:input path="muistutusPvm" cssClass="form-control text-center" /> 
-<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-</div>
-<div class="col-sm-3">
-<form:input path="muistutusKlo" cssClass="form-control text-center" />
-<i class="form-control-feedback glyphicon glyphicon-time"></i>
-</div>
-<div class="col-sm-3">
-</div>
-</div>
+
 <div class="form-group"> 
 <div class="col-sm-offset-3 col-sm-6">
 <button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
@@ -184,17 +172,9 @@ Sinulla ei ole tehtäviä
 <fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 <fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="date" />
 <fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="date" />
+</div>
+</div>
 
-<!-- datetime reminder not in use
-<small>
-<fmt:parseDate value="${t.muistutusPvm}" pattern="yyyy-MM-dd" var="parsedMuistutusPvm" type="date" />
-<fmt:formatDate value="${parsedMuistutusPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
-<fmt:parseDate value="${t.muistutusKlo}" pattern="HH:mm" var="parsedMuistutusKlo" type="date" />
-<fmt:formatDate value="${parsedMuistutusKlo}" pattern="HH:mm" type="date" />
-</small>
--->
-</div>
-</div>
 <!-- FORM[1]: DELETE -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />

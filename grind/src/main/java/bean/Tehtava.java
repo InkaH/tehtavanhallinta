@@ -19,32 +19,23 @@ public class Tehtava implements Serializable {
 	private LocalDate ajankohtaPvm;
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime ajankohtaKlo;
-	@DateTimeFormat(pattern = "d.M.yyyy")
-	private LocalDate muistutusPvm;
-	@DateTimeFormat(pattern = "HH:mm")
-	private LocalTime muistutusKlo;
 
 	public Tehtava() {
 		this.id = 0;
 		this.kuvaus = "";
 		this.tiedot = "";
 		this.status = 0;
-		LocalDateTime now = LocalDateTime.now();
-		this.ajankohtaPvm = now.toLocalDate();
-		this.ajankohtaKlo = now.toLocalTime();
-		this.muistutusPvm = now.toLocalDate();
-		this.muistutusKlo = now.toLocalTime();
+		this.ajankohtaPvm = null;
+		this.ajankohtaKlo = null;
 	}
 
-	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta, LocalDateTime muistutus) {
+	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta) {
 		this.id = id;
 		this.kuvaus = kuvaus;
 		this.tiedot = tiedot;
 		this.status = status;
 		this.ajankohtaPvm = ajankohta.toLocalDate();
 		this.ajankohtaKlo = ajankohta.toLocalTime();
-		this.muistutusPvm = muistutus.toLocalDate();
-		this.muistutusKlo = muistutus.toLocalTime();
 	}
 
 	public void nollaaTehtava() {
@@ -55,8 +46,6 @@ public class Tehtava implements Serializable {
 		LocalDateTime now = LocalDateTime.now();
 		this.ajankohtaPvm = now.toLocalDate();
 		this.ajankohtaKlo = now.toLocalTime();
-		this.muistutusPvm = now.toLocalDate();
-		this.muistutusKlo = now.toLocalTime();
 	}
 
 	public LocalDateTime getAjankohta() {
@@ -66,15 +55,6 @@ public class Tehtava implements Serializable {
 	public void setAjankohta(LocalDateTime ajankohta) {
 		this.ajankohtaPvm = ajankohta.toLocalDate();
 		this.ajankohtaKlo = ajankohta.toLocalTime();
-	}
-
-	public LocalDateTime getMuistutus() {
-		return this.muistutusPvm.atTime(this.muistutusKlo);
-	}
-
-	public void setMuistutus(LocalDateTime muistutus) {
-		this.muistutusPvm = muistutus.toLocalDate();
-		this.muistutusKlo = muistutus.toLocalTime();
 	}
 
 	public int getId() {
@@ -125,26 +105,9 @@ public class Tehtava implements Serializable {
 		this.ajankohtaKlo = ajankohtaKlo;
 	}
 
-	public LocalDate getMuistutusPvm() {
-		return muistutusPvm;
-	}
-
-	public void setMuistutusPvm(LocalDate muistutusPvm) {
-		this.muistutusPvm = muistutusPvm;
-	}
-
-	public LocalTime getMuistutusKlo() {
-		return muistutusKlo;
-	}
-
-	public void setMuistutusKlo(LocalTime muistutusKlo) {
-		this.muistutusKlo = muistutusKlo;
-	}
-
 	@Override
 	public String toString() {
 		return "Tehtava [id=" + id + ", kuvaus=" + kuvaus + ", tiedot=" + tiedot + ", status=" + status
-				+ ", ajankohtaPvm=" + ajankohtaPvm + ", ajankohtaKlo=" + ajankohtaKlo + ", muistutusPvm=" + muistutusPvm
-				+ ", muistutusKlo=" + muistutusKlo + "]";
+				+ ", ajankohtaPvm=" + ajankohtaPvm + ", ajankohtaKlo=" + ajankohtaKlo;
 	}
 }
