@@ -1,9 +1,11 @@
 package bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +38,10 @@ public class Tehtava implements Serializable {
 		this.status = status;
 		this.ajankohtaPvm = ajankohta.toLocalDate();
 		this.ajankohtaKlo = ajankohta.toLocalTime();
+	}
+	
+	public Date getDate(){
+		return Timestamp.valueOf(getAjankohta());
 	}
 
 	public void nollaaTehtava() {

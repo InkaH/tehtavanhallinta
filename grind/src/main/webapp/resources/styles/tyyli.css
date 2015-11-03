@@ -38,7 +38,7 @@ body {
 	margin: 0;
 	padding: 15px;
 }
-.well {
+.well, .alert {
 	margin-bottom: 5px;
 }
 

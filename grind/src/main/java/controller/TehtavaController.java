@@ -47,7 +47,12 @@ public class TehtavaController {
 	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task) { // get the Tehtava object from the form
 		if (!task.getKuvaus().isEmpty()) {
 			LocalDateTime now = LocalDateTime.now();
-			task.setAjankohtaPvm(now.toLocalDate());
+			if (task.getAjankohtaPvm() == null) {
+				task.setAjankohtaPvm(now.toLocalDate());
+			}
+			if (task.getAjankohtaKlo() == null) {
+				task.setAjankohtaKlo(now.toLocalTime());
+			}
 			task.setAjankohtaKlo(now.toLocalTime());
 			dao.lisaaTehtava(task); // if the header of task is not empty, insert the new task into database
 		}
