@@ -151,6 +151,8 @@ Sinulla ei ole tehtäviä
 <!-- task content boxes generated in loop -->
 <c:forEach var="t" items="${tehtavat}">
 <div class="row">
+
+<!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
 <div class="col-sm-offset-2 col-sm-8 well">
 
 <!-- dropdown list of optional functions of a single task -->
