@@ -41,7 +41,7 @@ public class TehtavaController {
 		return "index";
 	}
 	
-	// task creation/editing form calls the method on submit <form action="add"...>  -->  @RequestMapping(value="add"...)
+	// the task creation/editing form calls the method on submit <form action="add"...>  -->  @RequestMapping(value="add"...)
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task) { // get the Tehtava object from the form
 		if (!task.getKuvaus().isEmpty()) {
@@ -52,7 +52,7 @@ public class TehtavaController {
 		return "redirect:/"; // move to getView method (value = "/")
 	}
 
-	// task deletion form calls the method on submit <form action="del"...>  -->  @RequestMapping(value="del"...)
+	// the task deletion form calls the method on submit <form action="del"...>  -->  @RequestMapping(value="del"...)
 	@RequestMapping(value = "del", method = RequestMethod.POST)
 	public String poistaTehtava(@RequestParam String delTask) { // get attribute delTask (task id) from the form
 		int de = Integer.parseInt(delTask);
@@ -63,7 +63,7 @@ public class TehtavaController {
 		return "redirect:/";
 	}
 
-	// task editing form calls the method on submit
+	// the task editing form calls the method on submit
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String muokkaaTehtava(@RequestParam String editTask) {
 		int ed = Integer.parseInt(editTask);
