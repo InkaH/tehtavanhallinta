@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<!-- bootstrap container (all content) -->
+<!-- bootstrap container with large margins (all content) -->
 <div class="container">
 
 <!-- 1st main row: header -->
@@ -136,12 +136,16 @@
 
 <!-- UI gets list of all tasks (tehtavat) from controller and prints them if not empty -->
 <c:if test="${empty tehtavat}">
+
+<!-- 3rd optional main row -->
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
 Sinulla ei ole tehtäviä
 </div>
 </div>
 </c:if>
+
+<!-- 3rd optional main row -->
 <c:if test="${not empty tehtavat}">
 
 <!-- task content boxes generated in loop -->
