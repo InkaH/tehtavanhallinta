@@ -75,7 +75,7 @@ body {
 .task:last-child {
 	margin-bottom: 0;
 }
-.delete {
+.task-options {
 	cursor: pointer;
 	display: block;
 	position: absolute;
