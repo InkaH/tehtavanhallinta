@@ -48,7 +48,7 @@
 <!-- 1st optional inner row -->
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
-<h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;"> + Luo uusi tehtävä</span></h3>
+<h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">+ Luo uusi tehtävä</span></h3>
 </div>
 </div>
 </c:if>
