@@ -17,7 +17,7 @@ import bean.Tehtava;
 public class TehtavaController {
 	
 	private Tehtava editItem = new Tehtava(); // controller sustain one Tehtava object in order to pre-fill the main form
-	private List<Tehtava> tehtavat; // list of all user's tasks
+	private List<Tehtava> tehtavat; // list of all tasks of the user
 	private int editingActive = 0; // editing mode (0 = false, 1 = true)
 
 	@Inject
