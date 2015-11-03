@@ -43,9 +43,8 @@ public class Tehtava implements Serializable {
 		this.kuvaus = "";
 		this.tiedot = "";
 		this.status = 0;
-		LocalDateTime now = LocalDateTime.now();
-		this.ajankohtaPvm = now.toLocalDate();
-		this.ajankohtaKlo = now.toLocalTime();
+		this.ajankohtaPvm = null;
+		this.ajankohtaKlo = null;
 	}
 
 	public LocalDateTime getAjankohta() {
