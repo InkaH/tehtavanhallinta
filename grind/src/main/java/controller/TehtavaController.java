@@ -53,7 +53,6 @@ public class TehtavaController {
 			if (task.getAjankohtaKlo() == null) {
 				task.setAjankohtaKlo(now.toLocalTime());
 			}
-			task.setAjankohtaKlo(now.toLocalTime());
 			dao.lisaaTehtava(task); // if the header of task is not empty, insert the new task into database
 		}
 		editingActive = 0; // set editing mode off
