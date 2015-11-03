@@ -174,14 +174,11 @@ Sinulla ei ole tehtäviä
 
 <!-- jstl: time objects parsed from localdate/localtime to date objects -->
 
-<c:if test="${parsedAjankohta > now}">
-
+<c:out value="${(parsedAjankohta > now) ? '' : 'Erääntynyt: '}" />
 <fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 <fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 <fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 <fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
-
-</c:if>
 
 </div>
 </div>
