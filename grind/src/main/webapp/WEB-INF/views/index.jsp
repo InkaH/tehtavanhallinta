@@ -148,12 +148,12 @@ Sinulla ei ole tehtäviä
 
 <div class="row">
 <!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
-<div class="col-sm-offset-2 col-sm-8 well ${(parsedAjankohta > now) ? 'mark-blue' : ((compTaskDate == compIdentifier) ? 'mark-green' : 'mark-red')}">
+<div class="col-sm-offset-2 col-sm-8 well ${(parsedAjankohta > now) ? 'mark-frog' : ((compTaskDate == compIdentifier) ? 'mark-green' : 'mark-red')}">
 
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
 <div class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #696969;"></span></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #525252;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
 

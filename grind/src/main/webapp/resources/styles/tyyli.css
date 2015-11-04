@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 body {
+	background-color: #FFFFFF;
 	color: #000000;	
 	font-size: 16px;
 	overflow-y: scroll;
@@ -39,21 +40,21 @@ body {
 	padding: 15px;
 }
 .well {
+	color: #3C3C3C;
 	margin-bottom: 5px;
+	border: 0;
 }
-
 .mark-red {
-	background-color: #FDDCE5;
-	border: 1px solid #D50B44;
-	color: #D50B44;
+	background-color: #F983A4;
+	color: #690522;
 }
 .mark-green {
-	background-color: #C4DCC4;
-	border: 1px solid #188070;
+	background-color: #25C3AA;
+	color: #0D443C;
 }
-.mark-blue {
-	background-color: #D4D9DE;
-	border: 1px solid #708090;
+.mark-frog {
+	background-color: #BBD86D;
+	color: #27310D;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
@@ -73,6 +74,9 @@ body {
 .muistutus {
 	color: #696969;
 	font-size: 14px;
+}
+.add {
+	color: #FFFFFF;
 }
 .task {
 	background-color: #DCDCDC;
