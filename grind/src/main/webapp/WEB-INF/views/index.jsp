@@ -136,18 +136,19 @@ Sinulla ei ole tehtäviä
 <!-- 3rd optional main row -->
 <c:if test="${not empty tehtavat}">
 
+<!-- create current date-time to compare if the task is expired -->
 <jsp:useBean id="now" class="java.util.Date" />
 
 <!-- task content boxes generated in loop -->
 <c:forEach var="t" items="${tehtavat}">
 
 <fmt:parseDate value="${t.ajankohtaPvm} ${t.ajankohtaKlo}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
-<fmt:parseDate value="${t.ajankohtaPvm}" var="compare1" pattern="yyyy-MM-dd" />
-<fmt:parseDate value="1970-01-01" var="compare2" pattern="yyyy-MM-dd" />
+<fmt:parseDate value="${t.ajankohtaPvm}" var="compTaskDate" pattern="yyyy-MM-dd" />
+<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 
 <div class="row">
 <!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
-<div class="col-sm-offset-2 col-sm-8 alert ${(parsedAjankohta > now) ? 'alert-info' : ((compare1 == compare2) ? 'alert-warning' : 'alert-danger')}">
+<div class="col-sm-offset-2 col-sm-8 well ${(parsedAjankohta > now) ? 'mark-blue' : ((compTaskDate == compIdentifier) ? 'mark-green' : 'mark-red')}">
 
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
@@ -171,19 +172,21 @@ Sinulla ei ole tehtäviä
 </div>
 
 <!-- bootstrap <strong> used for the header of task -->
-<strong><c:out value="${t.kuvaus}" /></strong>
+<span style="font-size: 18px;"><c:out value="${t.kuvaus}" /></span>
 <c:if test="${t.tiedot != ''}">
-<br><c:out value="${t.tiedot}" /><br>
+&nbsp;&#8811;&nbsp;&nbsp;<c:out value="${t.tiedot}" /><br>
 </c:if>
 
 <!-- jstl: time objects parsed from localdate/localtime to date objects -->
-<c:out value="${(parsedAjankohta > now) ? '' : (compare1 == compare2 ? '' : 'Erääntynyt: ')}" />
-<c:if test="${compare1 != compare2}">
+<span style="font-size: 14px;">
+<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Erääntynyt: ')}" />
+<c:if test="${compTaskDate != compIdentifier}">
 <fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 <fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 <fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 <fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
 </c:if>
+</span>
 </div>
 </div>
 

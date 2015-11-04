@@ -38,8 +38,22 @@ body {
 	margin: 0;
 	padding: 15px;
 }
-.well, .alert {
+.well {
 	margin-bottom: 5px;
+}
+
+.mark-red {
+	background-color: #EFCEDE;
+	border: 1px solid #FF0066;
+	color: #FF0000;
+}
+.mark-green {
+	background-color: #C4DCC4;
+	border: 1px solid #2E8B57;
+}
+.mark-blue {
+	background-color: #D4D9DE;
+	border: 1px solid #708090;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
