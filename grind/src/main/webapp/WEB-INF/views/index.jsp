@@ -142,11 +142,12 @@ Sinulla ei ole tehtäviä
 <c:forEach var="t" items="${tehtavat}">
 
 <fmt:parseDate value="${t.ajankohtaPvm} ${t.ajankohtaKlo}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
-<fmt:parseDate value="1970-01-01 00:00" var="compareDate" pattern="yyyy-MM-dd HH:mm" />
+<fmt:parseDate value="${t.ajankohtaPvm}" var="compare1" pattern="yyyy-MM-dd" />
+<fmt:parseDate value="1970-01-01" var="compare2" pattern="yyyy-MM-dd" />
 
 <div class="row">
 <!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
-<div class="col-sm-offset-2 col-sm-8 ${(parsedAjankohta > now) ? 'alert alert-info' : ((parsedAjankohta == compareDate) ? 'alert alert-warning' : 'alert alert-danger')}">
+<div class="col-sm-offset-2 col-sm-8 ${(parsedAjankohta > now) ? 'alert alert-info' : ((compare1 == compare2) ? 'alert alert-warning' : 'alert alert-danger')}">
 
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
@@ -176,8 +177,8 @@ Sinulla ei ole tehtäviä
 </c:if>
 
 <!-- jstl: time objects parsed from localdate/localtime to date objects -->
-<c:out value="${(parsedAjankohta > now) ? '' : (parsedAjankohta == compareDate ? '' : 'Erääntynyt: ')}" />
-<c:if test="${parsedAjankohta != compareDate}">
+<c:out value="${(parsedAjankohta > now) ? '' : (compare1 == compare2 ? '' : 'Erääntynyt: ')}" />
+<c:if test="${compare1 != compare2}">
 <fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 <fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 <fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
