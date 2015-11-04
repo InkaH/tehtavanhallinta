@@ -80,6 +80,10 @@ public class TehtavaController {
 				if (t.getId() == ed) {
 					this.editItem = t; // copy the editable task reference to the form pre-fill object
 					editingActive = 1; // set editing mode on
+					if (editItem.getAjankohtaPvm().compareTo(LocalDate.of(1970, 1, 1)) == 0) {
+						editItem.setAjankohtaPvm(null);
+						editItem.setAjankohtaKlo(null);
+					}
 					return "redirect:/"; // quit searching and move to getView method
 				}
 			}
