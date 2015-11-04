@@ -164,7 +164,7 @@ Sinulla ei ole tehtäviä
 <li>
 
 <!-- remove option: on click change value of delTask attribute in delete form and submit the form -->
-<a href="#" onclick="document.forms[1].delTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Poista</a>
+<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[1].delTask.value='${t.id}';document.forms[1].submit();}"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Poista</a>
 </li>
 </ul>
 </div>
