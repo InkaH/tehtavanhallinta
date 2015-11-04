@@ -40,21 +40,17 @@ body {
 	padding: 15px;
 }
 .well {
-	color: #3C3C3C;
 	margin-bottom: 5px;
 	border: 0;
 }
-.mark-red {
-	background-color: #F983A4;
-	color: #690522;
+.mark-warn {
+	background-color: #D684AD;
 }
-.mark-green {
-	background-color: #25C3AA;
-	color: #0D443C;
+.mark-note {
+	background-color: #7BA7B7;
 }
-.mark-frog {
+.mark-task {
 	background-color: #BBD86D;
-	color: #27310D;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */

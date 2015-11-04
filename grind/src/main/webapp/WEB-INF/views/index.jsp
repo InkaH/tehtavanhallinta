@@ -148,7 +148,7 @@ Sinulla ei ole tehtäviä
 
 <div class="row">
 <!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
-<div class="col-sm-offset-2 col-sm-8 well ${(parsedAjankohta > now) ? 'mark-frog' : ((compTaskDate == compIdentifier) ? 'mark-green' : 'mark-red')}">
+<div class="col-sm-offset-2 col-sm-8 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
