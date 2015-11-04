@@ -43,13 +43,13 @@ body {
 }
 
 .mark-red {
-	background-color: #EFCEDE;
-	border: 1px solid #FF0066;
-	color: #FF0000;
+	background-color: #FDDCE5;
+	border: 1px solid #D50B44;
+	color: #D50B44;
 }
 .mark-green {
 	background-color: #C4DCC4;
-	border: 1px solid #2E8B57;
+	border: 1px solid #188070;
 }
 .mark-blue {
 	background-color: #D4D9DE;
