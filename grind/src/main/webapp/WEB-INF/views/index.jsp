@@ -147,7 +147,7 @@ Sinulla ei ole tehtäviä
 
 <div class="row">
 <!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
-<div class="col-sm-offset-2 col-sm-8 ${(parsedAjankohta > now) ? 'alert alert-info' : ((compare1 == compare2) ? 'alert alert-warning' : 'alert alert-danger')}">
+<div class="col-sm-offset-2 col-sm-8 alert ${(parsedAjankohta > now) ? 'alert-info' : ((compare1 == compare2) ? 'alert-warning' : 'alert-danger')}">
 
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
