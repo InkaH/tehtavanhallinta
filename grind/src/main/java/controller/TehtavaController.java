@@ -1,6 +1,7 @@
 package controller;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
@@ -46,12 +47,11 @@ public class TehtavaController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task) { // get the Tehtava object from the form
 		if (!task.getKuvaus().isEmpty()) {
-			LocalDateTime now = LocalDateTime.now();
 			if (task.getAjankohtaPvm() == null) {
-				task.setAjankohtaPvm(now.toLocalDate());
+				task.setAjankohtaPvm(LocalDate.of(1970, 1, 1));
 			}
 			if (task.getAjankohtaKlo() == null) {
-				task.setAjankohtaKlo(now.toLocalTime());
+				task.setAjankohtaKlo(LocalTime.of(0, 0));
 			}
 			dao.lisaaTehtava(task); // if the header of task is not empty, insert the new task into database
 		}

@@ -8,9 +8,6 @@ body {
 
 /* BOOTSTRAP OVERWRITE */
 
-.alert-info {
-	color: #000000;
-}
 .glyphicon {
 	color: #696969;
 }
