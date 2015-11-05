@@ -22,6 +22,12 @@
 <link href="<c:url value="/resources/styles/tyyli.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/img/favicon.ico" />" rel="shortcut icon" type="image/x-icon" />
 <script src="<c:url value="/resources/js/script.js" />"></script>
+
+<!-- jqueryUI datepicker stuff -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/jquery/jquery-ui/master/ui/i18n/datepicker-fi.js"></script>
 </head>
 
 <body>
@@ -99,8 +105,8 @@
 <!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
 <div class="form-group has-feedback">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Ajankohta:</label>
-<div class="controls bootstrap-timepicker col-sm-3">
-<form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" />
+<div class="controls bootstrap-timepicker col-sm-3" >
+<form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" id="datepicker"/>
 <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 </div>
 <div class="col-sm-3">

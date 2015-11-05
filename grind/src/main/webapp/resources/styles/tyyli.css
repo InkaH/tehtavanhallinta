@@ -17,6 +17,7 @@ body {
 }
 .btn-default {
 	background-color: #F1F1F1;
+	
 }
 .container {
 	padding-bottom: 50px;
@@ -101,4 +102,10 @@ body {
 	font-size: 1.5em;
 	border: none;
 	background-color: transparent;
+}
+
+/* datepicker css overwrite */
+
+#ui-datepicker-div { 
+	font-size:12px; 
 }
