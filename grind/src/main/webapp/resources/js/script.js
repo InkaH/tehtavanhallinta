@@ -4,8 +4,7 @@ $(document).ready(function() {
 			height : $("#add").get(0).scrollHeight
 		}, 500);
 	});
-});
-
-$(function() {
+	
     $( "#datepicker" ).datepicker();
-  });
+
+});

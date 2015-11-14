@@ -25,9 +25,9 @@
 
 <!-- jqueryUI datepicker stuff -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script type="text/javascript" src="https://raw.githubusercontent.com/jquery/jquery-ui/master/ui/i18n/datepicker-fi.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="<c:url value="/resources/js/datepickerui-fi.js" />"></script>
 </head>
 
 <body>
@@ -110,8 +110,7 @@
 <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 </div>
 <div class="col-sm-3">
-<form:input path="ajankohtaKlo" cssClass="form-control text-center" />
-
+<form:input path="ajankohtaKlo" cssClass="form-control text-center" id="timepicker"/>
 <!-- bootstrap form-control-feedback puts glyphicon icon to the right end of the input field (not after text content) -->
 <i class="form-control-feedback glyphicon glyphicon-time"></i>
 </div>
