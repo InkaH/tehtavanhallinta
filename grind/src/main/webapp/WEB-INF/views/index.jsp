@@ -79,22 +79,30 @@
 <!-- when the form is binded to a bean, every bean attribute (path) must be present in the form (hidden or shown) -->
 <form:hidden path="id" />
 <form:hidden path="status" />
-<div class="form-group">
 
+<div class="form-group">
 <!-- bootstrap class control-label sets the label before input field (to the left) with alignment right -->
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Tehtävä:</label>
 <div class="col-sm-6">
-
 <!-- spring form: cssClass = class (html) -->
 <form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" />
 </div>
 <div class="col-sm-3">
 </div>
 </div>
+
+<div class="form-group">
+<label class="control-label col-sm-offset-1 col-sm-2" for="ryhma">Ryhmätunnus:</label>
+<div class="col-sm-6">
+<form:input path="ryhma" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" />
+</div>
+<div class="col-sm-3">
+</div>
+
+</div>
 <div class="form-group">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Lisätiedot:</label>
 <div class="col-sm-6">
-
 <!-- bootstrap class form-control makes the element full width of parent element in a form -->
 <form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita lisätiedot" /> 
 </div>
