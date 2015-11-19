@@ -81,7 +81,7 @@ public class TehtavaDaoImpl implements TehtavaDao {
 	}
 
 	public List<Tehtava> haeKaikki() {
-		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm FROM tehtava ORDER BY t_deadlinedtm";
+		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_ryhma FROM tehtava ORDER BY t_deadlinedtm";
 		RowMapper<Tehtava> mapper = new TehtavaRowMapper();
 		List<Tehtava> tehtavat = jdbcTemplate.query(sql, mapper);
 		return tehtavat;

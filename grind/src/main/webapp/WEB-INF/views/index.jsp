@@ -195,7 +195,7 @@ Sinulla ei ole tehtäviä
 </span>
 <br>
 <c:if test="${t.ryhma != ''}">
-<c:out value="${t.ryhma}" />
+Jaettu ryhmässä: <c:out value="${t.ryhma}" />
 </c:if>
 </div>
 </div>
