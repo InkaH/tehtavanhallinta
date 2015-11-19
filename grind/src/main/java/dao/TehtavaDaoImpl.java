@@ -67,6 +67,18 @@ public class TehtavaDaoImpl implements TehtavaDao {
 			}
 		});
 	}
+	
+	public void jaaTehtava(int id) {
+		final String sql = "UPDATE tehtava SET t_ryhma = 'ICT1TA001' where t_id = ?";
+		final int index = id;
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setInt(1, index);
+				return ps;
+			}
+		});
+	}
 
 	public List<Tehtava> haeKaikki() {
 		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm FROM tehtava ORDER BY t_deadlinedtm";

@@ -86,7 +86,7 @@
 <div class="col-sm-6">
 
 <!-- spring form: cssClass = class (html) -->
-<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" />
+<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" />
 </div>
 <div class="col-sm-3">
 </div>
@@ -161,11 +161,12 @@ Sinulla ei ole tehtäviä
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #525252;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
-
 <!-- edit option: on click change value of editTask attribute in edit form and submit the form -->
 <a href="#" onclick="document.forms[2].editTask.value='${t.id}';document.forms[2].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 </li>
-<li><a class="dd-select" href="#"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Jaa...</a></li>
+<li>
+<a href="#" onclick="document.forms[3].shareTask.value='${t.id}';document.forms[3].submit();"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Jaa...</a>
+</li>
 <li role="separator" class="divider"></li>
 <li>
 
@@ -194,7 +195,6 @@ Sinulla ei ole tehtäviä
 </span>
 </div>
 </div>
-
 <!-- FORM[1]: DELETE -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
@@ -202,6 +202,10 @@ Sinulla ei ole tehtäviä
 <!-- FORM[2]: EDIT -->
 <form id="editForm" action="edit" method="post">
 <input type="hidden" id="editTask" name="editTask" value="0" />
+</form>
+<!-- FORM[3]: SHARE -->
+<form id="shareForm" action="share" method="post">
+<input type="hidden" id="shareTask" name="shareTask" value="0" />
 </form>
 </c:forEach>
 </c:if>

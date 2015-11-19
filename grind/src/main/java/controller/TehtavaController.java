@@ -90,4 +90,13 @@ public class TehtavaController {
 		}
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "share", method = RequestMethod.POST)
+	public String jaaTehtava(@RequestParam String shareTask) {
+		int sh = Integer.parseInt(shareTask);
+		if (sh > 0) {
+			dao.jaaTehtava(sh);
+		}
+		return "redirect:/";
+	}
 }
