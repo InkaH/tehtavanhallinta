@@ -4,5 +4,5 @@ CREATE TABLE tehtava (
 	t_lisatiedot VARCHAR(255),
 	t_status INT NOT NULL DEFAULT '0',
 	t_deadlinedtm DATETIME,
-	t_muistutusdtm DATETIME
+	t_tag VARCHAR(255), 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
