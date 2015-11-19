@@ -21,6 +21,7 @@ public class Tehtava implements Serializable {
 	private LocalDate ajankohtaPvm;
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime ajankohtaKlo;
+	private String ryhma;
 
 	public Tehtava() {
 		this.id = 0;
@@ -29,15 +30,17 @@ public class Tehtava implements Serializable {
 		this.status = 0;
 		this.ajankohtaPvm = null;
 		this.ajankohtaKlo = null;
+		this.ryhma = "";
 	}
 
-	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta) {
+	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta, String ryhma) {
 		this.id = id;
 		this.kuvaus = kuvaus;
 		this.tiedot = tiedot;
 		this.status = status;
 		this.ajankohtaPvm = ajankohta.toLocalDate();
 		this.ajankohtaKlo = ajankohta.toLocalTime();
+		this.ryhma = ryhma;
 	}
 	
 	public Date getDate(){
@@ -51,6 +54,7 @@ public class Tehtava implements Serializable {
 		this.status = 0;
 		this.ajankohtaPvm = null;
 		this.ajankohtaKlo = null;
+		this.ryhma = "";
 	}
 
 	public LocalDateTime getAjankohta() {
@@ -110,9 +114,17 @@ public class Tehtava implements Serializable {
 		this.ajankohtaKlo = ajankohtaKlo;
 	}
 
+	public String getRyhma() {
+		return ryhma;
+	}
+
+	public void setRyhma(String ryhma) {
+		this.ryhma = ryhma;
+	}
+	
 	@Override
 	public String toString() {
 		return "Tehtava [id=" + id + ", kuvaus=" + kuvaus + ", tiedot=" + tiedot + ", status=" + status
-				+ ", ajankohtaPvm=" + ajankohtaPvm + ", ajankohtaKlo=" + ajankohtaKlo;
+				+ ", ajankohtaPvm=" + ajankohtaPvm + ", ajankohtaKlo=" + ajankohtaKlo + ", ryhmä=" + ryhma;
 	}
 }
