@@ -193,6 +193,10 @@ Sinulla ei ole tehtäviä
 <fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
 </c:if>
 </span>
+<br>
+<c:if test="${t.ryhma != ''}">
+<c:out value="${t.ryhma}" />
+</c:if>
 </div>
 </div>
 <!-- FORM[1]: DELETE -->
