@@ -21,7 +21,7 @@
 <!-- application css stylesheet, favicon icon and scripts -->
 <link href="<c:url value="/resources/styles/tyyli.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/img/favicon.ico" />" rel="shortcut icon" type="image/x-icon" />
-<script src="<c:url value="/resources/js/script.js" />"></script>
+<script type="application/javascript" charset="UTF-8" src="<c:url value="/resources/js/script.js" />"></script>
 
 <!-- jqueryUI datepicker stuff -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -85,7 +85,7 @@
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">* Tehtävä:</label>
 <div class="col-sm-6">
 <!-- spring form: cssClass = class (html) -->
-<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" />
+<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
 </div>
 <div class="col-sm-3">
 </div>
@@ -94,7 +94,7 @@
 <div class="form-group">
 <label class="control-label col-sm-offset-1 col-sm-2" for="ryhma">Ryhmätunnus:</label>
 <div class="col-sm-6">
-<form:input path="ryhma" cssClass="form-control" style="text-transform: uppercase" />
+<form:input path="ryhma" cssClass="form-control" style="text-transform: uppercase" maxlength="50" />
 </div>
 <div class="col-sm-3">
 </div>
@@ -104,7 +104,7 @@
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Lisätiedot:</label>
 <div class="col-sm-6">
 <!-- bootstrap class form-control makes the element full width of parent element in a form -->
-<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita lisätiedot" /> 
+<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita lisätiedot" maxlength="500" /> 
 </div>
 <div class="col-sm-3">
 </div>
@@ -166,14 +166,14 @@ Sinulla ei ole tehtäviä
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
 <div class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #525252;"></span></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #FFFFFF;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
 <!-- edit option: on click change value of editTask attribute in edit form and submit the form -->
 <a href="#" onclick="document.forms[2].editTask.value='${t.id}';document.forms[2].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 </li>
 <li>
-<a href="#" onclick="var sh=prompt('Anna ryhmätunnus:','');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Jaa...</a>
+<a href="#" onclick="var sh=prompt('Anna ryhmätunnus:','');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 </li>
 <li role="separator" class="divider"></li>
 <li>
@@ -186,10 +186,10 @@ Sinulla ei ole tehtäviä
 </div>
 
 <!-- bootstrap <strong> used for the header of task -->
-<span style="font-size: 18px;"><c:out value="${t.kuvaus}" /></span>
+<span><c:out value="${t.kuvaus}" /></span>
 
 <c:if test="${not empty t.ryhma}">
-<span style="float: right; font-size: 14px; padding-right: 30px;"><c:out value="${t.ryhma}" /></span><span style="clear: both;"></span>
+<span style="float: right; padding-right: 25px;"><small><c:out value="${t.ryhma}" /></small></span><span style="clear: both;"></span>
 </c:if>
 
 <c:if test="${not empty t.tiedot}">
@@ -197,7 +197,8 @@ Sinulla ei ole tehtäviä
 </c:if>
 <br>
 <!-- jstl: time objects parsed from localdate/localtime to date objects -->
-<span style="font-size: 14px;">
+<span>
+<small>
 <c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Erääntynyt: ')}" />
 <c:if test="${compTaskDate != compIdentifier}">
 <fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
@@ -205,6 +206,7 @@ Sinulla ei ole tehtäviä
 <fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 <fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
 </c:if>
+</small>
 </span>
 </div>
 </div>
