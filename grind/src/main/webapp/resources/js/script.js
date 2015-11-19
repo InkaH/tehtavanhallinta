@@ -20,4 +20,8 @@ $(document).ready(function() {
         $counterText.text($(this).val().length + ' / 500');
     }).keyup();
     
+    $('.tiedot').click(function (e) {
+    	$(this).next().toggle();
+    });
+    
 });

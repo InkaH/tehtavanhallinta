@@ -7,11 +7,23 @@
 	margin-bottom: -10px;
 }
 
+.tiedot {
+	cursor: pointer;
+}
+
 body {
 	background-color: #FFFFFF;
 	color: #000000;
 	font-size: 16px;
 	overflow-y: scroll;
+	
+	/* Text selection disabled */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 /* BOOTSTRAP OVERWRITE */
@@ -71,16 +83,17 @@ body {
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	display: inline-block;
 	color: #FFFFFF;
 	background-color: #3093C7;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#a5b8da), to(#536f9d));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#a5b8da),
+		to(#536f9d));
 	background-image: -webkit-linear-gradient(top, #a5b8da, #536f9d);
 	background-image: -moz-linear-gradient(top, #a5b8da, #536f9d);
 	background-image: -ms-linear-gradient(top, #a5b8da, #536f9d);
 	background-image: -o-linear-gradient(top, #a5b8da, #536f9d);
 	background-image: linear-gradient(to bottom, #a5b8da, #536f9d);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#a5b8da, endColorstr=#536f9d);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#a5b8da, endColorstr=#536f9d);
 }
 
 .mark-warn {
@@ -91,17 +104,17 @@ body {
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	text-shadow: 0 0 3px #e78404;
-	display: inline-block;
 	color: #FFFFFF;
 	background-color: #3093C7;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#e78404), to(#e78404));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#e78404),
+		to(#e78404));
 	background-image: -webkit-linear-gradient(top, #e78404, #e78404);
 	background-image: -moz-linear-gradient(top, #e78404, #e78404);
 	background-image: -ms-linear-gradient(top, #e78404, #e78404);
 	background-image: -o-linear-gradient(top, #e78404, #e78404);
 	background-image: linear-gradient(to bottom, #e78404, #e78404);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#e78404, endColorstr=#e78404);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#e78404, endColorstr=#e78404);
 }
 
 /* END OF BOOTSTRAP OVERWRITE */

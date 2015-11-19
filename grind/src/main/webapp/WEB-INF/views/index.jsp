@@ -80,6 +80,7 @@
 <form:hidden path="id" />
 <form:hidden path="status" />
 
+<div class="row">
 <div class="form-group">
 <!-- bootstrap class control-label sets the label before input field (to the left) with alignment right -->
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">* Tehtävä:</label>
@@ -90,7 +91,9 @@
 <div class="col-sm-3">
 </div>
 </div>
+</div>
 
+<div class="row">
 <div class="form-group">
 <label class="control-label col-sm-offset-1 col-sm-2" for="ryhma">Ryhmätunnus:</label>
 <div class="col-sm-6">
@@ -98,8 +101,10 @@
 </div>
 <div class="col-sm-3">
 </div>
-
 </div>
+</div>
+
+<div class="row">
 <div class="form-group">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Lisätiedot:</label>
 <div class="col-sm-6">
@@ -109,8 +114,10 @@
 <div class="col-sm-3">
 </div>
 </div>
+</div>
 
 <!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
+<div class="row">
 <div class="form-group has-feedback">
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Ajankohta:</label>
 <div class="controls bootstrap-timepicker col-sm-3" >
@@ -123,6 +130,7 @@
 <i class="form-control-feedback glyphicon glyphicon-time"></i>
 </div>
 <div class="col-sm-3">
+</div>
 </div>
 </div>
 
@@ -189,11 +197,11 @@ Sinulla ei ole tehtäviä
 <span><c:out value="${t.kuvaus}" /></span>
 
 <c:if test="${not empty t.ryhma}">
-<span style="float: right; padding-right: 25px;"><small><c:out value="${t.ryhma}" /></small></span><span style="clear: both;"></span>
+<span style="float: right; padding-right: 25px;"><small><c:out value="${t.ryhma}" /></small></span>
 </c:if>
 
 <c:if test="${not empty t.tiedot}">
-&nbsp;&#8811;&nbsp;&nbsp;<c:out value="${t.tiedot}" />
+<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span><span hidden="hidden"><c:out value="${t.tiedot}" /></span>
 </c:if>
 <br>
 <!-- jstl: time objects parsed from localdate/localtime to date objects -->
@@ -209,7 +217,9 @@ Sinulla ei ole tehtäviä
 </small>
 </span>
 </div>
+<div class="col-sm-2"></div>
 </div>
+
 <!-- FORM[1]: DELETE -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
