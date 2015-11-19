@@ -82,7 +82,7 @@
 
 <div class="form-group">
 <!-- bootstrap class control-label sets the label before input field (to the left) with alignment right -->
-<label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Tehtävä:</label>
+<label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">* Tehtävä:</label>
 <div class="col-sm-6">
 <!-- spring form: cssClass = class (html) -->
 <form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" />
@@ -94,7 +94,7 @@
 <div class="form-group">
 <label class="control-label col-sm-offset-1 col-sm-2" for="ryhma">Ryhmätunnus:</label>
 <div class="col-sm-6">
-<form:input path="ryhma" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" />
+<form:input path="ryhma" cssClass="form-control" style="text-transform: uppercase" />
 </div>
 <div class="col-sm-3">
 </div>

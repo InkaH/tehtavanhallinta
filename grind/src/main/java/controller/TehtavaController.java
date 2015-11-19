@@ -95,7 +95,7 @@ public class TehtavaController {
 	public String jaaTehtava(@RequestParam String shareTask, @RequestParam String groupID) {
 		int sh = Integer.parseInt(shareTask);
 		if (sh > 0) {
-			dao.jaaTehtava(sh, groupID);
+			dao.jaaTehtava(sh, groupID.toUpperCase());
 		}
 		return "redirect:/";
 	}
