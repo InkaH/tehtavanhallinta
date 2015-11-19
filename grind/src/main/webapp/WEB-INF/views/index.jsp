@@ -179,10 +179,15 @@ Sinulla ei ole tehtäviä
 
 <!-- bootstrap <strong> used for the header of task -->
 <span style="font-size: 18px;"><c:out value="${t.kuvaus}" /></span>
-<c:if test="${t.tiedot != ''}">
-&nbsp;&#8811;&nbsp;&nbsp;<c:out value="${t.tiedot}" /><br>
+
+<c:if test="${not empty t.ryhma}">
+<span style="float: right; font-size: 14px; padding-right: 30px;"><c:out value="${t.ryhma}" /></span><span style="clear: both;"></span>
 </c:if>
 
+<c:if test="${not empty t.tiedot}">
+&nbsp;&#8811;&nbsp;&nbsp;<c:out value="${t.tiedot}" />
+</c:if>
+<br>
 <!-- jstl: time objects parsed from localdate/localtime to date objects -->
 <span style="font-size: 14px;">
 <c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Erääntynyt: ')}" />
@@ -193,10 +198,6 @@ Sinulla ei ole tehtäviä
 <fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
 </c:if>
 </span>
-<br>
-<c:if test="${t.ryhma != ''}">
-Jaettu ryhmässä: <c:out value="${t.ryhma}" />
-</c:if>
 </div>
 </div>
 <!-- FORM[1]: DELETE -->
