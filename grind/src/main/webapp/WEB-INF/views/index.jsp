@@ -173,7 +173,7 @@ Sinulla ei ole tehtäviä
 <a href="#" onclick="document.forms[2].editTask.value='${t.id}';document.forms[2].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 </li>
 <li>
-<a href="#" onclick="document.forms[3].shareTask.value='${t.id}';document.forms[3].submit();"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Jaa...</a>
+<a href="#" onclick="var sh=prompt('Anna ryhmätunnus:','');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Jaa...</a>
 </li>
 <li role="separator" class="divider"></li>
 <li>
@@ -219,6 +219,7 @@ Sinulla ei ole tehtäviä
 <!-- FORM[3]: SHARE -->
 <form id="shareForm" action="share" method="post">
 <input type="hidden" id="shareTask" name="shareTask" value="0" />
+<input type="hidden" id="groupID" name="groupID" value="0" />
 </form>
 </c:forEach>
 </c:if>

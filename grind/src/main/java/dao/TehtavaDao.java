@@ -10,7 +10,7 @@ public interface TehtavaDao {
 	
 	public abstract void poistaTehtava(int id);
 	
-	public abstract void jaaTehtava(int id);
+	public abstract void jaaTehtava(int id, String group);
 	
 	public abstract  List<Tehtava> haeKaikki(); 
 }

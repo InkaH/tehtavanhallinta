@@ -71,13 +71,15 @@ public class TehtavaDaoImpl implements TehtavaDao {
 		});
 	}
 	
-	public void jaaTehtava(int id) {
-		final String sql = "UPDATE tehtava SET t_ryhma = 'ICT1TA001' where t_id = ?";
+	public void jaaTehtava(int id, String groupID) {
+		final String sql = "UPDATE tehtava SET t_ryhma = ? where t_id = ?";
 		final int index = id;
+		final String group = groupID;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql);
-				ps.setInt(1, index);
+				ps.setString(1, group);
+				ps.setInt(2, index);
 				return ps;
 			}
 		});

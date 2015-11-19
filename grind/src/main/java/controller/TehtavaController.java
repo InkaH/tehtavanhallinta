@@ -92,10 +92,10 @@ public class TehtavaController {
 	}
 	
 	@RequestMapping(value = "share", method = RequestMethod.POST)
-	public String jaaTehtava(@RequestParam String shareTask) {
+	public String jaaTehtava(@RequestParam String shareTask, @RequestParam String groupID) {
 		int sh = Integer.parseInt(shareTask);
 		if (sh > 0) {
-			dao.jaaTehtava(sh);
+			dao.jaaTehtava(sh, groupID);
 		}
 		return "redirect:/";
 	}
