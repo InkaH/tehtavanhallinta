@@ -20,9 +20,4 @@ $(document).ready(function() {
         $counterText.text($(this).val().length + ' / 500');
     }).keyup();
     
-    var $counterText = $('<div class="character-counter2" />');
-    $('#kuvaus').after($counterText).bind('keyup blur', function () {
-        $counterText.text($(this).val().length + ' / 80');
-    }).keyup();
-    
 });
