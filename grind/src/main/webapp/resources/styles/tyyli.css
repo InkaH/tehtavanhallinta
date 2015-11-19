@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-.character-counter {
+.character-counter, .character-counter2 {
 	float: right;
 	font-size: 12px;
 	color: #696969;
