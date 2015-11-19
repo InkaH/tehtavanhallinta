@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-.character-counter, .character-counter2 {
+.character-counter {
 	float: right;
 	font-size: 12px;
 	color: #696969;
@@ -84,7 +84,7 @@ body {
 }
 
 .mark-warn {
-	border: 1px solid #fb9d23;
+	border: 1px solid #af6403;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -95,13 +95,13 @@ body {
 	display: inline-block;
 	color: #FFFFFF;
 	background-color: #3093C7;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffc579), to(#e78404));
-	background-image: -webkit-linear-gradient(top, #ffc579, #e78404);
-	background-image: -moz-linear-gradient(top, #ffc579, #e78404);
-	background-image: -ms-linear-gradient(top, #ffc579, #e78404);
-	background-image: -o-linear-gradient(top, #ffc579, #e78404);
-	background-image: linear-gradient(to bottom, #ffc579, #e78404);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ffc579, endColorstr=#e78404);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#e78404), to(#e78404));
+	background-image: -webkit-linear-gradient(top, #e78404, #e78404);
+	background-image: -moz-linear-gradient(top, #e78404, #e78404);
+	background-image: -ms-linear-gradient(top, #e78404, #e78404);
+	background-image: -o-linear-gradient(top, #e78404, #e78404);
+	background-image: linear-gradient(to bottom, #e78404, #e78404);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#e78404, endColorstr=#e78404);
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
