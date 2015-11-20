@@ -36,7 +36,7 @@
 
 <!-- 2nd main row: task creation and editing form -->
 <!-- If editing is not active (edit==0) font color is black, otherwise red -->
-<div class="row" style="color: ${edit=='0' ? '#000000' : '#FF0000'};">
+<div class="row" style="color: ${edit=='0' ? '#000000' : '#ff0066'};">
 
 <!-- if editing is not active, show header '+ Luo uusi tehtava' -->
 <c:if test="${edit=='0'}">
@@ -126,9 +126,13 @@
 
 <div class="row">
 <div class="form-group"> 
-<div class="col-sm-offset-3 col-sm-6">
+<div class="col-sm-offset-3 col-sm-3">
 <button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 </div>
+<div class="col-sm-3">
+<button onclick="document.forms[4].submit(); return false;" class="btn btn-default form-control"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;PERUUTA</button>
+</div>
+<div class="col-sm-3"></div>
 </div>
 </div>
 
@@ -225,6 +229,9 @@ Sinulla ei ole tehtäviä
 <form id="shareForm" action="share" method="post">
 <input type="hidden" id="shareTask" name="shareTask" value="0" />
 <input type="hidden" id="groupID" name="groupID" value="0" />
+</form>
+<!-- FORM[4]: CANCEL -->
+<form id="cancelForm" action="cancel" method="post">
 </form>
 </c:forEach>
 </c:if>

@@ -99,4 +99,11 @@ public class TehtavaController {
 		}
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "cancel", method = RequestMethod.POST)
+	public String peruuta() {
+		editingActive = 0;
+		editItem.nollaaTehtava();
+		return "redirect:/";
+	}
 }
