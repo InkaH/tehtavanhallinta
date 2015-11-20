@@ -2,7 +2,8 @@
 
 #banner {
 	background-color: #003233; /* rgb(0, 50, 51) */
-	box-shadow: 0 0 15px #000000; position : fixed;
+	box-shadow: 0 0 15px #000000;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -47,22 +48,26 @@ body {
 
 input[type=text] {
 	border: 1px solid #188070;
+	border-radius: 0;
 }
 
 input[type=text]:focus {
 	outline: none !important;
 	border-color: #188070;
 	box-shadow: 0 0 10px #a9cd9e;
+	border-radius: 0;
 }
 
 textarea {
 	border: 1px solid #188070 !important;
+	border-radius: 0 !important;
 }
 
 textarea:focus {
 	outline: none !important;
 	border-color: #188070 !important;
 	box-shadow: 0 0 10px #a9cd9e !important;
+	border-radius: 0 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */
@@ -74,11 +79,17 @@ textarea:focus {
 	margin-bottom: 20px;
 }
 
-
 .btn-default {
 	background-color: #CDCDCD;
 	border-color: #696969;
 	font-weight: bold;
+	border-radius: 0;
+}
+
+.btn-default:hover {
+	border-color: #696969;
+	font-weight: bold;
+	border-radius: 0;
 }
 
 .container {
@@ -114,15 +125,15 @@ textarea:focus {
 }
 
 .well {
-	margin-bottom: 3px;
+	margin-bottom: 2px;
 	border: 0;
 }
 
 .mark-note, .mark-task {
 	border: 1px solid #003233;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
@@ -141,9 +152,9 @@ textarea:focus {
 
 .mark-warn {
 	border: 1px solid #790627;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;

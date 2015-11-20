@@ -44,7 +44,7 @@
 <!-- 1st optional inner row -->
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
-<h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">+ Luo uusi tehtävä</span></h3>
+<h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h3>
 </div>
 </div>
 </c:if>
@@ -240,7 +240,7 @@ Sinulla ei ole tehtäviä
 <div id="banner">
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
-<h1 style="color: #FFFFFF;"><img style="width: 50px; margin: -5px 5px 0 0;" src="<c:url value="/resources/img/grind-logo.png" />" /> G R I N D</h1>
+<h1 style="color: #FFFFFF;"><img style="width: 50px; margin: -5px 5px 0 15px;" src="<c:url value="/resources/img/grind-logo.png" />" /> G R I N D</h1>
 </div>
 </div>
 </div>
