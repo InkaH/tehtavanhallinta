@@ -34,16 +34,6 @@
 <!-- bootstrap container with large margins (all content) -->
 <div class="container">
 
-<!-- 1st main row: header -->
-<div class="row">
-
-<!-- the responsive view is horizontally divided into 12 columns -->
-<!-- first col empty, following 11 cols for header -->
-<div class="col-sm-offset-1 col-sm-11">
-<h1>G R I N D</h1>
-</div>
-</div>
-
 <!-- 2nd main row: task creation and editing form -->
 <!-- If editing is not active (edit==0) font color is black, otherwise red -->
 <div class="row" style="color: ${edit=='0' ? '#000000' : '#FF0000'};">
@@ -134,11 +124,14 @@
 </div>
 </div>
 
+<div class="row">
 <div class="form-group"> 
 <div class="col-sm-offset-3 col-sm-6">
 <button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 </div>
 </div>
+</div>
+
 </form:form>
 </div>
 </div>
@@ -181,7 +174,7 @@ Sinulla ei ole tehtäviä
 <a href="#" onclick="document.forms[2].editTask.value='${t.id}';document.forms[2].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 </li>
 <li>
-<a href="#" onclick="var sh=prompt('Anna ryhmätunnus:','');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
+<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 </li>
 <li role="separator" class="divider"></li>
 <li>
@@ -197,7 +190,7 @@ Sinulla ei ole tehtäviä
 <span><c:out value="${t.kuvaus}" /></span>
 
 <c:if test="${not empty t.ryhma}">
-<span style="float: right; padding-right: 25px;"><small><c:out value="${t.ryhma}" /></small></span>
+<span class="groupid"><small><c:out value="${t.ryhma}" /></small></span>
 </c:if>
 
 <c:if test="${not empty t.tiedot}">
@@ -236,5 +229,14 @@ Sinulla ei ole tehtäviä
 </c:forEach>
 </c:if>
 </div>
+<!-- Banner -->
+<div id="banner">
+<div class="row">
+<div class="col-sm-offset-2 col-sm-10">
+<h1 style="color: #FFFFFF;"><img style="width: 50px; margin: -5px 5px 0 0;" src="<c:url value="/resources/img/grind-logo.png" />" /> G R I N D</h1>
+</div>
+</div>
+</div>
+
 </body>
 </html>
