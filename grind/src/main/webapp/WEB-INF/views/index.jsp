@@ -239,8 +239,8 @@ Sinulla ei ole tehtäviä
 <!-- Banner -->
 <div id="banner">
 <div class="row">
-<div class="col-sm-offset-2 col-sm-10">
-<img style="width: 220px; margin: -69px 5px 0 0;" src="<c:url value="/resources/img/grind-logo-2.png" />" />
+<div class="col-sm-12">
+<img style="width: 200px; margin: -59px 5px 0 20px;" src="<c:url value="/resources/img/grind-logo-2.png" />" />
 </div>
 </div>
 </div>
