@@ -240,7 +240,7 @@ Sinulla ei ole tehtäviä
 <div id="banner">
 <div class="row">
 <div class="col-sm-offset-2 col-sm-10">
-<img style="width: 60px; margin: 10px 5px 0 15px;" src="<c:url value="/resources/img/grind-logo-teksti.png" />" />
+<img style="width: 220px; margin: -69px 5px 0 0;" src="<c:url value="/resources/img/grind-logo-2.png" />" />
 </div>
 </div>
 </div>
