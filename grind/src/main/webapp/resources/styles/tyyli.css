@@ -129,7 +129,7 @@ textarea:focus {
 	border: 0;
 }
 
-.mark-note, .mark-task {
+.mark-note {
 	border: 1px solid #003233;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
@@ -169,6 +169,27 @@ textarea:focus {
 	background-image: linear-gradient(to bottom, #c20a3e, #91082e);
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
 		startColorstr=#c20a3e, endColorstr=#91082e);
+}
+
+.mark-task {
+	border: 1px solid #81a12b;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #98be32;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#98be32),
+		to(#617920));
+	background-image: -webkit-linear-gradient(top, #98be32, #617920);
+	background-image: -moz-linear-gradient(top, #98be32, #617920);
+	background-image: -ms-linear-gradient(top, #98be32, #617920);
+	background-image: -o-linear-gradient(top, #98be32, #617920);
+	background-image: linear-gradient(to bottom, #98be32, #617920);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#98be32, endColorstr=#617920);
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
