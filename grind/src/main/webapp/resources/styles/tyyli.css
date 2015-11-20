@@ -2,8 +2,7 @@
 
 #banner {
 	background-color: #003233; /* rgb(0, 50, 51) */
-	box-shadow: 0 0 15px #000000;
-	position: fixed;
+	box-shadow: 0 0 15px #000000; position : fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -12,6 +11,7 @@
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-size: auto 80px;
+	position: fixed;
 }
 
 .character-counter {
@@ -31,7 +31,7 @@
 }
 
 body {
-	background-color : #FFFFFF;
+	background-color: #FFFFFF;
 	color: #000000;
 	font-size: 16px;
 	overflow-y: scroll;
@@ -45,6 +45,26 @@ body {
 	background-color: #FFFFFF;
 }
 
+input[type=text] {
+	border: 1px solid #188070;
+}
+
+input[type=text]:focus {
+	outline: none !important;
+	border-color: #188070;
+	box-shadow: 0 0 10px #a9cd9e;
+}
+
+textarea {
+	border: 1px solid #188070 !important;
+}
+
+textarea:focus {
+	outline: none !important;
+	border-color: #188070 !important;
+	box-shadow: 0 0 10px #a9cd9e !important;
+}
+
 /* BOOTSTRAP OVERWRITE */
 .glyphicon {
 	color: #000000;
@@ -54,8 +74,10 @@ body {
 	margin-bottom: 20px;
 }
 
+
 .btn-default {
-	background-color: #F1F1F1;
+	background-color: #CDCDCD;
+	border-color: #696969;
 }
 
 .container {
@@ -106,13 +128,15 @@ body {
 	text-decoration: none;
 	color: #FFFFFF;
 	background-color: #3093C7;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#007d80), to(#004b4d));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#007d80),
+		to(#004b4d));
 	background-image: -webkit-linear-gradient(top, #007d80, #004b4d);
 	background-image: -moz-linear-gradient(top, #007d80, #004b4d);
 	background-image: -ms-linear-gradient(top, #007d80, #004b4d);
 	background-image: -o-linear-gradient(top, #007d80, #004b4d);
 	background-image: linear-gradient(to bottom, #007d80, #004b4d);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#007d80, endColorstr=#004b4d);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#007d80, endColorstr=#004b4d);
 }
 
 .mark-warn {
@@ -125,13 +149,15 @@ body {
 	text-decoration: none;
 	color: #FFFFFF;
 	background-color: #3093C7;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#c20a3e), to(#91082e));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#c20a3e),
+		to(#91082e));
 	background-image: -webkit-linear-gradient(top, #c20a3e, #91082e);
 	background-image: -moz-linear-gradient(top, #c20a3e, #91082e);
 	background-image: -ms-linear-gradient(top, #c20a3e, #91082e);
 	background-image: -o-linear-gradient(top, #c20a3e, #91082e);
 	background-image: linear-gradient(to bottom, #c20a3e, #91082e);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#c20a3e, endColorstr=#91082e);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#c20a3e, endColorstr=#91082e);
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
