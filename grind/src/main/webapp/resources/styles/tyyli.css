@@ -78,6 +78,7 @@ textarea:focus {
 .btn-default {
 	background-color: #CDCDCD;
 	border-color: #696969;
+	font-weight: bold;
 }
 
 .container {
@@ -86,7 +87,6 @@ textarea:focus {
 }
 
 .control-label {
-	font-weight: normal;
 	padding-right: 0;
 }
 
