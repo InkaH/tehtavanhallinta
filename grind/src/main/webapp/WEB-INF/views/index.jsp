@@ -76,7 +76,7 @@
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">* Tehtävä:</label>
 <div class="col-sm-6">
 <!-- spring form: cssClass = class (html) -->
-<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
+<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävän aihe" required="required" maxlength="80" />
 </div>
 <div class="col-sm-3">
 </div>
@@ -178,7 +178,7 @@ Sinulla ei ole tehtäviä
 <a href="#" onclick="document.forms[2].editTask.value='${t.id}';document.forms[2].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 </li>
 <li>
-<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
+<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','${t.ryhma}');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 </li>
 <li role="separator" class="divider"></li>
 <li>
