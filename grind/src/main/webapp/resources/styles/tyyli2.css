@@ -93,6 +93,7 @@ textarea:focus {
 }
 
 .btn-default {
+	color: #696969;
 	background-color: #CDCDCD;
 	border-color: #696969;
 	font-weight: bold;
@@ -120,20 +121,6 @@ textarea:focus {
 
 .form-group {
 	margin-bottom: 0;
-}
-
-.modal-footer {
-	padding-bottom: 0;
-	margin-bottom: -5px;
-}
-
-.modal-body {
-	padding-bottom: 5px;
-}
-
-.modal-header {
-	margin: 0;
-	padding: 15px;
 }
 
 .well {
