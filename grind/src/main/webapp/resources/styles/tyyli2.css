@@ -96,13 +96,11 @@ textarea:focus {
 	background-color: #CDCDCD;
 	border-color: #696969;
 	font-weight: bold;
-	border-radius: 0;
 }
 
 .btn-default:hover {
 	border-color: #696969;
 	font-weight: bold;
-	border-radius: 0;
 }
 
 .container {
@@ -147,7 +145,7 @@ textarea:focus {
 	border: 1px solid #7d99ca;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
-	border-radius: 0px;
+	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
@@ -168,7 +166,7 @@ textarea:focus {
 	border: 1px solid #e4a567;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
-	border-radius: 0px;
+	border-radius: 3px;
 	font: italic 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
@@ -189,7 +187,7 @@ textarea:focus {
 	border: 1px solid #7d99ca;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
-	border-radius: 0px;
+	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
