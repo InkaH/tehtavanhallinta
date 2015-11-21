@@ -59,10 +59,10 @@
 </a>
 <ul class="dropdown-menu dropdown-menu-left">
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=0;document.forms[5].submit();" >Grind (Green)</a>
+<a href="#" onclick="document.forms[5].themeID.value=0;document.forms[5].submit();" >Grind (vihreä)</a>
 </li>
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();" >Skyline (Blue)</a>
+<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();" >Skyline (sininen)</a>
 </li>
 </ul>
 </div>
