@@ -36,7 +36,7 @@
 
 <!-- 2nd main row: task creation and editing form -->
 <!-- If editing is not active (edit==0) font color is black, otherwise red -->
-<div class="row" style="color: ${edit=='0' ? '#000000' : '#ff0066'};">
+<div class="row" style="color: ${edit=='0' ? '#696969' : '#ff0066'};">
 
 <!-- if editing is not active, show header '+ Luo uusi tehtava' -->
 <c:if test="${edit=='0'}">
@@ -239,11 +239,10 @@ Sinulla ei ole tehtäviä
 <!-- Banner -->
 <div id="banner">
 <div class="row">
-<div class="col-sm-12">
-<img style="width: 200px; margin: -59px 5px 0 20px;" src="<c:url value="/resources/img/grind-logo-2.png" />" />
+<div class="col-sm-offset-2 col-sm-10">
+<h1 id="grind-header"> G R I N D</h1>
+</div> 
 </div>
 </div>
-</div>
-
 </body>
 </html>
