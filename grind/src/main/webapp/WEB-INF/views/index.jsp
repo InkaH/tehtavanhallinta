@@ -21,8 +21,9 @@
 <!-- application css stylesheet, favicon icon and scripts -->
 
 <c:choose>
-<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
-<c:otherwise><link href="<c:url value="/resources/styles/tyyli.css" />" rel="stylesheet"></c:otherwise>
+<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 3}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
+<c:otherwise><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:otherwise>
 </c:choose>
 
 <link href="<c:url value="/resources/img/favicon.ico" />" rel="shortcut icon" type="image/x-icon" />
@@ -59,10 +60,13 @@
 </a>
 <ul class="dropdown-menu dropdown-menu-left">
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=0;document.forms[5].submit();" >Grind (vihreä)</a>
+<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();" >Grind (vihreä)</a>
 </li>
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();" >Skyline (sininen)</a>
+<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();" >Skyline (sininen)</a>
+</li>
+<li>
+<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();" >Graypaper (harmaa)</a>
 </li>
 </ul>
 </div>

@@ -1,10 +1,11 @@
-/* Skyline */
+/* Graypaper */
 
 @charset "utf-8";
 
 #grind-header{
 	display: block;
 	color: #FFFFFF;
+	text-shadow: 2px 2px #696969;
 }
 
 #grind-logo-iso {
@@ -16,7 +17,7 @@
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-size: auto;
-	background-color: #536f9d; /* rgb(0, 50, 51) */
+	background-color: #CDCDCD; /* rgb(0, 50, 51) */
 	box-shadow: 0 0 15px #000000;
 	position: fixed;
 	top: 0;
@@ -127,71 +128,47 @@ textarea:focus {
 }
 
 .well {
-	margin-bottom: 1px;
+	margin-bottom: 5px;
 	border: 0;
 }
 
 .mark-note {
-	border: 1px solid #7d99ca;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+	border: 0px solid #CDCDCD;
+	box-shadow: 0 0 5px #696969;
+	background-image: url('../img/paper-white.jpg');
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #FFFFFF;
-	background-color: #a5b8da;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#a5b8da),
-		to(#7089b3));
-	background-image: -webkit-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: -moz-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: -ms-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: -o-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: linear-gradient(to bottom, #a5b8da, #7089b3);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
-		startColorstr=#a5b8da, endColorstr=#7089b3);
+	color: #000000;
 }
 
 .mark-warn {
-	border: 1px solid #e4a567;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+	border: 0px solid #CDCDCD;
+	box-shadow: 0 0 5px #696969;
+	background-image: url('../img/paper-yellow.jpg');
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #FFFFFF;
-	background-color: #ecbf93;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#e8b27d),
-		to(#dc8c3c));
-	background-image: -webkit-linear-gradient(top, #ecbf93, #dc8c3c);
-	background-image: -moz-linear-gradient(top, #ecbf93, #dc8c3c);
-	background-image: -ms-linear-gradient(top, #ecbf93, #dc8c3c);
-	background-image: -o-linear-gradient(top, #ecbf93, #dc8c3c);
-	background-image: linear-gradient(to bottom, #ecbf93, #dc8c3c);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
-		startColorstr=#ecbf93, endColorstr=#dc8c3c);
+	color: #000000;
 }
 
 .mark-task {
-	border: 1px solid #7d99ca;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+	border: 0px solid #CDCDCD;
+	box-shadow: 0 0 5px #696969;
+	background-image: url('../img/paper-white.jpg');
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #FFFFFF;
-	background-color: #a5b8da;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#a5b8da),
-		to(#7089b3));
-	background-image: -webkit-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: -moz-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: -ms-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: -o-linear-gradient(top, #a5b8da, #7089b3);
-	background-image: linear-gradient(to bottom, #a5b8da, #7089b3);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
-		startColorstr=#a5b8da, endColorstr=#7089b3);
+	color: #000000;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
