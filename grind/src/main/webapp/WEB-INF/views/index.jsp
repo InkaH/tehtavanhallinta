@@ -19,7 +19,12 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <!-- application css stylesheet, favicon icon and scripts -->
-<link href="<c:url value="/resources/styles/tyyli.css" />" rel="stylesheet">
+
+<c:choose>
+<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
+<c:otherwise><link href="<c:url value="/resources/styles/tyyli.css" />" rel="stylesheet"></c:otherwise>
+</c:choose>
+
 <link href="<c:url value="/resources/img/favicon.ico" />" rel="shortcut icon" type="image/x-icon" />
 <script type="application/javascript" charset="UTF-8" src="<c:url value="/resources/js/script.js" />"></script>
 
@@ -36,15 +41,32 @@
 
 <!-- 2nd main row: task creation and editing form -->
 <!-- If editing is not active (edit==0) font color is black, otherwise red -->
-<div class="row" style="color: ${edit=='0' ? '#696969' : '#ff0066'};">
+<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 
 <!-- if editing is not active, show header '+ Luo uusi tehtava' -->
 <c:if test="${edit=='0'}">
 
 <!-- 1st optional inner row -->
 <div class="row">
-<div class="col-sm-offset-2 col-sm-10">
+<div class="col-sm-offset-2 col-sm-7">
 <h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h3>
+</div>
+<div class="col-sm-3">
+
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+<img src="<c:url value="/resources/img/brush.png" />" style="margin: 16px 0 0 20px; width: 25px;" />
+</a>
+<ul class="dropdown-menu dropdown-menu-left">
+<li>
+<a href="#" onclick="document.forms[5].themeID.value=0;document.forms[5].submit();" >Grind (Green)</a>
+</li>
+<li>
+<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();" >Skyline (Blue)</a>
+</li>
+</ul>
+</div>
+
 </div>
 </div>
 </c:if>
@@ -70,7 +92,7 @@
 <form:hidden path="id" />
 <form:hidden path="status" />
 
-<div class="row">
+<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 <div class="form-group">
 <!-- bootstrap class control-label sets the label before input field (to the left) with alignment right -->
 <label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">* Tehtävä:</label>
@@ -232,6 +254,10 @@ Sinulla ei ole tehtäviä
 </form>
 <!-- FORM[4]: CANCEL -->
 <form id="cancelForm" action="cancel" method="post">
+</form>
+<!-- FORM[5]: THEME -->
+<form id="themeForm" action="theme" method="post">
+<input type="hidden" id="themeID" name="themeID" value="0" />
 </form>
 </c:forEach>
 </c:if>

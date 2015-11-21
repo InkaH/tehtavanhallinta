@@ -25,6 +25,14 @@
 	margin-bottom: -10px;
 }
 
+.label-color {
+	color: #000000;
+}
+
+.label-color-edit {
+	color: #FF0000;
+}
+
 .tiedot {
 	cursor: pointer;
 }
@@ -103,30 +111,15 @@ textarea:focus {
 
 .control-label {
 	padding-right: 0;
-	color: #000000;
 }
 
 .dropdown-menu {
 	text-shadow: none;
-	color: #000000;
+	max-width: 100px !important;
 }
 
 .form-group {
 	margin-bottom: 0;
-}
-
-.modal-footer {
-	padding-bottom: 0;
-	margin-bottom: -5px;
-}
-
-.modal-body {
-	padding-bottom: 5px;
-}
-
-.modal-header {
-	margin: 0;
-	padding: 15px;
 }
 
 .well {

@@ -29,6 +29,14 @@
 	margin-bottom: -10px;
 }
 
+.label-color {
+	color: #696969;
+}
+
+.label-color-edit {
+	color: #FF0000;
+}
+
 .tiedot {
 	cursor: pointer;
 }
@@ -100,7 +108,6 @@ textarea:focus {
 
 .control-label {
 	padding-right: 0;
-	color: #696969;
 	font-weight: normal;
 }
 
@@ -161,7 +168,7 @@ textarea:focus {
 	font: italic 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #cc3400;
+	color: #696969;
 	background-color: #ecbf93;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#e8b27d),
 		to(#e09852));

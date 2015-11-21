@@ -21,6 +21,7 @@ public class TehtavaController {
 	private Tehtava editItem = new Tehtava(); // controller sustain one Tehtava object in order to pre-fill the main form
 	private List<Tehtava> tehtavat; // list of all tasks of the user
 	private int editingActive = 0; // editing mode (0 = false, 1 = true)
+	private int theme = 0;
 
 	@Inject
 	private TehtavaDao dao; // makes all database management methods available in controller class
@@ -40,6 +41,7 @@ public class TehtavaController {
 		model.put("tehtavat", tehtavat); // send all tasks to UI in a variable called 'tehtavat'
 		model.put("uusiTehtava", this.editItem); // send the form pre-fill object to UI in a variable called 'uusiTehtava'
 		model.put("edit", Integer.toString(editingActive)); // send the state of editing mode to UI in a variable called 'edit'
+		model.put("theme", this.theme);
 		return "index";
 	}
 	
@@ -104,6 +106,12 @@ public class TehtavaController {
 	public String peruuta() {
 		editingActive = 0;
 		editItem.nollaaTehtava();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "theme", method = RequestMethod.POST)
+	public String vaihdaTeema(@RequestParam String themeID) {
+		this.theme = Integer.parseInt(themeID);
 		return "redirect:/";
 	}
 }
