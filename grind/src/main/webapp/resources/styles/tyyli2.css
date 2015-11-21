@@ -5,6 +5,10 @@
 	color: #FFFFFF;
 }
 
+#grind-logo-iso {
+	display: none;
+}
+
 #banner {
 	background-image: url('');
 	background-repeat: no-repeat;
