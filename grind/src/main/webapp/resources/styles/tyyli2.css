@@ -155,20 +155,20 @@ textarea:focus {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 3px;
-	font: italic 16px 'Trebuchet MS';
+	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #696969;
+	color: #FFFFFF;
 	background-color: #ecbf93;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#e8b27d),
-		to(#e09852));
-	background-image: -webkit-linear-gradient(top, #ecbf93, #e8b27d);
-	background-image: -moz-linear-gradient(top, #ecbf93, #e8b27d);
-	background-image: -ms-linear-gradient(top, #ecbf93, #e8b27d);
-	background-image: -o-linear-gradient(top, #ecbf93, #e8b27d);
-	background-image: linear-gradient(to bottom, #ecbf93, #e8b27d);
+		to(#dc8c3c));
+	background-image: -webkit-linear-gradient(top, #ecbf93, #dc8c3c);
+	background-image: -moz-linear-gradient(top, #ecbf93, #dc8c3c);
+	background-image: -ms-linear-gradient(top, #ecbf93, #dc8c3c);
+	background-image: -o-linear-gradient(top, #ecbf93, #dc8c3c);
+	background-image: linear-gradient(to bottom, #ecbf93, #dc8c3c);
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
-		startColorstr=#ecbf93, endColorstr=#e8b27d);
+		startColorstr=#ecbf93, endColorstr=#dc8c3c);
 }
 
 .mark-task {
