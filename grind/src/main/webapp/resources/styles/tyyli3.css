@@ -120,6 +120,9 @@ textarea:focus {
 
 .dropdown-menu {
 	text-shadow: none;
+}
+
+.drop-glyph {
 	color: #696969;
 }
 

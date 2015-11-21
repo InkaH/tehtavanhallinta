@@ -197,7 +197,7 @@ Sinulla ei ole tehtäviä
 <!-- dropdown list of optional functions of a single task -->
 <div class="task-options">
 <div class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="margin: 8px 8px 0 0; color: #FFFFFF;"></span></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
 <!-- edit option: on click change value of editTask attribute in edit form and submit the form -->
@@ -271,7 +271,7 @@ Sinulla ei ole tehtäviä
 <div class="row">
 <div class="col-sm-offset-1 col-sm-11">
 <img id="grind-logo-iso" src="<c:url value="/resources/img/grind-logo-iso.png" />" />
-<h1 id="grind-header"><img style="line-height: 60px; margin-top: -5px;" id="grind-logo-g" src="<c:url value="/resources/img/favicon.ico" />" />&nbsp;G R I N D</h1>
+<h1 id="grind-header"><img style="line-height: 60px; margin: -5px 5px 0 0;" id="grind-logo-g" src="<c:url value="/resources/img/favicon.ico" />" />&nbsp;G R I N D</h1>
 </div> 
 </div>
 </div>

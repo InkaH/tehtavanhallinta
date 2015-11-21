@@ -118,6 +118,10 @@ textarea:focus {
 	max-width: 100px !important;
 }
 
+.drop-glyph {
+	color: #FFFFFF;
+}
+
 .form-group {
 	margin-bottom: 0;
 }
