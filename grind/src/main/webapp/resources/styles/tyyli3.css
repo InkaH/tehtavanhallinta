@@ -124,7 +124,7 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a {
 }
 
 .drop-glyph {
-	color: #696969;
+	color: #FFFFFF;
 }
 
 .form-group {
@@ -137,42 +137,39 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a {
 }
 
 .mark-note {
-	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 7px #696969;
-	background-image: url('../img/paper-white.jpg');
+	border: 0px solid #516a7b;
+	background-color: #607d91;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #000000;
+	color: #FFFFFF;
 }
 
 .mark-warn {
-	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 7px #696969;
-	background-image: url('../img/paper-yellow.jpg');
+	border: 0px solid #b35000;
+	background-color: #de6400;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #000000;
+	color: #FFFFFF;
 }
 
 .mark-task {
-	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 7px #696969;
-	background-image: url('../img/paper-white.jpg');
+	border: 0px solid #516a7b;
+	background-color: #607d91;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
 	text-decoration: none;
-	color: #000000;
+	color: #FFFFFF;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */
