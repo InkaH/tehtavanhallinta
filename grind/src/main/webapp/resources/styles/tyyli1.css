@@ -118,7 +118,7 @@ textarea:focus {
 	max-width: 100px !important;
 }
 
-ul.dropdown-menu li:nth-child(1) a{
+ul.dropdown-menu li.theme-selected:nth-child(1) a{
 	font-weight: bold;
 }
 
