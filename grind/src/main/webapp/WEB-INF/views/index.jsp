@@ -23,6 +23,7 @@
 <c:choose>
 <c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
 <c:when test="${theme == 3}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 4}"><link href="<c:url value="/resources/styles/tyyli4.css" />" rel="stylesheet"></c:when>
 <c:otherwise><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:otherwise>
 </c:choose>
 
@@ -67,6 +68,9 @@
 </li>
 <li class="theme-selected">
 <a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">Graypaper (harmaa)</a>
+</li>
+<li class="theme-selected">
+<a href="#" onclick="document.forms[5].themeID.value=4;document.forms[5].submit();">Vampire (musta)</a>
 </li>
 </ul>
 </div>

@@ -1,0 +1,262 @@
+@charset "utf-8";
+
+#grind-header{
+	display: block;
+	color: #FFFFFF;
+}
+
+#grind-logo-iso {
+	display: none;
+	width: 200px;
+	margin-top: -59px;
+}
+
+#banner {
+	background-color: #000000;
+	box-shadow: 0 0 15px #000000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	background-size: auto 80px;
+	position: fixed;
+	overflow: hidden;
+}
+
+.character-counter {
+	float: right;
+	font-size: 12px;
+	color: #000000;
+	margin-bottom: -10px;
+}
+
+.label-color {
+	color: #000000;
+}
+
+.label-color-edit {
+	color: #FF0000;
+}
+
+.tiedot {
+	cursor: pointer;
+}
+
+.groupid {
+	float: right;
+	padding-right: 25px;
+}
+
+body {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-size: 16px;
+	overflow-y: scroll;
+	/* Text selection disabled */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: #FFFFFF;
+}
+
+input[type=text] {
+	border: 1px solid #000000;
+}
+
+input[type=text]:focus {
+	outline: none !important;
+	border-color: #000000;
+	box-shadow: 0 0 10px #000000;
+}
+
+textarea {
+	border: 1px solid #000000 !important;
+}
+
+textarea:focus {
+	outline: none !important;
+	border-color: #000000 !important;
+	box-shadow: 0 0 10px #000000 !important;
+}
+
+/* BOOTSTRAP OVERWRITE */
+.glyphicon {
+	color: #000000;
+}
+
+.btn {
+	margin-bottom: 20px;
+}
+
+.btn-default {
+	color: #000000;
+	background-color: #CDCDCD;
+	border-color: #696969;
+	font-weight: bold;
+}
+
+.btn-default:hover {
+	border-color: #696969;
+	font-weight: bold;
+}
+
+.container {
+	padding-bottom: 50px;
+	padding-top: 80px;
+}
+
+.control-label {
+	padding-right: 0;
+}
+
+.dropdown-menu {
+	text-shadow: none;
+	max-width: 100px !important;
+}
+
+ul.dropdown-menu li.theme-selected:nth-child(4) a {
+	font-weight: bold;
+}
+
+.drop-glyph {
+	color: #FFFFFF;
+}
+
+.form-group {
+	margin-bottom: 0;
+}
+
+.well {
+	margin-bottom: 1px;
+	border: 0;
+}
+
+.mark-note {
+	border: 1px solid #000000;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 3px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #000000;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#696969),
+		to(#000000));
+	background-image: -webkit-linear-gradient(top, #696969, #000000);
+	background-image: -moz-linear-gradient(top, #696969, #000000);
+	background-image: -ms-linear-gradient(top, #696969, #000000);
+	background-image: -o-linear-gradient(top, #696969, #000000);
+	background-image: linear-gradient(to bottom, #696969, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#696969, endColorstr=#004b4d);
+}
+
+.mark-warn {
+	border: 1px solid #000000;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 3px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #FF0000;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FF0000),
+		to(#000000));
+	background-image: -webkit-linear-gradient(top, #FF0000, #000000);
+	background-image: -moz-linear-gradient(top, #FF0000, #000000);
+	background-image: -ms-linear-gradient(top, #FF0000, #000000);
+	background-image: -o-linear-gradient(top, #FF0000, #000000);
+	background-image: linear-gradient(to bottom, #FF0000, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#FF0000, endColorstr=#000000);
+}
+
+.mark-task {
+	border: 1px solid #000000;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 3px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #000000;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#696969),
+		to(#000000));
+	background-image: -webkit-linear-gradient(top, #696969, #000000);
+	background-image: -moz-linear-gradient(top, #696969, #000000);
+	background-image: -ms-linear-gradient(top, #696969, #000000);
+	background-image: -o-linear-gradient(top, #696969, #000000);
+	background-image: linear-gradient(to bottom, #696969, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#696969, endColorstr=#004b4d);
+}
+
+/* END OF BOOTSTRAP OVERWRITE */
+.dd-select {
+	font: normal 16px 'Trebuchet MS';
+}
+
+.inline {
+	display: inline-block;
+}
+
+.form-group {
+	padding: 10px;
+}
+
+.form-elem {
+	width: 200px;
+}
+
+.muistutus {
+	color: #000000;
+	font-size: 14px;
+}
+
+.add {
+	color: #FFFFFF;
+}
+
+.task {
+	background-color: #DCDCDC;
+	margin: 0;
+	position: relative;
+	display: block;
+	border-style: solid;
+	border-color: #babdb6;
+	border-width: 1px;
+	border-radius: 4px;
+	overflow: visible;
+	padding: 20px;
+}
+
+.task:last-child {
+	margin-bottom: 0;
+}
+
+.task-options {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: none;
+}
+
+#deletebtn {
+	font-size: 1.5em;
+	border: none;
+	background-color: transparent;
+}
+
+/* datepicker css overwrite */
+#ui-datepicker-div {
+	font-size: 12px;
+}
