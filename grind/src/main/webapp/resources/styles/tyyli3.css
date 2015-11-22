@@ -1,33 +1,29 @@
 /* Graypaper */
-
 @charset "utf-8";
 
-#grind-header{
-	display: none;
-	color: #FFFFFF;
-	text-shadow: 2px 2px #696969;
-}
-
-#grind-logo-iso {	
-	display: none;
-	width: 170px;
-	margin: -46px 0 0 15px;
+#grind-logo-blue-orange {
+	display: block;
+	position: absolute;
+	top: -61px;
+	left: 30px;
+	width: 200px;
 }
 
 #banner {
-	background-image: url('../img/grind-mono-blue-orange.png');
-	background-repeat: no-repeat;
-	background-position: 10px -57px;
-	background-size: 200px 200px;
-	background-color: #607d91;
-	box-shadow: 0 0 10px #000000;
+	background-image: linear-gradient(bottom, #2a5569 50%, #607d91 50%);
+	background-image: -o-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
+	background-image: -moz-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
+	background-image: -webkit-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
+	background-image: -ms-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #2a5569),
+		color-stop(0.5, #607d91));
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 80px;
-	position: fixed;
 	overflow: hidden;
+	box-shadow: 0 0 20px #000000;
 }
 
 .character-counter {
@@ -123,7 +119,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(3) a{
+ul.dropdown-menu li.theme-selected:nth-child(3) a {
 	font-weight: bold;
 }
 

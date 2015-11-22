@@ -272,12 +272,7 @@ Sinulla ei ole tehtäviä
 </div>
 <!-- Banner -->
 <div id="banner">
-<div class="row">
-<div class="col-sm-12">
-<img id="grind-logo-iso" src="<c:url value="/resources/img/grind-logo-mono-bluegreen.png" />" />
-<h1 id="grind-header"><img style="line-height: 60px; margin: -5px 5px 0 0;" id="grind-logo-g" src="<c:url value="/resources/img/favicon.ico" />" />&nbsp;G R I N D</h1>
-</div> 
-</div>
+<img id="grind-logo-blue-orange" src="<c:url value="/resources/img/grind-logo-blue-orange.png" />" />
 </div>
 </body>
 </html>
