@@ -7,12 +7,12 @@
 
 #grind-logo-iso {
 	display: block;
-	width: 200px;
-	margin-top: -59px;
+	width: 170px;
+	margin: -46px 0 0 15px;
 }
 
 #banner {
-	background-color: #003233; /* rgb(0, 50, 51) */
+	background-color: #004b4d; /* rgb(0, 50, 51) */
 	box-shadow: 0 0 15px #000000;
 	position: fixed;
 	top: 0;
