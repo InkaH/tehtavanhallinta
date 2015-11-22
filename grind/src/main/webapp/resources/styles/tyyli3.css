@@ -141,7 +141,7 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a{
 
 .mark-note {
 	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 7px #000000;
+	box-shadow: 0 0 7px #696969;
 	background-image: url('../img/paper-white.jpg');
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -154,7 +154,7 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a{
 
 .mark-warn {
 	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 7px #000000;
+	box-shadow: 0 0 7px #696969;
 	background-image: url('../img/paper-yellow.jpg');
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -167,7 +167,7 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a{
 
 .mark-task {
 	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 7px #000000;
+	box-shadow: 0 0 7px #696969;
 	background-image: url('../img/paper-white.jpg');
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
