@@ -121,6 +121,10 @@ textarea:focus {
 	text-shadow: none;
 }
 
+ul.dropdown-menu li:nth-child(2) a{
+	font-weight: bold;
+}
+
 .drop-glyph {
 	color: #FFFFFF;
 }

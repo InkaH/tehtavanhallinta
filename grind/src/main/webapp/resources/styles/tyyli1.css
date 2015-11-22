@@ -118,6 +118,10 @@ textarea:focus {
 	max-width: 100px !important;
 }
 
+ul.dropdown-menu li:nth-child(1) a{
+	font-weight: bold;
+}
+
 .drop-glyph {
 	color: #FFFFFF;
 }

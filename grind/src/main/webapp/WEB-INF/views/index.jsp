@@ -60,13 +60,13 @@
 </a>
 <ul class="dropdown-menu dropdown-menu-left">
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();" >Grind (vihreä)</a>
+<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">Grind (vihreä)</a>
 </li>
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();" >Skyline (sininen)</a>
+<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">Skyline (sininen)</a>
 </li>
 <li>
-<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();" >Graypaper (harmaa)</a>
+<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">Graypaper (harmaa)</a>
 </li>
 </ul>
 </div>
