@@ -21,7 +21,7 @@ public class TehtavaController {
 	private Tehtava editItem = new Tehtava(); // controller sustain one Tehtava object in order to pre-fill the main form
 	private List<Tehtava> tehtavat; // list of all tasks of the user
 	private int editingActive = 0; // editing mode (0 = false, 1 = true)
-	private int theme = 1;
+	private int theme = 3;
 
 	@Inject
 	private TehtavaDao dao; // makes all database management methods available in controller class

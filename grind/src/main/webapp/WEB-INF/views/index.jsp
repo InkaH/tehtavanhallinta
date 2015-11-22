@@ -60,18 +60,22 @@
 <img src="<c:url value="/resources/img/brush.png" />" style="margin: 16px 0 0 20px; width: 25px;" />
 </a>
 <ul class="dropdown-menu dropdown-menu-left">
+<!-- 
 <li class="theme-selected">
 <a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">Grind (vihreä)</a>
 </li>
 <li class="theme-selected">
 <a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">Skyline (sininen)</a>
 </li>
+-->
 <li class="theme-selected">
 <a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">Graystone (siniharmaa)</a>
 </li>
+<!--
 <li class="theme-selected">
 <a href="#" onclick="document.forms[5].themeID.value=4;document.forms[5].submit();">Vampire (musta)</a>
 </li>
+-->
 </ul>
 </div>
 

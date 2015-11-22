@@ -119,7 +119,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(3) a {
+ul.dropdown-menu li.theme-selected:nth-child(1) a {
 	font-weight: bold;
 }
 
