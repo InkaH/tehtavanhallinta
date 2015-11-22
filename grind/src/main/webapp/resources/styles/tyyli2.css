@@ -54,6 +54,11 @@
 
 body {
 	background-color: #FFFFFF;
+/*
+	background-image: url('../img/skyline-bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+*/
 	color: #696969;
 	font-size: 16px;
 	overflow-y: scroll;
