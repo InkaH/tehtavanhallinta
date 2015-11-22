@@ -137,7 +137,7 @@ textarea:focus {
 
 .mark-note {
 	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 5px #696969;
+	box-shadow: 0 0 7px #000000;
 	background-image: url('../img/paper-white.jpg');
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -150,7 +150,7 @@ textarea:focus {
 
 .mark-warn {
 	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 5px #696969;
+	box-shadow: 0 0 7px #000000;
 	background-image: url('../img/paper-yellow.jpg');
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -163,7 +163,7 @@ textarea:focus {
 
 .mark-task {
 	border: 0px solid #CDCDCD;
-	box-shadow: 0 0 5px #696969;
+	box-shadow: 0 0 7px #000000;
 	background-image: url('../img/paper-white.jpg');
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
