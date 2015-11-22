@@ -67,7 +67,7 @@
 <a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">Skyline (sininen)</a>
 </li>
 <li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">Graypaper (harmaa)</a>
+<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">Graystone (siniharmaa)</a>
 </li>
 <li class="theme-selected">
 <a href="#" onclick="document.forms[5].themeID.value=4;document.forms[5].submit();">Vampire (musta)</a>
