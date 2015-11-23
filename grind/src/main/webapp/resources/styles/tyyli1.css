@@ -1,5 +1,4 @@
 /* Grind */
-
 @charset "utf-8";
 
 #grind-logo {
@@ -67,21 +66,23 @@ body {
 }
 
 input[type=text] {
-	border-color: #a5b8da;
+	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #a5b8da !important;
+	border-color: #337d73 !important;
+	box-shadow: 0 0 10px #2c6b59 !important;
 }
 
 textarea {
-	border-color: #a5b8da !important;
+	border-color: #696969 !important;
 }
 
 textarea:focus {
 	outline: none !important;
-	border-color: #a5b8da !important;
+	border-color: #337d73 !important;
+	box-shadow: 0 0 10px #2c6b59 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */

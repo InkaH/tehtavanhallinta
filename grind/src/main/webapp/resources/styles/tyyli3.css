@@ -67,21 +67,23 @@ body {
 }
 
 input[type=text] {
-	border-color: #a5b8da;
+	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #a5b8da !important;
+	border-color: #607d91 !important;
+	box-shadow: 0 0 10px #2a5569 !important;
 }
 
 textarea {
-	border-color: #a5b8da !important;
+	border-color: #696969 !important;
 }
 
 textarea:focus {
 	outline: none !important;
-	border-color: #a5b8da !important;
+	border-color: #607d91 !important;
+	box-shadow: 0 0 10px #2a5569 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */

@@ -67,21 +67,23 @@ body {
 }
 
 input[type=text] {
-	border-color: #a5b8da;
+	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #a5b8da !important;
+	border-color: #6e8531 !important;
+	box-shadow: 0 0 10px #95ba30 !important;
 }
 
 textarea {
-	border-color: #a5b8da !important;
+	border-color: #696969 !important;
 }
 
 textarea:focus {
 	outline: none !important;
-	border-color: #a5b8da !important;
+	border-color: #6e8531 !important;
+	box-shadow: 0 0 10px #95ba30 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */
@@ -138,8 +140,6 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 }
 
 .mark-note {
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
@@ -149,8 +149,6 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 }
 
 .mark-warn {
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
@@ -160,8 +158,6 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 }
 
 .mark-task {
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
