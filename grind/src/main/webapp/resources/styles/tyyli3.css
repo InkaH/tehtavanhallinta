@@ -5,19 +5,19 @@
 #grind-logo {
 	display: block;
 	position: absolute;
-	top: -61px;
+	top: -62px;
 	left: 30px;
 	width: 200px;
 }
 
 #banner {
-	background-image: linear-gradient(bottom, #2a5569 50%, #607d91 50%);
-	background-image: -o-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
-	background-image: -moz-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
-	background-image: -webkit-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
-	background-image: -ms-linear-gradient(bottom, #2a5569 50%, #607d91 50%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #2a5569),
-		color-stop(0.5, #607d91));
+	background-image: linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -o-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -moz-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -webkit-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -ms-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #607d91),
+		color-stop(0.5, #2a5569));
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -138,8 +138,7 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a {
 }
 
 .mark-note {
-	border: 0px solid #516a7b;
-	background-color: #2a5569;
+	background-color: #607d91;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -150,7 +149,6 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a {
 }
 
 .mark-warn {
-	border: 0px solid #b35000;
 	background-color: #de6400;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -162,8 +160,7 @@ ul.dropdown-menu li.theme-selected:nth-child(3) a {
 }
 
 .mark-task {
-	border: 0px solid #516a7b;
-	background-color: #607d91;
+	background-color: #2a5569;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
