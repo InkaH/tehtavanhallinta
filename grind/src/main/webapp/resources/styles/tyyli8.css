@@ -97,13 +97,14 @@ textarea:focus {
 
 .btn-default {
 	color: #696969;
-	background-color: #CDCDCD;
+	background-color: #f1f1f1 !important;
 	border-color: #696969;
 	font-weight: bold;
 }
 
 .btn-default:hover {
 	color: #696969;
+	background-color: #f6f6f6 !important;
 	border-color: #696969;
 	font-weight: bold;
 }
