@@ -21,8 +21,12 @@
 <!-- application css stylesheet, favicon icon and scripts -->
 
 <c:choose>
-<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 3}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 4}"><link href="<c:url value="/resources/styles/tyyli4.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 5}"><link href="<c:url value="/resources/styles/tyyli5.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 6}"><link href="<c:url value="/resources/styles/tyyli6.css" />" rel="stylesheet"></c:when>
 <c:otherwise><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:otherwise>
 </c:choose>
 
@@ -60,10 +64,22 @@
 </a>
 <ul class="dropdown-menu dropdown-menu-left">
 <li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">LeafFrog (vihreä)</a>
+<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">Grind (sinivihreä)</a>
 </li>
 <li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">GrayStone (siniharmaa)</a>
+<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">LeafFrog (vihreä)</a>
+</li>
+<li class="theme-selected">
+<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">GrayStone (siniharmaa)</a>
+</li>
+<li class="theme-selected">
+<a href="#" onclick="document.forms[5].themeID.value=4;document.forms[5].submit();">Amethyst (purppura)</a>
+</li>
+<li class="theme-selected">
+<a href="#" onclick="document.forms[5].themeID.value=5;document.forms[5].submit();">Brownie (ruskea)</a>
+</li>
+<li class="theme-selected">
+<a href="#" onclick="document.forms[5].themeID.value=6;document.forms[5].submit();">Vampire (mustaharmaa)</a>
 </li>
 </ul>
 </div>
@@ -267,9 +283,13 @@ Sinulla ei ole tehtäviä
 <div id="banner">
 
 <c:choose>
-<c:when test="${theme == 1}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-frog-pink.png" />" /></c:when>
-<c:when test="${theme == 2}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-orange.png" />" /></c:when>
-<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-frog-pink.png" />" /></c:otherwise>
+<c:when test="${theme == 1}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" /></c:when>
+<c:when test="${theme == 2}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-frog-pink.png" />" /></c:when>
+<c:when test="${theme == 3}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-orange.png" />" /></c:when>
+<c:when test="${theme == 4}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-purple-green.png" />" /></c:when>
+<c:when test="${theme == 5}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-brown-blue.png" />" /></c:when>
+<c:when test="${theme == 6}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-gray-black.png" />" /></c:when>
+<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" /></c:otherwise>
 </c:choose>
 
 

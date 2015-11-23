@@ -1,4 +1,4 @@
-/* Grind */
+/* Brownie */
 
 @charset "utf-8";
 
@@ -11,13 +11,13 @@
 }
 
 #banner {
-	background-image: linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
-	background-image: -o-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
-	background-image: -moz-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
-	background-image: -webkit-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
-	background-image: -ms-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #337d73),
-		color-stop(0.5, #2c6b59));
+	background-image: linear-gradient(bottom, #c77844 50%, #8f4517 50%);
+	background-image: -o-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
+	background-image: -moz-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
+	background-image: -webkit-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
+	background-image: -ms-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #c77844),
+		color-stop(0.5, #8f4517));
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -53,11 +53,6 @@
 
 body {
 	background-color: #FFFFFF;
-	/*
-	background-image: url('../img/skyline-bg.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-*/
 	color: #696969;
 	font-size: 16px;
 	overflow-y: scroll;
@@ -125,7 +120,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(1) a {
+ul.dropdown-menu li.theme-selected:nth-child(5) a {
 	font-weight: bold;
 }
 
@@ -143,9 +138,9 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 }
 
 .mark-note {
-	background-color: #337d73;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+	background-color: #c77844;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
@@ -154,9 +149,9 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 }
 
 .mark-warn {
-	background-color: #7d3356;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+	background-color: #1e5069;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;
@@ -165,9 +160,9 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 }
 
 .mark-task {
-	background-color: #2c6b59;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+	background-color: #8f4517;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
 	padding: 10px 15px 11px 15px;

@@ -1,4 +1,5 @@
 /* GrayStone */
+
 @charset "utf-8";
 
 #grind-logo {
@@ -119,7 +120,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(2) a {
+ul.dropdown-menu li.theme-selected:nth-child(3) a {
 	font-weight: bold;
 }
 
