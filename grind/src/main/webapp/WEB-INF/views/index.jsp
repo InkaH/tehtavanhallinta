@@ -21,9 +21,8 @@
 <!-- application css stylesheet, favicon icon and scripts -->
 
 <c:choose>
-<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 3}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 4}"><link href="<c:url value="/resources/styles/tyyli4.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
 <c:otherwise><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:otherwise>
 </c:choose>
 
@@ -60,22 +59,12 @@
 <img src="<c:url value="/resources/img/brush.png" />" style="margin: 16px 0 0 20px; width: 25px;" />
 </a>
 <ul class="dropdown-menu dropdown-menu-left">
-<!-- 
 <li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">Grind (vihreä)</a>
+<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">LeafFrog (vihreä)</a>
 </li>
 <li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">Skyline (sininen)</a>
+<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">GrayStone (siniharmaa)</a>
 </li>
--->
-<li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">Graystone (siniharmaa)</a>
-</li>
-<!--
-<li class="theme-selected">
-<a href="#" onclick="document.forms[5].themeID.value=4;document.forms[5].submit();">Vampire (musta)</a>
-</li>
--->
 </ul>
 </div>
 
@@ -276,7 +265,14 @@ Sinulla ei ole tehtäviä
 </div>
 <!-- Banner -->
 <div id="banner">
-<img id="grind-logo-blue-orange" src="<c:url value="/resources/img/grind-logo-blue-orange.png" />" />
+
+<c:choose>
+<c:when test="${theme == 1}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-frog-pink.png" />" /></c:when>
+<c:when test="${theme == 2}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-orange.png" />" /></c:when>
+<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-frog-pink.png" />" /></c:otherwise>
+</c:choose>
+
+
 </div>
 </body>
 </html>
