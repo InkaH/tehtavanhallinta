@@ -61,10 +61,12 @@
 	
 	<!-- 1st optional inner row -->
 		<div class="row">
-			<div class="col-sm-offset-2 col-sm-7">
+			<div class="col-xs-offset-2 col-xs-7">
 			<h3><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h3>
 			</div>
-			<div class="col-sm-3">
+			
+			<!-- theme selectors -->
+			<div class="col-xs-3">
 				<div class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
 				<img src="<c:url value="/resources/img/brush.png" />" style="margin: 16px 0 0 20px; width: 25px;" />
@@ -105,7 +107,7 @@
 	
 	<!-- 1st optional inner row -->
 	<div class="row">
-		<div class="col-sm-offset-2 col-sm-10">
+		<div class="col-xs-offset-2 col-xs-10">
 		<h3>Muokkaa tehtävää</h3>
 		</div>
 	</div>
@@ -124,62 +126,62 @@
 		<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group">
 			<!-- bootstrap class control-label sets the label before input field (to the left) with alignment right -->
-			<label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">* Tehtävä:</label>
-				<div class="col-sm-6">
+			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">* Tehtävä:</label>
+				<div class="col-xs-6">
 				<!-- spring form: cssClass = class (html) -->
 				<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävän aihe" required="required" maxlength="80" />
 				</div>
-				<div class="col-sm-3"></div>
+				<div class="col-xs-3"></div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-sm-offset-1 col-sm-2" for="ryhma">Ryhmätunnus:</label>
-				<div class="col-sm-6">
+			<label class="control-label col-xs-offset-1 col-xs-2" for="ryhma">Ryhmätunnus:</label>
+				<div class="col-xs-6">
 				<form:input path="ryhma" cssClass="form-control" style="text-transform: uppercase" maxlength="50" />
 				</div>
-				<div class="col-sm-3"></div>
+				<div class="col-xs-3"></div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Lisätiedot:</label>
-				<div class="col-sm-6">
+			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Lisätiedot:</label>
+				<div class="col-xs-6">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
 				<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita lisätiedot" maxlength="500" /> 
 				</div>
-				<div class="col-sm-3"></div>
+				<div class="col-xs-3"></div>
 			</div>
 		</div>
 		
 		<!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
 		<div class="row">
 			<div class="form-group has-feedback">
-			<label class="control-label col-sm-offset-1 col-sm-2" for="kuvaus">Ajankohta:</label>
-				<div class="controls bootstrap-timepicker col-sm-3" >
+			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Ajankohta:</label>
+				<div class="controls bootstrap-timepicker col-xs-3" >
 				<form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" id="datepicker"/>
 				<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-xs-3">
 				<form:input path="ajankohtaKlo" cssClass="form-control text-center" id="timepicker"/>
 				<!-- bootstrap form-control-feedback puts glyphicon icon to the right end of the input field (not after text content) -->
 				<i class="form-control-feedback glyphicon glyphicon-time"></i>
 				</div>
-				<div class="col-sm-3"></div>
+				<div class="col-xs-3"></div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group"> 
-				<div class="col-sm-offset-3 col-sm-3">
+				<div class="col-xs-offset-3 col-xs-3">
 				<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-xs-3">
 				<button onclick="document.forms[4].submit(); return false;" class="btn btn-default form-control"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;PERUUTA</button>
 				</div>
-				<div class="col-sm-3"></div>
+				<div class="col-xs-3"></div>
 			</div>
 		</div>
 		
@@ -192,7 +194,7 @@
 	
 	<!-- 3rd optional main row -->
 	<div class="row">
-		<div class="col-sm-offset-2 col-sm-10">
+		<div class="col-xs-offset-2 col-xs-10">
 		Sinulla ei ole tehtäviä
 		</div>
 	</div>
@@ -213,7 +215,7 @@
 	
 	<div class="row">
 		<!-- bootstrap class well is a simple styled content box. 2 cols empty, 8 cols for well, 2 cols empty (total 12) -->
-		<div class="col-sm-offset-2 col-sm-8 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
+		<div class="col-xs-offset-2 col-xs-8 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 	
 		<!-- dropdown list of optional functions of a single task -->
 		<div class="task-options">
@@ -261,7 +263,7 @@
 		</small>
 		</span>
 		</div>
-		<div class="col-sm-2"></div>
+		<div class="col-xs-2"></div>
 	</div>
 	
 	<!-- FORM[1]: DELETE -->
