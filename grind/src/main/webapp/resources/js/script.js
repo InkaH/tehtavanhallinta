@@ -5,6 +5,8 @@ $(document).ready(function() {
 	});
 
 	$("#datepicker").datepicker();
+	
+	$("#timepicker").timepicker();
 
 	$('#uusiTehtava input[type=text]').on('change invalid', function() {
 		var textfield = $(this).get(0);
