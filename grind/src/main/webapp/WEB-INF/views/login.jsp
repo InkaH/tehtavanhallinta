@@ -5,8 +5,8 @@
       <title>Sisäänkirjautuminen</title>
    </head>
       <p>Anna käyttäjänimi ja salasana:</p>
-      <p>Ilman tietokantaa: user1 12345 (käyttäjällä on ROLE_USER) TAI admin1 12345 (käyttäjällä on ROLE_USER ja ROLE_ADMIN)</p>
-      <p>Tietokantayhteydellä: (tot.myöhemmin)</p>
+      <p>Ilman tietokantaa: user1 12345 TAI user2 12345</p>
+      <p>Tietokantayhteydellä: samat tunnukset</p>
    <body onload='document.loginForm.username.focus();'>
       <div>
          <h3>Anna sähköpostiosoite ja salasana:</h3>

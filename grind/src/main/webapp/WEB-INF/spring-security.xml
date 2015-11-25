@@ -21,7 +21,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
          <password-encoder ref="encoder"/>
          <user-service>
             <user name="user1" password="$2a$10$4acKXtsNYLX5Dqq6ccV/OevLF3ppFwzfvq3UsfKlY.cPsDBpJxdG." authorities="ROLE_USER" />
-            <user name="admin1" password="$2a$10$1zQc./Mx82ktwc73yfQhvuWQY1UtBXegoHcJy.kxIobJh3eavoQrG" authorities="ROLE_USER, ROLE_ADMIN" />
+            <user name="user2" password="$2a$10$1zQc./Mx82ktwc73yfQhvuWQY1UtBXegoHcJy.kxIobJh3eavoQrG" authorities="ROLE_USER, ROLE_ADMIN" />
          </user-service>
       </authentication-provider>
       <!-- Autentikaatio tietokannalla TOTEUTETAAN MYÖHEMMIN
