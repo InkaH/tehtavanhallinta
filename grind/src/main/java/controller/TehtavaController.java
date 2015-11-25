@@ -4,8 +4,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
+
 import javax.inject.Inject;
+
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,8 +41,22 @@ public class TehtavaController {
 		this.dao = dao;
 	}
 	
-	// executed every time before entering index.jsp (value= "/")
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/login" }, method = RequestMethod.GET)
+	public String login(Model model,
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+
+		if (error != null) {
+			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
+		}
+		if (logout != null) {
+			model.addAttribute("msg", "Olet kirjautunut ulos.");
+		}
+		return "login";
+	}
+	
+	// executed every time when entering index.jsp (value= "/index")
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model) {
 		tehtavat = dao.haeKaikki();
 		model.put("tehtavat", tehtavat); // send all tasks to UI in a variable called 'tehtavat'
@@ -59,7 +80,7 @@ public class TehtavaController {
 		}
 		editingActive = 0; // set editing mode off
 		editItem.nollaaTehtava(); // clear the content of the form pre-fill object
-		return "redirect:/"; // move to getView method (value = "/")
+		return "redirect:/index"; // move to getView method (value = "/")
 	}
 
 	// the task deletion form calls the method on submit <form action="del"...>  -->  @RequestMapping(value="del"...)
@@ -70,7 +91,7 @@ public class TehtavaController {
 			dao.poistaTehtava(de); // if delTask > 0 (Tehtava object exists), remove the task from database
 		}
 		editingActive = 0;
-		return "redirect:/";
+		return "redirect:/index";
 	}
 
 	// the task editing form calls the method on submit
@@ -86,11 +107,11 @@ public class TehtavaController {
 						editItem.setAjankohtaPvm(null);
 						editItem.setAjankohtaKlo(null);
 					}
-					return "redirect:/"; // quit searching and move to getView method
+					return "redirect:/index"; // quit searching and move to getView method
 				}
 			}
 		}
-		return "redirect:/";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "share", method = RequestMethod.POST)
@@ -99,19 +120,31 @@ public class TehtavaController {
 		if (sh > 0) {
 			dao.jaaTehtava(sh, groupID.toUpperCase());
 		}
-		return "redirect:/";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "cancel", method = RequestMethod.POST)
 	public String peruuta() {
 		editingActive = 0;
 		editItem.nollaaTehtava();
-		return "redirect:/";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "theme", method = RequestMethod.POST)
 	public String vaihdaTeema(@RequestParam String themeID) {
 		this.theme = Integer.parseInt(themeID);
-		return "redirect:/";
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public String accessDenied(Model model) {
+		// printataan konsolille sisäänkirjautuneen käyttäjän tietoja
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			System.out.println(userDetail);
+		}
+		return "403";
 	}
 }
