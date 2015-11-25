@@ -6,3 +6,20 @@ CREATE TABLE tehtava (
 	t_deadlinedtm DATETIME,
 	t_ryhma VARCHAR(255), 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE kayttaja (
+	k_nimi VARCHAR(100) NOT NULL, 
+	k_salasana VARCHAR(100) NOT NULL, 
+	k_rooli VARCHAR (50) NOT NULL, 
+	PRIMARY KEY (k_nimi)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE kayttajan_tehtava (
+	kt_id INT(11) NOT NULL AUTO_INCREMENT, 
+	kt_t_id INT(11) NOT NULL, 
+	kt_k_nimi VARCHAR(100) NOT NULL, 
+	PRIMARY KEY (kt_id), 
+	CONSTRAINT kt_k_nimi FOREIGN KEY (kt_k_nimi) REFERENCES kayttaja (k_nimi) 
+	ON DELETE CASCADE 
+	ON UPDATE CASCADE
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
