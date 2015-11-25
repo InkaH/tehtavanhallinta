@@ -47,7 +47,7 @@ public class TehtavaController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen k√§ytt√§j√§nimi tai salasana.");
+			model.addAttribute("error", "Virheellinen k‰ytt‰j‰nimi tai salasana.");
 		}
 		if (logout != null) {
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
@@ -138,7 +138,7 @@ public class TehtavaController {
 	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
-		// printataan konsolille sis√§√§nkirjautuneen k√§ytt√§j√§n tietoja
+		// printataan konsolille sis‰‰nkirjautuneen k‰ytt‰j‰n tietoja
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
