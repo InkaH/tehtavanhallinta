@@ -239,8 +239,19 @@
 			</div>
 		</div>
 	
-		<!-- bootstrap <strong> used for the header of task -->
-		<span><c:out value="${t.kuvaus}" /></span>
+		<span>
+		<small>
+		<c:if test="${compTaskDate != compIdentifier}">
+		<fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
+		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
+		<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
+		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
+		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'ERÄÄNTYNYT')}" />
+		<br>
+		</c:if>
+		</small>
+		</span>
+		<span><c:out value="${t.kuvaus}" escapeXml="false" /></span>
 		
 		<c:if test="${not empty t.ryhma}">
 		<span class="groupid"><small><c:out value="${t.ryhma}" /></small></span>
@@ -250,17 +261,7 @@
 		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span><pre hidden="hidden"><c:out value="${t.tiedot}" /></pre>
 		</c:if>
 		<!-- jstl: time objects parsed from localdate/localtime to date objects -->
-		<span>
-		<small>
-		<c:out value="${(parsedAjankohta > now) ? '<br>' : (compTaskDate == compIdentifier ? '' : '<br>Erääntynyt: ')}" escapeXml="false" />
-		<c:if test="${compTaskDate != compIdentifier}">
-		<fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
-		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
-		<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
-		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
-		</c:if>
-		</small>
-		</span>
+		
 		</div>
 		<div class="col-xs-2"></div>
 	</div>

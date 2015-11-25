@@ -146,6 +146,7 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 .well {
 	margin-bottom: 3px;
 	border: 0;
+	line-height: 22px !important;
 }
 
 .mark-note {
