@@ -233,7 +233,7 @@
 				<li>
 				
 				<!-- remove option: on click change value of delTask attribute in delete form and submit the form -->
-				<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[1].delTask.value='${t.id}';document.forms[1].submit();}"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Poista</a>
+				<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[1].delTask.value='${t.id}';document.forms[1].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 				</li>
 			</ul>
 			</div>
@@ -246,7 +246,7 @@
 		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 		<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
-		<span style="font-style: italic; font-weight: bold;">
+		<span style="font-style: italic;">
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		</span>
 		<br>

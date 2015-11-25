@@ -3,11 +3,13 @@
 @charset "utf-8";
 
 pre {
-	border: 1px solid #696969 !important;
-	color: #000000;
+	border: 0;
+	border-radius: 3px;
+	color: #FFFFFF;
 	font: normal 13px Verdana;
-	margin: 7px 0 4px 0;
+	margin: 5px -3px 0px -3px;
 	padding: 8px 10px 8px 10px;
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 #grind-logo {
