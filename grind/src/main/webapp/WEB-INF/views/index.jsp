@@ -263,7 +263,6 @@
 		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span>
 		<pre hidden="hidden"><c:out value="${t.tiedot}" /></pre> 
 		</c:if>
-		<!-- jstl: time objects parsed from localdate/localtime to date objects -->
 		
 		</div>
 		<div class="col-xs-2"></div>
