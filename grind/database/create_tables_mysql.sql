@@ -1,11 +1,13 @@
 CREATE TABLE tehtava (
 	t_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	t_kuvaus VARCHAR(255) NOT NULL,
-	t_lisatiedot VARCHAR(255),
+	t_kuvaus TEXT NOT NULL,
+	t_lisatiedot TEXT,
 	t_status INT NOT NULL DEFAULT '0',
-	t_deadlinedtm DATETIME,
-	t_ryhma VARCHAR(255), 
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	t_deadlinedtm DATETIME DEFAULT NULL,
+	t_ryhma VARCHAR(255) DEFAULT NULL,
+	t_jaettu tinyint(4) NOT NULL DEFAULT '0',
+	t_tekija varchar(50) NOT NULL,
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 CREATE TABLE kayttaja (
 	k_nimi VARCHAR(100) NOT NULL, 
