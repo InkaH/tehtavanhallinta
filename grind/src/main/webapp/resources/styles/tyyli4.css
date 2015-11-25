@@ -14,7 +14,7 @@ pre {
 
 #grind-logo {
 	display: block;
-	position: absolute;
+	position: relative;
 	top: -62px;
 	left: 30px;
 	width: 200px;
@@ -28,7 +28,7 @@ pre {
 	background-image: -ms-linear-gradient(bottom, #913980 50%, #782066 50%);
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #913980),
 		color-stop(0.5, #782066));
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
