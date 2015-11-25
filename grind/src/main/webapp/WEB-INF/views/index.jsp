@@ -245,15 +245,14 @@
 		<c:if test="${not empty t.ryhma}">
 		<span class="groupid"><small><c:out value="${t.ryhma}" /></small></span>
 		</c:if>
-	
+		
 		<c:if test="${not empty t.tiedot}">
-		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span><span hidden="hidden"><c:out value="${t.tiedot}" /></span>
+		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span><pre hidden="hidden"><c:out value="${t.tiedot}" /></pre>
 		</c:if>
-		<br>
 		<!-- jstl: time objects parsed from localdate/localtime to date objects -->
 		<span>
 		<small>
-		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Erääntynyt: ')}" />
+		<c:out value="${(parsedAjankohta > now) ? '<br>' : (compTaskDate == compIdentifier ? '' : '<br>Erääntynyt: ')}" escapeXml="false" />
 		<c:if test="${compTaskDate != compIdentifier}">
 		<fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />

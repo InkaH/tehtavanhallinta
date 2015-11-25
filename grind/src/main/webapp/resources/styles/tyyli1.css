@@ -1,6 +1,15 @@
 /* Grind */
 @charset "utf-8";
 
+pre {
+	border: 0;
+	color: #FFFFFF;
+	font: normal 14px Verdana;
+	margin: 7px 0 4px 0;
+	padding: 8px 10px 8px 10px;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
 #grind-logo {
 	display: block;
 	position: absolute;
