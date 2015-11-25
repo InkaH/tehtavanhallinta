@@ -3,8 +3,8 @@
 @charset "utf-8";
 
 pre {
-	border: 0;
-	color: #FFFFFF;
+	border: 1px solid #696969;
+	color: #000000;
 	font: normal 14px Verdana;
 	margin: 7px 0 4px 0;
 	padding: 8px 10px 8px 10px;
@@ -137,7 +137,7 @@ ul.dropdown-menu li.theme-selected:nth-child(8) a {
 }
 
 .drop-glyph {
-	color: #FFFFFF;
+	color: #696969;
 }
 
 .form-group {
