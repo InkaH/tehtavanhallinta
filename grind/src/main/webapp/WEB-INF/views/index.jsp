@@ -161,11 +161,11 @@
 			<div class="form-group has-feedback">
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Ajankohta:</label>
 				<div class="controls bootstrap-timepicker col-xs-3" >
-				<form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" id="datepicker"/>
+				<form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" id="datepicker" onfocus="blur();" />
 				<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 				</div>
 				<div class="col-xs-3">
-				<form:input path="ajankohtaKlo" cssClass="form-control text-center" id="timepicker"/>
+				<form:input path="ajankohtaKlo" cssClass="form-control text-center" id="timepicker" onfocus="blur();" />
 				<!-- bootstrap form-control-feedback puts glyphicon icon to the right end of the input field (not after text content) -->
 				<i class="form-control-feedback glyphicon glyphicon-time"></i>
 				</div>
