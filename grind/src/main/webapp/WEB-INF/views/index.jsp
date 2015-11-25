@@ -246,19 +246,22 @@
 		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 		<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
-		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'ERÄÄNTYNYT')}" />
+		<span style="font-style: italic; font-weight: bold;">
+		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
+		</span>
 		<br>
 		</c:if>
 		</small>
 		</span>
-		<span><c:out value="${t.kuvaus}" escapeXml="false" /></span>
+		<span><c:out value="${t.kuvaus}" /></span>
 		
 		<c:if test="${not empty t.ryhma}">
-		<span class="groupid"><small><c:out value="${t.ryhma}" /></small></span>
+		<div class="groupid"><c:out value="${t.ryhma}" /></div>
 		</c:if>
 		
 		<c:if test="${not empty t.tiedot}">
-		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span><pre hidden="hidden"><c:out value="${t.tiedot}" /></pre>
+		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span>
+		<pre hidden="hidden"><c:out value="${t.tiedot}" /></pre> 
 		</c:if>
 		<!-- jstl: time objects parsed from localdate/localtime to date objects -->
 		

@@ -55,8 +55,11 @@ pre {
 }
 
 .groupid {
-	float: right;
-	padding-right: 25px;
+	font-size: 13px;
+	padding: 0;
+	position: absolute;
+	top: 5px;
+	right: 35px;
 }
 
 body {
