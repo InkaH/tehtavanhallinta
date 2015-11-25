@@ -22,4 +22,6 @@ CREATE TABLE kayttajan_tehtava (
 	CONSTRAINT kt_k_nimi FOREIGN KEY (kt_k_nimi) REFERENCES kayttaja (k_nimi) 
 	ON DELETE CASCADE 
 	ON UPDATE CASCADE
+	CONSTRAINT kt_t_id FOREIGN KEY (kt_t_id) REFERENCES tehtava (t_id) 
+	ON DELETE CASCADE 
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;

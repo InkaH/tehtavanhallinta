@@ -1,5 +1,6 @@
 package controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -47,7 +48,7 @@ public class TehtavaController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
+			model.addAttribute("error", "Virheellinen kï¿½yttï¿½jï¿½nimi tai salasana.");
 		}
 		if (logout != null) {
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
@@ -57,8 +58,9 @@ public class TehtavaController {
 	
 	// executed every time when entering index.jsp (value= "/index")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String getView(Map<String, Object> model) {
-		tehtavat = dao.haeKaikki();
+	public String getView(Map<String, Object> model, Principal principal) {
+		String username = principal.getName(); //get username from login user
+		tehtavat = dao.haeKaikki(username);
 		model.put("tehtavat", tehtavat); // send all tasks to UI in a variable called 'tehtavat'
 		model.put("uusiTehtava", this.editItem); // send the form pre-fill object to UI in a variable called 'uusiTehtava'
 		model.put("edit", Integer.toString(editingActive)); // send the state of editing mode to UI in a variable called 'edit'
@@ -68,7 +70,7 @@ public class TehtavaController {
 	
 	// the task creation/editing form calls the method on submit <form action="add"...>  -->  @RequestMapping(value="add"...)
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task) { // get the Tehtava object from the form
+	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task, Principal principal) { // get the Tehtava object from the form
 		if (!task.getKuvaus().isEmpty()) {
 			if (task.getAjankohtaPvm() == null) {
 				task.setAjankohtaPvm(LocalDate.of(1970, 1, 1));
@@ -76,7 +78,8 @@ public class TehtavaController {
 			if (task.getAjankohtaKlo() == null) {
 				task.setAjankohtaKlo(LocalTime.of(0, 0));
 			}
-			dao.lisaaTehtava(task); // if the header of task is not empty, insert the new task into database
+			String username = principal.getName(); //get username from login user
+			dao.lisaaTehtava(task, username); // if the header of task is not empty, insert the new task into database
 		}
 		editingActive = 0; // set editing mode off
 		editItem.nollaaTehtava(); // clear the content of the form pre-fill object
@@ -138,7 +141,7 @@ public class TehtavaController {
 	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
-		// printataan konsolille sisäänkirjautuneen käyttäjän tietoja
+		// printataan konsolille sisï¿½ï¿½nkirjautuneen kï¿½yttï¿½jï¿½n tietoja
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
