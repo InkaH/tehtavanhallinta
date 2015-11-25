@@ -8,7 +8,6 @@ pre {
 	font: normal 14px Verdana;
 	margin: 7px 0 4px 0;
 	padding: 8px 10px 8px 10px;
-	background-color: rgba(255, 255, 255, 0.2);
 }
 
 #grind-logo {
@@ -137,7 +136,7 @@ ul.dropdown-menu li.theme-selected:nth-child(8) a {
 }
 
 .drop-glyph {
-	color: #696969;
+	color: #FFFFFF;
 }
 
 .form-group {
@@ -147,7 +146,6 @@ ul.dropdown-menu li.theme-selected:nth-child(8) a {
 .well {
 	margin-bottom: 3px;
 	border: 0;
-	line-height: 22px !important;
 }
 
 .mark-note {
