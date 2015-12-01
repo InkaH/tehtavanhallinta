@@ -249,6 +249,7 @@
 		<span style="font-style: italic;">
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		</span>
+		<span>(made by <c:out value="${t.user}" />)</span>
 		<br>
 		</c:if>
 		</small>
@@ -268,29 +269,30 @@
 		<div class="col-xs-2"></div>
 	</div>
 	
-	<!-- FORM[1]: DELETE -->
-	<form id="delForm" action="del" method="post">
-	<input type="hidden" id="delTask" name="delTask" value="0" />
-	</form>
-	<!-- FORM[2]: EDIT -->
-	<form id="editForm" action="edit" method="post">
-	<input type="hidden" id="editTask" name="editTask" value="0" />
-	</form>
-	<!-- FORM[3]: SHARE -->
-	<form id="shareForm" action="share" method="post">
-	<input type="hidden" id="shareTask" name="shareTask" value="0" />
-	<input type="hidden" id="groupID" name="groupID" value="0" />
-	</form>
-	<!-- FORM[4]: CANCEL -->
-	<form id="cancelForm" action="cancel" method="post">
-	</form>
-	<!-- FORM[5]: THEME -->
-	<form id="themeForm" action="theme" method="post">
-	<input type="hidden" id="themeID" name="themeID" value="0" />
-	</form>
 	</c:forEach>
 	</c:if>
 </div>
+
+<!-- FORM[1]: DELETE -->
+<form id="delForm" action="del" method="post">
+<input type="hidden" id="delTask" name="delTask" value="0" />
+</form>
+<!-- FORM[2]: EDIT -->
+<form id="editForm" action="edit" method="post">
+<input type="hidden" id="editTask" name="editTask" value="0" />
+</form>
+<!-- FORM[3]: SHARE -->
+<form id="shareForm" action="share" method="post">
+<input type="hidden" id="shareTask" name="shareTask" value="0" />
+<input type="hidden" id="groupID" name="groupID" value="0" />
+</form>
+<!-- FORM[4]: CANCEL -->
+<form id="cancelForm" action="cancel" method="post">
+</form>
+<!-- FORM[5]: THEME -->
+<form id="themeForm" action="theme" method="post">
+<input type="hidden" id="themeID" name="themeID" value="0" />
+</form>
 
 <!-- Banner -->
 <div id="banner">
