@@ -2,15 +2,6 @@
 
 @charset "utf-8";
 
-pre {
-	border: 1px solid #696969;
-	border-radius: 3px;
-	color: #000000;
-	font: normal 13px Verdana;
-	margin: 5px -3px 0px -3px;
-	padding: 8px 10px 8px 10px;
-}
-
 #grind-logo {
 	display: block;
 	position: relative;

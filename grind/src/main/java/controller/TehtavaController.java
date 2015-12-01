@@ -80,10 +80,6 @@ public class TehtavaController {
 			if (task.getAjankohtaKlo() == null) {
 				task.setAjankohtaKlo(LocalTime.of(23, 59));
 			}
-			String st = task.getTiedot();
-			if (!st.equals("")) {
-				task.setTiedot(st + "\n");
-			}
 			String username = principal.getName(); //get username from login user
 			dao.lisaaTehtava(task, username); // if the header of task is not empty, insert the new task into database
 		}
@@ -149,6 +145,13 @@ public class TehtavaController {
 		int ct = Integer.parseInt(commentedTask);
 		dao.lisaaKommentti(ct, commentedText);
 		activeTask = ct;
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "activation", method = RequestMethod.POST)
+	public String aktivoiTehtava(@RequestParam String activeTask) {
+		int at = Integer.parseInt(activeTask);
+		this.activeTask = at;
 		return "redirect:/index";
 	}
 	

@@ -18,7 +18,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<!-- application css stylesheet, favicon icon and scripts -->
+<link href="<c:url value="/resources/styles/style-common.css" />" rel="stylesheet">
 
 <c:choose>
 <c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:when>
@@ -69,6 +69,10 @@
 <!-- FORM[4]: THEME -->
 <form id="themeForm" action="theme" method="post">
 <input type="hidden" id="themeID" name="themeID" value="0" />
+</form>
+<!-- FORM[5]: ACTIVATE -->
+<form id="activationForm" action="activation" method="post">
+<input type="hidden" id="activeTask" name="activeTask" value="0" />
 </form>
 
 <div class="container">
@@ -281,19 +285,19 @@
 		<div class="groupid"><c:out value="${t.ryhma}" /></div>
 		</c:if>
 		
-		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span>
+		<span onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;">&nbsp;&#8811;&nbsp;&nbsp;</span>
 		
-		<div ${(activeTask == t.id) ? '' : 'hidden="hidden"'}>
-		<pre style="min-height: 30px; margin-bottom: -15px;"><c:out value="${t.tiedot}" /></pre><br>
-		
-		<form action="comment" id="commentForm-${t.id}" method="post" style="white-space: nowrap;">
-		<input type="hidden" name="commentedText" value="${t.tiedot}" />
-		<input type="hidden" name="commentedTask" value="${t.id}" />
-		<input type="text" name="commentInput" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: -15px 0 0 -2px; border: 0; border-radius: 1px; width: 85%; height: 25px;" />
+		<c:if test="${activeTask == t.id}">
+		<div>
+		<pre style="min-height: 30px; margin-bottom: -15px;"><c:out value="${t.tiedot}" /></pre><br>		
+		<form action="comment" id="commentForm" method="post" style="white-space: nowrap;">
+		<input type="hidden" id="commentedText" name="commentedText" value="${t.tiedot}" />
+		<input type="hidden" id="commentedTask" name="commentedTask" value="${t.id}" />
+		<input autofocus required type="text" id="commentInput" name="commentInput" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: -15px 0 0 -2px; border: 0; border-radius: 1px; width: 85%; height: 25px;" />
 		<input type="submit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n<fmt:formatDate value="${now}" pattern="MM.dd.yyyy" /> ${t.user}: '+this.form.elements['commentInput'].value;" style="font: normal 12px Verdana; color: #000000; margin: -17px 0 0 0; width: 15%; border: 0; border-radius: 1px; height: 25px;" />		
-		</form>
-		
+		</form>		
 		</div>
+		</c:if>
 		
 		</div>
 		<div class="col-xs-2"></div>
