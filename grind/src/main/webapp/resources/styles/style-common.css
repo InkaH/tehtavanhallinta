@@ -12,10 +12,30 @@ pre {
 }
 
 #commentInput {
+	
 }
-
 
 #commentInput:focus {
 	box-shadow: none !important;
 	outline: none !important;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	text-transform: none !important;
+	font-style: italic;
 }

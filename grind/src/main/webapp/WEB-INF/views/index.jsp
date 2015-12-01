@@ -158,7 +158,7 @@
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">* Tehtävä:</label>
 				<div class="col-xs-6">
 				<!-- spring form: cssClass = class (html) -->
-				<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä (pakollinen)" required="required" maxlength="80" />
+				<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -168,7 +168,7 @@
 			<div class="form-group">
 			<label class="control-label col-xs-offset-1 col-xs-2" for="ryhma">Ryhmätunnus:</label>
 				<div class="col-xs-6">
-				<form:input path="ryhma" cssClass="form-control" style="text-transform: uppercase" maxlength="50" />
+				<form:input path="ryhma" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" style="text-transform: uppercase" maxlength="50" />
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -179,7 +179,7 @@
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Kommentit:</label>
 				<div class="col-xs-6">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
-				<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita keskustelun aloitus (valinnainen)" maxlength="1000" /> 
+				<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita keskustelun aloitus" maxlength="1000" /> 
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -295,7 +295,7 @@
 		<input type="hidden" id="commentedText" name="commentedText" value="${t.tiedot}" />
 		<input type="hidden" id="commentedTask" name="commentedTask" value="${t.id}" />
 		<input autocomplete="off" required type="text" id="commentInput" name="commentInput" onclick="this.focus();" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: 0 0 0 -2px; border: 0; border-radius: 2px; width: 85%; height: 25px;" />
-		<input type="submit" id="commentSubmit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n${t.user}: '+this.form.elements['commentInput'].value+' (<fmt:formatDate value="${now}" pattern="MM.dd.yyyy HH:mm" />)';" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 0; width: 15%; border: 0; border-radius: 2px; height: 25px;" />		
+		<input type="submit" id="commentSubmit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n${t.user}: '+this.form.elements['commentInput'].value+' (<fmt:formatDate value="${now}" pattern="MM.dd.yyyy HH:mm" />)';" style="font: normal 12px Verdana; color: #000000; margin: 0; width: 15%; border: 0; border-radius: 2px; height: 25px;" />		
 		</form>		
 		</div>
 		</c:if>
