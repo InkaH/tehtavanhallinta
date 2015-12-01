@@ -9,3 +9,8 @@ pre {
 	padding: 8px 10px 8px 10px;
 	background-color: rgba(0, 0, 0, 0.2);
 }
+
+focus-unstyled:focus {
+	outline: none !important;
+	box-shadow: noen !important;
+}
