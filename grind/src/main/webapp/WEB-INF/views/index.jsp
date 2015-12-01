@@ -272,10 +272,10 @@
 		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 		<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
-		<span style="font-style: italic;">
+		<span>
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		</span>
-		<!-- <span style="font-style: italic;"> [ julkaissut: <c:out value="${t.user}" /> ] </span> -->
+		<span>[<c:out value="${t.user}" />]</span>
 		<br>
 		</c:if>
 		</small>
