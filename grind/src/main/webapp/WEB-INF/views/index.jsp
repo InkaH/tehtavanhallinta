@@ -295,7 +295,7 @@
 		<input type="hidden" id="commentedText" name="commentedText" value="${t.tiedot}" />
 		<input type="hidden" id="commentedTask" name="commentedTask" value="${t.id}" />
 		<input class="focus-unstyled" autocomplete="off" autofocus required type="text" id="commentInput" name="commentInput" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: -15px 0 0 -2px; border: 0; border-radius: 1px; width: 85%; height: 25px;" />
-		<input type="submit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n<fmt:formatDate value="${now}" pattern="MM.dd.yyyy" /> ${t.user}: '+this.form.elements['commentInput'].value;" style="font: normal 12px Verdana; color: #000000; margin: -17px 0 0 0; width: 15%; border: 0; border-radius: 1px; height: 25px;" />		
+		<input type="submit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n${t.user}: '+this.form.elements['commentInput'].value+' (<fmt:formatDate value="${now}" pattern="MM.dd.yyyy" />)';" style="font: normal 12px Verdana; color: #000000; margin: -17px 0 0 0; width: 15%; border: 0; border-radius: 1px; height: 25px;" />		
 		</form>		
 		</div>
 		</c:if>
