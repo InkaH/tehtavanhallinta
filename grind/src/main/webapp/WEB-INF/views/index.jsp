@@ -207,7 +207,7 @@
 	<jsp:useBean id="now" class="java.util.Date" />
 	
 	<!-- task content boxes generated in loop -->
-	<c:forEach var="t" items="${tehtavat}">
+	<c:forEach var="t" items="${tehtavat}" varStatus="loop">
 	
 	<fmt:parseDate value="${t.ajankohtaPvm} ${t.ajankohtaKlo}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
 	<fmt:parseDate value="${t.ajankohtaPvm}" var="compTaskDate" pattern="yyyy-MM-dd" />
@@ -260,10 +260,18 @@
 		<div class="groupid"><c:out value="${t.ryhma}" /></div>
 		</c:if>
 		
-		<c:if test="${not empty t.tiedot}">
 		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span>
-		<pre hidden="hidden"><c:out value="${t.tiedot}" /></pre> 
-		</c:if>
+		
+		<div hidden="hidden">
+		<pre style="height: 30px; margin-bottom: -15px;"><c:out value="${t.tiedot}" /></pre><br>
+		<!-- 
+		<form action="commentForm" method="post" id="comment-form-${loop.index}" style="white-space: nowrap;">
+		<input id="comment-field-${loop.index}" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: -15px 0 0 -2px; border: 0; border-radius: 1px; width: 85%; height: 25px;" type="text" />
+		<input id="comment-submit-${loop.index}" onsubmit="commentedText.value.concat(comment-field-${loop.index});" style="font: normal 12px Verdana; color: #000000; margin: -17px 0 0 0; width: 15%; border: 0; border-radius: 1px; height: 25px;" type="submit" value="Kommentoi" />
+		<input type="hidden" id="commentedText" name="commentedText" value="${t.kuvaus}" />
+		</form>
+		-->
+		</div>
 		
 		</div>
 		<div class="col-xs-2"></div>
