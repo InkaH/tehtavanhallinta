@@ -13,4 +13,6 @@ public interface TehtavaDao {
 	public abstract void jaaTehtava(int id, String group);
 	
 	public abstract  List<Tehtava> haeKaikki(String username); 
+	
+	public void lisaaKommentti(int taskID, String concatText);
 }

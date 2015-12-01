@@ -102,6 +102,20 @@ public class TehtavaDaoImpl implements TehtavaDao {
 			}
 		});
 	}
+	
+	public void lisaaKommentti(int taskID, String concatText) {
+		final String sql = "UPDATE tehtava SET t_lisatiedot=? where t_id = ?";
+		final int index = taskID;
+		final String text = concatText;
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setString(1, text);
+				ps.setInt(2, index);
+				return ps;
+			}
+		});
+	}
 
 	public List<Tehtava> haeKaikki(String username) {
 		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_ryhma, kt_k_nimi FROM kayttajan_tehtava INNER JOIN tehtava on kt_t_id=t_id WHERE kt_k_nimi=? ORDER BY t_deadlinedtm";

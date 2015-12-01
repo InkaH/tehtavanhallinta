@@ -49,7 +49,28 @@
 </head>
 
 <body>
-<!-- bootstrap container with large margins (all content) -->
+
+<!-- FORM[0]: DELETE -->
+<form id="delForm" action="del" method="post">
+<input type="hidden" id="delTask" name="delTask" value="0" />
+</form>
+<!-- FORM[1]: EDIT -->
+<form id="editForm" action="edit" method="post">
+<input type="hidden" id="editTask" name="editTask" value="0" />
+</form>
+<!-- FORM[2]: SHARE -->
+<form id="shareForm" action="share" method="post">
+<input type="hidden" id="shareTask" name="shareTask" value="0" />
+<input type="hidden" id="groupID" name="groupID" value="0" />
+</form>
+<!-- FORM[3]: CANCEL -->
+<form id="cancelForm" action="cancel" method="post">
+</form>
+<!-- FORM[4]: THEME -->
+<form id="themeForm" action="theme" method="post">
+<input type="hidden" id="themeID" name="themeID" value="0" />
+</form>
+
 <div class="container">
 
 	<!-- 2nd main row: task creation and editing form -->
@@ -73,28 +94,28 @@
 				</a>
 				<ul class="dropdown-menu dropdown-menu-left">
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=1;document.forms[5].submit();">Grind (sinivihreä)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=1;document.forms[4].submit();">Grind (sinivihreä)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=2;document.forms[5].submit();">LeafFrog (vihreä)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=2;document.forms[4].submit();">LeafFrog (vihreä)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=3;document.forms[5].submit();">GrayStone (siniharmaa)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=3;document.forms[4].submit();">GrayStone (siniharmaa)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=4;document.forms[5].submit();">Amethyst (purppura)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=4;document.forms[4].submit();">Amethyst (purppura)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=5;document.forms[5].submit();">Brownie (ruskea)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=5;document.forms[4].submit();">Brownie (ruskea)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=6;document.forms[5].submit();">Vampire (mustaharmaa)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=6;document.forms[4].submit();">Vampire (mustaharmaa)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=7;document.forms[5].submit();">Melancholia (harmaa)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=7;document.forms[4].submit();">Melancholia (harmaa)</a>
 				</li>
 				<li class="theme-selected">
-				<a href="#" onclick="document.forms[5].themeID.value=8;document.forms[5].submit();">Blanco (väritön)</a>
+				<a href="#" onclick="document.forms[4].themeID.value=8;document.forms[4].submit();">Blanco (väritön)</a>
 				</li>
 				</ul>
 				</div>
@@ -179,7 +200,7 @@
 				<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 				</div>
 				<div class="col-xs-3">
-				<button onclick="document.forms[4].submit(); return false;" class="btn btn-default form-control"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;PERUUTA</button>
+				<button onclick="document.forms[3].submit(); return false;" class="btn btn-default form-control"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;PERUUTA</button>
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -224,16 +245,16 @@
 			<ul class="dropdown-menu dropdown-menu-right">
 				<li>
 				<!-- edit option: on click change value of editTask attribute in edit form and submit the form -->
-				<a href="#" onclick="document.forms[2].editTask.value='${t.id}';document.forms[2].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
+				<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 				</li>
 				<li>
-				<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','${t.ryhma}');if(sh!=null){document.forms[3].shareTask.value='${t.id}';document.forms[3].groupID.value=sh;document.forms[3].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
+				<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','${t.ryhma}');if(sh!=null){document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 				</li>
 				<li role="separator" class="divider"></li>
 				<li>
 				
 				<!-- remove option: on click change value of delTask attribute in delete form and submit the form -->
-				<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[1].delTask.value='${t.id}';document.forms[1].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
+				<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 				</li>
 			</ul>
 			</div>
@@ -249,7 +270,7 @@
 		<span style="font-style: italic;">
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		</span>
-		<span>(made by <c:out value="${t.user}" />)</span>
+		<!-- <span style="font-style: italic;"> [ julkaissut: <c:out value="${t.user}" /> ] </span> -->
 		<br>
 		</c:if>
 		</small>
@@ -262,15 +283,16 @@
 		
 		<span class="tiedot">&nbsp;&#8811;&nbsp;&nbsp;</span>
 		
-		<div hidden="hidden">
-		<pre style="height: 30px; margin-bottom: -15px;"><c:out value="${t.tiedot}" /></pre><br>
-		<!-- 
-		<form action="commentForm" method="post" id="comment-form-${loop.index}" style="white-space: nowrap;">
-		<input id="comment-field-${loop.index}" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: -15px 0 0 -2px; border: 0; border-radius: 1px; width: 85%; height: 25px;" type="text" />
-		<input id="comment-submit-${loop.index}" onsubmit="commentedText.value.concat(comment-field-${loop.index});" style="font: normal 12px Verdana; color: #000000; margin: -17px 0 0 0; width: 15%; border: 0; border-radius: 1px; height: 25px;" type="submit" value="Kommentoi" />
-		<input type="hidden" id="commentedText" name="commentedText" value="${t.kuvaus}" />
+		<div ${(activeTask == t.id) ? '' : 'hidden="hidden"'}>
+		<pre style="min-height: 30px; margin-bottom: -15px;"><c:out value="${t.tiedot}" /></pre><br>
+		
+		<form action="comment" id="commentForm-${t.id}" method="post" style="white-space: nowrap;">
+		<input type="hidden" name="commentedText" value="${t.tiedot}" />
+		<input type="hidden" name="commentedTask" value="${t.id}" />
+		<input type="text" name="commentInput" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: -15px 0 0 -2px; border: 0; border-radius: 1px; width: 85%; height: 25px;" />
+		<input type="submit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n<fmt:formatDate value="${now}" pattern="MM.dd.yyyy" /> ${t.user}: '+this.form.elements['commentInput'].value;" style="font: normal 12px Verdana; color: #000000; margin: -17px 0 0 0; width: 15%; border: 0; border-radius: 1px; height: 25px;" />		
 		</form>
-		-->
+		
 		</div>
 		
 		</div>
@@ -281,26 +303,7 @@
 	</c:if>
 </div>
 
-<!-- FORM[1]: DELETE -->
-<form id="delForm" action="del" method="post">
-<input type="hidden" id="delTask" name="delTask" value="0" />
-</form>
-<!-- FORM[2]: EDIT -->
-<form id="editForm" action="edit" method="post">
-<input type="hidden" id="editTask" name="editTask" value="0" />
-</form>
-<!-- FORM[3]: SHARE -->
-<form id="shareForm" action="share" method="post">
-<input type="hidden" id="shareTask" name="shareTask" value="0" />
-<input type="hidden" id="groupID" name="groupID" value="0" />
-</form>
-<!-- FORM[4]: CANCEL -->
-<form id="cancelForm" action="cancel" method="post">
-</form>
-<!-- FORM[5]: THEME -->
-<form id="themeForm" action="theme" method="post">
-<input type="hidden" id="themeID" name="themeID" value="0" />
-</form>
+
 
 <!-- Banner -->
 <div id="banner">
