@@ -10,3 +10,12 @@ pre {
 	background-color: rgba(0, 0, 0, 0.2);
 	line-height: 22px;
 }
+
+#commentInput {
+}
+
+
+#commentInput:focus {
+	box-shadow: none !important;
+	outline: none !important;
+}
