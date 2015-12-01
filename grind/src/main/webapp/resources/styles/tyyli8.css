@@ -2,6 +2,25 @@
 
 @charset "utf-8";
 
+pre {
+	border: 0px solid #000000;
+	border-radius: 3px;
+	color: #000000;
+	font: normal 13px Verdana;
+	margin: 5px -3px 0px -3px;
+	padding: 6px 10px 6px 10px;
+	background-color: #FFFFFF;
+	line-height: 22px;
+}
+
+#commentInput {
+	border: 1px solid #000000 !important;
+}
+
+#commentSubmit {
+	border: 1px solid #000000 !important;
+}
+
 #grind-logo {
 	display: block;
 	position: relative;
@@ -141,6 +160,7 @@ ul.dropdown-menu li.theme-selected:nth-child(8) a {
 .well {
 	margin-bottom: 3px;
 	border: 0;
+	line-height: 25px !important;
 }
 
 .mark-note {
