@@ -15,6 +15,7 @@ public class TehtavaRowMapper implements RowMapper<Tehtava> {
 		tehtava.setStatus(rs.getInt("t_status"));
 		tehtava.setAjankohta(rs.getTimestamp("t_deadlinedtm").toLocalDateTime());
 		tehtava.setRyhma(rs.getString("t_ryhma"));
+		tehtava.setUser(rs.getString("kt_k_nimi"));
 		return tehtava;
 	}
 }

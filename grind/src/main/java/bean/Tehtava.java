@@ -22,6 +22,7 @@ public class Tehtava implements Serializable {
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime ajankohtaKlo;
 	private String ryhma;
+	private String user;
 
 	public Tehtava() {
 		this.id = 0;
@@ -31,9 +32,10 @@ public class Tehtava implements Serializable {
 		this.ajankohtaPvm = null;
 		this.ajankohtaKlo = null;
 		this.ryhma = "";
+		this.user = "";
 	}
 
-	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta, String ryhma) {
+	public Tehtava(int id, String kuvaus, String tiedot, int status, LocalDateTime ajankohta, String ryhma, String user) {
 		this.id = id;
 		this.kuvaus = kuvaus;
 		this.tiedot = tiedot;
@@ -41,6 +43,7 @@ public class Tehtava implements Serializable {
 		this.ajankohtaPvm = ajankohta.toLocalDate();
 		this.ajankohtaKlo = ajankohta.toLocalTime();
 		this.ryhma = ryhma;
+		this.user = user;
 	}
 	
 	public Date getDate(){
@@ -55,6 +58,14 @@ public class Tehtava implements Serializable {
 		this.ajankohtaPvm = null;
 		this.ajankohtaKlo = null;
 		this.ryhma = "";
+	}
+	
+	public String getUser() {
+		return user;
+	}
+	
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public LocalDateTime getAjankohta() {

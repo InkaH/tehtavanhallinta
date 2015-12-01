@@ -104,7 +104,7 @@ public class TehtavaDaoImpl implements TehtavaDao {
 	}
 
 	public List<Tehtava> haeKaikki(String username) {
-		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_ryhma FROM kayttajan_tehtava INNER JOIN tehtava on kt_t_id=t_id WHERE kt_k_nimi=? ORDER BY t_deadlinedtm";
+		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_ryhma, kt_k_nimi FROM kayttajan_tehtava INNER JOIN tehtava on kt_t_id=t_id WHERE kt_k_nimi=? ORDER BY t_deadlinedtm";
 		RowMapper<Tehtava> mapper = new TehtavaRowMapper();
 		List<Tehtava> tehtavat = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tehtavat;
