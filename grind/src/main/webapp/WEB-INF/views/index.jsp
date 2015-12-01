@@ -158,7 +158,7 @@
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">* Tehtävä:</label>
 				<div class="col-xs-6">
 				<!-- spring form: cssClass = class (html) -->
-				<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävän aihe" required="required" maxlength="80" />
+				<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä (pakollinen)" required="required" maxlength="80" />
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -179,7 +179,7 @@
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Kommentit:</label>
 				<div class="col-xs-6">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
-				<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita keskustelun aloitus" maxlength="1000" /> 
+				<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita keskustelun aloitus (valinnainen)" maxlength="1000" /> 
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
