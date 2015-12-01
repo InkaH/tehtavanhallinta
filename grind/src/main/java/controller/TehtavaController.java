@@ -151,7 +151,11 @@ public class TehtavaController {
 	@RequestMapping(value = "activation", method = RequestMethod.POST)
 	public String aktivoiTehtava(@RequestParam String activeTask) {
 		int at = Integer.parseInt(activeTask);
-		this.activeTask = at;
+		if (this.activeTask == at) {
+			this.activeTask = 0;
+		} else {
+			this.activeTask = at;
+		}
 		return "redirect:/index";
 	}
 	
