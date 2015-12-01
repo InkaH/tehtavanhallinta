@@ -76,7 +76,7 @@ public class TehtavaController {
 				task.setAjankohtaPvm(LocalDate.of(1970, 1, 1));
 			}
 			if (task.getAjankohtaKlo() == null) {
-				task.setAjankohtaKlo(LocalTime.of(0, 0));
+				task.setAjankohtaKlo(LocalTime.of(23, 59));
 			}
 			String username = principal.getName(); //get username from login user
 			dao.lisaaTehtava(task, username); // if the header of task is not empty, insert the new task into database
