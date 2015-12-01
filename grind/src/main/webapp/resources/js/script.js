@@ -18,7 +18,7 @@ $(document).ready(function() {
 	
 	var $counterText = $('<div class="character-counter" />');
     $('#tiedot').after($counterText).bind('keyup blur', function () {
-        $counterText.text($(this).val().length + ' / 500');
+        $counterText.text($(this).val().length + ' / 1000');
     }).keyup();
     
     $('.tiedot').click(function (e) {
