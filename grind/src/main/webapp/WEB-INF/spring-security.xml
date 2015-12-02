@@ -12,7 +12,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
       <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error" username-parameter="u_user" password-parameter="u_password" />
       <logout logout-success-url="/login?logout" />
        <!-- Spring Security 4:stä lähtien CSRF -suojaus on oletuksena "enabled". -->
-   	  <csrf disabled="true"/>
    </http>
    
    <authentication-manager>
