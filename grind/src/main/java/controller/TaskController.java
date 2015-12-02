@@ -78,41 +78,39 @@ public class TaskController {
 			if (task.getTime() == null) {
 				task.setTime(LocalTime.of(23, 59));
 			}
-			String username = principal.getName(); //get username from login user
-			dao.addTask(task, username); // if the header of task is not empty, insert the new task into database
+			String username = principal.getName();
+			dao.addTask(task, username);
 		}
-		editingActive = 0; // set editing mode off
-		editItem.resetTask(); // clear the content of the form pre-fill object
+		editingActive = 0;
+		editItem.resetTask();
 		activeTask = 0;
-		return "redirect:/index"; // move to getView method (value = "/")
+		return "redirect:/index";
 	}
 
-	// the task deletion form calls the method on submit <form action="del"...>  -->  @RequestMapping(value="del"...)
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String deleteTask(@RequestParam String delTask) { // get attribute delTask (task id) from the form
+	public String deleteTask(@RequestParam String delTask) {
 		int de = Integer.parseInt(delTask);
 		if (de > 0) {
-			dao.deleteTask(de); // if delTask > 0 (Tehtava object exists), remove the task from database
+			dao.deleteTask(de);
 		}
 		editingActive = 0;
 		activeTask = 0;
 		return "redirect:/index";
 	}
 
-	// the task editing form calls the method on submit
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String editTask(@RequestParam String editTask) {
 		int ed = Integer.parseInt(editTask);
 		if (ed > 0) {
-			for (Task t : tasks) { // search the right task in a loop
+			for (Task t : tasks) {
 				if (t.getId() == ed) {
-					this.editItem = t; // copy the editable task reference to the form pre-fill object
-					editingActive = 1; // set editing mode on
+					this.editItem = t;
+					editingActive = 1;
 					if (editItem.getDate().compareTo(LocalDate.of(1970, 1, 1)) == 0) {
 						editItem.setDate(null);
 						editItem.setTime(null);
 					}
-					return "redirect:/index"; // quit searching and move to getView method
+					return "redirect:/index";
 				}
 			}
 		}

@@ -70,7 +70,7 @@ public class TaskDaoImpl implements TaskDAO {
 		}, idHolder);
 		int task_id = (idHolder.getKey().intValue());
 		if(idDB == 0){
-			final String sql_2 = "INSERT INTO kayttajan_tehtava(kt_t_id, kt_k_nimi) VALUES (?, ?)";
+			final String sql_2 = "INSERT INTO kayttajan_tehtava(ut_task, ut_user) VALUES (?, ?)";
 			Object[] parameters = new Object[] {task_id, user};
 			getJdbcTemplate().update(sql_2, parameters);
 		}	
