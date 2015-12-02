@@ -1,24 +1,29 @@
 package bean;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Comment {
+public class Comment implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	private int id;
-	private String text;
-	private String user;
+	private String comment;
 	@DateTimeFormat(pattern = "d.M.yyyy")
 	private LocalDate date;
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime time;
+	private int task;
+	private String user;
 	
 	public Comment() {
 		super();
 		this.id = 0;
-		this.text = "";
+		this.comment = "";
 		this.user = "";
 		this.date = null;
 		this.time = null;
@@ -27,12 +32,29 @@ public class Comment {
 	public Comment(int id, String text, String user, LocalDate date, LocalTime time) {
 		super();
 		this.id = id;
-		this.text = text;
+		this.comment = text;
 		this.user = user;
 		this.date = date;
 		this.time = time;
 	}
+	
+	public LocalDateTime getDatetime() {
+		return this.date.atTime(this.time);
+	}
 
+	public void setDatetime(LocalDateTime datetime) {
+		this.date = datetime.toLocalDate();
+		this.time = datetime.toLocalTime();
+	}
+
+	public int getTask() {
+		return task;
+	}
+	
+	public void setTask(int task) {
+		this.task = task;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -41,12 +63,12 @@ public class Comment {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public String getUser() {

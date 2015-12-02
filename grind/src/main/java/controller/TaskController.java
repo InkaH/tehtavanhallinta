@@ -66,6 +66,7 @@ public class TaskController {
 		model.put("edit", Integer.toString(editingActive));
 		model.put("activeTask", activeTask);
 		model.put("theme", this.theme);
+		model.put("user", principal.getName());
 		return "index";
 	}
 	

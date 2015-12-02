@@ -64,7 +64,6 @@ public class TaskDaoImpl implements TaskDAO {
 				ps.setInt(10, statusDB);
 				ps.setTimestamp(11, Timestamp.valueOf(datetimeDB));
 				ps.setString(12, groupDB);
-				
 				return ps;
 			}
 		}, idHolder);
