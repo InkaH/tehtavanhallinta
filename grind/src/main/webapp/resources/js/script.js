@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	
+	$(window).scroll(function (event) {
+	    var scroll = $(window).scrollTop();
+	    // Do something
+	});
+	
 	$(window).resize(function() {
 		$("#add").removeClass("collapse in").addClass("collapse");
 	});

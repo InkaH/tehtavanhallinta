@@ -34,10 +34,8 @@
 }
 
 #comment-table tr {
-	margin: 0;
-	padding: 0;
 	width: 100%;
-	height: 28px;
+	line-height: 30px;
 }
 
 #comment-table tr:nth-child(odd) {
@@ -65,11 +63,10 @@
 	font: normal 13px Verdana;
 	margin: 5px 0 0 0;
 	padding: 0;
-	line-height: 22px;
+	line-height: 20px;
 	min-height: 0px;
 	width: 100%;
 }
-
 
 #comment:focus {
 	box-shadow: none !important;
