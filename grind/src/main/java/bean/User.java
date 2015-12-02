@@ -3,16 +3,16 @@ package bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class Kayttaja {
+public class User {
 	private String knimi;
 	private String salasana;
 	private String rooli;
 	
-	public Kayttaja() {
+	public User() {
 		super();
 	}
 	
-	public Kayttaja(String knimi, String salasana) {
+	public User(String knimi, String salasana) {
 		super();
 		this.knimi = knimi;
 		this.salasana = salasana;

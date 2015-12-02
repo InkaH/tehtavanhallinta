@@ -54,7 +54,7 @@
 
 <body>
 
-<!-- FORM[0]: DELETE -->
+<!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
 </form>
@@ -77,6 +77,10 @@
 <!-- FORM[5]: ACTIVATE -->
 <form id="activationForm" action="activation" method="post">
 <input type="hidden" id="activeTask" name="activeTask" value="0" />
+</form>
+<!-- FORM[6]: DELETE COMMENT -->
+<form id="delCommentForm" action="delComment" method="post">
+<input type="hidden" id="delComment" name="delComment" value="0" />
 </form>
 
 <div class="container">
@@ -146,11 +150,11 @@
 		<div id="add" class="${edit=='0' ? 'collapse' : 'collapse in'}">
 		
 		<!-- the form gets tehtava object (uusiTehtava) from controller and puts bean attributes (values) into form fields -->
-		<form:form role="form" class="form-horizontal" modelAttribute="uusiTehtava" action="add" method="post" accept-charset="UTF-8">
+		<form:form role="form" class="form-horizontal" modelAttribute="newTask" action="add" method="post" accept-charset="UTF-8">
 		
 		<!-- when the form is binded to a bean, every bean attribute (path) must be present in the form (hidden or shown) -->
 		<form:hidden path="id" />
-		<form:hidden path="status" />
+		<form:hidden path="done" />
 		
 		<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group">
@@ -158,7 +162,7 @@
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">* Tehtävä:</label>
 				<div class="col-xs-6">
 				<!-- spring form: cssClass = class (html) -->
-				<form:input path="kuvaus" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
+				<form:input path="task" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -168,7 +172,7 @@
 			<div class="form-group">
 			<label class="control-label col-xs-offset-1 col-xs-2" for="ryhma">Ryhmätunnus:</label>
 				<div class="col-xs-6">
-				<form:input path="ryhma" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" style="text-transform: uppercase" maxlength="50" />
+				<form:input path="group" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" style="text-transform: uppercase" maxlength="50" />
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -176,10 +180,10 @@
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Kommentit:</label>
+			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Lisätiedot:</label>
 				<div class="col-xs-6">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
-				<form:textarea path="tiedot" cssClass="form-control" rows="5" placeholder="Kirjoita keskustelun aloitus" maxlength="1000" /> 
+				<form:textarea path="info" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävän lisätiedot" maxlength="1000" /> 
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -190,11 +194,11 @@
 			<div class="form-group has-feedback">
 			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Ajankohta:</label>
 				<div class="controls bootstrap-timepicker col-xs-3" >
-				<form:input path="ajankohtaPvm" cssClass="form-control text-center datetime" id="datepicker" onfocus="this.blur();" />
+				<form:input path="date" cssClass="form-control text-center datetime" id="datepicker" onfocus="this.blur();" />
 				<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 				</div>
 				<div class="col-xs-3">
-				<form:input path="ajankohtaKlo" cssClass="form-control text-center" id="timepicker" onfocus="this.blur();" />
+				<form:input path="time" cssClass="form-control text-center" id="timepicker" onfocus="this.blur();" />
 				<!-- bootstrap form-control-feedback puts glyphicon icon to the right end of the input field (not after text content) -->
 				<i class="form-control-feedback glyphicon glyphicon-time"></i>
 				</div>
@@ -208,7 +212,7 @@
 				<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 				</div>
 				<div class="col-xs-3">
-				<button onclick="document.forms[3].submit(); return false;" class="btn btn-default form-control"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;PERUUTA</button>
+				<button onclick="document.forms[3].submit(); return false;" class="btn btn-default form-control"><span class=""></span>&nbsp;&nbsp;PERUUTA</button>
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -219,7 +223,7 @@
 	</div>
 	
 	<!-- UI gets list of all tasks (tehtavat) from controller and prints them if not empty -->
-	<c:if test="${empty tehtavat}">
+	<c:if test="${empty tasks}">
 	
 	<!-- 3rd optional main row -->
 	<div class="row">
@@ -230,13 +234,13 @@
 	</c:if>
 	
 	<!-- 3rd optional main row -->
-	<c:if test="${not empty tehtavat}">
+	<c:if test="${not empty tasks}">
 	
 	<!-- task content boxes generated in loop -->
-	<c:forEach var="t" items="${tehtavat}" varStatus="loop">
+	<c:forEach var="t" items="${tasks}" varStatus="loop">
 	
-	<fmt:parseDate value="${t.ajankohtaPvm} ${t.ajankohtaKlo}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
-	<fmt:parseDate value="${t.ajankohtaPvm}" var="compTaskDate" pattern="yyyy-MM-dd" />
+	<fmt:parseDate value="${t.date} ${t.time}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
+	<fmt:parseDate value="${t.date}" var="compTaskDate" pattern="yyyy-MM-dd" />
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
@@ -253,7 +257,7 @@
 				<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 				</li>
 				<li>
-				<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','${t.ryhma}');if(sh!=null){document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
+				<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','${t.group}');if(sh!=null){document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 				</li>
 				<li role="separator" class="divider"></li>
 				<li>
@@ -268,36 +272,70 @@
 		<span>
 		<small>
 		<c:if test="${compTaskDate != compIdentifier}">
-		<fmt:parseDate value="${t.ajankohtaPvm}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
-		<fmt:parseDate value="${t.ajankohtaKlo}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
+		<fmt:parseDate value="${t.date}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
+		<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 		<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 		<span>
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		</span>
-		<span>[<c:out value="${t.user}" />]</span>
 		<br>
 		</c:if>
 		</small>
 		</span>
-		<span><c:out value="${t.kuvaus}" /></span>
+		<span><c:out value="${t.task}" /></span>
 		
-		<c:if test="${not empty t.ryhma}">
-		<div class="groupid"><c:out value="${t.ryhma}" /></div>
+		<c:if test="${not empty t.group}">
+		<div class="groupid"><c:out value="${t.group}" /></div>
 		</c:if>
 		
 		<span onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;">&nbsp;&#8811;&nbsp;&nbsp;</span>
 		
 		<c:if test="${activeTask == t.id}">
 		<div>
-		<pre style="min-height: 30px; margin-bottom: -15px;"><c:out value="${t.tiedot}" /></pre><br>		
-		<form action="comment" id="commentForm" method="post" style="white-space: nowrap;">
-		<input type="hidden" id="commentedText" name="commentedText" value="${t.tiedot}" />
-		<input type="hidden" id="commentedTask" name="commentedTask" value="${t.id}" />
-		<input autocomplete="off" required type="text" id="commentInput" name="commentInput" onclick="this.focus();" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: 0 0 0 -2px; border: 0; border-radius: 2px; width: 85%; height: 25px;" />
-		<input type="submit" id="commentSubmit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n${t.user}: '+this.form.elements['commentInput'].value+' (<fmt:formatDate value="${now}" pattern="MM.dd.yyyy HH:mm" />)';" style="font: normal 12px Verdana; color: #000000; margin: 0; width: 15%; border: 0; border-radius: 2px; height: 25px;" />		
-		</form>		
+		
+		<div id="comment-area">
+		<c:if test="${not empty comments}">
+		<table id="comment-table">
+		<c:forEach var="c" items="${comments}" varStatus="c-loop">
+		<fmt:parseDate value="${c.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
+		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
+		<tr>
+		<td>
+		<span class="comment-remove">
+		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
+		</span>
+		</td>
+		<td>
+		<c:if test="${c.user == user}">
+		<span onclick="document.forms[6].delComment.value='${c.id}';document.forms[6].submit();" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+		</c:if>&nbsp;
+		<span class="comment-remove">
+		<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" />
+		</span>
+		</td>
+		</tr>
+		</c:forEach>
+		</table>
+		</c:if>
+		</div>	
+			
+		<div style="white-space: nowrap;">
+		<form:form role="form" modelAttribute="newComment" action="addComment" method="post" accept-charset="UTF-8">
+		<form:hidden path="id" value="0" />
+		<form:input path="comment" required="required" autocomplete="off" onclick="this.focus();" maxlength="500" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin-bottom: 3px; margin-right: -130px; border: 0; border-radius: 0; width: 100%; height: 25px;" />
+		<fmt:formatDate var="dateNow" value="${now}" pattern="d.M.yyyy" type="date" />
+		<form:hidden path="date" value="${dateNow}" />
+		<fmt:formatDate var="timeNow" value="${now}" pattern="HH:mm" type="time" />
+		<form:hidden path="time" value="${timeNow}" />
+		<form:hidden path="task" value="${t.id}" />
+		<form:hidden path="user" value="${user}" />
+		<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 130px; border: 0; box-shadow: none; height: 25px;" />		
+		</form:form>	
 		</div>
+			
+		</div>
+		
 		</c:if>
 		
 		</div>

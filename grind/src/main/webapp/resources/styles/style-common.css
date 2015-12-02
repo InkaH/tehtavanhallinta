@@ -1,21 +1,53 @@
 @CHARSET "ISO-8859-1";
 
-pre {
+#comment-table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	table-layout: fixed;
+	width: 100%;
+}
+
+#comment-table tr {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 28px;
+}
+
+#comment-table tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#comment-table tr td:first-child {
+	width: auto;
+	text-align: left;
+	padding: 0 10px 0 10px;
+}
+
+#comment-table tr td:last-child {
+	width: 200px;
+	white-sapce: nowrap;
+	overflow: hidden;
+	text-align: right;
+	padding: 0 15px 0 10px;
+}
+
+#comment-area {
 	border: 0;
-	border-radius: 3px;
+	border-radius: 0;
 	color: #FFFFFF;
 	font: normal 13px Verdana;
-	margin: 5px -3px 0px -3px;
-	padding: 6px 10px 6px 10px;
-	background-color: rgba(0, 0, 0, 0.2);
+	margin: 5px 0 0 0;
+	padding: 0;
 	line-height: 22px;
+	min-height: 28px;
+	width: 100%;
 }
 
-#commentInput {
-	
-}
 
-#commentInput:focus {
+#comment:focus {
 	box-shadow: none !important;
 	outline: none !important;
 }
