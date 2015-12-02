@@ -54,7 +54,7 @@
 
 <body>
 
-<!-- FORM[0]: DELETE -->
+<!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
 </form>
@@ -77,6 +77,10 @@
 <!-- FORM[5]: ACTIVATE -->
 <form id="activationForm" action="activation" method="post">
 <input type="hidden" id="activeTask" name="activeTask" value="0" />
+</form>
+<!-- FORM[6]: DELETE COMMENT -->
+<form id="delCommentForm" action="delComment" method="post">
+<input type="hidden" id="delComment" name="delComment" value="0" />
 </form>
 
 <div class="container">
@@ -208,7 +212,7 @@
 				<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 				</div>
 				<div class="col-xs-3">
-				<button onclick="document.forms[3].submit(); return false;" class="btn btn-default form-control"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;PERUUTA</button>
+				<button onclick="document.forms[3].submit(); return false;" class="btn btn-default form-control"><span class=""></span>&nbsp;&nbsp;PERUUTA</button>
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
@@ -293,25 +297,36 @@
 		
 		<div id="comment-area">
 		<c:if test="${not empty comments}">
+		<table id="comment-table">
 		<c:forEach var="c" items="${comments}" varStatus="c-loop">
 		<fmt:parseDate value="${c.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
 		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
-		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />&nbsp;(<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" />)<br>
+		<tr>
+		<td>
+		<c:out value="${c.user}" />:&nbsp;&nbsp;<c:out value="${c.comment}" />
+		</td>
+		<td>
+		<c:if test="${c.user == user}">
+		<span style="color: #FFFFFF; cursor: pointer;" onclick="document.forms[6].delComment.value='${c.id}';document.forms[6].submit();" class="glyphicon glyphicon-remove"></span>
+		</c:if>&nbsp;
+		<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" /></td>
+		</tr>
 		</c:forEach>
+		</table>
 		</c:if>
 		</div>	
 			
 		<div style="white-space: nowrap;">
 		<form:form role="form" modelAttribute="newComment" action="commentAdd" method="post" accept-charset="UTF-8">
 		<form:hidden path="id" value="0" />
-		<form:input path="comment" required="required" autocomplete="off" onclick="this.focus();" maxlength="500" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin-bottom: 3px; border: 0; border-radius: 0 0 0 3px; width: 85%; height: 30px;" />
-		<fmt:formatDate var="dateNow" value="${now}" pattern="M.d.yyyy" type="date" />
+		<form:input path="comment" required="required" autocomplete="off" onclick="this.focus();" maxlength="500" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin-bottom: 3px; margin-right: -130px; border: 0; border-radius: 0 0 0 3px; width: 100%; height: 25px;" />
+		<fmt:formatDate var="dateNow" value="${now}" pattern="d.M.yyyy" type="date" />
 		<form:hidden path="date" value="${dateNow}" />
 		<fmt:formatDate var="timeNow" value="${now}" pattern="HH:mm" type="time" />
 		<form:hidden path="time" value="${timeNow}" />
 		<form:hidden path="task" value="${t.id}" />
 		<form:hidden path="user" value="${user}" />
-		<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 15%; border: 0; border-radius: 0 0 3px 0; height: 30px;" />		
+		<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 130px; border: 0; box-shadow: none; height: 24px;" />		
 		</form:form>	
 		</div>
 			

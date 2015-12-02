@@ -152,6 +152,16 @@ public class TaskController {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "delComment", method = RequestMethod.POST)
+	public String delComment(@RequestParam String delComment) {
+		int dc = Integer.parseInt(delComment);
+		if (dc > 0) {
+			dao.deleteComment(dc);
+		}
+		editingActive = 0;
+		return "redirect:/index";
+	}
+	
 	@RequestMapping(value = "activation", method = RequestMethod.POST)
 	public String activateTask(@RequestParam String activeTask) {
 		int at = Integer.parseInt(activeTask);

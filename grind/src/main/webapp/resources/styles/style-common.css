@@ -1,14 +1,37 @@
 @CHARSET "ISO-8859-1";
 
-pre {
-	border: 0;
-	border-radius: 3px;
-	color: #FFFFFF;
-	font: normal 13px Verdana;
-	margin: 5px -3px 0px -3px;
-	padding: 6px 10px 6px 10px;
-	background-color: rgba(0, 0, 0, 0.2);
-	line-height: 22px;
+#comment-table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	table-layout: fixed;
+	width: 100%;
+}
+
+#comment-table tr {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 28px;
+}
+
+#comment-table tr:nth-child(even) {
+	background-color: rgba(225, 225, 225, 0.2);
+}
+
+#comment-table tr td:first-child {
+	width: auto;
+	text-align: left;
+	padding: 0 10px 0 10px;
+}
+
+#comment-table tr td:last-child {
+	width: 200px;
+	white-sapce: nowrap;
+	overflow: hidden;
+	text-align: right;
+	padding: 0 15px 0 10px;
 }
 
 #comment-area {
@@ -17,10 +40,10 @@ pre {
 	color: #FFFFFF;
 	font: normal 13px Verdana;
 	margin: 5px 0 0 0;
-	padding: 6px 10px 6px 10px;
+	padding: 0;
 	background-color: rgba(0, 0, 0, 0.2);
 	line-height: 22px;
-	min-height: 30px;
+	min-height: 28px;
 	width: 100%;
 }
 

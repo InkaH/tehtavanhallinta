@@ -17,5 +17,7 @@ public interface TaskDAO {
 	
 	public abstract void addComment(Comment c);
 	
+	public abstract void deleteComment(int id);
+	
 	public abstract List<Comment> getComments(int task);
 }

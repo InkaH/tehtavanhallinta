@@ -115,6 +115,18 @@ public class TaskDaoImpl implements TaskDAO {
 		Object[] parameters = new Object[] {c.getComment(), Timestamp.valueOf(c.getDatetime()), c.getTask(), c.getUser()};
 		getJdbcTemplate().update(sql, parameters);
 	}
+	
+	public void deleteComment(int id) {
+		final String sql = "DELETE FROM Comment where c_id=?";
+		final int index = id;
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setInt(1, index);
+				return ps;
+			}
+		});
+	}
 
 	public List<Comment> getComments(int task) {
 		String sql = "SELECT * FROM Comment WHERE c_task=?";
