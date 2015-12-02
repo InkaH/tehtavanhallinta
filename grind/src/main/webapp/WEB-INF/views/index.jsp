@@ -279,7 +279,6 @@
 		<span>
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		</span>
-		<span>[<c:out value="${t.user}" />]</span>
 		<br>
 		</c:if>
 		</small>
