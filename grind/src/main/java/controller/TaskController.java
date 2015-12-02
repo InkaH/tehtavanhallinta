@@ -145,7 +145,7 @@ public class TaskController {
 		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
+	@RequestMapping(value = "addComment", method = RequestMethod.POST)
 	public String addComment(@ModelAttribute("newComment") Comment c) {
 		dao.addComment(c);
 		activeTask = c.getTask();
