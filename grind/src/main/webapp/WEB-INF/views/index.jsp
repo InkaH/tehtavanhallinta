@@ -82,6 +82,11 @@
 <form id="delCommentForm" action="delComment" method="post">
 <input type="hidden" id="delComment" name="delComment" value="0" />
 </form>
+<!-- FORM[7]: LOGOUT -->
+<c:url var="logoutUrl" value="/logout"/>
+<form id="logoutForm" action="${logoutUrl}" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
 
 <div class="container">
 
@@ -360,7 +365,13 @@
 	<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" /></c:otherwise>
 	</c:choose>
 	
-	<div id="logged"><span style="text-transform: uppercase;"><c:out value="${user}" /></span>&nbsp;&nbsp;-&nbsp;&nbsp;<a href="#">Kirjaudu ulos</a></div>
+	<div id="logged">
+	<span style="text-transform: uppercase;">
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+    <c:out value="${pageContext.request.userPrincipal.name}" />
+    </c:if>
+	</span>&nbsp;-&nbsp;&nbsp;<a href="#" onclick="document.forms[7].submit();">Kirjaudu ulos</a>	
+	</div>
 </div>
 </body>
 </html>
