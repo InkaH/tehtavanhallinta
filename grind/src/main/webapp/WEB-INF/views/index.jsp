@@ -308,7 +308,7 @@
 		</td>
 		<td>
 		<c:if test="${c.user == user}">
-		<span onclick="document.forms[6].delComment.value='${c.id}';document.forms[6].submit();" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+		<span onclick="if(!confirm('Haluatko poistaa kommentin pysyvästi?')){return false;}else{document.forms[6].delComment.value='${c.id}';document.forms[6].submit();}" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
 		</c:if>&nbsp;
 		<span class="comment-remove">
 		<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" />
