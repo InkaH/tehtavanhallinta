@@ -302,7 +302,7 @@
 		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
 		<tr>
 		<td>
-		<c:out value="${c.user}" />:&nbsp;&nbsp;<c:out value="${c.comment}" />
+		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
 		</td>
 		<td>
 		<c:if test="${c.user == user}">
