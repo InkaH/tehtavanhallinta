@@ -359,6 +359,8 @@
 	<c:when test="${theme == 8}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-no-color.png" />" /></c:when>
 	<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" /></c:otherwise>
 	</c:choose>
+	
+	<div id="logged"><span style="text-transform: uppercase;"><c:out value="${user}" /></span>&nbsp;&nbsp;-&nbsp;&nbsp;<a href="#">Kirjaudu ulos</a></div>
 </div>
 </body>
 </html>
