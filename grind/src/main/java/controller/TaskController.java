@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TaskDAO;
 import bean.Task;
+import bean.Comment;
 
 @Controller
 @RequestMapping(value = "/")
@@ -28,6 +29,8 @@ public class TaskController {
 	
 	private Task editItem = new Task();
 	private List<Task> tasks;
+	private List<Comment> comments;
+	private Comment newComment = new Comment();
 	private int editingActive = 0;
 	private int activeTask = 0;
 	private int theme = 3;
@@ -61,8 +64,13 @@ public class TaskController {
 	public String getView(Map<String, Object> model, Principal principal) {
 		String username = principal.getName();
 		tasks = dao.getAll(username);
+		if (activeTask > 0) {
+			comments = dao.getComments(activeTask);
+		}
 		model.put("tasks", tasks);
 		model.put("newTask", this.editItem);
+		model.put("comments", comments);
+		model.put("newComment", newComment);
 		model.put("edit", Integer.toString(editingActive));
 		model.put("activeTask", activeTask);
 		model.put("theme", this.theme);
@@ -137,11 +145,10 @@ public class TaskController {
 		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "comment", method = RequestMethod.POST)
-	public String addComment(@RequestParam String commentedText, @RequestParam String commentedTask) {
-		int ct = Integer.parseInt(commentedTask);
-		dao.addComment(ct, commentedText);
-		activeTask = ct;
+	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
+	public String addComment(@ModelAttribute("newComment") Comment c) {
+		dao.addComment(c);
+		activeTask = c.getTask();
 		return "redirect:/index";
 	}
 	

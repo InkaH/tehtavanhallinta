@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import bean.Comment;
 import bean.Task;
 
 import java.util.List;
@@ -69,7 +70,7 @@ public class TaskDaoImpl implements TaskDAO {
 		}, idHolder);
 		int task_id = (idHolder.getKey().intValue());
 		if(idDB == 0){
-			final String sql_2 = "INSERT INTO kayttajan_tehtava(ut_task, ut_user) VALUES (?, ?)";
+			final String sql_2 = "INSERT INTO Usertask(ut_task, ut_user) VALUES (?, ?)";
 			Object[] parameters = new Object[] {task_id, user};
 			getJdbcTemplate().update(sql_2, parameters);
 		}	
@@ -100,25 +101,25 @@ public class TaskDaoImpl implements TaskDAO {
 			}
 		});
 	}
-	
-	public void addComment(int id, String text) {
-		final String sql = "UPDATE Task SET t_info=? where t_id=?";
-		final int idDB = id;
-		final String textDB = text;
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(sql);
-				ps.setString(1, textDB);
-				ps.setInt(2, idDB);
-				return ps;
-			}
-		});
-	}
+
 
 	public List<Task> getAll(String username) {
-		String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
-		List<Task> tehtavat = jdbcTemplate.query(sql, new Object[] {username}, mapper);
-		return tehtavat;
+		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
+		return tasks;
+	}
+	
+	public void addComment(Comment c) {
+		final String sql = "INSERT INTO Comment(c_comment, c_datetime, c_task, c_user) VALUES (?, ?, ?, ?)";
+		Object[] parameters = new Object[] {c.getComment(), Timestamp.valueOf(c.getDatetime()), c.getTask(), c.getUser()};
+		getJdbcTemplate().update(sql, parameters);
+	}
+
+	public List<Comment> getComments(int task) {
+		String sql = "SELECT * FROM Comment WHERE c_task=?";
+		RowMapper<Comment> mapper = new CommentRowMapper();
+		List<Comment> comments = jdbcTemplate.query(sql, new Object[] {task}, mapper);
+		return comments;
 	}
 }

@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import bean.Task;
+import bean.Comment;
 
 public interface TaskDAO {
 	
@@ -14,5 +15,7 @@ public interface TaskDAO {
 	
 	public abstract List<Task> getAll(String user); 
 	
-	public void addComment(int id, String text);
+	public abstract void addComment(Comment c);
+	
+	public abstract List<Comment> getComments(int task);
 }

@@ -290,14 +290,33 @@
 		
 		<c:if test="${activeTask == t.id}">
 		<div>
-		<pre style="min-height: 30px; margin-bottom: -15px;"><c:out value="${t.info}" /></pre><br>		
-		<form action="comment" id="commentForm" method="post" style="white-space: nowrap;">
-		<input type="hidden" id="commentedText" name="commentedText" value="${t.info}" />
-		<input type="hidden" id="commentedTask" name="commentedTask" value="${t.id}" />
-		<input autocomplete="off" required type="text" id="commentInput" name="commentInput" onclick="this.focus();" maxlength="80" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin: 0 0 0 -2px; border: 0; border-radius: 2px; width: 85%; height: 25px;" />
-		<input type="submit" id="commentSubmit" value="Kommentoi" onclick="this.form.elements['commentedText'].value+='\n${t.user}: '+this.form.elements['commentInput'].value+' (<fmt:formatDate value="${now}" pattern="MM.dd.yyyy HH:mm" />)';" style="font: normal 12px Verdana; color: #000000; margin: 0; width: 15%; border: 0; border-radius: 2px; height: 25px;" />		
-		</form>		
+		
+		<div id="comment-area">
+		<c:if test="${not empty comments}">
+		<c:forEach var="c" items="${comments}" varStatus="c-loop">
+		<fmt:parseDate value="${c.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
+		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
+		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />&nbsp;(<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" />)<br>
+		</c:forEach>
+		</c:if>
+		</div>	
+			
+		<div style="white-space: nowrap;">
+		<form:form role="form" modelAttribute="newComment" action="commentAdd" method="post" accept-charset="UTF-8">
+		<form:hidden path="id" value="0" />
+		<form:input path="comment" required="required" autocomplete="off" onclick="this.focus();" maxlength="500" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin-bottom: 3px; border: 0; border-radius: 0 0 0 3px; width: 85%; height: 30px;" />
+		<fmt:formatDate var="dateNow" value="${now}" pattern="M.d.yyyy" type="date" />
+		<form:hidden path="date" value="${dateNow}" />
+		<fmt:formatDate var="timeNow" value="${now}" pattern="HH:mm" type="time" />
+		<form:hidden path="time" value="${timeNow}" />
+		<form:hidden path="task" value="${t.id}" />
+		<form:hidden path="user" value="${user}" />
+		<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 15%; border: 0; border-radius: 0 0 3px 0; height: 30px;" />		
+		</form:form>	
 		</div>
+			
+		</div>
+		
 		</c:if>
 		
 		</div>

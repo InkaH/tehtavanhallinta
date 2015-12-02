@@ -11,6 +11,19 @@ pre {
 	line-height: 22px;
 }
 
+#comment-area {
+	border: 0;
+	border-radius: 3px 3px 0 0;
+	color: #FFFFFF;
+	font: normal 13px Verdana;
+	margin: 5px 0 0 0;
+	padding: 6px 10px 6px 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+	line-height: 22px;
+	min-height: 30px;
+	width: 100%;
+}
+
 #commentInput {
 	
 }

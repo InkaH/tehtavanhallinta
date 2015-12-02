@@ -1,9 +1,11 @@
 package bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +38,10 @@ public class Comment implements Serializable {
 		this.user = user;
 		this.date = date;
 		this.time = time;
+	}
+	
+	public Date getTimestamp(){
+		return Timestamp.valueOf(getDatetime());
 	}
 	
 	public LocalDateTime getDatetime() {
