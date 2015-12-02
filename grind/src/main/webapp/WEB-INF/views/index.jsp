@@ -308,8 +308,6 @@
 	</c:if>
 </div>
 
-
-
 <!-- Banner -->
 <div id="banner">
 	<c:choose>
