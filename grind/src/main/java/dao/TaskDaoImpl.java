@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import bean.User;
 import bean.Comment;
 import bean.Task;
 
@@ -36,7 +37,7 @@ public class TaskDaoImpl implements TaskDAO {
 
 	public void addTask(Task task, String user) {
 		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_info, t_done, t_expire, t_group, t_user) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?, t_info=?, t_done=?, t_expire=?, t_group=?";
-		
+
 		final int idDB = task.getId();
 		final String taskDB = task.getTask();
 		final String infoDB = task.getInfo();
@@ -87,7 +88,7 @@ public class TaskDaoImpl implements TaskDAO {
 			}
 		});
 	}
-	
+
 	public void shareTask(int id, String groupID) {
 		final String sql = "UPDATE Task SET t_shared=1, t_group=? where t_id=?";
 		final int index = id;
@@ -110,13 +111,13 @@ public class TaskDaoImpl implements TaskDAO {
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tasks;
 	}
-	
+
 	public void addComment(Comment c) {
 		final String sql = "INSERT INTO Comment(c_comment, c_datetime, c_task, c_user) VALUES (?, ?, ?, ?)";
 		Object[] parameters = new Object[] {c.getComment(), Timestamp.valueOf(c.getDatetime()), c.getTask(), c.getUser()};
 		getJdbcTemplate().update(sql, parameters);
 	}
-	
+
 	public void deleteComment(int id) {
 		final String sql = "DELETE FROM Comment where c_id=?";
 		final int index = id;
@@ -135,4 +136,25 @@ public class TaskDaoImpl implements TaskDAO {
 		List<Comment> comments = jdbcTemplate.query(sql, new Object[] {task}, mapper);
 		return comments;
 	}
+
+	//tallennetaan käyttäjän tiedot tietokantaan
+	public void saveUser(User user) {
+		String sql = "INSERT INTO User(u_user, u_password, u_role) VALUES (?, ?, ?)";
+		Object[] parameters = new Object[] { user.getUsername(), user.getPassword(), user.getRole() };
+		getJdbcTemplate().update(sql, parameters);
+	}
+
+	//tarkastetaan, löytyykö annettu käyttäjänimi tietokannasta
+	public boolean searchUser(String username) {
+		String sql = "select COUNT(u_user) FROM User WHERE u_user = ?";
+		Object[] parameters = new Object[] { username };
+		int count = 0;
+		count = getJdbcTemplate().queryForObject(sql, parameters, Integer.class);
+		if(count == 0){
+			return false;
+		}
+		else return true;
+
+	}
+
 }

@@ -9,7 +9,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
       <intercept-url pattern="/index" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
       <!-- 403-sivun määrittely -->
       <access-denied-handler error-page="/403" />
-      <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password" />
+      <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error" username-parameter="u_user" password-parameter="u_password" />
       <logout logout-success-url="/login?logout" />
        <!-- Spring Security 4:stä lähtien CSRF -suojaus on oletuksena "enabled". -->
    	  <csrf disabled="true"/>
@@ -24,13 +24,13 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
             <user name="user2" password="$2a$10$1zQc./Mx82ktwc73yfQhvuWQY1UtBXegoHcJy.kxIobJh3eavoQrG" authorities="ROLE_USER, ROLE_ADMIN" />
          </user-service>
       </authentication-provider>
-      <!-- Autentikaatio tietokannalla TOTEUTETAAN MYÖHEMMIN
+      <!-- Autentikaatio tietokannalla -->
       <authentication-provider>
       	 <password-encoder ref="encoder"/>
          <jdbc-user-service data-source-ref="dataSource" 
-         	users-by-username-query="select username,password, enabled from users where username=?" 
-         	authorities-by-username-query="select username, role from user_roles where username =?" />
-      </authentication-provider>-->
+         	users-by-username-query="select u_user, u_password, u_enabled from User where u_user=?" 
+         	authorities-by-username-query="select u_user, u_role from User where u_user=?" />
+      </authentication-provider>
    </authentication-manager>
    
     <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,12 +15,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TaskDAO;
+import bean.User;
 import bean.Task;
 import bean.Comment;
 
@@ -52,11 +55,13 @@ public class TaskController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen k�ytt�j�nimi tai salasana.");
+			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
 		}
 		if (logout != null) {
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
+		User user = new User("", "");
+		model.addAttribute("user", user);
 		return "login";
 	}
 	
@@ -178,6 +183,37 @@ public class TaskController {
 		this.theme = Integer.parseInt(themeID);
 		activeTask = 0;
 		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	public String saveUser(Model model, @Valid User user,
+			BindingResult bindingResult) {
+		// jos käyttäjänimessä on virhe, palataan login-sivulle
+		if (bindingResult.hasErrors()) {
+			user.setEmptyPassword("");
+			return "login";
+		}
+		// tarkistetaan ettei kyseiselle käyttäjänimelle ole jo luotu tiliä
+		boolean duplicateUsername = getDao().searchUser(user.getUsername());
+		if (!duplicateUsername) {
+			user.setRole("ROLE_USER");
+			getDao().saveUser(user);
+			// jos rekisteröinti onnistuu, palataan login-sivulle
+			model.addAttribute("success", "Rekisteröinti onnistui.");
+			user.setUsername("");
+			user.setEmptyPassword("");
+			model.addAttribute("user", user);
+			return "login";
+		} else {
+			// jos nimi on jo käytössä, tyhjätään kentät ja palataan
+			// login-sivulle
+			model.addAttribute("userExistsError",
+					"Antamallasi sähköpostiosoitteella on jo rekisteröidytty palveluun.");
+			user.setUsername("");
+			user.setEmptyPassword("");
+			model.addAttribute("user", user);
+			return "login";
+		}
 	}
 	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
