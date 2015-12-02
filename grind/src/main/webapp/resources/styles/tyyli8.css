@@ -2,18 +2,15 @@
 
 @charset "utf-8";
 
-pre {
-	border: 0px solid #000000;
-	border-radius: 3px;
-	color: #000000;
-	font: normal 13px Verdana;
-	margin: 5px -3px 0px -3px;
-	padding: 6px 10px 6px 10px;
-	background-color: #FFFFFF;
-	line-height: 22px;
+#comment-area {
+	background-color: #FFFFFF !important;
 }
 
-#commentInput {
+.comment-remove {
+	color: #000000 !important;
+}
+
+#comment {
 	border: 1px solid #000000 !important;
 }
 
@@ -109,8 +106,13 @@ textarea:focus {
 }
 
 /* BOOTSTRAP OVERWRITE */
+
 .glyphicon {
 	color: #696969;
+}
+
+.glyphicon-remove {
+	color: #696969 !important;
 }
 
 .btn {

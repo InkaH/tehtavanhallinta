@@ -302,13 +302,18 @@
 		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
 		<tr>
 		<td>
+		<span class="comment-remove">
 		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
+		</span>
 		</td>
 		<td>
 		<c:if test="${c.user == user}">
-		<span style="color: #FFFFFF; cursor: pointer;" onclick="document.forms[6].delComment.value='${c.id}';document.forms[6].submit();" class="glyphicon glyphicon-remove"></span>
+		<span onclick="document.forms[6].delComment.value='${c.id}';document.forms[6].submit();" class="glyphicon glyphicon-remove"></span>
 		</c:if>&nbsp;
-		<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" /></td>
+		<span class="comment-remove">
+		<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" />
+		</span>
+		</td>
 		</tr>
 		</c:forEach>
 		</table>
@@ -325,7 +330,7 @@
 		<form:hidden path="time" value="${timeNow}" />
 		<form:hidden path="task" value="${t.id}" />
 		<form:hidden path="user" value="${user}" />
-		<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 130px; border: 0; box-shadow: none; height: 24px;" />		
+		<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 130px; border: 0; box-shadow: none; height: 25px;" />		
 		</form:form>	
 		</div>
 			

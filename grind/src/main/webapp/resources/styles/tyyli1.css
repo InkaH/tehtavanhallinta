@@ -1,6 +1,11 @@
 /* Grind */
 @charset "utf-8";
 
+.comment-remove {
+	cursor: pointer;
+	color: #FFFFFF !important;
+}
+
 #grind-logo {
 	display: block;
 	position: relative;
@@ -91,6 +96,10 @@ textarea:focus {
 /* BOOTSTRAP OVERWRITE */
 .glyphicon {
 	color: #696969;
+}
+
+.glyphicon-remove {
+	color: #FFFFFF !important;
 }
 
 .btn {

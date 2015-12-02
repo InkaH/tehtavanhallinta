@@ -16,8 +16,8 @@
 	height: 28px;
 }
 
-#comment-table tr:nth-child(even) {
-	background-color: rgba(225, 225, 225, 0.2);
+#comment-table tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 #comment-table tr td:first-child {
@@ -41,7 +41,6 @@
 	font: normal 13px Verdana;
 	margin: 5px 0 0 0;
 	padding: 0;
-	background-color: rgba(0, 0, 0, 0.1);
 	line-height: 22px;
 	min-height: 28px;
 	width: 100%;
