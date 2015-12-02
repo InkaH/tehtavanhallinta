@@ -15,12 +15,12 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import bean.Tehtava;
+import bean.Task;
 
 import java.util.List;
 
 @Component
-public class TehtavaDaoImpl implements TehtavaDao {
+public class TaskDaoImpl implements TaskDAO {
 
 	@Inject
 	private JdbcTemplate jdbcTemplate;
@@ -33,52 +33,51 @@ public class TehtavaDaoImpl implements TehtavaDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public void lisaaTehtava(Tehtava tehtava, String username) {
-		final String sql_1 = "INSERT INTO tehtava(t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_ryhma, t_tekija) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_kuvaus=?, t_lisatiedot=?, t_status=?, t_deadlinedtm=?, t_ryhma=?";
+	public void addTask(Task task, String user) {
+		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_info, t_done, t_expire, t_group, t_user) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?, t_info=?, t_done=?, t_expire=?, t_group=?";
 		
-		final int id = tehtava.getId();
-		final String kuvaus = tehtava.getKuvaus();
-		final String tiedot = tehtava.getTiedot();
-		final int status = tehtava.getStatus();
-		final LocalDateTime ajankohta = tehtava.getAjankohta();
-		final String ryhma = tehtava.getRyhma();
-		final String tekija = username;
+		final int idDB = task.getId();
+		final String taskDB = task.getTask();
+		final String infoDB = task.getInfo();
+		final int statusDB = task.getDone();
+		final LocalDateTime datetimeDB = task.getDatetime();
+		final String groupDB = task.getGroup();
+		final String userDB = user;
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql_1);
-				if (id == 0) {
+				if (idDB == 0) {
 					ps.setString(1, null);
 				} else {
-					ps.setInt(1, id);
+					ps.setInt(1, idDB);
 				}
-				ps.setString(2, kuvaus);
-				ps.setString(3, tiedot);
-				ps.setInt(4, status);
-				ps.setTimestamp(5, Timestamp.valueOf(ajankohta));
-				ps.setString(6, ryhma);
-				ps.setString(7, tekija);
+				ps.setString(2, taskDB);
+				ps.setString(3, infoDB);
+				ps.setInt(4, statusDB);
+				ps.setTimestamp(5, Timestamp.valueOf(datetimeDB));
+				ps.setString(6, groupDB);
+				ps.setString(7, userDB);
 				// replacement values
-				ps.setString(8, kuvaus);
-				ps.setString(9, tiedot);
-				ps.setInt(10, status);
-				ps.setTimestamp(11, Timestamp.valueOf(ajankohta));
-				ps.setString(12, ryhma);
+				ps.setString(8, taskDB);
+				ps.setString(9, infoDB);
+				ps.setInt(10, statusDB);
+				ps.setTimestamp(11, Timestamp.valueOf(datetimeDB));
+				ps.setString(12, groupDB);
 				
 				return ps;
 			}
 		}, idHolder);
-		int teht_id = (idHolder.getKey().intValue());
-		//käyttäjän tehtävät -taulu tarvitsee myös tiedon uudesta tehtävästä
-		if(id==0){
+		int task_id = (idHolder.getKey().intValue());
+		if(idDB == 0){
 			final String sql_2 = "INSERT INTO kayttajan_tehtava(kt_t_id, kt_k_nimi) VALUES (?, ?)";
-			Object[] parameters = new Object[] { teht_id, username };
+			Object[] parameters = new Object[] {task_id, user};
 			getJdbcTemplate().update(sql_2, parameters);
 		}	
 	}
 
-	public void poistaTehtava(int id) {
-		final String sql = "DELETE FROM tehtava where t_id = ?";
+	public void deleteTask(int id) {
+		final String sql = "DELETE FROM Task where t_id=?";
 		final int index = id;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -89,8 +88,8 @@ public class TehtavaDaoImpl implements TehtavaDao {
 		});
 	}
 	
-	public void jaaTehtava(int id, String groupID) {
-		final String sql = "UPDATE tehtava SET t_jaettu=1, t_ryhma = ? where t_id = ?";
+	public void shareTask(int id, String groupID) {
+		final String sql = "UPDATE Task SET t_shared=1, t_group=? where t_id=?";
 		final int index = id;
 		final String group = groupID;
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -103,24 +102,24 @@ public class TehtavaDaoImpl implements TehtavaDao {
 		});
 	}
 	
-	public void lisaaKommentti(int taskID, String concatText) {
-		final String sql = "UPDATE tehtava SET t_lisatiedot=? where t_id = ?";
-		final int index = taskID;
-		final String text = concatText;
+	public void addComment(int id, String text) {
+		final String sql = "UPDATE Task SET t_info=? where t_id=?";
+		final int idDB = id;
+		final String textDB = text;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql);
-				ps.setString(1, text);
-				ps.setInt(2, index);
+				ps.setString(1, textDB);
+				ps.setInt(2, idDB);
 				return ps;
 			}
 		});
 	}
 
-	public List<Tehtava> haeKaikki(String username) {
-		String sql = "SELECT t_id, t_kuvaus, t_lisatiedot, t_status, t_deadlinedtm, t_ryhma, kt_k_nimi FROM kayttajan_tehtava INNER JOIN tehtava on kt_t_id=t_id WHERE kt_k_nimi=? ORDER BY t_deadlinedtm";
-		RowMapper<Tehtava> mapper = new TehtavaRowMapper();
-		List<Tehtava> tehtavat = jdbcTemplate.query(sql, new Object[] {username}, mapper);
+	public List<Task> getAll(String username) {
+		String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
+		RowMapper<Task> mapper = new TaskRowMapper();
+		List<Task> tehtavat = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tehtavat;
 	}
 }

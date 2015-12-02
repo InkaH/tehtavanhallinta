@@ -19,27 +19,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.TehtavaDao;
-import bean.Tehtava;
+import dao.TaskDAO;
+import bean.Task;
 
 @Controller
 @RequestMapping(value = "/")
-public class TehtavaController {
+public class TaskController {
 	
-	private Tehtava editItem = new Tehtava(); // controller sustain one Tehtava object in order to pre-fill the main form
-	private List<Tehtava> tehtavat; // list of all tasks of the user
-	private int editingActive = 0; // editing mode (0 = false, 1 = true)
+	private Task editItem = new Task();
+	private List<Task> tasks;
+	private int editingActive = 0;
 	private int activeTask = 0;
 	private int theme = 3;
 
 	@Inject
-	private TehtavaDao dao; // makes all database management methods available in controller class
+	private TaskDAO dao;
 
-	public TehtavaDao getDao() {
+	public TaskDAO getDao() {
 		return dao;
 	}
 
-	public void setDao(TehtavaDao dao) {
+	public void setDao(TaskDAO dao) {
 		this.dao = dao;
 	}
 	
@@ -57,44 +57,42 @@ public class TehtavaController {
 		return "login";
 	}
 	
-	// executed every time when entering index.jsp (value= "/index")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
-		String username = principal.getName(); //get username from login user
-		tehtavat = dao.haeKaikki(username);
-		model.put("tehtavat", tehtavat); // send all tasks to UI in a variable called 'tehtavat'
-		model.put("uusiTehtava", this.editItem); // send the form pre-fill object to UI in a variable called 'uusiTehtava'
-		model.put("edit", Integer.toString(editingActive)); // send the state of editing mode to UI in a variable called 'edit'
+		String username = principal.getName();
+		tasks = dao.getAll(username);
+		model.put("tasks", tasks);
+		model.put("newTask", this.editItem);
+		model.put("edit", Integer.toString(editingActive));
 		model.put("activeTask", activeTask);
 		model.put("theme", this.theme);
 		return "index";
 	}
 	
-	// the task creation/editing form calls the method on submit <form action="add"...>  -->  @RequestMapping(value="add"...)
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String lisaaTehtava(@ModelAttribute("uusiTehtava") Tehtava task, Principal principal) { // get the Tehtava object from the form
-		if (!task.getKuvaus().isEmpty()) {
-			if (task.getAjankohtaPvm() == null) {
-				task.setAjankohtaPvm(LocalDate.of(1970, 1, 1));
+	public String addTask(@ModelAttribute("newTask") Task task, Principal principal) {
+		if (!task.getTask().isEmpty()) {
+			if (task.getDate() == null) {
+				task.setDate(LocalDate.of(1970, 1, 1));
 			}
-			if (task.getAjankohtaKlo() == null) {
-				task.setAjankohtaKlo(LocalTime.of(23, 59));
+			if (task.getTime() == null) {
+				task.setTime(LocalTime.of(23, 59));
 			}
 			String username = principal.getName(); //get username from login user
-			dao.lisaaTehtava(task, username); // if the header of task is not empty, insert the new task into database
+			dao.addTask(task, username); // if the header of task is not empty, insert the new task into database
 		}
 		editingActive = 0; // set editing mode off
-		editItem.nollaaTehtava(); // clear the content of the form pre-fill object
+		editItem.resetTask(); // clear the content of the form pre-fill object
 		activeTask = 0;
 		return "redirect:/index"; // move to getView method (value = "/")
 	}
 
 	// the task deletion form calls the method on submit <form action="del"...>  -->  @RequestMapping(value="del"...)
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String poistaTehtava(@RequestParam String delTask) { // get attribute delTask (task id) from the form
+	public String deleteTask(@RequestParam String delTask) { // get attribute delTask (task id) from the form
 		int de = Integer.parseInt(delTask);
 		if (de > 0) {
-			dao.poistaTehtava(de); // if delTask > 0 (Tehtava object exists), remove the task from database
+			dao.deleteTask(de); // if delTask > 0 (Tehtava object exists), remove the task from database
 		}
 		editingActive = 0;
 		activeTask = 0;
@@ -103,16 +101,16 @@ public class TehtavaController {
 
 	// the task editing form calls the method on submit
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String muokkaaTehtava(@RequestParam String editTask) {
+	public String editTask(@RequestParam String editTask) {
 		int ed = Integer.parseInt(editTask);
 		if (ed > 0) {
-			for (Tehtava t : tehtavat) { // search the right task in a loop
+			for (Task t : tasks) { // search the right task in a loop
 				if (t.getId() == ed) {
 					this.editItem = t; // copy the editable task reference to the form pre-fill object
 					editingActive = 1; // set editing mode on
-					if (editItem.getAjankohtaPvm().compareTo(LocalDate.of(1970, 1, 1)) == 0) {
-						editItem.setAjankohtaPvm(null);
-						editItem.setAjankohtaKlo(null);
+					if (editItem.getDate().compareTo(LocalDate.of(1970, 1, 1)) == 0) {
+						editItem.setDate(null);
+						editItem.setTime(null);
 					}
 					return "redirect:/index"; // quit searching and move to getView method
 				}
@@ -123,33 +121,33 @@ public class TehtavaController {
 	}
 	
 	@RequestMapping(value = "share", method = RequestMethod.POST)
-	public String jaaTehtava(@RequestParam String shareTask, @RequestParam String groupID) {
+	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID) {
 		int sh = Integer.parseInt(shareTask);
 		if (sh > 0) {
-			dao.jaaTehtava(sh, groupID.toUpperCase());
+			dao.shareTask(sh, groupID.toUpperCase());
 		}
 		activeTask = 0;
 		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "cancel", method = RequestMethod.POST)
-	public String peruuta() {
+	public String cancel() {
 		editingActive = 0;
-		editItem.nollaaTehtava();
+		editItem.resetTask();
 		activeTask = 0;
 		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "comment", method = RequestMethod.POST)
-	public String lisaaKommentti(@RequestParam String commentedText, @RequestParam String commentedTask) {
+	public String addComment(@RequestParam String commentedText, @RequestParam String commentedTask) {
 		int ct = Integer.parseInt(commentedTask);
-		dao.lisaaKommentti(ct, commentedText);
+		dao.addComment(ct, commentedText);
 		activeTask = ct;
 		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "activation", method = RequestMethod.POST)
-	public String aktivoiTehtava(@RequestParam String activeTask) {
+	public String activateTask(@RequestParam String activeTask) {
 		int at = Integer.parseInt(activeTask);
 		if (this.activeTask == at) {
 			this.activeTask = 0;
@@ -160,7 +158,7 @@ public class TehtavaController {
 	}
 	
 	@RequestMapping(value = "theme", method = RequestMethod.POST)
-	public String vaihdaTeema(@RequestParam String themeID) {
+	public String changeTheme(@RequestParam String themeID) {
 		this.theme = Integer.parseInt(themeID);
 		activeTask = 0;
 		return "redirect:/index";
