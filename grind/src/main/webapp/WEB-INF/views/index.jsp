@@ -180,10 +180,10 @@
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Kommentit:</label>
+			<label class="control-label col-xs-offset-1 col-xs-2" for="kuvaus">Lisätiedot:</label>
 				<div class="col-xs-6">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
-				<form:textarea path="info" cssClass="form-control" rows="5" placeholder="Kirjoita keskustelun aloitus" maxlength="1000" /> 
+				<form:textarea path="info" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävän lisätiedot" maxlength="1000" /> 
 				</div>
 				<div class="col-xs-3"></div>
 			</div>
