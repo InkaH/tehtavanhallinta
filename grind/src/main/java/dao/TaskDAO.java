@@ -26,4 +26,8 @@ public interface TaskDAO {
 		
 	public boolean searchUser(String username);
 	
+	public int getTheme(String user);
+	
+	public void saveTheme(String user, int theme);
+	
 }

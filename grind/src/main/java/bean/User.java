@@ -10,6 +10,7 @@ public class User {
 	@Size(min = 8, max = 60, message = "Salasanan sallittu pituus 8-60 merkkiä.")
 	private String password;
 	private String role;
+	private int theme;
 	
 	public User() {
 		super();
@@ -19,6 +20,14 @@ public class User {
 		super();
 		this.username = username;
 		this.password = password;
+	}
+
+	public int getTheme() {
+		return theme;
+	}
+
+	public void setTheme(int theme) {
+		this.theme = theme;
 	}
 
 	public String getUsername() {

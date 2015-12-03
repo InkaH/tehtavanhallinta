@@ -142,6 +142,18 @@ public class TaskDaoImpl implements TaskDAO {
 		Object[] parameters = new Object[] { user.getUsername(), user.getPassword(), user.getRole() };
 		jdbcTemplate.update(sql, parameters);
 	}
+	
+	public int getTheme(String user) {
+		String sql = "SELECT u_theme FROM User WHERE u_user=?";
+		int th = jdbcTemplate.update(sql, new Object[] {user});
+		return th;
+	}
+	
+	public void saveTheme(String user, int themeID) {
+		String sql = "UPDATE User SET u_theme=? WHERE u_user=?";
+		Object[] parameters = new Object[] {themeID, user};
+		jdbcTemplate.update(sql, parameters);
+	}
 
 	public boolean searchUser(String username) {
 		String sql = "select COUNT(u_user) FROM User WHERE u_user = ?";

@@ -30,6 +30,7 @@ import bean.Comment;
 @RequestMapping(value = "/")
 public class TaskController {
 	
+	private String username;
 	private Task editItem = new Task();
 	private List<Task> tasks;
 	private List<Comment> comments;
@@ -55,7 +56,7 @@ public class TaskController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen k√§ytt√§j√§nimi tai salasana.");
+			model.addAttribute("error", "Virheellinen k‰ytt‰j‰nimi tai salasana.");
 		}
 		if (logout != null) {
 			activeTask = 0;
@@ -66,12 +67,13 @@ public class TaskController {
 		//the User object values to it
 		User user = new User("", "");
 		model.addAttribute("user", user);
+		user.setTheme(dao.getTheme(this.username));
 		return "login";
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
-		String username = principal.getName();
+		username = principal.getName();
 		tasks = dao.getAll(username);
 		if (activeTask > 0) {
 			comments = dao.getComments(activeTask);
@@ -184,7 +186,9 @@ public class TaskController {
 	
 	@RequestMapping(value = "theme", method = RequestMethod.POST)
 	public String changeTheme(@RequestParam String themeID) {
-		this.theme = Integer.parseInt(themeID);
+		int tID = Integer.parseInt(themeID);
+		this.theme = tID;
+		dao.saveTheme(username, tID);
 		activeTask = 0;
 		return "redirect:/index";
 	}
