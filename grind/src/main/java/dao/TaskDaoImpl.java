@@ -145,7 +145,7 @@ public class TaskDaoImpl implements TaskDAO {
 	
 	public int getTheme(String user) {
 		String sql = "SELECT u_theme FROM User WHERE u_user=?";
-		int th = jdbcTemplate.update(sql, new Object[] {user});
+		int th = jdbcTemplate.queryForObject(sql, new Object[] {user}, Integer.class);
 		return th;
 	}
 	
