@@ -57,43 +57,35 @@
 <!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[1]: EDIT -->
 <form id="editForm" action="edit" method="post">
 <input type="hidden" id="editTask" name="editTask" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[2]: SHARE -->
 <form id="shareForm" action="share" method="post">
 <input type="hidden" id="shareTask" name="shareTask" value="0" />
 <input type="hidden" id="groupID" name="groupID" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[3]: CANCEL -->
 <form id="cancelForm" action="cancel" method="post">
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[4]: THEME -->
 <form id="themeForm" action="theme" method="post">
 <input type="hidden" id="themeID" name="themeID" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[5]: ACTIVATE -->
 <form id="activationForm" action="activation" method="post">
 <input type="hidden" id="activeTask" name="activeTask" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[6]: DELETE COMMENT -->
 <form id="delCommentForm" action="delComment" method="post">
 <input type="hidden" id="delComment" name="delComment" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 <!-- FORM[7]: LOGOUT -->
 <c:url var="logoutUrl" value="/logout"/>
 <form id="logoutForm" action="${logoutUrl}" method="post">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-<input type="hidden" name="scrollPos" value="0" />
 </form>
 
 <div class="container">
