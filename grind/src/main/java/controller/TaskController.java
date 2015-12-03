@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,12 +15,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TaskDAO;
+import bean.User;
 import bean.Task;
 import bean.Comment;
 
@@ -52,11 +55,15 @@ public class TaskController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen k�ytt�j�nimi tai salasana.");
+			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
 		}
 		if (logout != null) {
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
+		//registration form is a Spring form so we have to place 
+		//the User object values to it
+		User user = new User("", "");
+		model.addAttribute("user", user);
 		return "login";
 	}
 	
@@ -180,6 +187,41 @@ public class TaskController {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	public String saveUser(Model model, @Valid User user,
+			BindingResult bindingResult) {
+		// if User class validation rules did not pass
+		// return to login and must set the hashed pw back to empty
+		if (bindingResult.hasErrors()) {
+			user.setEmptyPassword("");
+			return "login";
+		}
+		// check there's no such username already in teh database
+		boolean duplicateUsername = getDao().searchUser(user.getUsername());
+		if (!duplicateUsername) {
+			user.setRole("ROLE_USER");
+			getDao().saveUser(user);
+			// if registration is successful, redirect to login page, and registration form
+			//values have to be set to empty again
+			model.addAttribute("success", "Rekisteröinti onnistui.");
+			user.setUsername("");
+			user.setEmptyPassword("");
+			model.addAttribute("user", user);
+			return "login";
+		} else {
+			// if username already exists, return to login page with
+			// error message and set regist. form values to empty
+			model.addAttribute("userExistsError",
+					"Antamallasi sähköpostiosoitteella on jo rekisteröidytty palveluun.");
+			user.setUsername("");
+			user.setEmptyPassword("");
+			model.addAttribute("user", user);
+			return "login";
+		}
+	}
+	
+	// we're not needing this page right now but it's working as an example
+	// in case we need it later + printing of user details is also an example
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
