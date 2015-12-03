@@ -111,7 +111,7 @@
 
 <div class="container">
 	
-	<div class="col-xs-offset-2 col-xs-8" style="margin-top: 15px;">
+	<div class="col-sm-offset-2 col-sm-8" style="margin-top: 15px;">
 	
 	<ul class="nav nav-tabs">
     <li class="${activeTab == 0 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=0;document.forms[8].submit();">Omat</a></li>
@@ -119,14 +119,12 @@
   	</ul>
 		
 	<c:if test="${edit=='0'}">
-	<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
-	<div class="col-xs-10">
-	<h4 style="margin: 12px 0 10px 0;"><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h4>
-	</div>			
-	<div class="col-xs-2">
-	<div class="dropdown">
+	<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}" style="white-space: nowrap;">
+	<div class="col-sm-12">
+	<h4 style="line-height: 42px; display: inline;"><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h4>	
+	<div class="dropdown" style="display: inline-block;">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-	<img src="<c:url value="/resources/img/brush.png" />" style="margin: 8px 0 0 50px; width: 25px;" />
+	<img src="<c:url value="/resources/img/brush.png" />" style="margin: -8px 0 0 50px; width: 22px;" />
 	</a>
 	<ul class="dropdown-menu dropdown-menu-left">
 	<li class="theme-selected">
@@ -161,76 +159,71 @@
 		
 	<c:if test="${edit=='1'}">
 	<div class="row">
-	<div class="col-xs-12">
+	<div class="col-sm-12">
 	<h3>Muokkaa tehtävää</h3>
 	</div>
 	</div>
 	</c:if>
 	
 	<div class="row">
-	<div class="col-xs-12">
+	<div class="col-sm-12">
 	<div id="add" class="${edit=='0' ? 'collapse' : 'collapse in'}">
 		<form:form role="form" class="form-horizontal" modelAttribute="newTask" action="add" method="post" accept-charset="UTF-8">
 		<form:hidden path="id" />
 		<form:hidden path="done" />
 		<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group">
-			<label class="control-label col-xs-2" for="kuvaus">* Tehtävä:</label>
-				<div class="col-xs-8">
+			<label class="control-label col-sm-2" for="kuvaus">* Tehtävä:</label>
+				<div class="col-sm-8">
 				<!-- spring form: cssClass = class (html) -->
 				<form:input path="task" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
 				</div>
-				<div class="col-xs-2"></div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-xs-2" for="ryhma">Ryhmätunnus:</label>
-				<div class="col-xs-8">
+			<label class="control-label col-sm-2" for="ryhma">Ryhmätunnus:</label>
+				<div class="col-sm-8">
 				<form:input path="group" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" style="text-transform: uppercase" maxlength="50" />
 				</div>
-				<div class="col-xs-2"></div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-xs-2" for="kuvaus">Lisätiedot:</label>
-				<div class="col-xs-8">
+			<label class="control-label col-sm-2" for="kuvaus">Lisätiedot:</label>
+				<div class="col-sm-8">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
 				<form:textarea path="info" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävän lisätiedot" maxlength="1000" /> 
 				</div>
-				<div class="col-xs-2"></div>
 			</div>
 		</div>
 		
 		<!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
 		<div class="row">
 			<div class="form-group has-feedback">
-			<label class="control-label col-xs-2" for="kuvaus">Ajankohta:</label>
-				<div class="controls bootstrap-timepicker col-xs-4" >
+			<label class="control-label col-sm-2" for="kuvaus">Ajankohta:</label>
+				<div class="controls bootstrap-timepicker col-sm-4" >
 				<form:input path="date" cssClass="form-control text-center datetime" id="datepicker" onfocus="this.blur();" />
 				<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-sm-4">
 				<form:input path="time" cssClass="form-control text-center" id="timepicker" onfocus="this.blur();" />
 				<!-- bootstrap form-control-feedback puts glyphicon icon to the right end of the input field (not after text content) -->
 				<i class="form-control-feedback glyphicon glyphicon-time"></i>
 				</div>
-				<div class="col-xs-2"></div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group"> 
-				<div class="col-xs-offset-2 col-xs-4">
+				<div class="col-sm-offset-2 col-sm-4">
 				<button type="submit" class="btn btn-default form-control"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;TALLENNA</button>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-sm-4">
 				<button onclick="document.forms[3].submit(); return false;" class="btn btn-default form-control"><span class=""></span>&nbsp;&nbsp;PERUUTA</button>
 				</div>
-				<div class="col-xs-2"></div>
 			</div>
 		</div>
 		
@@ -241,7 +234,7 @@
 	
 	<c:if test="${empty tasks}">
 	<div class="row">
-	<div class="col-xs-12">
+	<div class="col-sm-12">
 	Sinulla ei ole tehtäviä
 	</div>
 	</div>
@@ -254,7 +247,7 @@
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
-	<div class="col-xs-12 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
+	<div class="col-sm-12 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 	<c:if test="${user == t.user}">
 	<div class="task-options">
 	<div class="dropdown">
@@ -284,21 +277,22 @@
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 	<span>
 	<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
-	&nbsp;-&nbsp;
+	&nbsp;&nbsp;&nbsp;
 	<c:choose>
-	<c:when test="${user == t.user}"><span style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></span></c:when>
-	<c:otherwise><span style="text-transform: uppercase;"><c:out value="${t.user}" /></span></c:otherwise>
+	<c:when test="${user == t.user}"><div class="username-tag" style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></div></c:when>
+	<c:otherwise><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:otherwise>
 	</c:choose>
 	</span>
-	<br>
 	</c:if>
 	</small>
 	</span>
-	<span><c:out value="${t.task}" /></span>
+	<div class="task-elem"><c:out value="${t.task}" />
+	<div class="arrow-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;">&nbsp;&#8811;&nbsp;&nbsp;</div>
+	</div>
 	<c:if test="${not empty t.group}">
 	<div class="groupid"><c:out value="${t.group}" /></div>
 	</c:if>
-	<span onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;">&nbsp;&#8811;&nbsp;&nbsp;</span>
+	
 	<c:if test="${activeTask == t.id}">
 	<div>
 	<div id="comment-area">
@@ -373,6 +367,10 @@
     </c:if>
 	</span>&nbsp;-&nbsp;&nbsp;<a href="#" onclick="document.forms[7].submit();">Kirjaudu ulos</a>	
 	</div>
+	
+	<div id="logged-mobile"><a href="#" onclick="document.forms[7].submit();">Lopeta</a>	
+	</div>
+	
 </div>
 </body>
 </html>
