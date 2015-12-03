@@ -73,7 +73,7 @@ public class TaskDaoImpl implements TaskDAO {
 		if(idDB == 0){
 			final String sql_2 = "INSERT INTO Usertask(ut_task, ut_user) VALUES (?, ?)";
 			Object[] parameters = new Object[] {task_id, user};
-			getJdbcTemplate().update(sql_2, parameters);
+			jdbcTemplate.update(sql_2, parameters);
 		}	
 	}
 
@@ -115,7 +115,7 @@ public class TaskDaoImpl implements TaskDAO {
 	public void addComment(Comment c) {
 		final String sql = "INSERT INTO Comment(c_comment, c_datetime, c_task, c_user) VALUES (?, ?, ?, ?)";
 		Object[] parameters = new Object[] {c.getComment(), Timestamp.valueOf(c.getDatetime()), c.getTask(), c.getUser()};
-		getJdbcTemplate().update(sql, parameters);
+		jdbcTemplate.update(sql, parameters);
 	}
 
 	public void deleteComment(int id) {
@@ -140,14 +140,14 @@ public class TaskDaoImpl implements TaskDAO {
 	public void saveUser(User user) {
 		String sql = "INSERT INTO User(u_user, u_password, u_role) VALUES (?, ?, ?)";
 		Object[] parameters = new Object[] { user.getUsername(), user.getPassword(), user.getRole() };
-		getJdbcTemplate().update(sql, parameters);
+		jdbcTemplate.update(sql, parameters);
 	}
 
 	public boolean searchUser(String username) {
 		String sql = "select COUNT(u_user) FROM User WHERE u_user = ?";
 		Object[] parameters = new Object[] { username };
 		int count = 0;
-		count = getJdbcTemplate().queryForObject(sql, parameters, Integer.class);
+		count = jdbcTemplate.queryForObject(sql, parameters, Integer.class);
 		if(count == 0){
 			return false;
 		}
