@@ -38,6 +38,7 @@ public class TaskController {
 	private int editingActive = 0;
 	private int activeTask = 0;
 	private int theme = 3;
+	private boolean startup = true;
 
 	@Inject
 	private TaskDAO dao;
@@ -61,19 +62,22 @@ public class TaskController {
 		if (logout != null) {
 			activeTask = 0;
 			editingActive = 0;
+			startup = true;
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
 		//registration form is a Spring form so we have to place 
 		//the User object values to it
 		User user = new User("", "");
 		model.addAttribute("user", user);
-		theme = dao.getTheme(this.username);
-		user.setTheme(theme);
 		return "login";
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
+		if (startup) {
+			this.theme = dao.getTheme(principal.getName());
+			startup = false;
+		}
 		username = principal.getName();
 		tasks = dao.getAll(username);
 		if (activeTask > 0) {
