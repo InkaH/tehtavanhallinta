@@ -14,7 +14,9 @@ public interface TaskDAO {
 	
 	public abstract void shareTask(int id, String group);
 	
-	public abstract List<Task> getAll(String user); 
+	public abstract List<Task> getAllPrivate(String user); 
+	
+	public abstract List<Task> getAllShared(String user); 
 	
 	public abstract void addComment(Comment c);
 	

@@ -37,6 +37,7 @@ public class TaskController {
 	private Comment newComment = new Comment();
 	private int editingActive = 0;
 	private int activeTask = 0;
+	private int activeTab = 0;
 	private int theme = 3;
 	private boolean startup = true;
 
@@ -79,7 +80,12 @@ public class TaskController {
 			startup = false;
 		}
 		username = principal.getName();
-		tasks = dao.getAll(username);
+		if (activeTab == 0) {
+			tasks = dao.getAllPrivate(username);
+		} else if (activeTab == 1) {
+			tasks = dao.getAllShared(username);
+		}
+		
 		if (activeTask > 0) {
 			comments = dao.getComments(activeTask);
 		}
@@ -89,6 +95,7 @@ public class TaskController {
 		model.put("newComment", newComment);
 		model.put("edit", Integer.toString(editingActive));
 		model.put("activeTask", activeTask);
+		model.put("activeTab", activeTab);
 		model.put("theme", this.theme);
 		model.put("user", principal.getName());
 		return "index";
@@ -195,6 +202,16 @@ public class TaskController {
 		this.theme = tID;
 		dao.saveTheme(username, tID);
 		activeTask = 0;
+		editingActive = 0;
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "tabChange", method = RequestMethod.POST)
+	public String changeTab(@RequestParam String tabID) {
+		int tID = Integer.parseInt(tabID);
+		activeTab = tID;
+		activeTask = 0;
+		editingActive = 0;
 		return "redirect:/index";
 	}
 	
