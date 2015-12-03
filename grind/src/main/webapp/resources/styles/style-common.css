@@ -149,7 +149,9 @@
 	font-style: italic;
 }
 
-@media ( max-width : 767px) {
+
+
+@media (max-width: 767px) {
 	.container, body {
 		padding: 20px 0 0 0 !important;
 		margin: 20px 0 0 0 !important;
@@ -200,11 +202,20 @@
 		margin: 0 !important;
 	}
 	#logged {
+		display: block !important;
+	}
+	#logged-mobile {
+		display: none !important;
+	}
+}
+
+@media (max-width: 400px) {
+	#logged {
 		display: none !important;
 	}
 	#logged-mobile {
-		display: block;
-	}
+		display: block !important;
+	}		
 }
 
 /* LOGIN CSS */
