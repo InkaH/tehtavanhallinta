@@ -368,7 +368,7 @@
 	</span>&nbsp;-&nbsp;&nbsp;<a href="#" onclick="document.forms[7].submit();">Kirjaudu ulos</a>	
 	</div>
 	
-	<div id="logged-mobile"><a href="#" onclick="document.forms[7].submit();">Lopeta</a>	
+	<div id="logged-mobile"><a href="#" onclick="document.forms[7].submit();">EXIT</a>	
 	</div>
 	
 </div>
