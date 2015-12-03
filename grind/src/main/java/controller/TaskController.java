@@ -67,7 +67,8 @@ public class TaskController {
 		//the User object values to it
 		User user = new User("", "");
 		model.addAttribute("user", user);
-		user.setTheme(dao.getTheme(this.username));
+		theme = dao.getTheme(this.username);
+		user.setTheme(theme);
 		return "login";
 	}
 	
