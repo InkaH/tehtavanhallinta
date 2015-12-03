@@ -9,9 +9,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <title>Tervetuloa</title>
    </head>
-   <p>Tunnukset testikäyttöön:</p>
-   <p>Ilman tietokantaa: user1 12345 TAI user2 12345</p>
-   <p>Tietokantayhteydellä: samat tunnukset</p>
+
    <body onload='document.loginForm.username.focus();'>
       <div>
          <h3>Kirjaudu sisään</h3>
