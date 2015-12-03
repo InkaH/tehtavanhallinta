@@ -105,7 +105,7 @@ public class TaskDaoImpl implements TaskDAO {
 
 
 	public List<Task> getAll(String username) {
-		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? OR t_group IS NOT NULL ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? OR (t_group > '' AND t_group IS NOT NULL) ORDER BY t_expire";
 		// final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);

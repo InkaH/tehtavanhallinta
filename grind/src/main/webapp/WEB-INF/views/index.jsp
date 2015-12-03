@@ -269,6 +269,7 @@
 		<div class="col-xs-offset-2 col-xs-8 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 	
 		<!-- dropdown list of optional functions of a single task -->
+		<c:if test="${user == t.user}">
 		<div class="task-options">
 			<div class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
@@ -289,6 +290,7 @@
 			</ul>
 			</div>
 		</div>
+		</c:if>
 	
 		<span>
 		<small>
@@ -301,7 +303,7 @@
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
 		&nbsp;-&nbsp;
 		<c:choose>
-		<c:when test="${user == t.user}"><c:out value="OMA" /></c:when>
+		<c:when test="${user == t.user}"><span style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></span></c:when>
 		<c:otherwise><span style="text-transform: uppercase;"><c:out value="${t.user}" /></span></c:otherwise>
 		</c:choose>
 		</span>
@@ -328,8 +330,8 @@
 		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
 		<tr>
 		<td>
-		<span class="comment-remove">
-		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
+		<span>
+		<span style="font-weight: ${user == c.user ? 'bold' : 'normal'};"><c:out value="${c.user}" /></span>:&nbsp;<c:out value="${c.comment}" />
 		</span>
 		</td>
 		<td>
