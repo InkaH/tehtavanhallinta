@@ -120,13 +120,14 @@
 		
 	<c:if test="${edit=='0'}">
 	<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}" style="white-space: nowrap;">
-	<div class="col-sm-12">
-	<h4 style="line-height: 42px; display: inline;"><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h4>	
-	<div class="dropdown" style="display: inline-block;">
+	<div class="col-sm-12" style="display: block; width: 100%;">
+		
+	
+	<div class="dropdown" style="display: block;">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-	<img src="<c:url value="/resources/img/brush.png" />" style="margin: -8px 0 0 50px; width: 22px;" />
+	<img src="<c:url value="/resources/img/cog.png" />" style="float: right; margin: 9px 5px 0 0; width: 22px;" />
 	</a>
-	<ul class="dropdown-menu dropdown-menu-left">
+	<ul class="dropdown-menu dropdown-menu-right" style="margin: 37px -14px 0 0;">
 	<li class="theme-selected">
 	<a href="#" onclick="document.forms[4].themeID.value=1;document.forms[4].submit();">Grind (sinivihreä)</a>
 	</li>
@@ -153,6 +154,7 @@
 	</li>
 	</ul>
 	</div>
+	<h4 style="line-height: 42px; display: inline;"><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h4>	
 	</div>
 	</div>
 	</c:if>
