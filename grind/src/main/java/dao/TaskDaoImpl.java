@@ -137,14 +137,12 @@ public class TaskDaoImpl implements TaskDAO {
 		return comments;
 	}
 
-	//tallennetaan käyttäjän tiedot tietokantaan
 	public void saveUser(User user) {
 		String sql = "INSERT INTO User(u_user, u_password, u_role) VALUES (?, ?, ?)";
 		Object[] parameters = new Object[] { user.getUsername(), user.getPassword(), user.getRole() };
 		getJdbcTemplate().update(sql, parameters);
 	}
 
-	//tarkastetaan, löytyykö annettu käyttäjänimi tietokannasta
 	public boolean searchUser(String username) {
 		String sql = "select COUNT(u_user) FROM User WHERE u_user = ?";
 		Object[] parameters = new Object[] { username };

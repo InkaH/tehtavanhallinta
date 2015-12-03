@@ -60,6 +60,8 @@ public class TaskController {
 		if (logout != null) {
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
+		//registration form is a Spring form so we have to place 
+		//the User object values to it
 		User user = new User("", "");
 		model.addAttribute("user", user);
 		return "login";
@@ -188,25 +190,27 @@ public class TaskController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String saveUser(Model model, @Valid User user,
 			BindingResult bindingResult) {
-		// jos käyttäjänimessä on virhe, palataan login-sivulle
+		// if User class validation rules did not pass
+		// return to login and must set the hashed pw back to empty
 		if (bindingResult.hasErrors()) {
 			user.setEmptyPassword("");
 			return "login";
 		}
-		// tarkistetaan ettei kyseiselle käyttäjänimelle ole jo luotu tiliä
+		// check there's no such username already in teh database
 		boolean duplicateUsername = getDao().searchUser(user.getUsername());
 		if (!duplicateUsername) {
 			user.setRole("ROLE_USER");
 			getDao().saveUser(user);
-			// jos rekisteröinti onnistuu, palataan login-sivulle
+			// if registration is successful, redirect to login page, and registration form
+			//values have to be set to empty again
 			model.addAttribute("success", "Rekisteröinti onnistui.");
 			user.setUsername("");
 			user.setEmptyPassword("");
 			model.addAttribute("user", user);
 			return "login";
 		} else {
-			// jos nimi on jo käytössä, tyhjätään kentät ja palataan
-			// login-sivulle
+			// if username already exists, return to login page with
+			// error message and set regist. form values to empty
 			model.addAttribute("userExistsError",
 					"Antamallasi sähköpostiosoitteella on jo rekisteröidytty palveluun.");
 			user.setUsername("");
@@ -216,6 +220,8 @@ public class TaskController {
 		}
 	}
 	
+	// we're not needing this page right now but it's working as an example
+	// in case we need it later + printing of user details is also an example
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
