@@ -1,5 +1,19 @@
 @CHARSET "ISO-8859-1";
 
+.nav-tabs > li > a {
+    color: #8c8c8c;
+}
+
+.nav-tabs > li > a:hover {
+    color: #8c8c8c;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+    color: #696969;
+}
+
 #logged {
 	color: #FFFFFF;
 	font-size: 13px;
