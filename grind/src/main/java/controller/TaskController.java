@@ -58,6 +58,8 @@ public class TaskController {
 			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
 		}
 		if (logout != null) {
+			activeTask = 0;
+			editingActive = 0;
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
 		//registration form is a Spring form so we have to place 
