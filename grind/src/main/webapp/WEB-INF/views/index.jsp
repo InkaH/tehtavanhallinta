@@ -329,7 +329,7 @@
 	<div style="white-space: nowrap;">
 	<form:form role="form" modelAttribute="newComment" action="addComment" method="post" accept-charset="UTF-8">
 	<form:hidden path="id" value="0" />
-	<form:input path="comment" required="required" autocomplete="off" onclick="this.focus();" maxlength="500" style="padding: 0 5px 0 5px; font: normal 12px Verdana; color: #000000; margin-bottom: 3px; margin-right: -130px; border: 0; border-radius: 0; width: 100%; height: 25px;" />
+	<form:input path="comment" required="required" autocomplete="off" onclick="this.focus();" maxlength="500" style="padding: 0 137px 0 5px; font: normal 12px Verdana; color: #000000; margin-bottom: 3px; margin-right: -130px; border: 0; border-radius: 0; width: 100%; height: 25px;" />
 	<fmt:formatDate var="dateNow" value="${now}" pattern="d.M.yyyy" type="date" />
 	<form:hidden path="date" value="${dateNow}" />
 	<fmt:formatDate var="timeNow" value="${now}" pattern="HH:mm" type="time" />
