@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import bean.User;
 import bean.Comment;
 import bean.Task;
 
@@ -36,7 +37,7 @@ public class TaskDaoImpl implements TaskDAO {
 
 	public void addTask(Task task, String user) {
 		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_info, t_done, t_expire, t_group, t_user) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?, t_info=?, t_done=?, t_expire=?, t_group=?";
-		
+
 		final int idDB = task.getId();
 		final String taskDB = task.getTask();
 		final String infoDB = task.getInfo();
@@ -72,7 +73,7 @@ public class TaskDaoImpl implements TaskDAO {
 		if(idDB == 0){
 			final String sql_2 = "INSERT INTO Usertask(ut_task, ut_user) VALUES (?, ?)";
 			Object[] parameters = new Object[] {task_id, user};
-			getJdbcTemplate().update(sql_2, parameters);
+			jdbcTemplate.update(sql_2, parameters);
 		}	
 	}
 
@@ -87,7 +88,7 @@ public class TaskDaoImpl implements TaskDAO {
 			}
 		});
 	}
-	
+
 	public void shareTask(int id, String groupID) {
 		final String sql = "UPDATE Task SET t_shared=1, t_group=? where t_id=?";
 		final int index = id;
@@ -104,18 +105,19 @@ public class TaskDaoImpl implements TaskDAO {
 
 
 	public List<Task> getAll(String username) {
-		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? OR (t_group > '' AND t_group IS NOT NULL) ORDER BY t_expire";
+		// final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tasks;
 	}
-	
+
 	public void addComment(Comment c) {
 		final String sql = "INSERT INTO Comment(c_comment, c_datetime, c_task, c_user) VALUES (?, ?, ?, ?)";
 		Object[] parameters = new Object[] {c.getComment(), Timestamp.valueOf(c.getDatetime()), c.getTask(), c.getUser()};
-		getJdbcTemplate().update(sql, parameters);
+		jdbcTemplate.update(sql, parameters);
 	}
-	
+
 	public void deleteComment(int id) {
 		final String sql = "DELETE FROM Comment where c_id=?";
 		final int index = id;
@@ -134,4 +136,35 @@ public class TaskDaoImpl implements TaskDAO {
 		List<Comment> comments = jdbcTemplate.query(sql, new Object[] {task}, mapper);
 		return comments;
 	}
+
+	public void saveUser(User user) {
+		String sql = "INSERT INTO User(u_user, u_password, u_role) VALUES (?, ?, ?)";
+		Object[] parameters = new Object[] { user.getUsername(), user.getPassword(), user.getRole() };
+		jdbcTemplate.update(sql, parameters);
+	}
+	
+	public int getTheme(String user) {
+		String sql = "SELECT u_theme FROM User WHERE u_user=?";
+		String th = jdbcTemplate.queryForObject(sql, new Object[] {user}, String.class);
+		return Integer.parseInt(th);
+	}
+	
+	public void saveTheme(String user, int themeID) {
+		String sql = "UPDATE User SET u_theme=? WHERE u_user=?";
+		Object[] parameters = new Object[] {themeID, user};
+		jdbcTemplate.update(sql, parameters);
+	}
+
+	public boolean searchUser(String username) {
+		String sql = "select COUNT(u_user) FROM User WHERE u_user = ?";
+		Object[] parameters = new Object[] { username };
+		int count = 0;
+		count = jdbcTemplate.queryForObject(sql, parameters, Integer.class);
+		if(count == 0){
+			return false;
+		}
+		else return true;
+
+	}
+
 }

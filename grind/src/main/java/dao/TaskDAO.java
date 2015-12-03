@@ -4,6 +4,7 @@ import java.util.List;
 
 import bean.Task;
 import bean.Comment;
+import bean.User;
 
 public interface TaskDAO {
 	
@@ -20,4 +21,13 @@ public interface TaskDAO {
 	public abstract void deleteComment(int id);
 	
 	public abstract List<Comment> getComments(int task);
+	
+	public void saveUser(User user);
+		
+	public boolean searchUser(String username);
+	
+	public int getTheme(String user);
+	
+	public void saveTheme(String user, int theme);
+	
 }

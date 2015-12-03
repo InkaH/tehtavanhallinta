@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,12 +15,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TaskDAO;
+import bean.User;
 import bean.Task;
 import bean.Comment;
 
@@ -27,6 +30,7 @@ import bean.Comment;
 @RequestMapping(value = "/")
 public class TaskController {
 	
+	private String username;
 	private Task editItem = new Task();
 	private List<Task> tasks;
 	private List<Comment> comments;
@@ -34,6 +38,7 @@ public class TaskController {
 	private int editingActive = 0;
 	private int activeTask = 0;
 	private int theme = 3;
+	private boolean startup = true;
 
 	@Inject
 	private TaskDAO dao;
@@ -55,14 +60,25 @@ public class TaskController {
 			model.addAttribute("error", "Virheellinen k‰ytt‰j‰nimi tai salasana.");
 		}
 		if (logout != null) {
+			activeTask = 0;
+			editingActive = 0;
+			startup = true;
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
+		//registration form is a Spring form so we have to place 
+		//the User object values to it
+		User user = new User("", "");
+		model.addAttribute("user", user);
 		return "login";
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
-		String username = principal.getName();
+		if (startup) {
+			this.theme = dao.getTheme(principal.getName());
+			startup = false;
+		}
+		username = principal.getName();
 		tasks = dao.getAll(username);
 		if (activeTask > 0) {
 			comments = dao.getComments(activeTask);
@@ -175,11 +191,48 @@ public class TaskController {
 	
 	@RequestMapping(value = "theme", method = RequestMethod.POST)
 	public String changeTheme(@RequestParam String themeID) {
-		this.theme = Integer.parseInt(themeID);
+		int tID = Integer.parseInt(themeID);
+		this.theme = tID;
+		dao.saveTheme(username, tID);
 		activeTask = 0;
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	public String saveUser(Model model, @Valid User user,
+			BindingResult bindingResult) {
+		// if User class validation rules did not pass
+		// return to login and must set the hashed pw back to empty
+		if (bindingResult.hasErrors()) {
+			user.setEmptyPassword("");
+			return "login";
+		}
+		// check there's no such username already in teh database
+		boolean duplicateUsername = getDao().searchUser(user.getUsername());
+		if (!duplicateUsername) {
+			user.setRole("ROLE_USER");
+			getDao().saveUser(user);
+			// if registration is successful, redirect to login page, and registration form
+			//values have to be set to empty again
+			model.addAttribute("success", "Rekister√∂inti onnistui.");
+			user.setUsername("");
+			user.setEmptyPassword("");
+			model.addAttribute("user", user);
+			return "login";
+		} else {
+			// if username already exists, return to login page with
+			// error message and set regist. form values to empty
+			model.addAttribute("userExistsError",
+					"Antamallasi s√§hk√∂postiosoitteella on jo rekister√∂idytty palveluun.");
+			user.setUsername("");
+			user.setEmptyPassword("");
+			model.addAttribute("user", user);
+			return "login";
+		}
+	}
+	
+	// we're not needing this page right now but it's working as an example
+	// in case we need it later + printing of user details is also an example
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()

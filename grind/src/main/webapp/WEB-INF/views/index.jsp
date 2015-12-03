@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!-- create current date-time to compare if the task is expired -->
 <jsp:useBean id="now" class="java.util.Date" />
@@ -57,30 +58,50 @@
 <!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 <!-- FORM[1]: EDIT -->
 <form id="editForm" action="edit" method="post">
 <input type="hidden" id="editTask" name="editTask" value="0" />
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 <!-- FORM[2]: SHARE -->
 <form id="shareForm" action="share" method="post">
 <input type="hidden" id="shareTask" name="shareTask" value="0" />
 <input type="hidden" id="groupID" name="groupID" value="0" />
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 <!-- FORM[3]: CANCEL -->
 <form id="cancelForm" action="cancel" method="post">
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 <!-- FORM[4]: THEME -->
 <form id="themeForm" action="theme" method="post">
 <input type="hidden" id="themeID" name="themeID" value="0" />
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 <!-- FORM[5]: ACTIVATE -->
 <form id="activationForm" action="activation" method="post">
 <input type="hidden" id="activeTask" name="activeTask" value="0" />
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 <!-- FORM[6]: DELETE COMMENT -->
 <form id="delCommentForm" action="delComment" method="post">
 <input type="hidden" id="delComment" name="delComment" value="0" />
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
+</form>
+<!-- FORM[7]: LOGOUT -->
+<c:url var="logoutUrl" value="/logout"/>
+<form id="logoutForm" action="logout" method="post">
+<input type="hidden" name="scrollPos" value="0" />
+ <sec:csrfInput />
 </form>
 
 <div class="container">
@@ -248,6 +269,7 @@
 		<div class="col-xs-offset-2 col-xs-8 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 	
 		<!-- dropdown list of optional functions of a single task -->
+		<c:if test="${user == t.user}">
 		<div class="task-options">
 			<div class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
@@ -268,6 +290,7 @@
 			</ul>
 			</div>
 		</div>
+		</c:if>
 	
 		<span>
 		<small>
@@ -278,6 +301,11 @@
 		<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 		<span>
 		<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
+		&nbsp;-&nbsp;
+		<c:choose>
+		<c:when test="${user == t.user}"><span style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></span></c:when>
+		<c:otherwise><span style="text-transform: uppercase;"><c:out value="${t.user}" /></span></c:otherwise>
+		</c:choose>
 		</span>
 		<br>
 		</c:if>
@@ -302,13 +330,13 @@
 		<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
 		<tr>
 		<td>
-		<span class="comment-remove">
-		<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
+		<span>
+		<span style="font-weight: ${user == c.user ? 'bold' : 'normal'};"><c:out value="${c.user}" /></span>:&nbsp;<c:out value="${c.comment}" />
 		</span>
 		</td>
 		<td>
 		<c:if test="${c.user == user}">
-		<span onclick="document.forms[6].delComment.value='${c.id}';document.forms[6].submit();" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+		<span onclick="if(!confirm('Haluatko poistaa kommentin pysyvästi?')){return false;}else{document.forms[6].delComment.value='${c.id}';document.forms[6].submit();}" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
 		</c:if>&nbsp;
 		<span class="comment-remove">
 		<fmt:formatDate value="${parsedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedTime}" pattern="HH:mm" type="time" />
@@ -346,8 +374,6 @@
 	</c:if>
 </div>
 
-
-
 <!-- Banner -->
 <div id="banner">
 	<c:choose>
@@ -361,6 +387,14 @@
 	<c:when test="${theme == 8}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-no-color.png" />" /></c:when>
 	<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" /></c:otherwise>
 	</c:choose>
+	
+	<div id="logged">
+	<span style="text-transform: uppercase;">
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+    <c:out value="${pageContext.request.userPrincipal.name}" />
+    </c:if>
+	</span>&nbsp;-&nbsp;&nbsp;<a href="#" onclick="document.forms[7].submit();">Kirjaudu ulos</a>	
+	</div>
 </div>
 </body>
 </html>
