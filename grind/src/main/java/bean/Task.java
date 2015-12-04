@@ -15,34 +15,34 @@ public class Task implements Serializable {
 
 	private int id;
 	private String task;
-	private String info;
 	private int done; // 0 = Ei tehty, 1 = Tehty
 	@DateTimeFormat(pattern = "d.M.yyyy")
 	private LocalDate date;
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime time;
 	private String group;
+	private boolean shared;
 	private String user;
 
 	public Task() {
 		this.id = 0;
 		this.task = "";
-		this.info = "";
 		this.done = 0;
 		this.date = null;
 		this.time = null;
 		this.group = "";
+		this.shared = false;
 		this.user = "";
 	}
 
-	public Task(int id, String task, String info, int status, LocalDateTime datetime, String group, String user) {
+	public Task(int id, String task, String info, int done, LocalDateTime datetime, String group, boolean shared, String user) {
 		this.id = id;
 		this.task = task;
-		this.info = info;
-		this.done = status;
+		this.done = done;
 		this.date = datetime.toLocalDate();
 		this.time = datetime.toLocalTime();
 		this.group = group;
+		this.shared = shared;
 		this.user = user;
 	}
 	
@@ -53,11 +53,20 @@ public class Task implements Serializable {
 	public void resetTask() {
 		this.id = 0;
 		this.task = "";
-		this.info = "";
 		this.done = 0;
 		this.date = null;
 		this.time = null;
+		this.shared = false;
 		this.group = "";
+		this.user = "";
+	}
+	
+	public boolean getShared() {
+		return shared;
+	}
+	
+	public void setShared(boolean shared) {
+		this.shared = shared;
 	}
 	
 	public String getUser() {
@@ -91,14 +100,6 @@ public class Task implements Serializable {
 
 	public void setTask(String task) {
 		this.task = task;
-	}
-
-	public String getInfo() {
-		return info;
-	}
-
-	public void setInfo(String info) {
-		this.info = info;
 	}
 
 	public int getDone() {

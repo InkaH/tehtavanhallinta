@@ -36,14 +36,15 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 	public void addTask(Task task, String user) {
-		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_info, t_done, t_expire, t_group, t_user) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?, t_info=?, t_done=?, t_expire=?, t_group=?";
+		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_done, t_expire, t_group, t_shared, t_user) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?, t_done=?, t_expire=?, t_group=?, t_shared=?";
 
 		final int idDB = task.getId();
 		final String taskDB = task.getTask();
-		final String infoDB = task.getInfo();
 		final int statusDB = task.getDone();
 		final LocalDateTime datetimeDB = task.getDatetime();
 		final String groupDB = task.getGroup();
+		// Notice! Boolean converted to Int
+		final int sharedDB = (task.getShared() ? 1 : 0);
 		final String userDB = user;
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -55,17 +56,17 @@ public class TaskDaoImpl implements TaskDAO {
 					ps.setInt(1, idDB);
 				}
 				ps.setString(2, taskDB);
-				ps.setString(3, infoDB);
-				ps.setInt(4, statusDB);
-				ps.setTimestamp(5, Timestamp.valueOf(datetimeDB));
-				ps.setString(6, groupDB);
+				ps.setInt(3, statusDB);
+				ps.setTimestamp(4, Timestamp.valueOf(datetimeDB));
+				ps.setString(5, groupDB);
+				ps.setInt(6, sharedDB);
 				ps.setString(7, userDB);
 				// replacement values
 				ps.setString(8, taskDB);
-				ps.setString(9, infoDB);
-				ps.setInt(10, statusDB);
-				ps.setTimestamp(11, Timestamp.valueOf(datetimeDB));
-				ps.setString(12, groupDB);
+				ps.setInt(9, statusDB);
+				ps.setTimestamp(10, Timestamp.valueOf(datetimeDB));
+				ps.setString(11, groupDB);
+				ps.setInt(12, sharedDB);
 				return ps;
 			}
 		}, idHolder);
@@ -89,15 +90,17 @@ public class TaskDaoImpl implements TaskDAO {
 		});
 	}
 
-	public void shareTask(int id, String groupID) {
-		final String sql = "UPDATE Task SET t_shared=1, t_group=? where t_id=?";
+	public void shareTask(int id, String groupID, boolean status) {
+		final String sql = "UPDATE Task SET t_shared=?, t_group=? where t_id=?";
+		final boolean shareStatus = status;
 		final int index = id;
 		final String group = groupID;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql);
-				ps.setString(1, group);
-				ps.setInt(2, index);
+				ps.setInt(1, (shareStatus ? 1 : 0));
+				ps.setString(2, group);
+				ps.setInt(3, index);
 				return ps;
 			}
 		});
@@ -105,15 +108,14 @@ public class TaskDaoImpl implements TaskDAO {
 
 
 	public List<Task> getAllPrivate(String username) {
-		// final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? OR (t_group > '' AND t_group IS NOT NULL) ORDER BY t_expire";
-		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllShared(String username) {
-		final String sql = "SELECT t_id, t_task, t_info, t_done, t_expire, t_group, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_group > '' AND t_group IS NOT NULL ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_shared='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;

@@ -71,6 +71,7 @@
 <form id="shareForm" action="share" method="post">
 <input type="hidden" id="shareTask" name="shareTask" value="0" />
 <input type="hidden" id="groupID" name="groupID" value="0" />
+<input type="hidden" id="shareStatus" name="shareStatus" value="0" />
 <input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
@@ -173,12 +174,13 @@
 		<form:form role="form" class="form-horizontal" modelAttribute="newTask" action="add" method="post" accept-charset="UTF-8">
 		<form:hidden path="id" />
 		<form:hidden path="done" />
+		
 		<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group">
 			<label class="control-label col-sm-2" for="kuvaus">* Tehtävä:</label>
 				<div class="col-sm-8">
-				<!-- spring form: cssClass = class (html) -->
-				<form:input path="task" cssClass="form-control" placeholder="Kirjoita tehtävä" required="required" maxlength="80" />
+				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
+				<form:textarea path="task" required="required" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävä (pakollinen)" maxlength="1000" /> 
 				</div>
 			</div>
 		</div>
@@ -187,17 +189,15 @@
 			<div class="form-group">
 			<label class="control-label col-sm-2" for="ryhma">Ryhmätunnus:</label>
 				<div class="col-sm-8">
-				<form:input path="group" cssClass="form-control" placeholder="Kirjoita ryhmätunnus" style="text-transform: uppercase" maxlength="50" />
+				<form:input path="group" cssClass="form-control" placeholder="Kirjoita ryhmätunnus (valinnainen)" style="text-transform: uppercase" maxlength="50" />
 				</div>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label col-sm-2" for="kuvaus">Lisätiedot:</label>
-				<div class="col-sm-8">
-				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
-				<form:textarea path="info" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävän lisätiedot" maxlength="1000" /> 
+				<div class="col-sm-offset-2 col-sm-8">
+					<form:checkbox path="shared" value="" />&nbsp;&nbsp;Jaetaan julkisena
 				</div>
 			</div>
 		</div>
@@ -259,7 +259,7 @@
 	<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 	</li>
 	<li>
-	<a href="#" onclick="sh=prompt('Anna ryhmätunnus:','${t.group}');if(sh!=null){document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
+	<a href="#" onclick="sh=prompt('Jaa tehtävä julkisesti ryhmätunnuksella:','${t.group}');if(sh!=null){document.forms[2].shareStatus.value='true';document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}else{return false;}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 	</li>
 	<li role="separator" class="divider"></li>
 	<li>
@@ -278,8 +278,7 @@
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 	<span>
-	<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" escapeXml="false" />
-	&nbsp;&nbsp;&nbsp;
+	<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" />
 	<c:choose>
 	<c:when test="${user == t.user}"><div class="username-tag" style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></div></c:when>
 	<c:otherwise><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:otherwise>
@@ -292,7 +291,7 @@
 	<div class="arrow-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;">&nbsp;&#8811;&nbsp;&nbsp;</div>
 	</div>
 	<c:if test="${not empty t.group}">
-	<div class="groupid"><c:out value="${t.group}" /></div>
+	<div class="groupid"><c:out value="${t.shared ? 'JAETTU&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : ''}"  escapeXml="false" /><c:out value="${t.group}" /></div>
 	</c:if>
 	
 	<c:if test="${activeTask == t.id}">

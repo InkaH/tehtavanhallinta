@@ -11,10 +11,10 @@ public class TaskRowMapper implements RowMapper<Task> {
 		Task task = new Task();
 		task.setId(rs.getInt("t_id"));
 		task.setTask(rs.getString("t_task"));
-		task.setInfo(rs.getString("t_info"));
 		task.setDone(rs.getInt("t_done"));
 		task.setDatetime(rs.getTimestamp("t_expire").toLocalDateTime());
 		task.setGroup(rs.getString("t_group"));
+		task.setShared(rs.getString("t_shared").equals("0") ? false : true);
 		task.setUser(rs.getString("ut_user"));
 		return task;
 	}

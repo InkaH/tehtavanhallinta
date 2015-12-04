@@ -151,10 +151,10 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "share", method = RequestMethod.POST)
-	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID) {
+	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID, @RequestParam String shareStatus) {
 		int sh = Integer.parseInt(shareTask);
 		if (sh > 0) {
-			dao.shareTask(sh, groupID.toUpperCase());
+			dao.shareTask(sh, groupID.toUpperCase(), (shareStatus.equalsIgnoreCase("true") ? true : false));
 		}
 		activeTask = 0;
 		return "redirect:/index";

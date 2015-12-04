@@ -78,8 +78,6 @@
 	border-bottom: 1px solid #FFFFFF;
 }
 
-
-
 #comment-table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -100,8 +98,7 @@
 #comment-table tr td:first-child {
 	width: auto;
 	text-align: left;
-	padding: 0 10px 0 10px;
-	line-height: 30px;
+	padding: 5px 10px 5px 10px;
 }
 
 #comment-table tr td:last-child {
@@ -109,8 +106,7 @@
 	white-sapce: nowrap;
 	overflow: hidden;
 	text-align: right;
-	padding: 0 15px 0 10px;
-	line-height: 30px;
+	padding: 5px 10px 5px 10px;
 }
 
 #comment-area {
@@ -150,9 +146,7 @@
 	font-style: italic;
 }
 
-
-
-@media (max-width: 767px) {
+@media ( max-width : 767px) {
 	.container, body {
 		padding: 20px 0 0 0 !important;
 		margin: 20px 0 0 0 !important;
@@ -187,16 +181,14 @@
 		border: 0px solid #000000;
 		width: 100% !important;
 		white-space: initial !important;
-		line-height: 20px !important;
 	}
 	#comment-table tr td:last-child {
 		border: 0px solid #000000;
 		width: 0% !important;
-		line-height: 20px !important;
 	}
 	#comment {
-	 margin: 5px 0 5px 0 !important;
-	 padding: 0 3px 0 3px !important;
+		margin: 5px 0 5px 0 !important;
+		padding: 0 3px 0 3px !important;
 	}
 	#commentSubmit {
 		position: relative !important;
@@ -211,13 +203,13 @@
 	}
 }
 
-@media (max-width: 400px) {
+@media ( max-width : 400px) {
 	#logged {
 		display: none !important;
 	}
 	#logged-mobile {
 		display: block !important;
-	}		
+	}
 }
 
 /* LOGIN CSS */

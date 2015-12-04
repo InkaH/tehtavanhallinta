@@ -13,11 +13,11 @@ $(document).ready(function() {
 	
 	$("#timepicker").timepicker();
 
-	$('#uusiTehtava input[type=text]').on('change invalid', function() {
+	$('#newTask textarea').on('change invalid', function() {
 		var textfield = $(this).get(0);
 		textfield.setCustomValidity('');
 		if (!textfield.validity.valid) {
-			textfield.setCustomValidity('Aihe on pakollinen tieto');
+			textfield.setCustomValidity('Pakollinen tieto puuttuu');
 		}
 	});
 	
