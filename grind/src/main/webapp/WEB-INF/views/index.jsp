@@ -243,7 +243,7 @@
 	</div>
 	</div>	
 
-	<c:if test="${activeTab==1}">
+	<c:if test="${activeTab == 1}">
 	<div class="row" style="margin: 5px 0 10px 0;">
   	<label class="col-sm-2" for="groupSelection" style="font-weight: normal;">Ryhmätunnus:</label>
   	<div class="col-sm-8">
@@ -269,7 +269,7 @@
 	<c:if test="${empty tasks}">
 	<div class="row">
 	<div class="col-sm-12">
-	Sinulla ei ole tehtäviä
+	<br>Sinulla ei ole tehtäviä ...
 	</div>
 	</div>
 	</c:if>
@@ -323,7 +323,7 @@
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 	<span>
-	<c:out value="${(parsedAjankohta > now) ? '' : (t.done != 0 && compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" />
+	<c:out value="${(parsedAjankohta > now) ? '' : (t.done != 0 ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty'))}" />
 	<c:choose>
 	<c:when test="${user == t.user}"><div class="username-tag" style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></div></c:when>
 	<c:otherwise><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:otherwise>
