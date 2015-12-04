@@ -66,6 +66,7 @@ public class TaskController {
 			activeTask = 0;
 			editingActive = 0;
 			startup = true;
+			activeTab = 0;
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
 		//registration form is a Spring form so we have to place 
