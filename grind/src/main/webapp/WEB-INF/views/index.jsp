@@ -202,6 +202,8 @@
 			</div>
 		</div>
 		
+		
+		
 		<!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
 		<div class="row  ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group has-feedback">

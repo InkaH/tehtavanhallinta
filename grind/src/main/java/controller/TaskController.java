@@ -118,6 +118,9 @@ public class TaskController {
 				task.setTime(LocalTime.of(23, 59));
 			}
 			String username = principal.getName();
+			if (task.getShared() && task.getGroup().equals("")) {
+				task.setShared(false);
+			}
 			dao.addTask(task, username);
 		}
 		editingActive = 0;
@@ -160,7 +163,7 @@ public class TaskController {
 	@RequestMapping(value = "share", method = RequestMethod.POST)
 	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID, @RequestParam String shareStatus) {
 		int sh = Integer.parseInt(shareTask);
-		if (sh > 0) {
+		if (sh > 0 && !groupID.equals("")) {
 			dao.shareTask(sh, groupID.toUpperCase(), (shareStatus.equalsIgnoreCase("true") ? true : false));
 		}
 		activeTask = 0;
