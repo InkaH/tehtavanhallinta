@@ -162,8 +162,8 @@
 		
 	<c:if test="${edit=='1'}">
 	<div class="row">
-	<div class="col-sm-12">
-	<h3>Muokkaa tehtävää</h3>
+	<div class="col-sm-12 ${edit=='0' ? 'label-color' : 'label-color-edit'}">
+	<h4>Muokkaa tehtävää</h4>
 	</div>
 	</div>
 	</c:if>
@@ -175,7 +175,7 @@
 		<form:hidden path="id" />
 		<form:hidden path="done" />
 		
-		<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}">
+		<div class="row  ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group">
 			<label class="control-label col-sm-2" for="kuvaus">* Tehtävä:</label>
 				<div class="col-sm-8">
@@ -185,7 +185,7 @@
 			</div>
 		</div>
 		
-		<div class="row">
+		<div class="row  ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group">
 			<label class="control-label col-sm-2" for="ryhma">Ryhmätunnus:</label>
 				<div class="col-sm-8">
@@ -203,7 +203,7 @@
 		</div>
 		
 		<!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
-		<div class="row">
+		<div class="row  ${edit=='0' ? 'label-color' : 'label-color-edit'}">
 			<div class="form-group has-feedback">
 			<label class="control-label col-sm-2" for="kuvaus">Ajankohta:</label>
 				<div class="controls bootstrap-timepicker col-sm-4" >
