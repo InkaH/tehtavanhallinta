@@ -108,7 +108,7 @@ public class TaskDaoImpl implements TaskDAO {
 
 
 	public List<Task> getAllPrivate(String username) {
-		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND t_done='0' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tasks;
@@ -125,6 +125,13 @@ public class TaskDaoImpl implements TaskDAO {
 		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_shared='1' AND t_group=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {group}, mapper);
+		return tasks;
+	}
+	
+	public List<Task> getAllDone(String user) {
+		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_user=? AND t_done='1' ORDER BY t_expire";
+		RowMapper<Task> mapper = new TaskRowMapper();
+		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);
 		return tasks;
 	}
 
@@ -171,6 +178,12 @@ public class TaskDaoImpl implements TaskDAO {
 	public void saveTheme(String user, int themeID) {
 		String sql = "UPDATE User SET u_theme=? WHERE u_user=?";
 		Object[] parameters = new Object[] {themeID, user};
+		jdbcTemplate.update(sql, parameters);
+	}
+	
+	public void setDone(int doneID, int doneValue) {
+		String sql = "UPDATE Task SET t_done=? WHERE t_id=?";
+		Object[] parameters = new Object[] {doneValue, doneID};
 		jdbcTemplate.update(sql, parameters);
 	}
 	

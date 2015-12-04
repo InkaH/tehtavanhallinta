@@ -90,6 +90,8 @@ public class TaskController {
 			if(groupListDefault.equalsIgnoreCase("Kaikki")) {
 				tasks = dao.getAllShared(username);
 			}
+		} else if (activeTab == 2) {
+			tasks = dao.getAllDone(username);
 		}
 		
 		if (activeTask > 0) {
@@ -231,6 +233,18 @@ public class TaskController {
 	public String getGroupTasks(@RequestParam String groupSelection) {
 		tasks = dao.getAllSharedByGroup(groupSelection);
 		groupListDefault = groupSelection;		
+		activeTask = 0;
+		editingActive = 0;
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "setDone", method = RequestMethod.POST)
+	public String setDone(@RequestParam String doneID, @RequestParam String doneValue) {
+		int dID = Integer.parseInt(doneID);
+		int dVA = Integer.parseInt(doneValue);
+		if (dID > 0) {
+			dao.setDone(dID, dVA);
+		}
 		activeTask = 0;
 		editingActive = 0;
 		return "redirect:/index";

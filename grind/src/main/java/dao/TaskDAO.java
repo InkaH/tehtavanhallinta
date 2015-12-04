@@ -20,20 +20,24 @@ public interface TaskDAO {
 	
 	public abstract List<Task> getAllSharedByGroup(String group);
 	
+	public abstract List<Task> getAllDone(String user);
+	
 	public abstract void addComment(Comment c);
 	
 	public abstract void deleteComment(int id);
 	
 	public abstract List<Comment> getComments(int task);
 	
-	public void saveUser(User user);
+	public abstract void saveUser(User user);
 		
-	public boolean searchUser(String username);
+	public abstract boolean searchUser(String username);
 	
-	public int getTheme(String user);
+	public abstract int getTheme(String user);
 	
-	public void saveTheme(String user, int theme);
+	public abstract void saveTheme(String user, int theme);
 	
-	public List<String> getGroupList();
+	public abstract List<String> getGroupList();
+	
+	public abstract void setDone(int id, int value);
 	
 }

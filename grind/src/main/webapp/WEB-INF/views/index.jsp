@@ -109,6 +109,12 @@
 <input type="hidden" id="tabID" name="tabID" value="0" />
 <sec:csrfInput />
 </form>
+<!-- FORM[9]: SET DONE -->
+<form id="doneForm" action="setDone" method="post">
+<input type="hidden" id="doneID" name="doneID" value="0" />
+<input type="hidden" id="doneValue" name="doneValue" value="0" />
+<sec:csrfInput />
+</form>
 
 <div class="container">
 	
@@ -116,7 +122,8 @@
 	
 	<ul class="nav nav-tabs">
     <li class="${activeTab == 0 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=0;document.forms[8].submit();">Omat</a></li>
-    <li class="${activeTab == 1 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=1;document.forms[8].submit();">Jaetut</a></li>
+    <li class="${activeTab == 2 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=2;document.forms[8].submit();">Tehdyt</a></li>
+    <li class="${activeTab == 1 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=1;document.forms[8].submit();">Ryhmät</a></li>
   	</ul>
 		
 	<c:if test="${edit=='0'}">
@@ -274,12 +281,23 @@
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
-	<div class="col-sm-12 well ${(parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
+	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : (t.done != 0 ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn'))}">
 	<c:if test="${user == t.user}">
 	<div class="task-options">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
 	<ul class="dropdown-menu dropdown-menu-right">
+	
+	<c:if test="${t.done == 1}" >
+	<li>
+	<a href="#" onclick="if(!confirm('Palautetaanko tehtävä tekemättömiin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='0';document.forms[9].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Palauta</a>
+	</li>
+	</c:if>
+	
+	<c:if test="${t.done == 0}">
+	<li>
+	<a href="#" onclick="if(!confirm('Siirretäänkö tehtävä tehtyihin tehtäviin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='1';document.forms[9].submit();}"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Merkitse tehdyksi</a>
+	</li>	
 	<li>
 	<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
 	</li>
@@ -287,6 +305,8 @@
 	<a href="#" onclick="sh=prompt('Jaa tehtävä julkisesti ryhmätunnuksella:','${t.group}');if(sh!=null){document.forms[2].shareStatus.value='true';document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}else{return false;}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
 	</li>
 	<li role="separator" class="divider"></li>
+	</c:if>
+	
 	<li>
 	<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 	</li>
@@ -303,7 +323,7 @@
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 	<span>
-	<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" />
+	<c:out value="${(parsedAjankohta > now) ? '' : (t.done != 0 && compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" />
 	<c:choose>
 	<c:when test="${user == t.user}"><div class="username-tag" style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></div></c:when>
 	<c:otherwise><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:otherwise>
