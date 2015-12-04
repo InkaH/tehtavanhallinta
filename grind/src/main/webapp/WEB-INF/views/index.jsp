@@ -327,7 +327,7 @@
 	</c:if>
 	
 	<span>
-	<small>
+	<small style="font-weight: bold;">
 	<c:if test="${compTaskDate != compIdentifier}">
 	<fmt:parseDate value="${t.date}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 	<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
@@ -336,8 +336,8 @@
 	<span>
 	<c:out value="${(parsedAjankohta > now) ? '' : (t.done != 0 ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty'))}" />
 	<c:choose>
-	<c:when test="${user == t.user}"><div class="username-tag" style="text-transform: uppercase; font-weight: bold;"><c:out value="${t.user}" /></div></c:when>
-	<c:otherwise><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:otherwise>
+	<c:when test="${user == t.user && activeTab != 0 && activeTab != 2}"><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:when>
+	<c:when test="${activeTab == 1}"><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:when>
 	</c:choose>
 	</span>
 	</c:if>
