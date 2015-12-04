@@ -188,7 +188,7 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 	
 	public List<String> getGroupList() {
-		String sql = "SELECT t_group FROM Task WHERE t_shared='1' ORDER BY t_group";
+		String sql = "SELECT DISTINCT t_group FROM Task WHERE t_shared='1' ORDER BY t_group";
 		RowMapper<String> mapper = new GroupRowMapper();
 		List<String> grouplist = jdbcTemplate.query(sql, mapper);
 		return grouplist;
