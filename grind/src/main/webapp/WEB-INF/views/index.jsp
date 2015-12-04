@@ -345,7 +345,7 @@
 	</span>
 	<div class="task-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;"><c:out value="${t.task}" /></div>
 	<c:if test="${not empty t.group}">
-	<div class="groupid"><c:out value="${t.shared ? 'JAETTU&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : ''}"  escapeXml="false" /><c:out value="${t.group}" /></div>
+	<div class="groupid"><small><c:out value="${t.shared ? 'Jaettu&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : ''}" escapeXml="false" /><c:out value="${t.group}" /></small></div>
 	</c:if>
 	
 	

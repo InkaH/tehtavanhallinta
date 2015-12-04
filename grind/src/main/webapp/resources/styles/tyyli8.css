@@ -62,14 +62,6 @@
 	cursor: pointer;
 }
 
-.groupid {
-	font-size: 13px;
-	padding: 0;
-	position: absolute;
-	top: 8px;
-	right: 35px;
-}
-
 body {
 	background-color: #FFFFFF;
 	color: #696969;

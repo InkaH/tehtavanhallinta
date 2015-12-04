@@ -1,5 +1,12 @@
 @CHARSET "ISO-8859-1";
 
+.groupid {
+	padding: 0;
+	position: absolute;
+	top: 5px;
+	right: 35px;
+}
+
 .arrow-elem {
 	display: inline-block;
 }
