@@ -233,6 +233,29 @@
 	</div>
 	</div>
 	</div>	
+
+	<c:if test="${activeTab==1}">
+	<div class="row" style="margin: 5px 0 5px 0;">
+  	<label class="col-sm-2" for="groupSelection" style="font-weight: normal;">Ryhmätunnus:</label>
+  	<div class="col-sm-8">
+  	<form action="getGroupTasks" method="post">
+  	<select id="groupSelection" name="groupSelection" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
+    <c:choose>
+    <c:when test="${groupListDefault == 'Kaikki'}"><option value="Kaikki" selected>Kaikki</option></c:when>
+    <c:otherwise><option value="Kaikki">Kaikki</option></c:otherwise>
+    </c:choose>    
+  	<c:forEach var="g" items="${grouplist}" varStatus="loop-g">  
+  	<c:choose>
+    <c:when test="${groupListDefault == g}"><option value="${g}" selected><c:out value="${g}" /></option></c:when>
+    <c:otherwise><option value="${g}"><c:out value="${g}" /></option></c:otherwise>
+    </c:choose>    
+    </c:forEach>
+  	</select>
+	<sec:csrfInput />
+  	</form>
+  	</div>
+	</div>
+	</c:if>	
 	
 	<c:if test="${empty tasks}">
 	<div class="row">

@@ -34,6 +34,8 @@ public class TaskController {
 	private Task editItem = new Task();
 	private List<Task> tasks;
 	private List<Comment> comments;
+	private List<String> grouplist;
+	private String groupListDefault = "Kaikki";
 	private Comment newComment = new Comment();
 	private int editingActive = 0;
 	private int activeTask = 0;
@@ -83,7 +85,10 @@ public class TaskController {
 		if (activeTab == 0) {
 			tasks = dao.getAllPrivate(username);
 		} else if (activeTab == 1) {
-			tasks = dao.getAllShared(username);
+			grouplist = dao.getGroupList();
+			if(groupListDefault.equalsIgnoreCase("Kaikki")) {
+				tasks = dao.getAllShared(username);
+			}
 		}
 		
 		if (activeTask > 0) {
@@ -92,6 +97,8 @@ public class TaskController {
 		model.put("tasks", tasks);
 		model.put("newTask", this.editItem);
 		model.put("comments", comments);
+		model.put("grouplist", grouplist);
+		model.put("groupListDefault", groupListDefault);
 		model.put("newComment", newComment);
 		model.put("edit", Integer.toString(editingActive));
 		model.put("activeTask", activeTask);
@@ -210,6 +217,16 @@ public class TaskController {
 	public String changeTab(@RequestParam String tabID) {
 		int tID = Integer.parseInt(tabID);
 		activeTab = tID;
+		activeTask = 0;
+		editingActive = 0;
+		groupListDefault = "Kaikki";
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "getGroupTasks", method = RequestMethod.POST)
+	public String getGroupTasks(@RequestParam String groupSelection) {
+		tasks = dao.getAllSharedByGroup(groupSelection);
+		groupListDefault = groupSelection;		
 		activeTask = 0;
 		editingActive = 0;
 		return "redirect:/index";

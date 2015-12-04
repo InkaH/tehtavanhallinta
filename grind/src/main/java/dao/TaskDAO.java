@@ -18,6 +18,8 @@ public interface TaskDAO {
 	
 	public abstract List<Task> getAllShared(String user); 
 	
+	public abstract List<Task> getAllSharedByGroup(String group);
+	
 	public abstract void addComment(Comment c);
 	
 	public abstract void deleteComment(int id);
@@ -31,5 +33,7 @@ public interface TaskDAO {
 	public int getTheme(String user);
 	
 	public void saveTheme(String user, int theme);
+	
+	public List<String> getGroupList();
 	
 }

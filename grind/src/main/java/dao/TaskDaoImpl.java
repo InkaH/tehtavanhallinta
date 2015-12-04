@@ -120,6 +120,13 @@ public class TaskDaoImpl implements TaskDAO {
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;
 	}
+	
+	public List<Task> getAllSharedByGroup(String group) {
+		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_shared='1' AND t_group=? ORDER BY t_expire";
+		RowMapper<Task> mapper = new TaskRowMapper();
+		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {group}, mapper);
+		return tasks;
+	}
 
 	public void addComment(Comment c) {
 		final String sql = "INSERT INTO Comment(c_comment, c_datetime, c_task, c_user) VALUES (?, ?, ?, ?)";
@@ -165,6 +172,13 @@ public class TaskDaoImpl implements TaskDAO {
 		String sql = "UPDATE User SET u_theme=? WHERE u_user=?";
 		Object[] parameters = new Object[] {themeID, user};
 		jdbcTemplate.update(sql, parameters);
+	}
+	
+	public List<String> getGroupList() {
+		String sql = "SELECT t_group FROM Task WHERE t_shared='1' ORDER BY t_group";
+		RowMapper<String> mapper = new GroupRowMapper();
+		List<String> grouplist = jdbcTemplate.query(sql, mapper);
+		return grouplist;
 	}
 
 	public boolean searchUser(String username) {
