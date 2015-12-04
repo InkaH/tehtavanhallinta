@@ -237,7 +237,7 @@
 	</div>	
 
 	<c:if test="${activeTab==1}">
-	<div class="row" style="margin: 5px 0 5px 0;">
+	<div class="row" style="margin: 5px 0 10px 0;">
   	<label class="col-sm-2" for="groupSelection" style="font-weight: normal;">Ryhmätunnus:</label>
   	<div class="col-sm-8">
   	<form action="getGroupTasks" method="post">
