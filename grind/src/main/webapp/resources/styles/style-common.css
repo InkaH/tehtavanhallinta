@@ -1,7 +1,6 @@
 @CHARSET "ISO-8859-1";
 
 /* CSS Classes */
-
 .comment-counter {
 	bottom: 3px;
 	font: normal 10px Verdana;
@@ -46,9 +45,10 @@
 }
 
 .task-text-content {
-	position: relative;
-	display: block;
 	border: 0px dashed #FFFFFF;
+	display: block;
+	margin-right: 20px;
+	position: relative;
 }
 
 .task-option-dropdown {
@@ -196,7 +196,7 @@
 }
 
 /* CSS @media-elements */
-@media (max-width : 767px) {
+@media ( max-width : 767px) {
 	#comment {
 		margin: 5px 0 5px 0 !important;
 		padding: 0 3px 0 3px !important;
@@ -224,6 +224,9 @@
 		display: block !important;
 		margin: 0 !important;
 	}
+	#timepicker {
+		margin-top: 20px !important; 
+	}
 	.container, body {
 		padding: 20px 0 0 0 !important;
 		margin: 20px 0 0 0 !important;
@@ -242,12 +245,13 @@
 	}
 	.navbar-header {
 		margin: 0px !important;
-	}.well {
+	}
+	.well {
 		border-radius: 0 !important;
 	}
 }
 
-@media (max-width : 400px) {
+@media ( max-width : 400px) {
 	#logged {
 		display: none !important;
 	}
@@ -255,5 +259,3 @@
 		display: block !important;
 	}
 }
-
-/* LOGIN CSS */

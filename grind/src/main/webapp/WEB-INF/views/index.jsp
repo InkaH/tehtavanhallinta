@@ -51,6 +51,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.js"></script>
 <script src="<c:url value="/resources/js/datepickerui-fi.js" />"></script>
 <script src="<c:url value="/resources/js/timepickerui-fi.js" />"></script>
+
+<script type="text/javascript" src="<c:url value="/resources/js/timepicki.js" />"></script>
+
 </head>
 
 <body>
@@ -361,11 +364,7 @@
 	<fmt:parseDate value="${c.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
 	<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
 	<tr>
-	<td>
-	<span>
-	<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
-	</span>
-	</td>
+	<td><c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" /></td>
 	<td>
 	<c:if test="${c.user == user}">
 	<span onclick="if(!confirm('Haluatko poistaa kommentin pysyvästi?')){return false;}else{document.forms[6].delComment.value='${c.id}';document.forms[6].submit();}" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
