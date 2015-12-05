@@ -139,31 +139,16 @@ ul.dropdown-menu li.theme-selected:nth-child(6) a {
 
 .mark-note {
 	background-color: #595959;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font: normal 16px 'Trebuchet MS';
-	text-decoration: none;
 	color: #FFFFFF;
 }
 
 .mark-warn {
 	background-color: #941010;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font: normal 16px 'Trebuchet MS';
-	text-decoration: none;
 	color: #FFFFFF;
 }
 
 .mark-task {
 	background-color: #262626;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font: normal 16px 'Trebuchet MS';
-	text-decoration: none;
 	color: #FFFFFF;
 }
 

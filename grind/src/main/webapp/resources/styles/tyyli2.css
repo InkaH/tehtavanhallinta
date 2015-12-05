@@ -138,25 +138,16 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 }
 
 .mark-note {
-	border-radius: 3px;
-	font: normal 16px 'Trebuchet MS';
-	text-decoration: none;
 	color: #FFFFFF;
 	background-color: #6e8531;
 }
 
 .mark-warn {
-	border-radius: 3px;
-	font: normal 16px 'Trebuchet MS';
-	text-decoration: none;
 	color: #FFFFFF;
 	background-color: #d10a3f;
 }
 
 .mark-task {
-	border-radius: 3px;
-	font: normal 16px 'Trebuchet MS';
-	text-decoration: none;
 	color: #FFFFFF;
 	background-color: #95ba30;
 }
