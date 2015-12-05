@@ -301,7 +301,7 @@
 	
 	<c:if test="${t.shared && activeTab == 1}" >
 		<li>
-		<a href="#" onclick="if(!confirm('Linkitetäänkö jaettu tehtävä omiin tehtäviin?')){return false;}else{document.forms[10].linkedID.value='${t.id}';document.forms[10].linkedUser.value='${user}';document.forms[10].submit();}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Linkitä omiin</a>
+		<a href="#" onclick="if(!confirm('Linkitetäänkö jaettu tehtävä omiin tehtäviin?')){return false;}else{document.forms[10].linkedID.value='${t.id}';document.forms[10].linkedUser.value='${user}';document.forms[10].submit();}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Linkitä Omiin</a>
 		</li>
 	</c:if>
 	
@@ -336,21 +336,26 @@
 	
 	<span>
 	<small style="font-weight: bold;">
+	<c:if test="${parsedAjankohta < now && compTaskDate != compIdentifier}">
+	<div style="font-size: 20px; display: inline-block; position: relative; bottom: -3px; margin-right: 3px;"><span style="color: #cc0000;" class="glyphicon glyphicon-arrow-right" style=""></span></div>
+	</c:if>
 	<c:if test="${compTaskDate != compIdentifier}">
 	<fmt:parseDate value="${t.date}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 	<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
-	<span><c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" /></span>
-	<div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div>
 	</c:if>
 	</small>
 	</span>
-	<div class="task-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;"><c:out value="${t.task}" /></div>
-	<c:if test="${not empty t.group}">
-	<div class="groupid"><small><c:out value="${(activeTab == 0 || activeTab == 2) && t.shared && t.user != t.activeUser ? 'Linkitetty&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : (t.shared ? 'Jaettu&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : '')}" escapeXml="false" /><c:out value="${t.group}" /></small></div>
-	</c:if>
 	
+	<div class="task-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;"><c:out value="${t.task}" />&nbsp;&nbsp;<span style="vertical-align: -3px; color: #FFFFFF;" class="glyphicon glyphicon-comment"></span></div>
+	
+	<c:if test="${not empty t.group}">		
+	<c:choose>
+	<c:when test="${t.shared}"><div class="groupid"><img src="<c:url value="/resources/img/logo-public-white.png" />" style="width: 20px; margin: -5px 3px 0 0;" /><small>&nbsp;<c:out value="${t.group}" /></small></div></c:when>
+	<c:otherwise><div class="groupid"><img src="<c:url value="/resources/img/logo-private-white.png" />" style="width: 15px; margin: -2px 2px 0 0;" /><small>&nbsp;<c:out value="${t.group}" /></small></div></c:otherwise>
+	</c:choose>	
+	</c:if>	
 	
 	<c:if test="${activeTask == t.id}">
 	<div>
@@ -363,7 +368,7 @@
 	<tr>
 	<td>
 	<span>
-	<span style="font-weight: ${user == c.user ? 'bold' : 'normal'};"><c:out value="${c.user}" /></span>:&nbsp;<c:out value="${c.comment}" />
+	<c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" />
 	</span>
 	</td>
 	<td>
