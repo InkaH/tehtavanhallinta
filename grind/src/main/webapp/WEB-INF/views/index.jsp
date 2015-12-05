@@ -58,13 +58,11 @@
 <!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[1]: EDIT -->
 <form id="editForm" action="edit" method="post">
 <input type="hidden" id="editTask" name="editTask" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[2]: SHARE -->
@@ -72,18 +70,15 @@
 <input type="hidden" id="shareTask" name="shareTask" value="0" />
 <input type="hidden" id="groupID" name="groupID" value="0" />
 <input type="hidden" id="shareStatus" name="shareStatus" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[3]: CANCEL -->
 <form id="cancelForm" action="cancel" method="post">
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[4]: THEME -->
 <form id="themeForm" action="theme" method="post">
 <input type="hidden" id="themeID" name="themeID" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[5]: ACTIVATE -->
@@ -95,13 +90,11 @@
 <!-- FORM[6]: DELETE COMMENT -->
 <form id="delCommentForm" action="delComment" method="post">
 <input type="hidden" id="delComment" name="delComment" value="0" />
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[7]: LOGOUT -->
 <c:url var="logoutUrl" value="/logout"/>
 <form id="logoutForm" action="logout" method="post">
-<input type="hidden" name="scrollPos" value="0" />
 <sec:csrfInput />
 </form>
 <!-- FORM[8]: TAB CHENGE -->
