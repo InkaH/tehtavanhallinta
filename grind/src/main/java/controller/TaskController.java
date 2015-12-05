@@ -29,7 +29,7 @@ import bean.Comment;
 @Controller
 @RequestMapping(value = "/")
 public class TaskController {
-	
+
 	private String username;
 	private Task editItem = new Task();
 	private List<Task> tasks;
@@ -53,10 +53,9 @@ public class TaskController {
 	public void setDao(TaskDAO dao) {
 		this.dao = dao;
 	}
-	
-	@RequestMapping(value = {"/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model,
-			@RequestParam(value = "error", required = false) String error,
+
+	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
+	public String login(Model model, @RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
@@ -69,32 +68,33 @@ public class TaskController {
 			activeTab = 0;
 			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
-		//registration form is a Spring form so we have to place 
-		//the User object values to it
+		// registration form is a Spring form so we have to place
+		// the User object values to it
 		User user = new User("", "");
 		model.addAttribute("user", user);
 		return "login";
 	}
-	
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
 		if (startup) {
 			username = principal.getName();
 			this.theme = dao.getTheme(principal.getName());
 			startup = false;
-		}	
+		}
 		if (activeTab == 0) {
 			tasks = dao.getAllPrivate(username);
 		} else if (activeTab == 1) {
+			tasks = dao.getAllDone(username);
+
+		} else if (activeTab == 2) {
 			grouplist = dao.getGroupList();
-			if(!groupListDefault.equalsIgnoreCase("Kaikki")) {
+			if (!groupListDefault.equalsIgnoreCase("Kaikki")) {
 				tasks = dao.getAllSharedByGroup(groupListDefault);
 			} else {
 				tasks = dao.getAllShared();
 			}
-		} else if (activeTab == 2) {
-			tasks = dao.getAllDone(username);
-		}	
+		}
 		for (Task t : tasks) {
 			t.setNumComments(dao.getNumComments(t.getId()));
 		}
@@ -114,7 +114,7 @@ public class TaskController {
 		model.put("user", principal.getName());
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addTask(@ModelAttribute("newTask") Task task, Principal principal) {
 		if (!task.getTask().isEmpty()) {
@@ -166,9 +166,10 @@ public class TaskController {
 		activeTask = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "share", method = RequestMethod.POST)
-	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID, @RequestParam String shareStatus) {
+	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID,
+			@RequestParam String shareStatus) {
 		int sh = Integer.parseInt(shareTask);
 		if (sh > 0 && !groupID.equals("")) {
 			dao.shareTask(sh, groupID.toUpperCase(), (shareStatus.equalsIgnoreCase("true") ? true : false));
@@ -176,7 +177,7 @@ public class TaskController {
 		activeTask = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "cancel", method = RequestMethod.POST)
 	public String cancel() {
 		editingActive = 0;
@@ -184,14 +185,14 @@ public class TaskController {
 		activeTask = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "addComment", method = RequestMethod.POST)
 	public String addComment(@ModelAttribute("newComment") Comment c) {
 		dao.addComment(c);
 		activeTask = c.getTask();
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "delComment", method = RequestMethod.POST)
 	public String delComment(@RequestParam String delComment) {
 		int dc = Integer.parseInt(delComment);
@@ -201,7 +202,7 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "activation", method = RequestMethod.POST)
 	public String activateTask(@RequestParam String activeTask) {
 		int at = Integer.parseInt(activeTask);
@@ -212,7 +213,7 @@ public class TaskController {
 		}
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "theme", method = RequestMethod.POST)
 	public String changeTheme(@RequestParam String themeID) {
 		int tID = Integer.parseInt(themeID);
@@ -222,7 +223,7 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "tabChange", method = RequestMethod.POST)
 	public String changeTab(@RequestParam String tabID) {
 		int tID = Integer.parseInt(tabID);
@@ -232,16 +233,16 @@ public class TaskController {
 		groupListDefault = "Kaikki";
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "getGroupTasks", method = RequestMethod.POST)
 	public String getGroupTasks(@RequestParam String groupSelection) {
 		tasks = dao.getAllSharedByGroup(groupSelection);
-		groupListDefault = groupSelection;		
+		groupListDefault = groupSelection;
 		activeTask = 0;
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "setDone", method = RequestMethod.POST)
 	public String setDone(@RequestParam String doneID, @RequestParam String doneValue) {
 		int dID = Integer.parseInt(doneID);
@@ -253,7 +254,7 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "setLink", method = RequestMethod.POST)
 	public String setLink(@RequestParam String linkedID, @RequestParam String linkedUser) {
 		int liID = Integer.parseInt(linkedID);
@@ -264,10 +265,9 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String saveUser(Model model, @Valid User user,
-			BindingResult bindingResult) {
+	public String saveUser(Model model, @Valid User user, BindingResult bindingResult) {
 		// if User class validation rules did not pass
 		// return to login and must set the hashed pw back to empty
 		if (bindingResult.hasErrors()) {
@@ -279,8 +279,9 @@ public class TaskController {
 		if (!duplicateUsername) {
 			user.setRole("ROLE_USER");
 			getDao().saveUser(user);
-			// if registration is successful, redirect to login page, and registration form
-			//values have to be set to empty again
+			// if registration is successful, redirect to login page, and
+			// registration form
+			// values have to be set to empty again
 			model.addAttribute("success", "Rekisteröinti onnistui.");
 			user.setUsername("");
 			user.setEmptyPassword("");
@@ -297,13 +298,12 @@ public class TaskController {
 			return "login";
 		}
 	}
-	
+
 	// we're not needing this page right now but it's working as an example
 	// in case we need it later + printing of user details is also an example
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			System.out.println(userDetail);

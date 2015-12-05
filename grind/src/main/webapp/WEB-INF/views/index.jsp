@@ -124,8 +124,8 @@
 	
 	<ul class="nav nav-tabs">
     <li class="${activeTab == 0 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=0;document.forms[8].submit();">Omat</a></li>
-    <li class="${activeTab == 2 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=2;document.forms[8].submit();">Tehdyt</a></li>
-    <li class="${activeTab == 1 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=1;document.forms[8].submit();">Ryhmät</a></li>
+    <li class="${activeTab == 1 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=1;document.forms[8].submit();">Tehdyt</a></li>
+    <li class="${activeTab == 2 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=2;document.forms[8].submit();">Ryhmät</a></li>
   	</ul>
 		
 	<c:if test="${edit=='0'}">
@@ -242,7 +242,7 @@
 	</div>
 	</div>	
 
-	<c:if test="${activeTab == 1}">
+	<c:if test="${activeTab == 2}">
 	<div class="row" style="margin: 5px 0 10px 0;">
   	<label class="col-sm-2" for="groupSelection" style="font-weight: normal;">Ryhmätunnus:</label>
   	<div class="col-sm-8">

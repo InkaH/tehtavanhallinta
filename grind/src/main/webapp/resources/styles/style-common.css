@@ -1,5 +1,10 @@
 @CHARSET "ISO-8859-1";
 
+/* CSS HTML tags */
+input[type="checkbox"] {
+	margin-left: 15px;
+}
+
 /* CSS Classes */
 .comment-counter {
 	bottom: 3px;
@@ -225,7 +230,7 @@
 		margin: 0 !important;
 	}
 	#timepicker {
-		margin-top: 20px !important; 
+		margin-top: 20px !important;
 	}
 	.container, body {
 		padding: 20px 0 0 0 !important;
