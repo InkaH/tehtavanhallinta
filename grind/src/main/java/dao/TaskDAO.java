@@ -38,6 +38,8 @@ public interface TaskDAO {
 	
 	public abstract List<String> getGroupList();
 	
-	public abstract void setDone(int id, int value);
+	public abstract void setDone(int task, int value);
+	
+	public abstract void setLink(int task, String user);
 	
 }

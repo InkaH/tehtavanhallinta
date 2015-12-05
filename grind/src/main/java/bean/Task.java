@@ -22,7 +22,8 @@ public class Task implements Serializable {
 	private LocalTime time;
 	private String group;
 	private boolean shared;
-	private String user;
+	private String user; // original maker of the task
+	private String activeUser; // current user of the task object
 
 	public Task() {
 		this.id = 0;
@@ -33,6 +34,7 @@ public class Task implements Serializable {
 		this.group = "";
 		this.shared = false;
 		this.user = "";
+		this.activeUser = "";
 	}
 
 	public Task(int id, String task, String info, int done, LocalDateTime datetime, String group, boolean shared, String user) {
@@ -44,6 +46,7 @@ public class Task implements Serializable {
 		this.group = group;
 		this.shared = shared;
 		this.user = user;
+		this.activeUser = ""; // not in parameters on purpose
 	}
 	
 	public Date getTimestamp(){
@@ -59,6 +62,16 @@ public class Task implements Serializable {
 		this.shared = false;
 		this.group = "";
 		this.user = "";
+		this.activeUser = "";
+	}
+	
+	
+	public String getActiveUser() {
+		return activeUser;
+	}
+	
+	public void setActiveUser(String activeUser) {
+		this.activeUser = activeUser;
 	}
 	
 	public boolean getShared() {

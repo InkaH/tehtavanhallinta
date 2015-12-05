@@ -252,6 +252,17 @@ public class TaskController {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "setLink", method = RequestMethod.POST)
+	public String setLink(@RequestParam String linkedID, @RequestParam String linkedUser) {
+		int liID = Integer.parseInt(linkedID);
+		if (liID > 0) {
+			dao.setLink(liID, linkedUser);
+		}
+		activeTask = 0;
+		editingActive = 0;
+		return "redirect:/index";
+	}
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String saveUser(Model model, @Valid User user,
 			BindingResult bindingResult) {

@@ -115,6 +115,12 @@
 <input type="hidden" id="doneValue" name="doneValue" value="0" />
 <sec:csrfInput />
 </form>
+<!-- FORM[10]: LINK SHARED TASK -->
+<form id="linkForm" action="setLink" method="post">
+<input type="hidden" id="linkedID" name="linkedID" value="0" />
+<input type="hidden" id="linkedUser" name="linkedUser" value="0" />
+<sec:csrfInput />
+</form>
 
 <div class="container">
 	
@@ -282,47 +288,51 @@
 	
 	<div class="row">
 	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
-	<c:if test="${user == t.user}">
 	<div class="task-options">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
 	<ul class="dropdown-menu dropdown-menu-right">
 	
 	<c:if test="${t.done == 1}" >
-	<li>
-	<a href="#" onclick="if(!confirm('Palautetaanko tehtävä tekemättömiin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='0';document.forms[9].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Palauta</a>
-	</li>
+		<li>
+		<a href="#" onclick="if(!confirm('Palautetaanko tehtävä tekemättömiin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='0';document.forms[9].submit();}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Palauta</a>
+		</li>
 	</c:if>
 	
-	<c:if test="${t.done == 0}">
-	
-	<li>
-	<a href="#" onclick="if(!confirm('Siirretäänkö tehtävä tehtyihin tehtäviin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='1';document.forms[9].submit();}"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Merkitse tehdyksi</a>
-	</li>	
-	
-	<li>
-	<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
-	</li>
-	
-		<c:if test="${!t.shared}">
+	<c:if test="${t.shared && activeTab == 1}" >
 		<li>
-		<a href="#" onclick="sh=prompt('Jaa tehtävä julkisesti ryhmätunnuksella:','${t.group}');if(sh!=null){document.forms[2].shareStatus.value='true';document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}else{return false;}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
-		</li>		
-		<li role="separator" class="divider"></li>
+		<a href="#" onclick="if(!confirm('Linkitetäänkö jaettu tehtävä omiin tehtäviin?')){return false;}else{document.forms[10].linkedID.value='${t.id}';document.forms[10].linkedUser.value='${user}';document.forms[10].submit();}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Linkitä omiin</a>
+		</li>
+	</c:if>
+	
+	<c:if test="${t.done == 0 && activeTab != 1}">	
+		<li>
+		<a href="#" onclick="if(!confirm('Siirretäänkö tehtävä tehtyihin tehtäviin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='1';document.forms[9].submit();}"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Merkitse tehdyksi</a>
+		</li>	
+	
+		<c:if test="${t.user == t.activeUser}">
+			<li>
+			<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
+			</li>
 		</c:if>
 	
+		<c:if test="${!t.shared}">
+			<li>
+			<a href="#" onclick="sh=prompt('Jaa tehtävä julkisesti ryhmätunnuksella:','${t.group}');if(sh!=null){document.forms[2].shareStatus.value='true';document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}else{return false;}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
+			</li>		
+			<li role="separator" class="divider"></li>
+		</c:if>	
 	</c:if>
 	
-		<c:if test="${!t.shared}">
+	<c:if test="${!t.shared}">
 		<li>
 		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 		</li>
-		</c:if>
+	</c:if>
 	
 	</ul>
 	</div>
 	</div>
-	</c:if>
 	
 	<span>
 	<small style="font-weight: bold;">
@@ -331,19 +341,14 @@
 	<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
-	<span>
-	<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" />
-	<c:choose>
-	<c:when test="${user == t.user && activeTab != 0 && activeTab != 2}"><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:when>
-	<c:when test="${activeTab == 1}"><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:when>
-	</c:choose>
-	</span>
+	<span><c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" /></span>
+	<div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div>
 	</c:if>
 	</small>
 	</span>
 	<div class="task-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;"><c:out value="${t.task}" /></div>
 	<c:if test="${not empty t.group}">
-	<div class="groupid"><small><c:out value="${t.shared ? 'Jaettu&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : ''}" escapeXml="false" /><c:out value="${t.group}" /></small></div>
+	<div class="groupid"><small><c:out value="${(activeTab == 0 || activeTab == 2) && t.shared && t.user != t.activeUser ? 'Linkitetty&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : (t.shared ? 'Jaettu&nbsp;&nbsp;&#8811;&nbsp;&nbsp;' : '')}" escapeXml="false" /><c:out value="${t.group}" /></small></div>
 	</c:if>
 	
 	

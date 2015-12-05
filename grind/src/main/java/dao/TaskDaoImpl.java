@@ -104,34 +104,32 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 
-	public List<Task> getAllPrivate(String username) {
-		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
-				+ "INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND ut_done='0' ORDER BY t_expire";
-		RowMapper<Task> mapper = new TaskRowMapper();
-		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
+	public List<Task> getAllPrivate(String user) {
+		final String sql = "SELECT ta.t_id, ta.t_task, ut.ut_done, ta.t_expire, ta.t_group, ta.t_shared, ta.t_user, ut.ut_user FROM Usertask AS ut "
+				+ "INNER JOIN Task AS ta ON ut.ut_task=ta.t_id WHERE ut.ut_user=? AND ut.ut_done='0' ORDER BY ta.t_expire";
+		RowMapper<Task> mapper = new UsertaskRowMapper();
+		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllShared() {
-		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
-				+ "INNER JOIN Task on ut_task=t_id WHERE t_shared='1' ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user FROM Task WHERE t_shared='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllSharedByGroup(String group) {
-		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
-				+ "INNER JOIN Task on ut_task=t_id WHERE t_shared='1' AND t_group=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user FROM Task WHERE t_shared='1' AND t_group=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {group}, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllDone(String user) {
-		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
-				+ "INNER JOIN Task on ut_task=t_id WHERE t_user=? AND ut_done='1' ORDER BY t_expire";
-		RowMapper<Task> mapper = new TaskRowMapper();
+		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, t_user, ut_user FROM Usertask "
+				+ "INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND ut_done='1' ORDER BY t_expire";
+		RowMapper<Task> mapper = new UsertaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);
 		return tasks;
 	}
@@ -185,6 +183,12 @@ public class TaskDaoImpl implements TaskDAO {
 	public void setDone(int doneID, int doneValue) {
 		String sql = "UPDATE Usertask SET ut_done=? WHERE ut_task=?";
 		Object[] parameters = new Object[] {doneValue, doneID};
+		jdbcTemplate.update(sql, parameters);
+	}
+	
+	public void setLink(int linkedID, String linkedUser) {
+		String sql = "INSERT IGNORE INTO Usertask(ut_task, ut_user) VALUES (?, ?)";
+		Object[] parameters = new Object[] {linkedID, linkedUser};
 		jdbcTemplate.update(sql, parameters);
 	}
 	
