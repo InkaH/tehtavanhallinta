@@ -36,11 +36,10 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 	public void addTask(Task task, String user) {
-		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_done, t_expire, t_group, t_shared, t_user) values(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?, t_done=?, t_expire=?, t_group=?, t_shared=?";
+		final String sql_1 = "INSERT INTO Task(t_id, t_task, t_expire, t_group, t_shared, t_user) values(?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE t_task=?,t_expire=?, t_group=?, t_shared=?";
 
 		final int idDB = task.getId();
 		final String taskDB = task.getTask();
-		final int statusDB = task.getDone();
 		final LocalDateTime datetimeDB = task.getDatetime();
 		final String groupDB = task.getGroup();
 		// Notice! Boolean converted to Int
@@ -56,17 +55,15 @@ public class TaskDaoImpl implements TaskDAO {
 					ps.setInt(1, idDB);
 				}
 				ps.setString(2, taskDB);
-				ps.setInt(3, statusDB);
-				ps.setTimestamp(4, Timestamp.valueOf(datetimeDB));
-				ps.setString(5, groupDB);
-				ps.setInt(6, sharedDB);
-				ps.setString(7, userDB);
+				ps.setTimestamp(3, Timestamp.valueOf(datetimeDB));
+				ps.setString(4, groupDB);
+				ps.setInt(5, sharedDB);
+				ps.setString(6, userDB);
 				// replacement values
-				ps.setString(8, taskDB);
-				ps.setInt(9, statusDB);
-				ps.setTimestamp(10, Timestamp.valueOf(datetimeDB));
-				ps.setString(11, groupDB);
-				ps.setInt(12, sharedDB);
+				ps.setString(7, taskDB);
+				ps.setTimestamp(8, Timestamp.valueOf(datetimeDB));
+				ps.setString(9, groupDB);
+				ps.setInt(10, sharedDB);
 				return ps;
 			}
 		}, idHolder);
@@ -108,28 +105,32 @@ public class TaskDaoImpl implements TaskDAO {
 
 
 	public List<Task> getAllPrivate(String username) {
-		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND t_done='0' ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
+				+ "INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND ut_done='0' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {username}, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllShared(String username) {
-		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_shared='1' ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
+				+ "INNER JOIN Task on ut_task=t_id WHERE t_shared='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllSharedByGroup(String group) {
-		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_shared='1' AND t_group=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
+				+ "INNER JOIN Task on ut_task=t_id WHERE t_shared='1' AND t_group=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {group}, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllDone(String user) {
-		final String sql = "SELECT t_id, t_task, t_done, t_expire, t_group, t_shared, ut_user FROM Usertask INNER JOIN Task on ut_task=t_id WHERE t_user=? AND t_done='1' ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
+				+ "INNER JOIN Task on ut_task=t_id WHERE t_user=? AND ut_done='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);
 		return tasks;
@@ -182,7 +183,7 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 	
 	public void setDone(int doneID, int doneValue) {
-		String sql = "UPDATE Task SET t_done=? WHERE t_id=?";
+		String sql = "UPDATE Usertask SET ut_done=? WHERE ut_task=?";
 		Object[] parameters = new Object[] {doneValue, doneID};
 		jdbcTemplate.update(sql, parameters);
 	}
