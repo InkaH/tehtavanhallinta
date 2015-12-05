@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
+
 <title>G R I N D</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
