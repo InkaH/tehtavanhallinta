@@ -94,6 +94,8 @@ public class TaskController {
 			} else {
 				tasks = dao.getAllShared();
 			}
+		} else if (activeTab == 9) {
+			tasks = dao.getAllTasks();
 		}
 		for (Task t : tasks) {
 			t.setNumComments(dao.getNumComments(t.getId()));
@@ -265,6 +267,8 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
+	
+	
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String saveUser(Model model, @Valid User user, BindingResult bindingResult) {

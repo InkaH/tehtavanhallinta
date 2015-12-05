@@ -31,13 +31,6 @@
 	box-shadow: 0 0 20px #000000;
 }
 
-.character-counter {
-	float: right;
-	font-size: 12px;
-	color: #696969;
-	margin-bottom: -10px;
-}
-
 .label-color {
 	color: #696969;
 }

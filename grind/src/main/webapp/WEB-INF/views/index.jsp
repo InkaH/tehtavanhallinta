@@ -126,6 +126,9 @@
     <li class="${activeTab == 0 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=0;document.forms[8].submit();">Omat</a></li>
     <li class="${activeTab == 1 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=1;document.forms[8].submit();">Tehdyt</a></li>
     <li class="${activeTab == 2 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=2;document.forms[8].submit();">Ryhmät</a></li>
+    <c:if test="${user == 'admin'}">
+    <li class="${activeTab == 9 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=9;document.forms[8].submit();">Admin</a></li>
+    </c:if>    
   	</ul>
 		
 	<c:if test="${edit=='0'}">
@@ -263,7 +266,15 @@
   	</form>
   	</div>
 	</div>
-	</c:if>	
+	</c:if>
+	
+	<c:if test="${activeTab == 9}">
+	<div class="row">
+	<div class="col-sm-12">
+	<h3>Kaikki tehtävät tietokannassa</h3>
+	</div>
+	</div>
+	</c:if>
 	
 	<c:if test="${empty tasks}">
 	<div class="row">
@@ -385,7 +396,7 @@
 	<form:hidden path="time" value="${timeNow}" />
 	<form:hidden path="task" value="${t.id}" />
 	<form:hidden path="user" value="${user}" />
-	<input type="submit" id="commentSubmit" value="Kommentoi" style="font: normal 12px Verdana; color: #000000; margin: 0 0 0 -5px; width: 130px; border: 0; box-shadow: none; height: 25px;" />		
+	<input type="submit" id="commentSubmit" value="Kommentoi" />		
 	</form:form>	
 	</div>	
 	</div>

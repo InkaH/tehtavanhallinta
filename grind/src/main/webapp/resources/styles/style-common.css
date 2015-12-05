@@ -6,6 +6,14 @@ input[type="checkbox"] {
 }
 
 /* CSS Classes */
+
+.character-counter {
+	color: #696969;
+	float: right;
+	font-size: 12px;
+	margin: 3px 3px 0 0;
+}
+
 .comment-counter {
 	bottom: 3px;
 	font: normal 10px Verdana;
@@ -125,6 +133,17 @@ input[type="checkbox"] {
 	overflow: hidden;
 	text-align: right;
 	padding: 5px 10px 5px 10px;
+}
+
+#commentSubmit {
+	background-color: #d9d9d9;
+	border: 0;
+	box-shadow: none;
+	color: #000000;
+	font: normal 12px Verdana;
+	height: 25px;
+	margin: 0 0 0 -4px;
+	width: 130px;
 }
 
 #logged {
