@@ -87,8 +87,10 @@ public class TaskController {
 			tasks = dao.getAllPrivate(username);
 		} else if (activeTab == 1) {
 			grouplist = dao.getGroupList();
-			if(groupListDefault.equalsIgnoreCase("Kaikki")) {
-				tasks = dao.getAllShared(username);
+			if(!groupListDefault.equalsIgnoreCase("Kaikki")) {
+				tasks = dao.getAllSharedByGroup(groupListDefault);
+			} else {
+				tasks = dao.getAllShared();
 			}
 		} else if (activeTab == 2) {
 			tasks = dao.getAllDone(username);

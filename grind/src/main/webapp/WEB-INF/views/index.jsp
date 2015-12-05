@@ -281,7 +281,7 @@
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
-	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : (t.done != 0 ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn'))}">
+	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 	<c:if test="${user == t.user}">
 	<div class="task-options">
 	<div class="dropdown">
@@ -332,7 +332,7 @@
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
 	<span>
-	<c:out value="${(parsedAjankohta > now) ? '' : (t.done != 0 ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty'))}" />
+	<c:out value="${(parsedAjankohta > now) ? '' : (compTaskDate == compIdentifier ? '' : 'Ajankohta ylitetty')}" />
 	<c:choose>
 	<c:when test="${user == t.user && activeTab != 0 && activeTab != 2}"><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:when>
 	<c:when test="${activeTab == 1}"><div class="username-tag" style="text-transform: uppercase;"><c:out value="${t.user}" /></div></c:when>

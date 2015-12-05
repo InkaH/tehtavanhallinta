@@ -112,7 +112,7 @@ public class TaskDaoImpl implements TaskDAO {
 		return tasks;
 	}
 	
-	public List<Task> getAllShared(String username) {
+	public List<Task> getAllShared() {
 		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, ut_user FROM Usertask "
 				+ "INNER JOIN Task on ut_task=t_id WHERE t_shared='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();

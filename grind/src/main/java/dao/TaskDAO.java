@@ -16,7 +16,7 @@ public interface TaskDAO {
 	
 	public abstract List<Task> getAllPrivate(String user); 
 	
-	public abstract List<Task> getAllShared(String user); 
+	public abstract List<Task> getAllShared(); 
 	
 	public abstract List<Task> getAllSharedByGroup(String group);
 	
