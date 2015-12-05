@@ -330,16 +330,13 @@
 	<span>
 	<small style="font-weight: bold;">
 	<c:if test="${parsedAjankohta < now && compTaskDate != compIdentifier}">
-	<span style="color: #FFFFFF;" class="glyphicon glyphicon-arrow-right" style=""></span>
+	<span style="color: #FFFFFF;" class="glyphicon glyphicon-chevron-right" style=""></span>
 	</c:if>
 	<c:if test="${compTaskDate != compIdentifier}">
 	<fmt:parseDate value="${t.date}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 	<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
-	</c:if>
-	<c:if test="${parsedAjankohta < now && compTaskDate != compIdentifier}">
-	<span style="color: #FFFFFF;" class="glyphicon glyphicon-arrow-left" style=""></span>
 	</c:if>
 	</small>
 	</span>
@@ -395,8 +392,13 @@
 	</c:if>
 	
 	<!-- Comment Counter -->
-	<div class="comment-counter" style=""><c:out value="${t.numComments}" />&nbsp;<c:out value="${t.numComments == 1 ? 'kommentti' : 'kommenttia'}" /></div>
-	
+	<div class="comment-counter">
+	<c:choose>
+	<c:when test="${t.numComments == 0}"><c:out value="ei kommentteja" /></c:when>
+	<c:when test="${t.numComments == 1}"><c:out value="${t.numComments} kommentti" /></c:when>
+	<c:otherwise><c:out value="${t.numComments} kommenttia" /></c:otherwise>
+	</c:choose>	
+	</div>
 	</div>
 	</div>
 	</c:forEach>
