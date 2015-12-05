@@ -317,7 +317,7 @@
 		</c:if>	
 	</c:if>
 	
-	<c:if test="${!t.shared}">
+	<c:if test="${!t.shared || user == 'admin'}">
 		<li>
 		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 		</li>
@@ -363,7 +363,7 @@
 	<tr>
 	<td><c:out value="${c.user}" />:&nbsp;<c:out value="${c.comment}" /></td>
 	<td>
-	<c:if test="${c.user == user}">
+	<c:if test="${c.user == user || user == 'admin'}">
 	<span onclick="if(!confirm('Haluatko poistaa kommentin pysyvästi?')){return false;}else{document.forms[6].delComment.value='${c.id}';document.forms[6].submit();}" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
 	</c:if>&nbsp;
 	<span class="comment-remove">
