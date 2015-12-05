@@ -40,7 +40,7 @@ public class TaskController {
 	private int editingActive = 0;
 	private int activeTask = 0;
 	private int activeTab = 0;
-	private int theme = 3;
+	private int theme = 1;
 	private boolean startup = true;
 
 	@Inject
@@ -79,10 +79,10 @@ public class TaskController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
 		if (startup) {
+			username = principal.getName();
 			this.theme = dao.getTheme(principal.getName());
 			startup = false;
-		}
-		username = principal.getName();
+		}	
 		if (activeTab == 0) {
 			tasks = dao.getAllPrivate(username);
 		} else if (activeTab == 1) {
@@ -94,8 +94,10 @@ public class TaskController {
 			}
 		} else if (activeTab == 2) {
 			tasks = dao.getAllDone(username);
+		}	
+		for (Task t : tasks) {
+			t.setNumComments(dao.getNumComments(t.getId()));
 		}
-		
 		if (activeTask > 0) {
 			comments = dao.getComments(activeTask);
 		}

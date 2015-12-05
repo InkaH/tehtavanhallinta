@@ -42,4 +42,6 @@ public interface TaskDAO {
 	
 	public abstract void setLink(int task, String user);
 	
+	public abstract int getNumComments(int task);
+	
 }

@@ -1,23 +1,20 @@
 @CHARSET "ISO-8859-1";
 
+/* CSS Classes */
+
+.comment-counter {
+	bottom: 3px;
+	font: normal 10px Verdana;
+	letter-spacing: 1px;
+	position: absolute;
+	right: 16px;
+}
+
 .groupid {
 	padding: 0;
 	position: absolute;
 	top: 5px;
 	right: 35px;
-}
-
-.arrow-elem {
-	display: inline-block;
-}
-
-.task-elem {
-	display: block;
-}
-
-.username-tag {
-	position: relative;
-	display: inline-block;
 }
 
 .nav-tabs>li>a {
@@ -31,6 +28,93 @@
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
 	{
 	color: #696969;
+}
+
+.task {
+	margin: 0;
+	position: relative;
+	display: block;
+	border-style: solid;
+	border-color: #babdb6;
+	border-width: 1px;
+	border-radius: 4px;
+	padding: 20px;
+}
+
+.task:last-child {
+	margin-bottom: 50px;
+}
+
+.task-text-content {
+	position: relative;
+	display: block;
+	border: 0px dashed #FFFFFF;
+}
+
+.task-option-dropdown {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	right: 2px;
+	top: 0;
+	border: none;
+}
+
+.well {
+	margin-bottom: 3px;
+	border: 0;
+	line-height: 22px !important;
+	padding: 12px 15px 13px 15px;
+	word-wrap: break-word;
+}
+
+/* CSS IDs */
+#comment-area { /* input field */
+	border: 0;
+	border-radius: 0;
+	color: #FFFFFF;
+	font: normal 13px Verdana;
+	margin: 5px 0 0 0;
+	padding: 0;
+	line-height: 20px;
+	min-height: 0px;
+	width: 100%;
+}
+
+#comment:focus {
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+#comment-table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	table-layout: fixed;
+	width: 100%;
+}
+
+#comment-table tr {
+	width: 100%;
+}
+
+#comment-table tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#comment-table tr td:first-child {
+	width: auto;
+	text-align: left;
+	padding: 5px 10px 5px 10px;
+}
+
+#comment-table tr td:last-child {
+	width: 200px;
+	white-sapce: nowrap;
+	overflow: hidden;
+	text-align: right;
+	padding: 5px 10px 5px 10px;
 }
 
 #logged {
@@ -85,54 +169,7 @@
 	border-bottom: 1px solid #FFFFFF;
 }
 
-#comment-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	margin: 0;
-	padding: 0;
-	table-layout: fixed;
-	width: 100%;
-}
-
-#comment-table tr {
-	width: 100%;
-}
-
-#comment-table tr:nth-child(odd) {
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
-#comment-table tr td:first-child {
-	width: auto;
-	text-align: left;
-	padding: 5px 10px 5px 10px;
-}
-
-#comment-table tr td:last-child {
-	width: 200px;
-	white-sapce: nowrap;
-	overflow: hidden;
-	text-align: right;
-	padding: 5px 10px 5px 10px;
-}
-
-#comment-area {
-	border: 0;
-	border-radius: 0;
-	color: #FFFFFF;
-	font: normal 13px Verdana;
-	margin: 5px 0 0 0;
-	padding: 0;
-	line-height: 20px;
-	min-height: 0px;
-	width: 100%;
-}
-
-#comment:focus {
-	box-shadow: none !important;
-	outline: none !important;
-}
-
+/* CSS Pseudo-Elements */
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
 	text-transform: none !important;
 	font-style: italic;
@@ -153,33 +190,17 @@
 	font-style: italic;
 }
 
+/* CSS @media-elements */
 @media ( max-width : 767px) {
-	.container, body {
-		padding: 20px 0 0 0 !important;
-		margin: 20px 0 0 0 !important;
-	}
-	.navbar-header {
-		margin: 0px !important;
-	}
-	.well {
-		
-	}
-	.groupid {
-		display: block !important;
-		position: relative !important;
-		top: initial !important;
-		right: initial !important;
+	#comment {
+		margin: 5px 0 5px 0 !important;
+		padding: 0 3px 0 3px !important;
 	}
 	.comment-remove {
 		display: none;
 	}
 	.comment-remove-td {
 		width: 0px !important;
-	}
-	.username-tag {
-		display: block !important;
-		margin: 0 !important;
-		padding: 0 !important;
 	}
 	#comment-table tr {
 		width: 100% !important;
@@ -193,20 +214,29 @@
 		border: 0px solid #000000;
 		width: 0% !important;
 	}
-	#comment {
-		margin: 5px 0 5px 0 !important;
-		padding: 0 3px 0 3px !important;
-	}
 	#commentSubmit {
 		position: relative !important;
 		display: block !important;
 		margin: 0 !important;
+	}
+	.container, body {
+		padding: 20px 0 0 0 !important;
+		margin: 20px 0 0 0 !important;
+	}
+	.groupid {
+		display: block !important;
+		position: relative !important;
+		top: initial !important;
+		right: initial !important;
 	}
 	#logged {
 		display: block !important;
 	}
 	#logged-mobile {
 		display: none !important;
+	}
+	.navbar-header {
+		margin: 0px !important;
 	}
 }
 

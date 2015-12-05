@@ -136,19 +136,12 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 	margin-bottom: 0;
 }
 
-.well {
-	margin-bottom: 3px;
-	border: 0;
-	line-height: 22px !important;
-}
-
 .mark-note {
 	background-color: #337d73;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
-	padding: 10px 15px 11px 15px;
 	text-decoration: none;
 	color: #FFFFFF;
 }
@@ -159,7 +152,6 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 	-moz-border-radius: 0px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
-	padding: 10px 15px 11px 15px;
 	text-decoration: none;
 	color: #FFFFFF;
 }
@@ -170,7 +162,6 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 	-moz-border-radius: 0px;
 	border-radius: 3px;
 	font: normal 16px 'Trebuchet MS';
-	padding: 10px 15px 11px 15px;
 	text-decoration: none;
 	color: #FFFFFF;
 }
@@ -199,32 +190,6 @@ ul.dropdown-menu li.theme-selected:nth-child(1) a {
 
 .add {
 	color: #FFFFFF;
-}
-
-.task {
-	background-color: #DCDCDC;
-	margin: 0;
-	position: relative;
-	display: block;
-	border-style: solid;
-	border-color: #babdb6;
-	border-width: 1px;
-	border-radius: 4px;
-	overflow: visible;
-	padding: 20px;
-}
-
-.task:last-child {
-	margin-bottom: 0;
-}
-
-.task-options {
-	cursor: pointer;
-	display: block;
-	position: absolute;
-	right: 0;
-	top: 0;
-	border: none;
 }
 
 #deletebtn {

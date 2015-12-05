@@ -33,7 +33,6 @@
 <c:when test="${theme == 5}"><link href="<c:url value="/resources/styles/tyyli5.css" />" rel="stylesheet"></c:when>
 <c:when test="${theme == 6}"><link href="<c:url value="/resources/styles/tyyli6.css" />" rel="stylesheet"></c:when>
 <c:when test="${theme == 7}"><link href="<c:url value="/resources/styles/tyyli7.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 8}"><link href="<c:url value="/resources/styles/tyyli8.css" />" rel="stylesheet"></c:when>
 <c:otherwise><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:otherwise>
 </c:choose>
 
@@ -163,9 +162,6 @@
 	<li class="theme-selected">
 	<a href="#" onclick="document.forms[4].themeID.value=7;document.forms[4].submit();">Melancholia (harmaa)</a>
 	</li>
-	<li class="theme-selected">
-	<a href="#" onclick="document.forms[4].themeID.value=8;document.forms[4].submit();">Blanco (väritön)</a>
-	</li>
 	</ul>
 	</div>
 	<h4 style="line-height: 42px; display: inline;"><span data-toggle="collapse" data-target="#add" style="cursor: pointer;">&nbsp;&nbsp;+ Luo uusi tehtävä</span></h4>	
@@ -288,7 +284,7 @@
 	
 	<div class="row">
 	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
-	<div class="task-options">
+	<div class="task-option-dropdown">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
 	<ul class="dropdown-menu dropdown-menu-right">
@@ -337,18 +333,23 @@
 	<span>
 	<small style="font-weight: bold;">
 	<c:if test="${parsedAjankohta < now && compTaskDate != compIdentifier}">
-	<div style="font-size: 20px; display: inline-block; position: relative; bottom: -3px; margin-right: 3px;"><span style="color: #cc0000;" class="glyphicon glyphicon-arrow-right" style=""></span></div>
+	<span style="color: #FFFFFF;" class="glyphicon glyphicon-arrow-right" style=""></span>
 	</c:if>
 	<c:if test="${compTaskDate != compIdentifier}">
 	<fmt:parseDate value="${t.date}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 	<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
 	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
-	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />&nbsp;
+	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
+	</c:if>
+	<c:if test="${parsedAjankohta < now && compTaskDate != compIdentifier}">
+	<span style="color: #FFFFFF;" class="glyphicon glyphicon-arrow-left" style=""></span>
 	</c:if>
 	</small>
 	</span>
 	
-	<div class="task-elem" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="cursor: pointer;"><c:out value="${t.task}" />&nbsp;&nbsp;<span style="vertical-align: -3px; color: #FFFFFF;" class="glyphicon glyphicon-comment"></span></div>
+	<div class="task-text-content" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">
+	<c:out value="${t.task}" />
+	</div>
 	
 	<c:if test="${not empty t.group}">		
 	<c:choose>
@@ -399,6 +400,10 @@
 	</div>	
 	</div>
 	</c:if>
+	
+	<!-- Comment Counter -->
+	<div class="comment-counter" style=""><c:out value="${t.numComments}" />&nbsp;<c:out value="${t.numComments == 1 ? 'kommentti' : 'kommenttia'}" /></div>
+	
 	</div>
 	</div>
 	</c:forEach>
@@ -420,7 +425,6 @@
 	<c:when test="${theme == 5}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-brown-blue.png" />" /></c:when>
 	<c:when test="${theme == 6}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-gray-black.png" />" /></c:when>
 	<c:when test="${theme == 7}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-dark-gray.png" />" /></c:when>
-	<c:when test="${theme == 8}"><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-no-color.png" />" /></c:when>
 	<c:otherwise><img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" /></c:otherwise>
 	</c:choose>
 	

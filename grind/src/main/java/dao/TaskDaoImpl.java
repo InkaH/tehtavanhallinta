@@ -198,6 +198,12 @@ public class TaskDaoImpl implements TaskDAO {
 		List<String> grouplist = jdbcTemplate.query(sql, mapper);
 		return grouplist;
 	}
+	
+	public int getNumComments(int taskID) {
+		String sql = "SELECT COUNT(*) FROM Comment WHERE c_task=?";
+		int numComments = jdbcTemplate.queryForObject(sql, new Object[] {taskID}, Integer.class);
+		return numComments;
+	}
 
 	public boolean searchUser(String username) {
 		String sql = "select COUNT(u_user) FROM User WHERE u_user = ?";
