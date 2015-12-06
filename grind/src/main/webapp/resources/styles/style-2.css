@@ -1,18 +1,6 @@
-/* LeafFrog */
+/* THEME: LEAFFROG */
 
 @charset "utf-8";
-
-.comment-remove {
-	color: #FFFFFF !important;
-}
-
-#grind-logo {
-	display: block;
-	position: relative;
-	top: -61px;
-	left: 30px;
-	width: 200px;
-}
 
 #banner {
 	background-image: linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
@@ -22,17 +10,6 @@
 	background-image: -ms-linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #6e8531),
 		color-stop(0.5, #95ba30));
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 80px;
-	overflow: hidden;
-	box-shadow: 0 0 20px #000000;
-}
-
-.tiedot {
-	cursor: pointer;
 }
 
 input[type=text] {
@@ -55,7 +32,7 @@ textarea:focus {
 	box-shadow: 0 0 10px #95ba30 !important;
 }
 
-/* BOOTSTRAP OVERWRITE */
+/* CSS BOOTSTRAP */
 .glyphicon {
 	color: #696969;
 }
@@ -119,7 +96,11 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 	background-color: #95ba30;
 }
 
-/* END OF BOOTSTRAP OVERWRITE */
+/* CSS CLASS */
+.comment-remove {
+	color: #FFFFFF !important;
+}
+
 .dd-select {
 	font: normal 16px 'Trebuchet MS';
 }
@@ -136,11 +117,6 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 	width: 200px;
 }
 
-.muistutus {
-	color: #000000;
-	font-size: 14px;
-}
-
 .add {
 	color: #FFFFFF;
 }
@@ -151,7 +127,7 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 	background-color: transparent;
 }
 
-/* datepicker css overwrite */
+/* DATEPICKER */
 #ui-datepicker-div {
 	font-size: 12px;
 }
