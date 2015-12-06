@@ -298,7 +298,7 @@
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
-	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}" style="${activeTab == 2 ? 'padding-bottom: 20px;' : ''}">
+	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
 	<div class="task-option-dropdown">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
@@ -365,7 +365,7 @@
 	</small>
 	</span>
 	
-	<div class="task-text-content" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">
+	<div class="task-text-content">
 	<c:out value="${t.task}" />
 	</div>
 	
@@ -415,23 +415,30 @@
 	</div>
 	</c:if>
 	
-	<!-- Creator Stamp -->
+	<!-- task footer -->
+	<div class="task-footer" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">
+	<c:choose>
+	<c:when test="${t.id == activeTask}">sulje keskustelu</c:when>
+	<c:otherwise>avaa keskustelu</c:otherwise>
+	</c:choose>
+	<!-- creator stamp -->
 	<c:choose>
 	<c:when test="${activeTab == 2 || activeTab == 9}">	
 	<fmt:parseDate value="${t.createdDate}" pattern="yyyy-MM-dd" var="parsedCreatedDate" type="date" />
 	<fmt:parseDate value="${t.createdTime}" pattern="HH:mm" var="parsedCreatedTime" type="time" />
 	<div class="creator-stamp"><fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<c:out value="${t.user}" /></div>
 	</c:when>
-	</c:choose>
-		
-	<!-- Comment Counter -->
+	</c:choose>		
+	<!-- comment counter -->
 	<div class="comment-counter">
 	<c:choose>
 	<c:when test="${t.numComments == 0}"><c:out value="ei kommentteja" /></c:when>
 	<c:when test="${t.numComments == 1}"><c:out value="${t.numComments} kommentti" /></c:when>
 	<c:otherwise><c:out value="${t.numComments} kommenttia" /></c:otherwise>
 	</c:choose>	
+	</div>	
 	</div>
+	
 	</div>
 	</div>
 	</c:forEach>

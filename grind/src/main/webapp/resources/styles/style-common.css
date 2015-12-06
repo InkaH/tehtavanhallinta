@@ -30,14 +30,14 @@ input[type="checkbox"] {
 }
 
 .comment-counter {
-	bottom: 3px;
+	bottom: 4px;
 	font: normal 10px Verdana;
 	position: absolute;
 	right: 16px;
 }
 
 .creator-stamp {
-	bottom: 3px;
+	bottom: 4px;
 	font: normal 10px Verdana;
 	left: 15px;
 	paddin-top: 5px;
@@ -88,6 +88,19 @@ input[type="checkbox"] {
 	margin-bottom: 50px;
 }
 
+.task-footer {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 0 0 3px 3px;
+	bottom: 0;
+	font: normal 10px Verdana;
+	height: 19px;
+	left: 0;
+	padding-top: 3px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+
 .task-text-content {
 	border: 0px dashed #FFFFFF;
 	display: block;
@@ -112,8 +125,8 @@ input[type="checkbox"] {
 	color: #FFFFFF;
 	font: normal 16px 'Trebuchet MS';
 	line-height: 22px;
-	margin-bottom: 3px;
-	padding: 12px 15px 13px 15px;
+	margin-bottom: 5px;
+	padding: 12px 15px 22px 15px;
 	text-decoration: none;
 	word-wrap: break-word;
 }
