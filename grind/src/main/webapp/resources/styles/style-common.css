@@ -90,7 +90,7 @@ input[type="checkbox"] {
 
 .task-footer {
 	background-color: rgba(0, 0, 0, 0.2);
-	border-radius: 0 0 3px 3px;
+	border-radius: 0 0 5px 5px;
 	bottom: 0;
 	font: normal 10px Verdana;
 	height: 19px;
@@ -119,9 +119,7 @@ input[type="checkbox"] {
 
 .well {
 	border: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	border-radius: 5px;
 	color: #FFFFFF;
 	font: normal 16px 'Trebuchet MS';
 	line-height: 22px;
