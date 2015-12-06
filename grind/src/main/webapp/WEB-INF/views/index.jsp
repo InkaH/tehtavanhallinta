@@ -252,15 +252,22 @@
   	<form action="getGroupTasks" method="post">
   	<select id="groupSelection" name="groupSelection" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
     <c:choose>
-    <c:when test="${groupListDefault == 'Kaikki'}"><option value="Kaikki" selected>Kaikki</option></c:when>
-    <c:otherwise><option value="Kaikki">Kaikki</option></c:otherwise>
-    </c:choose>    
+    <c:when test="${groupListDefault == 'Kaikki'}"><option value="Kaikki" selected>Kaikki jaetut tehtävät</option></c:when>
+    <c:otherwise><option value="Kaikki">Kaikki jaetut tehtävät</option></c:otherwise>
+    </c:choose>
+    <c:choose>
+    <c:when test="${groupListDefault == 'Uusimmat'}"><option value="Uusimmat" selected>Uusimmat jaetut tehtävät</option></c:when>
+    <c:otherwise><option value="Uusimmat">Uusimmat jaetut tehtävät</option></c:otherwise>
+    </c:choose>   
+    <option value="Separator" disabled="disabled">&nbsp;</option> 
+    <optgroup label="Julkiset ryhmät:">    
   	<c:forEach var="g" items="${grouplist}" varStatus="loop-g">  
   	<c:choose>
     <c:when test="${groupListDefault == g}"><option value="${g}" selected><c:out value="${g}" /></option></c:when>
     <c:otherwise><option value="${g}"><c:out value="${g}" /></option></c:otherwise>
     </c:choose>    
     </c:forEach>
+    </optgroup>
   	</select>
 	<sec:csrfInput />
   	</form>
@@ -303,13 +310,13 @@
 		</li>
 	</c:if>
 	
-	<c:if test="${t.shared && activeTab == 1}" >
+	<c:if test="${t.shared && activeTab == 2}" >
 		<li>
-		<a href="#" onclick="if(!confirm('Linkitetäänkö jaettu tehtävä omiin tehtäviin?')){return false;}else{document.forms[10].linkedID.value='${t.id}';document.forms[10].linkedUser.value='${user}';document.forms[10].submit();}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Linkitä Omiin</a>
+		<a href="#" onclick="if(!confirm('Linkitetäänkö jaettu tehtävä omiin tehtäviin?')){return false;}else{document.forms[10].linkedID.value='${t.id}';document.forms[10].linkedUser.value='${user}';document.forms[10].submit();}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Linkitä tehtävä</a>
 		</li>
 	</c:if>
 	
-	<c:if test="${t.done == 0 && activeTab != 1}">	
+	<c:if test="${t.done == 0 && activeTab != 2}">	
 		<li>
 		<a href="#" onclick="if(!confirm('Siirretäänkö tehtävä tehtyihin tehtäviin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='1';document.forms[9].submit();}"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Merkitse tehdyksi</a>
 		</li>	

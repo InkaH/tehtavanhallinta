@@ -90,7 +90,11 @@ public class TaskController {
 		} else if (activeTab == 2) {
 			grouplist = dao.getGroupList();
 			if (!groupListDefault.equalsIgnoreCase("Kaikki")) {
-				tasks = dao.getAllSharedByGroup(groupListDefault);
+				if (groupListDefault.equalsIgnoreCase("Uusimmat")) {
+					tasks = dao.getAllSharedNew();
+				} else {				
+					tasks = dao.getAllSharedByGroup(groupListDefault);
+				}
 			} else {
 				tasks = dao.getAllShared();
 			}

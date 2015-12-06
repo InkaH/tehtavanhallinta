@@ -45,4 +45,6 @@ public interface TaskDAO {
 	public abstract int getNumComments(int task);
 	
 	public abstract List<Task> getAllTasks();
+	
+	public abstract List<Task> getAllSharedNew();
 }
