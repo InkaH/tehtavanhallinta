@@ -21,8 +21,10 @@ public class Comment implements Serializable {
 	private LocalTime time;
 	private int task;
 	private String user;
-	@DateTimeFormat(pattern = "d.M.yyyy HH:mm")
-	private LocalDateTime created;
+	@DateTimeFormat(pattern = "d.M.yyyy")
+	private LocalDate createdDate;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime createdTime;
 	
 	public Comment() {
 		super();
@@ -31,29 +33,48 @@ public class Comment implements Serializable {
 		this.user = "";
 		this.date = null;
 		this.time = null;
-		this.created = null;
+		this.createdDate = null;
+		this.createdTime = null;
 	}
 
-	public Comment(int id, String text, String user, LocalDate date, LocalTime time, LocalDateTime created) {
+	public Comment(int id, String text, String user, LocalDate date, LocalTime time, LocalDate createdDate, LocalTime createdTime) {
 		super();
 		this.id = id;
 		this.comment = text;
 		this.user = user;
 		this.date = date;
 		this.time = time;
-		this.created = created;
+		this.createdDate = createdDate;
+		this.createdTime = createdTime;
 	}
 	
+	public LocalDate getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDate createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalTime getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(LocalTime createdTime) {
+		this.createdTime = createdTime;
+	}
+
 	public Date getTimestamp(){
 		return Timestamp.valueOf(getDatetime());
 	}
 	
-	public LocalDateTime getCreated() {
-		return created;
+	public LocalDateTime getCreatedDatetime() {
+		return this.createdDate.atTime(this.createdTime);
 	}
-	
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
+
+	public void setCreatedDatetime(LocalDateTime datetime) {
+		this.createdDate = datetime.toLocalDate();
+		this.createdTime = datetime.toLocalTime();
 	}
 	
 	public LocalDateTime getDatetime() {

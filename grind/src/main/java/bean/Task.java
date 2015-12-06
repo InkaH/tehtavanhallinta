@@ -25,8 +25,10 @@ public class Task implements Serializable {
 	private String user; // original maker of the task
 	private String activeUser; // current user of the task object
 	private int numComments;
-	@DateTimeFormat(pattern = "d.M.yyyy HH:mm")
-	private LocalDateTime created;
+	@DateTimeFormat(pattern = "d.M.yyyy")
+	private LocalDate createdDate;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime createdTime;
 
 	public Task() {
 		this.id = 0;
@@ -39,10 +41,11 @@ public class Task implements Serializable {
 		this.user = "";
 		this.activeUser = "";
 		this.numComments = 0;
-		this.created = null;
+		this.createdDate = null;
+		this.createdTime = null;
 	}
 
-	public Task(int id, String task, String info, int done, LocalDateTime datetime, String group, boolean shared, String user, LocalDateTime created) {
+	public Task(int id, String task, String info, int done, LocalDateTime datetime, String group, boolean shared, String user, LocalDate createdDate, LocalTime createdTime) {
 		this.id = id;
 		this.task = task;
 		this.done = done;
@@ -53,13 +56,10 @@ public class Task implements Serializable {
 		this.user = user;
 		this.activeUser = ""; // not in parameters
 		this.numComments = 0; // not in parameters
-		this.created = created;
+		this.createdDate = createdDate;
+		this.createdTime = createdTime;
 	}
 	
-	public Date getTimestamp(){
-		return Timestamp.valueOf(getDatetime());
-	}
-
 	public void resetTask() {
 		this.id = 0;
 		this.task = "";
@@ -73,12 +73,33 @@ public class Task implements Serializable {
 		this.numComments = 0;
 	}
 	
-	public LocalDateTime getCreated() {
-		return created;
+	public LocalDate getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDate createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalTime getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(LocalTime createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	public Date getTimestamp(){
+		return Timestamp.valueOf(getDatetime());
 	}
 	
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
+	public LocalDateTime getCreatedDatetime() {
+		return this.createdDate.atTime(this.createdTime);
+	}
+
+	public void setCreatedDatetime(LocalDateTime datetime) {
+		this.createdDate = datetime.toLocalDate();
+		this.createdTime = datetime.toLocalTime();
 	}
 	
 	public int getNumComments() {
