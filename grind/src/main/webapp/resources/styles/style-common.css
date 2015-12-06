@@ -161,7 +161,7 @@ input[type="checkbox"] {
 }
 
 #comment-table tr:nth-child(odd) {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 #comment-table tr td:first-child {
