@@ -380,7 +380,7 @@
 	<fmt:parseDate value="${c.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
 	<fmt:parseDate value="${c.time}" pattern="HH:mm" var="parsedTime" type="time" />
 	<tr>
-	<td><span style="text-transform: lowercase;"><c:out value="${c.user}" /></span>:&nbsp;<c:out value="${c.comment}" /></td>
+	<td><span style="text-transform: capitalize;"><c:out value="${c.user}" /></span>:&nbsp;<c:out value="${c.comment}" /></td>
 	<td>
 	<c:if test="${c.user == user || user == 'admin'}">
 	<span onclick="if(!confirm('Haluatko poistaa kommentin pysyvästi?')){return false;}else{document.forms[6].delComment.value='${c.id}';document.forms[6].submit();}" class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
