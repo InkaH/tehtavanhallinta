@@ -31,14 +31,6 @@
 	box-shadow: 0 0 20px #000000;
 }
 
-.label-color {
-	color: #696969;
-}
-
-.label-color-edit {
-	color: #FF0000;
-}
-
 .tiedot {
 	cursor: pointer;
 }
@@ -117,17 +109,14 @@ ul.dropdown-menu li.theme-selected:nth-child(7) a {
 
 .mark-note {
 	background-color: #969696;
-	color: #FFFFFF;
 }
 
 .mark-warn {
 	background-color: #5e5e5e;
-	color: #FFFFFF;
 }
 
 .mark-task {
 	background-color: #4f4f4f;
-	color: #FFFFFF;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */

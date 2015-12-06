@@ -44,6 +44,14 @@ input[type="checkbox"] {
 	right: 35px;
 }
 
+.label-color {
+	color: #696969;
+}
+
+.label-color-edit {
+	color: #FF0000;
+}
+
 .nav-tabs>li>a {
 	color: #8c8c8c;
 }
@@ -93,6 +101,7 @@ input[type="checkbox"] {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	color: #FFFFFF;
 	font: normal 16px 'Trebuchet MS';
 	line-height: 22px;
 	margin-bottom: 3px;
