@@ -259,7 +259,7 @@
     <c:when test="${groupListDefault == 'Uusimmat'}"><option value="Uusimmat" selected>Uusimmat julkiset tehtävät</option></c:when>
     <c:otherwise><option value="Uusimmat">Uusimmat julkiset tehtävät</option></c:otherwise>
     </c:choose>   
-    <option value="Separator" disabled="disabled">&nbsp;</option> 
+    <!-- <option value="Separator" disabled="disabled">&nbsp;</option> --> 
     <optgroup label="Julkiset ryhmät:">    
   	<c:forEach var="g" items="${grouplist}" varStatus="loop-g">  
   	<c:choose>
