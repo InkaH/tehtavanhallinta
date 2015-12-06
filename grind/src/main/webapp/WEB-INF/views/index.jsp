@@ -125,7 +125,7 @@
 	<ul class="nav nav-tabs">
     <li class="${activeTab == 0 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=0;document.forms[8].submit();">Omat</a></li>
     <li class="${activeTab == 1 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=1;document.forms[8].submit();">Tehdyt</a></li>
-    <li class="${activeTab == 2 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=2;document.forms[8].submit();">Ryhmät</a></li>
+    <li class="${activeTab == 2 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=2;document.forms[8].submit();">Haku</a></li>
     <c:if test="${user == 'admin'}">
     <li class="${activeTab == 9 ? 'active' : ''}"><a data-toggle="tab" href="#" onclick="this.blur();document.forms[8].tabID.value=9;document.forms[8].submit();">Admin</a></li>
     </c:if>    
@@ -247,17 +247,17 @@
 
 	<c:if test="${activeTab == 2}">
 	<div class="row" style="margin: 5px 0 10px 0;">
-  	<label class="col-sm-2" for="groupSelection" style="font-weight: normal;">Ryhmätunnus:</label>
+  	<label class="col-sm-2" for="groupSelection" style="font-weight: normal; text-align: right;">Hakuehto:</label>
   	<div class="col-sm-8">
   	<form action="getGroupTasks" method="post">
   	<select id="groupSelection" name="groupSelection" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
     <c:choose>
-    <c:when test="${groupListDefault == 'Kaikki'}"><option value="Kaikki" selected>Kaikki jaetut tehtävät</option></c:when>
-    <c:otherwise><option value="Kaikki">Kaikki jaetut tehtävät</option></c:otherwise>
+    <c:when test="${groupListDefault == 'Kaikki'}"><option value="Kaikki" selected>Kaikki julkiset tehtävät</option></c:when>
+    <c:otherwise><option value="Kaikki">Kaikki julkiset tehtävät</option></c:otherwise>
     </c:choose>
     <c:choose>
-    <c:when test="${groupListDefault == 'Uusimmat'}"><option value="Uusimmat" selected>Uusimmat jaetut tehtävät</option></c:when>
-    <c:otherwise><option value="Uusimmat">Uusimmat jaetut tehtävät</option></c:otherwise>
+    <c:when test="${groupListDefault == 'Uusimmat'}"><option value="Uusimmat" selected>Uusimmat julkiset tehtävät</option></c:when>
+    <c:otherwise><option value="Uusimmat">Uusimmat julkiset tehtävät</option></c:otherwise>
     </c:choose>   
     <option value="Separator" disabled="disabled">&nbsp;</option> 
     <optgroup label="Julkiset ryhmät:">    
@@ -316,7 +316,13 @@
 		</li>
 	</c:if>
 	
-	<c:if test="${t.done == 0 && activeTab != 2}">	
+	<c:if test="${activeTab == 9}">
+		<li>
+		<a href="#" onclick="document.forms[1].editTask.value='${t.id}';document.forms[1].submit();"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Muokkaa</a>
+		</li>
+	</c:if>
+	
+	<c:if test="${t.done == 0 && activeTab != 2 && activeTab != 9}">	
 		<li>
 		<a href="#" onclick="if(!confirm('Siirretäänkö tehtävä tehtyihin tehtäviin?')){return false;}else{document.forms[9].doneID.value='${t.id}';document.forms[9].doneValue.value='1';document.forms[9].submit();}"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Merkitse tehdyksi</a>
 		</li>	
@@ -335,7 +341,7 @@
 		</c:if>	
 	</c:if>
 	
-	<c:if test="${!t.shared || user == 'admin'}">
+	<c:if test="${activeTab == 9}">
 		<li>
 		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 		</li>
