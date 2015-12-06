@@ -271,7 +271,7 @@
 	<c:if test="${activeTab == 9}">
 	<div class="row">
 	<div class="col-sm-12">
-	<h3>Kaikki tehtävät tietokannassa</h3>
+	<h4>Kaikki tehtävät tietokannassa</h4>
 	</div>
 	</div>
 	</c:if>
