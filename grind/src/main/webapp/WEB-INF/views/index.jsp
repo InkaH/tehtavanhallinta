@@ -416,11 +416,7 @@
 	</c:if>
 	
 	<!-- task footer -->
-	<div class="task-footer" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">
-	<c:choose>
-	<c:when test="${t.id == activeTask}">sulje keskustelu</c:when>
-	<c:otherwise>avaa keskustelu</c:otherwise>
-	</c:choose>
+	<div class="task-footer" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">	
 	<!-- creator stamp -->
 	<c:choose>
 	<c:when test="${activeTab == 2 || activeTab == 9}">	
@@ -428,14 +424,19 @@
 	<fmt:parseDate value="${t.createdTime}" pattern="HH:mm" var="parsedCreatedTime" type="time" />
 	<div class="creator-stamp"><fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<c:out value="${t.user}" /></div>
 	</c:when>
-	</c:choose>		
+	</c:choose>				
 	<!-- comment counter -->
 	<div class="comment-counter">
 	<c:choose>
 	<c:when test="${t.numComments == 0}"><c:out value="ei kommentteja" /></c:when>
 	<c:when test="${t.numComments == 1}"><c:out value="${t.numComments} kommentti" /></c:when>
 	<c:otherwise><c:out value="${t.numComments} kommenttia" /></c:otherwise>
-	</c:choose>	
+	</c:choose>
+	&nbsp;-&nbsp;	
+	<c:choose>
+	<c:when test="${t.id == activeTask}"><span class="position: relative; margin-left: -30px;">sulje keskustelu</span></c:when>
+	<c:otherwise><span class="position: relative; margin-left: -30px;">avaa keskustelu</span></c:otherwise>
+	</c:choose>
 	</div>	
 	</div>
 	

@@ -30,18 +30,18 @@ input[type="checkbox"] {
 }
 
 .comment-counter {
-	bottom: 4px;
+	display: inline-block;
+	float: right;
 	font: normal 10px Verdana;
-	position: absolute;
-	right: 16px;
+	margin-right: 15px;
+	position: relative;
 }
 
 .creator-stamp {
-	bottom: 4px;
+	display: inline-block;
+	float: left;
 	font: normal 10px Verdana;
-	left: 15px;
-	paddin-top: 5px;
-	position: absolute;
+	margin-left: 15px;
 	text-transform: lowercase;
 }
 
