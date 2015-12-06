@@ -93,12 +93,12 @@ input[type="checkbox"] {
 	border-radius: 0 0 5px 5px;
 	bottom: 0;
 	font: normal 10px Verdana;
-	height: 19px;
+	height: 20px;
 	left: 0;
 	padding-top: 3px;
 	position: absolute;
 	right: 0;
-	text-align: center;
+	vertical-align: middle;
 }
 
 .task-text-content {
