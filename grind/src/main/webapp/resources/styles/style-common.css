@@ -40,9 +40,11 @@ input[type="checkbox"] {
 .creator-stamp {
 	bottom: 3px;
 	font: normal 10px Verdana;
-	letter-spacing: 1px;
-	position: absolute;
 	left: 16px;
+	letter-spacing: 1px;
+	paddin-top: 5px;
+	position: absolute;
+	text-transform: lowercase;
 }
 
 .groupid {

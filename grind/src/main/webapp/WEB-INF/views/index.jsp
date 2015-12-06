@@ -298,7 +298,7 @@
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
-	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
+	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}" style="${activeTab == 2 ? 'padding-bottom: 20px;' : ''}">
 	<div class="task-option-dropdown">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
@@ -336,12 +336,12 @@
 		<c:if test="${!t.shared}">
 			<li>
 			<a href="#" onclick="sh=prompt('Jaa tehtävä julkisesti ryhmätunnuksella:','${t.group}');if(sh!=null){document.forms[2].shareStatus.value='true';document.forms[2].shareTask.value='${t.id}';document.forms[2].groupID.value=sh;document.forms[2].submit();}else{return false;}"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Jaa...</a>
-			</li>		
-			<li role="separator" class="divider"></li>
+			</li>
 		</c:if>	
 	</c:if>
 	
-	<c:if test="${activeTab == 9}">
+	<c:if test="${(activeTab != 2 && !t.shared) || (activeTab == 1 && t.shared)}">
+		<li role="separator" class="divider"></li>
 		<li>
 		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 		</li>
@@ -417,7 +417,10 @@
 	
 	<!-- Creator Stamp -->
 	<c:choose>
-	<c:when test="${activeTab == 2}"><div class="creator-stamp">created&nbsp;<c:out value="${t.created}" />&nbsp;by&nbsp;<c:out value="${t.user}" /></div></c:when>
+	<c:when test="${activeTab == 2}">	
+	<fmt:parseDate value="${t.created}" pattern="yyyy-MM-dd" var="parsedCreated" type="date" />
+	<div class="creator-stamp">&copy;<c:out value="${t.user}" />&nbsp;<fmt:formatDate value="${parsedCreated}" pattern="d.M.yyyy" type="date" /></div>
+	</c:when>
 	</c:choose>
 		
 	<!-- Comment Counter -->

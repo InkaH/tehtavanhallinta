@@ -111,7 +111,7 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 	
 	public List<Task> getAllPrivate(String user) {
-		final String sql = "SELECT ta.t_id, ta.t_task, ut.ut_done, ta.t_expire, ta.t_group, ta.t_shared, ta.t_user, ut.ut_user, ta.ta_created FROM Usertask AS ut "
+		final String sql = "SELECT ta.t_id, ta.t_task, ut.ut_done, ta.t_expire, ta.t_group, ta.t_shared, ta.t_user, ut.ut_user, ta.t_created FROM Usertask AS ut "
 				+ "INNER JOIN Task AS ta ON ut.ut_task=ta.t_id WHERE ut.ut_user=? AND ut.ut_done='0' ORDER BY ta.t_expire";
 		RowMapper<Task> mapper = new UsertaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);
