@@ -51,13 +51,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.js"></script>
 <script src="<c:url value="/resources/js/datepickerui-fi.js" />"></script>
 <script src="<c:url value="/resources/js/timepickerui-fi.js" />"></script>
-
-<script type="text/javascript" src="<c:url value="/resources/js/timepicki.js" />"></script>
-
 </head>
 
 <body>
-
 <!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
@@ -111,7 +107,7 @@
 <input type="hidden" id="doneValue" name="doneValue" value="0" />
 <sec:csrfInput />
 </form>
-<!-- FORM[10]: LINK SHARED TASK -->
+<!-- FORM[10]: SHARED TASK LINKING -->
 <form id="linkForm" action="setLink" method="post">
 <input type="hidden" id="linkedID" name="linkedID" value="0" />
 <input type="hidden" id="linkedUser" name="linkedUser" value="0" />
@@ -135,7 +131,6 @@
 	<div class="row ${edit=='0' ? 'label-color' : 'label-color-edit'}" style="white-space: nowrap;">
 	<div class="col-sm-12" style="display: block; width: 100%;">
 		
-	
 	<div class="dropdown" style="display: block;">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
 	<img src="<c:url value="/resources/img/cog.png" />" style="float: right; margin: 9px 5px 0 0; width: 22px;" />
@@ -210,8 +205,6 @@
 				</div>
 			</div>
 		</div>
-		
-		
 		
 		<!-- bootstrap class has-feedback puts glyphicon icon inside the input field -->
 		<div class="row  ${edit=='0' ? 'label-color' : 'label-color-edit'}">
@@ -447,7 +440,6 @@
 	</c:forEach>
 	</c:if>
 	
-		
 	<!-- End of first big bootstrap grid item -->
 	</div>
 	
