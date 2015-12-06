@@ -1,0 +1,97 @@
+@CHARSET "ISO-8859-1";
+
+#logged {
+	color: #FFFFFF;
+	font-size: 13px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: 80px;
+	line-height: 40px;
+	vertical-align: middle;
+	white-space: nowrap;
+	padding-right: 20px;
+}
+
+#logged a {
+	color: #FFFFFF;
+}
+
+#logged a:hover {
+	text-decoration: none;
+	padding-bottom: 0px;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+#comment-table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	table-layout: fixed;
+	width: 100%;
+}
+
+#comment-table tr {
+	width: 100%;
+	line-height: 30px;
+}
+
+#comment-table tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#comment-table tr td:first-child {
+	width: auto;
+	text-align: left;
+	padding: 0 10px 0 10px;
+}
+
+#comment-table tr td:last-child {
+	width: 200px;
+	white-sapce: nowrap;
+	overflow: hidden;
+	text-align: right;
+	padding: 0 15px 0 10px;
+}
+
+#comment-area {
+	border: 0;
+	border-radius: 0;
+	color: #FFFFFF;
+	font: normal 13px Verdana;
+	margin: 5px 0 0 0;
+	padding: 0;
+	line-height: 20px;
+	min-height: 0px;
+	width: 100%;
+}
+
+#comment:focus {
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	text-transform: none !important;
+	font-style: italic;
+}
+
+/* LOGIN CSS */
+

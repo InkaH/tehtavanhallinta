@@ -1,0 +1,248 @@
+/* Amethyst */
+
+@charset "utf-8";
+
+.comment-remove {
+	color: #FFFFFF !important;
+}
+
+#grind-logo {
+	display: block;
+	position: relative;
+	top: -62px;
+	left: 30px;
+	width: 200px;
+}
+
+#banner {
+	background-image: linear-gradient(bottom, #913980 50%, #782066 50%);
+	background-image: -o-linear-gradient(bottom, #913980 50%, #782066 50%);
+	background-image: -moz-linear-gradient(bottom, #913980 50%, #782066 50%);
+	background-image: -webkit-linear-gradient(bottom, #913980 50%, #782066 50%);
+	background-image: -ms-linear-gradient(bottom, #913980 50%, #782066 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #913980),
+		color-stop(0.5, #782066));
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	overflow: hidden;
+	box-shadow: 0 0 20px #000000;
+}
+
+.character-counter {
+	float: right;
+	font-size: 12px;
+	color: #696969;
+	margin-bottom: -10px;
+}
+
+.label-color {
+	color: #696969;
+}
+
+.label-color-edit {
+	color: #FF0000;
+}
+
+.tiedot {
+	cursor: pointer;
+}
+
+.groupid {
+	font-size: 13px;
+	padding: 0;
+	position: absolute;
+	top: 5px;
+	right: 35px;
+}
+
+body {
+	background-color: #FFFFFF;
+	color: #696969;
+	font-size: 16px;
+	overflow-y: scroll;
+	/* Text selection disabled */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: #FFFFFF;
+}
+
+input[type=text] {
+	border-color: #696969;
+}
+
+input[type=text]:focus {
+	outline: none !important;
+	border-color: #913980 !important;
+	box-shadow: 0 0 10px #782066 !important;
+}
+
+textarea {
+	border-color: #696969 !important;
+}
+
+textarea:focus {
+	outline: none !important;
+	border-color: #913980 !important;
+	box-shadow: 0 0 10px #782066 !important;
+}
+
+/* BOOTSTRAP OVERWRITE */
+.glyphicon {
+	color: #696969;
+}
+
+.glyphicon-remove {
+	color: #FFFFFF !important;
+}
+
+.btn {
+	margin-bottom: 20px;
+}
+
+.btn-default {
+	color: #696969;
+	background-color: #CDCDCD;
+	border-color: #696969;
+	font-weight: bold;
+}
+
+.btn-default:hover {
+	color: #696969;
+	border-color: #696969;
+	font-weight: bold;
+}
+
+.container {
+	padding-bottom: 50px;
+	padding-top: 80px;
+}
+
+.control-label {
+	padding-right: 0;
+	font-weight: normal;
+}
+
+.dropdown-menu {
+	text-shadow: none;
+}
+
+ul.dropdown-menu li.theme-selected:nth-child(4) a {
+	font-weight: bold;
+}
+
+.drop-glyph {
+	color: #FFFFFF;
+}
+
+.form-group {
+	margin-bottom: 0;
+}
+
+.well {
+	margin-bottom: 3px;
+	border: 0;
+	line-height: 22px !important;
+}
+
+.mark-note {
+	background-color: #913980;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+.mark-warn {
+	background-color: #82871a;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+.mark-task {
+	background-color: #782066;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: normal 16px 'Trebuchet MS';
+	padding: 10px 15px 11px 15px;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+/* END OF BOOTSTRAP OVERWRITE */
+.dd-select {
+	font: normal 16px 'Trebuchet MS';
+}
+
+.inline {
+	display: inline-block;
+}
+
+.form-group {
+	padding: 10px;
+}
+
+.form-elem {
+	width: 200px;
+}
+
+.muistutus {
+	color: #000000;
+	font-size: 14px;
+}
+
+.add {
+	color: #FFFFFF;
+}
+
+.task {
+	background-color: #DCDCDC;
+	margin: 0;
+	position: relative;
+	display: block;
+	border-style: solid;
+	border-color: #babdb6;
+	border-width: 1px;
+	border-radius: 4px;
+	overflow: visible;
+	padding: 20px;
+}
+
+.task:last-child {
+	margin-bottom: 0;
+}
+
+.task-options {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: none;
+}
+
+#deletebtn {
+	font-size: 1.5em;
+	border: none;
+	background-color: transparent;
+}
+
+/* datepicker css overwrite */
+#ui-datepicker-div {
+	font-size: 12px;
+}

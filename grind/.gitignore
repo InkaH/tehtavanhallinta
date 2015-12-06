@@ -1,9 +1,5 @@
-/target
-**/.DS_Store
-.classpath
-/bin/
 
-# Created by https://www.gitignore.io/api/windows,eclipse,java
+# Created by https://www.gitignore.io/api/windows,linux,java,eclipse
 
 ### Windows ###
 # Windows image file caches
@@ -24,6 +20,31 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+### Linux ###
+*~
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+
+### Java ###
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
 
 ### Eclipse ###
@@ -69,20 +90,4 @@ local.properties
 
 # STS (Spring Tool Suite)
 .springBeans
-
-
-### Java ###
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
 
