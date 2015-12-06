@@ -291,14 +291,16 @@
 	</div>
 	</c:if>
 	
+	<!-- START OF TASK LOOP -->
 	<c:if test="${not empty tasks}">
 	<c:forEach var="t" items="${tasks}" varStatus="loop">
+	
 	<fmt:parseDate value="${t.date} ${t.time}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
 	<fmt:parseDate value="${t.date}" var="compTaskDate" pattern="yyyy-MM-dd" />
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
 	
 	<div class="row">
-	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-note' : 'mark-warn')}">
+	<div class="col-sm-12 well ${(t.done == 0 && parsedAjankohta > now) ? 'mark-task' : ((compTaskDate == compIdentifier) ? 'mark-task' : 'mark-warn')}">
 	<div class="task-option-dropdown">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
