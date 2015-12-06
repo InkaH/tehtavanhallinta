@@ -417,7 +417,7 @@
 	
 	<!-- Creator Stamp -->
 	<c:choose>
-	<c:when test="${activeTab == 2}">	
+	<c:when test="${activeTab == 2 || activeTab == 9}">	
 	<fmt:parseDate value="${t.created}" pattern="yyyy-MM-dd" var="parsedCreated" type="date" />
 	<div class="creator-stamp">&copy;<c:out value="${t.user}" />&nbsp;<fmt:formatDate value="${parsedCreated}" pattern="d.M.yyyy" type="date" /></div>
 	</c:when>
