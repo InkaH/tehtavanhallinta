@@ -104,14 +104,14 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 	public List<Task> getAllTasks() {
-		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user FROM Task ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user, t_created FROM Task ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllPrivate(String user) {
-		final String sql = "SELECT ta.t_id, ta.t_task, ut.ut_done, ta.t_expire, ta.t_group, ta.t_shared, ta.t_user, ut.ut_user FROM Usertask AS ut "
+		final String sql = "SELECT ta.t_id, ta.t_task, ut.ut_done, ta.t_expire, ta.t_group, ta.t_shared, ta.t_user, ut.ut_user, ta.ta_created FROM Usertask AS ut "
 				+ "INNER JOIN Task AS ta ON ut.ut_task=ta.t_id WHERE ut.ut_user=? AND ut.ut_done='0' ORDER BY ta.t_expire";
 		RowMapper<Task> mapper = new UsertaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);
@@ -119,28 +119,28 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 	
 	public List<Task> getAllShared() {
-		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user, t_created FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllSharedByGroup(String group) {
-		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' AND t_group=? ORDER BY t_expire";
+		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user, t_created FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' AND t_group=? ORDER BY t_expire";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {group}, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllSharedNew() {
-		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' ORDER BY t_id DESC";
+		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user, t_created FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' ORDER BY t_id DESC";
 		RowMapper<Task> mapper = new TaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, mapper);
 		return tasks;
 	}
 	
 	public List<Task> getAllDone(String user) {
-		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, t_user, ut_user FROM Usertask "
+		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, t_user, ut_user, t_created FROM Usertask "
 				+ "INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND ut_done='1' ORDER BY t_expire";
 		RowMapper<Task> mapper = new UsertaskRowMapper();
 		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user}, mapper);

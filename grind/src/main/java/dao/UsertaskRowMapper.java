@@ -17,6 +17,7 @@ public class UsertaskRowMapper implements RowMapper<Task> {
 		task.setShared(rs.getString("t_shared").equals("0") ? false : true);
 		task.setUser(rs.getString("t_user")); // original maker of the task
 		task.setActiveUser(rs.getString("ut_user"));
+		task.setCreated(rs.getTimestamp("t_created").toLocalDateTime());
 		return task;
 	}
 }

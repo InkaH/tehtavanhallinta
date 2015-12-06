@@ -21,6 +21,8 @@ public class Comment implements Serializable {
 	private LocalTime time;
 	private int task;
 	private String user;
+	@DateTimeFormat(pattern = "d.M.yyyy HH:mm")
+	private LocalDateTime created;
 	
 	public Comment() {
 		super();
@@ -29,19 +31,29 @@ public class Comment implements Serializable {
 		this.user = "";
 		this.date = null;
 		this.time = null;
+		this.created = null;
 	}
 
-	public Comment(int id, String text, String user, LocalDate date, LocalTime time) {
+	public Comment(int id, String text, String user, LocalDate date, LocalTime time, LocalDateTime created) {
 		super();
 		this.id = id;
 		this.comment = text;
 		this.user = user;
 		this.date = date;
 		this.time = time;
+		this.created = created;
 	}
 	
 	public Date getTimestamp(){
 		return Timestamp.valueOf(getDatetime());
+	}
+	
+	public LocalDateTime getCreated() {
+		return created;
+	}
+	
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
 	}
 	
 	public LocalDateTime getDatetime() {

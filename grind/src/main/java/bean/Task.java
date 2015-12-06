@@ -25,6 +25,8 @@ public class Task implements Serializable {
 	private String user; // original maker of the task
 	private String activeUser; // current user of the task object
 	private int numComments;
+	@DateTimeFormat(pattern = "d.M.yyyy HH:mm")
+	private LocalDateTime created;
 
 	public Task() {
 		this.id = 0;
@@ -37,9 +39,10 @@ public class Task implements Serializable {
 		this.user = "";
 		this.activeUser = "";
 		this.numComments = 0;
+		this.created = null;
 	}
 
-	public Task(int id, String task, String info, int done, LocalDateTime datetime, String group, boolean shared, String user) {
+	public Task(int id, String task, String info, int done, LocalDateTime datetime, String group, boolean shared, String user, LocalDateTime created) {
 		this.id = id;
 		this.task = task;
 		this.done = done;
@@ -50,6 +53,7 @@ public class Task implements Serializable {
 		this.user = user;
 		this.activeUser = ""; // not in parameters
 		this.numComments = 0; // not in parameters
+		this.created = created;
 	}
 	
 	public Date getTimestamp(){
@@ -67,6 +71,14 @@ public class Task implements Serializable {
 		this.user = "";
 		this.activeUser = "";
 		this.numComments = 0;
+	}
+	
+	public LocalDateTime getCreated() {
+		return created;
+	}
+	
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
 	}
 	
 	public int getNumComments() {

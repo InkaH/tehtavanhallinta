@@ -415,6 +415,11 @@
 	</div>
 	</c:if>
 	
+	<!-- Creator Stamp -->
+	<c:choose>
+	<c:when test="${activeTab == 2}"><div class="creator-stamp">created&nbsp;<c:out value="${t.created}" />&nbsp;by&nbsp;<c:out value="${t.user}" /></div></c:when>
+	</c:choose>
+		
 	<!-- Comment Counter -->
 	<div class="comment-counter">
 	<c:choose>

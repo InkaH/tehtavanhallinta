@@ -37,6 +37,14 @@ input[type="checkbox"] {
 	right: 16px;
 }
 
+.creator-stamp {
+	bottom: 3px;
+	font: normal 10px Verdana;
+	letter-spacing: 1px;
+	position: absolute;
+	left: 16px;
+}
+
 .groupid {
 	padding: 0;
 	position: absolute;
