@@ -1,21 +1,9 @@
-/* Blanco */
+/* GrayStone */
 
 @charset "utf-8";
 
-#comment-area {
-	background-color: #FFFFFF !important;
-}
-
 .comment-remove {
-	color: #000000 !important;
-}
-
-#comment {
-	border: 1px solid #000000 !important;
-}
-
-#commentSubmit {
-	border: 1px solid #000000 !important;
+	color: #FFFFFF !important;
 }
 
 #grind-logo {
@@ -27,20 +15,20 @@
 }
 
 #banner {
-	background-image: linear-gradient(bottom, #ffffff 50%, #cccccc 50%);
-	background-image: -o-linear-gradient(bottom, #ffffff 50%, #cccccc 50%);
-	background-image: -moz-linear-gradient(bottom, #ffffff 50%, #cccccc 50%);
-	background-image: -webkit-linear-gradient(bottom, #ffffff 50%, #cccccc 50%);
-	background-image: -ms-linear-gradient(bottom, #ffffff 50%, #cccccc 50%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #ffffff),
-		color-stop(0.5, #cccccc));
+	background-image: linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -o-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -moz-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -webkit-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -ms-linear-gradient(bottom, #607d91 50%, #2a5569 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #607d91),
+		color-stop(0.5, #2a5569));
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 80px;
 	overflow: hidden;
-	box-shadow: 0 0 20px #696969;
+	box-shadow: 0 0 20px #000000;
 }
 
 .label-color {
@@ -55,29 +43,14 @@
 	cursor: pointer;
 }
 
-body {
-	background-color: #FFFFFF;
-	color: #696969;
-	font-size: 16px;
-	overflow-y: scroll;
-	/* Text selection disabled */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: #FFFFFF;
-}
-
 input[type=text] {
 	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #696969 !important;
-	box-shadow: none !important;
+	border-color: #607d91 !important;
+	box-shadow: 0 0 10px #2a5569 !important;
 }
 
 textarea {
@@ -86,18 +59,17 @@ textarea {
 
 textarea:focus {
 	outline: none !important;
-	border-color: #696969 !important;
-	box-shadow: none !important;
+	border-color: #607d91 !important;
+	box-shadow: 0 0 10px #2a5569 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */
-
 .glyphicon {
 	color: #696969;
 }
 
 .glyphicon-remove {
-	color: #696969 !important;
+	color: #FFFFFF !important;
 }
 
 .btn {
@@ -106,14 +78,13 @@ textarea:focus {
 
 .btn-default {
 	color: #696969;
-	background-color: #f1f1f1 !important;
+	background-color: #CDCDCD;
 	border-color: #696969;
 	font-weight: bold;
 }
 
 .btn-default:hover {
 	color: #696969;
-	background-color: #f6f6f6 !important;
 	border-color: #696969;
 	font-weight: bold;
 }
@@ -132,12 +103,12 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(8) a {
+ul.dropdown-menu li.theme-selected:nth-child(3) a {
 	font-weight: bold;
 }
 
 .drop-glyph {
-	color: #696969;
+	color: #FFFFFF;
 }
 
 .form-group {
@@ -145,18 +116,18 @@ ul.dropdown-menu li.theme-selected:nth-child(8) a {
 }
 
 .mark-note {
-	background-color: #ffffff;
-	color: #000000;
+	background-color: #607d91;
+	color: #FFFFFF;
 }
 
 .mark-warn {
-	background-color: #ffffff;
-	color: #000000;
+	background-color: #de6400;
+	color: #FFFFFF;
 }
 
 .mark-task {
-	background-color: #ffffff;
-	color: #000000;
+	background-color: #2a5569;
+	color: #FFFFFF;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */

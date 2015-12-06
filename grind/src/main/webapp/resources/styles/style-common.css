@@ -1,6 +1,21 @@
 @CHARSET "ISO-8859-1";
 
 /* CSS HTML tags */
+
+body {
+	background-color: #FFFFFF;
+	color: #696969;
+	font-size: 16px;
+	overflow-y: scroll;
+	/* Text selection disabled */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 input[type="checkbox"] {
 	margin-left: 15px;
 }

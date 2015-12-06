@@ -1,5 +1,4 @@
-/* Melancholia */
-
+/* Grind */
 @charset "utf-8";
 
 .comment-remove {
@@ -15,13 +14,13 @@
 }
 
 #banner {
-	background-image: linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
-	background-image: -o-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
-	background-image: -moz-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
-	background-image: -webkit-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
-	background-image: -ms-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #969696),
-		color-stop(0.5, #4f4f4f));
+	background-image: linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
+	background-image: -o-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
+	background-image: -moz-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
+	background-image: -webkit-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
+	background-image: -ms-linear-gradient(bottom, #337d73 50%, #2c6b59 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #337d73),
+		color-stop(0.5, #2c6b59));
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -43,29 +42,14 @@
 	cursor: pointer;
 }
 
-body {
-	background-color: #FFFFFF;
-	color: #696969;
-	font-size: 16px;
-	overflow-y: scroll;
-	/* Text selection disabled */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: #FFFFFF;
-}
-
 input[type=text] {
 	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #969696 !important;
-	box-shadow: 0 0 10px #4f4f4f !important;
+	border-color: #337d73 !important;
+	box-shadow: 0 0 10px #2c6b59 !important;
 }
 
 textarea {
@@ -74,8 +58,8 @@ textarea {
 
 textarea:focus {
 	outline: none !important;
-	border-color: #969696 !important;
-	box-shadow: 0 0 10px #4f4f4f !important;
+	border-color: #337d73 !important;
+	box-shadow: 0 0 10px #2c6b59 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */
@@ -118,7 +102,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(7) a {
+ul.dropdown-menu li.theme-selected:nth-child(1) a {
 	font-weight: bold;
 }
 
@@ -131,17 +115,17 @@ ul.dropdown-menu li.theme-selected:nth-child(7) a {
 }
 
 .mark-note {
-	background-color: #969696;
+	background-color: #337d73;
 	color: #FFFFFF;
 }
 
 .mark-warn {
-	background-color: #5e5e5e;
+	background-color: #7d3356;
 	color: #FFFFFF;
 }
 
 .mark-task {
-	background-color: #4f4f4f;
+	background-color: #2c6b59;
 	color: #FFFFFF;
 }
 

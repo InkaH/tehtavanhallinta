@@ -1,4 +1,4 @@
-/* Brownie */
+/* LeafFrog */
 
 @charset "utf-8";
 
@@ -9,19 +9,19 @@
 #grind-logo {
 	display: block;
 	position: relative;
-	top: -62px;
+	top: -61px;
 	left: 30px;
 	width: 200px;
 }
 
 #banner {
-	background-image: linear-gradient(bottom, #c77844 50%, #8f4517 50%);
-	background-image: -o-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
-	background-image: -moz-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
-	background-image: -webkit-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
-	background-image: -ms-linear-gradient(bottom, #c77844 50%, #8f4517 50%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #c77844),
-		color-stop(0.5, #8f4517));
+	background-image: linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
+	background-image: -o-linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
+	background-image: -moz-linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
+	background-image: -webkit-linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
+	background-image: -ms-linear-gradient(bottom, #6e8531 50%, #95ba30 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #6e8531),
+		color-stop(0.5, #95ba30));
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -43,29 +43,14 @@
 	cursor: pointer;
 }
 
-body {
-	background-color: #FFFFFF;
-	color: #696969;
-	font-size: 16px;
-	overflow-y: scroll;
-	/* Text selection disabled */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: #FFFFFF;
-}
-
 input[type=text] {
 	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #c77844 !important;
-	box-shadow: 0 0 10px #8f4517 !important;
+	border-color: #6e8531 !important;
+	box-shadow: 0 0 10px #95ba30 !important;
 }
 
 textarea {
@@ -74,8 +59,8 @@ textarea {
 
 textarea:focus {
 	outline: none !important;
-	border-color: #c77844 !important;
-	box-shadow: 0 0 10px #8f4517 !important;
+	border-color: #6e8531 !important;
+	box-shadow: 0 0 10px #95ba30 !important;
 }
 
 /* BOOTSTRAP OVERWRITE */
@@ -118,7 +103,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(5) a {
+ul.dropdown-menu li.theme-selected:nth-child(2) a {
 	font-weight: bold;
 }
 
@@ -131,18 +116,18 @@ ul.dropdown-menu li.theme-selected:nth-child(5) a {
 }
 
 .mark-note {
-	background-color: #c77844;
 	color: #FFFFFF;
+	background-color: #6e8531;
 }
 
 .mark-warn {
-	background-color: #1e5069;
 	color: #FFFFFF;
+	background-color: #d10a3f;
 }
 
 .mark-task {
-	background-color: #8f4517;
 	color: #FFFFFF;
+	background-color: #95ba30;
 }
 
 /* END OF BOOTSTRAP OVERWRITE */

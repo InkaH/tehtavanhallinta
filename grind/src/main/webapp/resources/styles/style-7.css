@@ -1,4 +1,4 @@
-/* Vampire */
+/* Melancholia */
 
 @charset "utf-8";
 
@@ -15,13 +15,13 @@
 }
 
 #banner {
-	background-image: linear-gradient(bottom, #595959 50%, #262626 50%);
-	background-image: -o-linear-gradient(bottom, #595959 50%, #262626 50%);
-	background-image: -moz-linear-gradient(bottom, #595959 50%, #262626 50%);
-	background-image: -webkit-linear-gradient(bottom, #595959 50%, #262626 50%);
-	background-image: -ms-linear-gradient(bottom, #595959 50%, #262626 50%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #595959),
-		color-stop(0.5, #262626));
+	background-image: linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
+	background-image: -o-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
+	background-image: -moz-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
+	background-image: -webkit-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
+	background-image: -ms-linear-gradient(bottom, #969696 50%, #4f4f4f 50%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #969696),
+		color-stop(0.5, #4f4f4f));
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -43,29 +43,14 @@
 	cursor: pointer;
 }
 
-body {
-	background-color: #FFFFFF;
-	color: #696969;
-	font-size: 16px;
-	overflow-y: scroll;
-	/* Text selection disabled */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: #FFFFFF;
-}
-
 input[type=text] {
 	border-color: #696969;
 }
 
 input[type=text]:focus {
 	outline: none !important;
-	border-color: #595959 !important;
-	box-shadow: 0 0 10px #262626 !important;
+	border-color: #969696 !important;
+	box-shadow: 0 0 10px #4f4f4f !important;
 }
 
 textarea {
@@ -74,8 +59,8 @@ textarea {
 
 textarea:focus {
 	outline: none !important;
-	border-color: #595959 !important;
-	box-shadow: 0 0 10px #262626 !important;
+	border-color: #969696 !important;
+	box-shadow: 0 0 10px #4f4f4f !important;
 }
 
 /* BOOTSTRAP OVERWRITE */
@@ -118,7 +103,7 @@ textarea:focus {
 	text-shadow: none;
 }
 
-ul.dropdown-menu li.theme-selected:nth-child(6) a {
+ul.dropdown-menu li.theme-selected:nth-child(7) a {
 	font-weight: bold;
 }
 
@@ -131,17 +116,17 @@ ul.dropdown-menu li.theme-selected:nth-child(6) a {
 }
 
 .mark-note {
-	background-color: #595959;
+	background-color: #969696;
 	color: #FFFFFF;
 }
 
 .mark-warn {
-	background-color: #941010;
+	background-color: #5e5e5e;
 	color: #FFFFFF;
 }
 
 .mark-task {
-	background-color: #262626;
+	background-color: #4f4f4f;
 	color: #FFFFFF;
 }
 

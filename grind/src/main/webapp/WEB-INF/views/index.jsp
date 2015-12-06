@@ -27,14 +27,14 @@
 <link href="<c:url value="/resources/styles/style-common.css" />" rel="stylesheet">
 
 <c:choose>
-<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/tyyli2.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 3}"><link href="<c:url value="/resources/styles/tyyli3.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 4}"><link href="<c:url value="/resources/styles/tyyli4.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 5}"><link href="<c:url value="/resources/styles/tyyli5.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 6}"><link href="<c:url value="/resources/styles/tyyli6.css" />" rel="stylesheet"></c:when>
-<c:when test="${theme == 7}"><link href="<c:url value="/resources/styles/tyyli7.css" />" rel="stylesheet"></c:when>
-<c:otherwise><link href="<c:url value="/resources/styles/tyyli1.css" />" rel="stylesheet"></c:otherwise>
+<c:when test="${theme == 1}"><link href="<c:url value="/resources/styles/style-1.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 2}"><link href="<c:url value="/resources/styles/style-2.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 3}"><link href="<c:url value="/resources/styles/style-3.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 4}"><link href="<c:url value="/resources/styles/style-4.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 5}"><link href="<c:url value="/resources/styles/style-5.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 6}"><link href="<c:url value="/resources/styles/style-6.css" />" rel="stylesheet"></c:when>
+<c:when test="${theme == 7}"><link href="<c:url value="/resources/styles/style-7.css" />" rel="stylesheet"></c:when>
+<c:otherwise><link href="<c:url value="/resources/styles/style-1.css" />" rel="stylesheet"></c:otherwise>
 </c:choose>
 
 <link href="<c:url value="/resources/img/favicon.ico" />" rel="shortcut icon" type="image/x-icon" />
