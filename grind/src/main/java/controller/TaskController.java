@@ -296,7 +296,7 @@ public class TaskController {
 			// if username already exists, return to login page with
 			// error message and set regist. form values to empty
 			model.addAttribute("userExistsError",
-					"Antamallasi sähköpostiosoitteella on jo rekisteröidytty palveluun.");
+					"Antamallasi käyttäjänimellä on jo rekisteröidytty palveluun.");
 			user.setUsername("");
 			user.setEmptyPassword("");
 			model.addAttribute("user", user);

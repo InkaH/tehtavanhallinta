@@ -10,6 +10,7 @@
 <head>
 <!-- bootstrap libraries (jquery and css) -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="<c:url value="/resources/styles/style-common.css" />" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Tervetuloa</title>
@@ -105,8 +106,7 @@
 						
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6">
-					<button type="submit" id="submit" disabled>Rekisteröidy</button>
+					<div class="col-sm-offset-3 col-sm-6"><input class="btn btn-default form-control" name="submit" type="submit" id="regSubmit" value="REKISTERÖIDY" disabled/>
 					</div>
 					</div>
 					</div>
@@ -118,11 +118,11 @@
 			$('#username').on('keyup', function() {
 				if ($(this).val().length < 1 || $(this).val().length > 20) {
 					$('#usrMsg').html('Käyttäjänimen pituus 1-20 merkkiä').css('color', 'red');
-					document.getElementById('submit').disabled = true;
+					document.getElementById('regSubmit').disabled = true;
 				} else {
 					$('#usrMsg').html('Käyttäjänimen pituus 1-20 merkkiä').css('color', 'green');
-					if ($('#confirm_password').val() == $('#password').val()) {
-						document.getElementById('submit').disabled = false;
+					if ($('#confirm_password').val() == $('#password').val() && $('#password').val()!="") {
+						document.getElementById('regSubmit').disabled = false;
 					}
 				}
 			});
@@ -130,22 +130,31 @@
 			$('#password').on('keyup', function() {
 				if ($(this).val().length < 8 || $(this).val().length > 60) {
 					$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'red');
-					document.getElementById('submit').disabled = true;
+					if($(this).val() != $('#confirm_password').val()){
+						$('#cpwMsg').html('Salasanat eivät täsmää!').css('color', 'red');
+					}
+					document.getElementById('regSubmit').disabled = true;
 				} else {
 					$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'green');
-					if ($(confirm_password).val() == $('#password').val()) {
-						document.getElementById('submit').disabled = false;
+					if($(this).val() == $('#confirm_password').val()){
+						$('#cpwMsg').html('Salasanat täsmäävät!').css('color', 'green');
+						document.getElementById('regSubmit').disabled = false;
 					}
 				}
 			});
 
 			$('#confirm_password').on('keyup', function() {
-				if ($(this).val() == $('#password').val()) {
+				if ($(this).val() == $('#password').val() && $('#password').val().length >= 8 && $('#password').val().length <=60) {
 					$('#cpwMsg').html('Salasanat täsmäävät!').css('color', 'green');
-					document.getElementById('submit').disabled = false;
-				} else {
+					document.getElementById('regSubmit').disabled = false;
+				} 
+				else if($('#password').val().length < 8 || $('#password').val().length > 60){
+					$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'red');
+					document.getElementById('regSubmit').disabled = true;
+				}
+				else {
 					$('#cpwMsg').html('Salasanat eivät täsmää!').css('color', 'red');
-					document.getElementById('submit').disabled = true;
+					document.getElementById('regSubmit').disabled = true;
 				}
 			});
 		</script>
