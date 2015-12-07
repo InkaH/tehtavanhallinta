@@ -1,114 +1,154 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@page session="false"%>
 <html>
-   <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <title>Tervetuloa</title>
-   </head>
 
-   <body onload='document.loginForm.username.focus();'>
-      <div>
-         <h3>Kirjaudu sisään</h3>
-         <c:if test="${not empty error}">
-            <p style="color:red">${error}</p>
-         </c:if>
-         <c:if test="${not empty msg}">
-            <p style="color:red">${msg}</p>
-         </c:if>
-         <c:if test="${not empty success}">
-            <p style="color:green">${success}</p>
-         </c:if>
-         <form name='loginForm' action="login" method='POST'>
-            <table>
-               <tr>
-                  <td>Käyttäjänimi:</td>
-                  <td><input type='text' name='u_user'></td>
-               </tr>
-               <tr>
-                  <td>Salasana:</td>
-                  <td><input type='password' name='u_password' /></td>
-               </tr>
-               <tr>
-                  <td colspan='2'><input name="submit" type="submit"
-                     value="Kirjaudu" /></td>
-               </tr>
-            </table>
-            <sec:csrfInput />
-         </form>
-      </div>
-      <div>
-         <h3>Rekisteröidy</h3>
-         <c:if test="${not empty userExistsError}">
-            <p style="color:red">${userExistsError}</p>
-         </c:if>
-         <form:form modelAttribute="user" action="registration" method="POST" enctype="utf8">
-            <br>
-            <table>
-               <tr>
-                  <td><label>Käyttäjänimi:</label>
-                  </td>
-                  <td>
-                     <form:input path="username" value="" />
-                     <span id='usrMsg'></span>
-                  </td>
-                  <form:errors path="username" style="color:red"/>
-               </tr>
-               <tr>
-                  <td><label>Salasana:</label>
-                  </td>
-                  <td>
-                     <form:input path="password" id="password" value="" type="password"/>
-                     <span id='pwMsg'></span>
-                  </td>
-                  <form:errors path="password" style="color:red"/>
-               </tr>
-               <tr>
-                  <td><label>Toista salasana:</label>
-                  </td>
-                  <td><input id="confirm_password" value="" type="password"/><span id='cpwMsg'></span></td>
-               </tr>
-            </table>
-            <button type="submit" id="submit" disabled>Rekisteröidy</button>
-         </form:form>
-      </div>
-      <script>
-         $('#username').on('keyup', function() {
-         	if ($(this).val().length < 1 || $(this).val().length > 20){
-         		$('#usrMsg').html('Käyttäjänimen pituus 1-20 merkkiä').css('color', 'red');
-         		document.getElementById('submit').disabled = true;
-         	} else {
-         		$('#usrMsg').html('Käyttäjänimen pituus 1-20 merkkiä').css('color', 'green');
-         		if ($('#confirm_password').val() == $('#password').val()){
-         			document.getElementById('submit').disabled = false;
-         			}
-         		}
-         });
-         
-         $('#password').on('keyup', function() {
-         	if ($(this).val().length < 8 || $(this).val().length > 60){
-         		$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'red');
-         		document.getElementById('submit').disabled = true;
-         	} else {
-         		$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'green');
-         		if ($(confirm_password).val() == $('#password').val()){
-         			document.getElementById('submit').disabled = false;
-         			}
-         	}
-         });
-         
-         $('#confirm_password').on('keyup', function () {
-         	if ($(this).val() == $('#password').val()) {
-             	$('#cpwMsg').html('Salasanat täsmäävät!').css('color', 'green');
-             	document.getElementById('submit').disabled = false;
-         	} else {
-         		$('#cpwMsg').html('Salasanat eivät täsmää!').css('color', 'red');
-         		document.getElementById('submit').disabled = true;
-         	}
-         });    
-      </script> 
-   </body>
+<head>
+<!-- bootstrap libraries (jquery and css) -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<title>Tervetuloa</title>
+</head>
+
+<body onload='document.loginForm.username.focus();'>
+
+	<div class="container" style="text-align: center !important;">
+		
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<h1>G R I N D</h1>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<h3>Kirjaudu sisään</h3>
+				<c:if test="${not empty error}">
+					<p style="color: red">${error}</p>
+				</c:if>
+				<c:if test="${not empty msg}">
+					<p style="color: red">${msg}</p>
+				</c:if>
+				<c:if test="${not empty success}">
+					<p style="color: green">${success}</p>
+				</c:if>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<form role="form" class="form-horizontal" name="loginForm" action="login" method="post">
+					
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6"><input class="form-control" type="text" name="u_user" placeholder="Käyttäjätunnus" style="text-align: center !important;" /></div>
+					</div>
+					</div>
+					
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6"><input class="form-control" type="password" name="u_password" placeholder="Salasana" style="text-align: center !important;" /></div>
+					</div>
+					</div>
+					
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6"><input class="btn btn-default form-control" name="submit" type="submit" value="KIRJAUDU" /></div>
+					</div>
+					</div>
+					
+					<sec:csrfInput />
+					
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<h3>Rekisteröidy</h3>
+				<c:if test="${not empty userExistsError}">
+					<p style="color: red">${userExistsError}</p>
+				</c:if>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">		
+				<form:form role="form" cssClass="form-horizontal" modelAttribute="user" action="registration" method="post" enctype="utf8">
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">	
+					<form:input path="username" class="form-control" type="text" placeholder="Käyttäjänimi" style="text-align: center !important;" />&nbsp;<span id='usrMsg'></span><form:errors path="username" style="color:red" /></div>
+					</div>
+					</div>
+						
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+					<form:input path="password" class="form-control" type="password" placeholder="Salasana"  style="text-align: center !important;" /><br><span id='pwMsg'></span><form:errors path="password" style="color:red" />
+					</div>
+					</div>
+					</div>
+						
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+					<input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Salasana uudestaan"  style="text-align: center !important;" /><br><span id="cpwMsg"></span><form:errors path="password" style="color:red" />
+					</div>
+					</div>
+					</div>
+						
+					<div class="row">
+					<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+					<button type="submit" id="submit" disabled>Rekisteröidy</button>
+					</div>
+					</div>
+					</div>
+				</form:form>
+			</div>
+		</div>
+
+		<script>
+			$('#username').on('keyup', function() {
+				if ($(this).val().length < 1 || $(this).val().length > 20) {
+					$('#usrMsg').html('Käyttäjänimen pituus 1-20 merkkiä').css('color', 'red');
+					document.getElementById('submit').disabled = true;
+				} else {
+					$('#usrMsg').html('Käyttäjänimen pituus 1-20 merkkiä').css('color', 'green');
+					if ($('#confirm_password').val() == $('#password').val()) {
+						document.getElementById('submit').disabled = false;
+					}
+				}
+			});
+
+			$('#password').on('keyup', function() {
+				if ($(this).val().length < 8 || $(this).val().length > 60) {
+					$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'red');
+					document.getElementById('submit').disabled = true;
+				} else {
+					$('#pwMsg').html('Salasanan pituus 8-60 merkkiä').css('color', 'green');
+					if ($(confirm_password).val() == $('#password').val()) {
+						document.getElementById('submit').disabled = false;
+					}
+				}
+			});
+
+			$('#confirm_password').on('keyup', function() {
+				if ($(this).val() == $('#password').val()) {
+					$('#cpwMsg').html('Salasanat täsmäävät!').css('color', 'green');
+					document.getElementById('submit').disabled = false;
+				} else {
+					$('#cpwMsg').html('Salasanat eivät täsmää!').css('color', 'red');
+					document.getElementById('submit').disabled = true;
+				}
+			});
+		</script>
+	</div>
+</body>
 </html>
