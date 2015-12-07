@@ -427,7 +427,7 @@
 	<c:when test="${t.numComments == 1}"><c:out value="${t.numComments} kommentti" /></c:when>
 	<c:otherwise><c:out value="${t.numComments} kommenttia" /></c:otherwise>
 	</c:choose>
-	&nbsp;-&nbsp;	
+	&nbsp;&bull;&nbsp;	
 	<c:choose>
 	<c:when test="${t.id == activeTask}"><span class="position: relative; margin-left: -30px;">sulje keskustelu</span></c:when>
 	<c:otherwise><span class="position: relative; margin-left: -30px;">avaa keskustelu</span></c:otherwise>
