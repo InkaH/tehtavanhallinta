@@ -16,10 +16,10 @@ font: normal 18px 'Trebuchet MS';
 </head>
 <body>
 <div class="centered">
-<p>Nyt sin√§ sen rikoit!</p>
+<p>Nyt sin‰ sen rikoit!</p>
 <img src="grind-shattered.png" alt="logo">
-<p>Hae kahvia ja yrit√§ hetken kuluttua uudelleen.</p>
-<p>Olemme eritt√§in pahoillamme!</p>
+<p>Hae kahvia ja yrit‰ hetken kuluttua uudelleen.</p>
+<p>Olemme eritt‰in pahoillamme!</p>
 </div>
 </body>
 </html>
