@@ -132,13 +132,6 @@ public class TaskDaoImpl implements TaskDAO {
 		return tasks;
 	}
 	
-	public List<Task> getAllSharedNew() {
-		final String sql = "SELECT t_id, t_task, t_expire, t_group, t_shared, t_user, t_created FROM Task WHERE (t_expire > NOW() OR t_expire='1970-01-01 23:59:00') AND t_shared='1' ORDER BY t_id DESC";
-		RowMapper<Task> mapper = new TaskRowMapper();
-		List<Task> tasks = jdbcTemplate.query(sql, mapper);
-		return tasks;
-	}
-	
 	public List<Task> getAllDone(String user) {
 		final String sql = "SELECT t_id, t_task, ut_done, t_expire, t_group, t_shared, t_user, ut_user, t_created FROM Usertask "
 				+ "INNER JOIN Task on ut_task=t_id WHERE ut_user=? AND ut_done='1' ORDER BY t_expire";
