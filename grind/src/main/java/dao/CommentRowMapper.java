@@ -14,7 +14,6 @@ public class CommentRowMapper implements RowMapper<Comment> {
 		c.setDatetime(rs.getTimestamp("c_datetime").toLocalDateTime());		
 		c.setTask(rs.getInt("c_task"));
 		c.setUser(rs.getString("c_user"));
-		c.setCreatedDatetime(rs.getTimestamp("c_created").toLocalDateTime());
 		return c;
 	}	
 }

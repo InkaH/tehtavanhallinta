@@ -1,11 +1,9 @@
 package bean;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,10 +19,6 @@ public class Comment implements Serializable {
 	private LocalTime time;
 	private int task;
 	private String user;
-	@DateTimeFormat(pattern = "d.M.yyyy")
-	private LocalDate createdDate;
-	@DateTimeFormat(pattern = "HH:mm")
-	private LocalTime createdTime;
 	
 	public Comment() {
 		super();
@@ -33,8 +27,6 @@ public class Comment implements Serializable {
 		this.user = "";
 		this.date = null;
 		this.time = null;
-		this.createdDate = null;
-		this.createdTime = null;
 	}
 
 	public Comment(int id, String text, String user, LocalDate date, LocalTime time, LocalDate createdDate, LocalTime createdTime) {
@@ -44,39 +36,9 @@ public class Comment implements Serializable {
 		this.user = user;
 		this.date = date;
 		this.time = time;
-		this.createdDate = createdDate;
-		this.createdTime = createdTime;
 	}
 	
-	public LocalDate getCreatedDate() {
-		return createdDate;
-	}
 
-	public void setCreatedDate(LocalDate createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public LocalTime getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(LocalTime createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public Date getTimestamp(){
-		return Timestamp.valueOf(getDatetime());
-	}
-	
-	public LocalDateTime getCreatedDatetime() {
-		return this.createdDate.atTime(this.createdTime);
-	}
-
-	public void setCreatedDatetime(LocalDateTime datetime) {
-		this.createdDate = datetime.toLocalDate();
-		this.createdTime = datetime.toLocalTime();
-	}
-	
 	public LocalDateTime getDatetime() {
 		return this.date.atTime(this.time);
 	}
