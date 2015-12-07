@@ -184,7 +184,7 @@
 			<label class="control-label col-sm-2" for="kuvaus">* Tehtävä:</label>
 				<div class="col-sm-8">
 				<!-- bootstrap class form-control makes the element full width of parent element in a form -->
-				<form:textarea path="task" required="required" autocomplete="off" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävä (pakollinen)" maxlength="1000" /> 
+				<form:textarea path="task" required="required" autocomplete="off" cssClass="form-control" rows="5" placeholder="Kirjoita tehtävä" maxlength="1000" /> 
 				</div>
 			</div>
 		</div>
@@ -193,7 +193,7 @@
 			<div class="form-group">
 			<label class="control-label col-sm-2" for="ryhma">Ryhmätunnus:</label>
 				<div class="col-sm-8">
-				<form:input path="group" cssClass="form-control" autocomplete="off" placeholder="Kirjoita ryhmätunnus (valinnainen)" style="text-transform: uppercase" maxlength="50" />
+				<form:input path="group" cssClass="form-control" autocomplete="off" placeholder="Kirjoita ryhmätunnus" style="text-transform: uppercase" maxlength="50" />
 				</div>
 			</div>
 		</div>
