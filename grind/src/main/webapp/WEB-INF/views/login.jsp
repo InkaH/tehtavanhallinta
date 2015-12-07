@@ -46,7 +46,7 @@
 					
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6"><input class="form-control" type="text" name="u_user" placeholder="Käyttäjätunnus" style="text-align: center !important;" /></div>
+					<div class="col-sm-offset-3 col-sm-6"><input class="form-control" type="text" name="u_user" placeholder="Käyttäjänimi" style="text-align: center !important;" /></div>
 					</div>
 					</div>
 					
@@ -83,7 +83,7 @@
 					<div class="row">
 					<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-6">	
-					<form:input path="username" class="form-control" type="text" placeholder="Käyttäjänimi" style="text-align: center !important;" />&nbsp;<span id='usrMsg'></span><form:errors path="username" style="color:red" /></div>
+					<form:input path="username" class="form-control" type="text" placeholder="Käyttäjänimi" style="text-transform: lowercase; text-align: center !important;" />&nbsp;<span id='usrMsg'></span><form:errors path="username" style="color:red" /></div>
 					</div>
 					</div>
 						

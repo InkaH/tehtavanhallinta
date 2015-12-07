@@ -59,7 +59,7 @@ public class TaskController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen k�ytt�j�nimi tai salasana.");
+			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
 		}
 		if (logout != null) {
 			activeTask = 0;
