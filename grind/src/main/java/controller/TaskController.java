@@ -130,7 +130,6 @@ public class TaskController {
 			if (task.getShared() && task.getGroup().equals("")) {
 				task.setShared(false);
 			}
-			task.setGroup(task.getGroup().toUpperCase());
 			task.setGroup(task.getGroup());
 			dao.addTask(task, username);
 		}

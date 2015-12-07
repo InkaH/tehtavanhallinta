@@ -188,6 +188,6 @@ public class Task implements Serializable {
 	}
 
 	public void setGroup(String group) {
-		this.group = group;
+		this.group = group.toUpperCase();
 	}
 }
