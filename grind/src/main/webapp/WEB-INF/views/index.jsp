@@ -359,13 +359,11 @@
 	<div class="task-text-content">
 	<c:out value="${t.task}" />
 	</div>
-	
-	<c:if test="${not empty t.group}">		
+		
 	<c:choose>
-	<c:when test="${t.shared}"><div class="groupid"><img src="<c:url value="/resources/img/logo-public-white.png" />" style="width: 20px; margin: -5px 3px 0 0;" /><small>&nbsp;<c:out value="${t.group}" /></small></div></c:when>
-	<c:otherwise><div class="groupid"><img src="<c:url value="/resources/img/logo-private-white.png" />" style="width: 15px; margin: -2px 2px 0 0;" /><small>&nbsp;<c:out value="${t.group}" /></small></div></c:otherwise>
+	<c:when test="${t.shared && not empty t.group}"><div class="groupid"><img src="<c:url value="/resources/img/logo-public-white.png" />" style="width: 20px; margin: -5px 3px 0 0;" /><small>&nbsp;<c:out value="${t.group}" /></small></div></c:when>
+	<c:when test="${!t.shared && not empty t.group}"><div class="groupid"><img src="<c:url value="/resources/img/logo-private-white.png" />" style="width: 15px; margin: -2px 2px 0 0;" /><small>&nbsp;<c:out value="${t.group}" /></small></div></c:when>
 	</c:choose>	
-	</c:if>	
 	
 	<c:if test="${activeTask == t.id}">
 	<div>
