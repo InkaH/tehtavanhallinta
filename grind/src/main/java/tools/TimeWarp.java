@@ -23,12 +23,4 @@ public class TimeWarp {
 		System.out.println(endOfNextWeek);
 		return endOfNextWeek;
 	}
-	
-	public static LocalDateTime startOfNextMonth() {
-		return null;
-	}
-	
-	public static LocalDateTime endOfNextMonth() {
-		return null;
-	}
 }

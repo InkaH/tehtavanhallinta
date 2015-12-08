@@ -187,10 +187,6 @@
     <c:when test="${taskFilterDefault == 'nextWeek'}"><option value="nextWeek" selected>Seuraava viikko</option></c:when>
     <c:otherwise><option value="nextWeek">Seuraava viikko</option></c:otherwise>
     </c:choose>
-    <c:choose>
-    <c:when test="${taskFilterDefault == 'nextMonth'}"><option value="nextMonth" selected>Seuraava kuukausi</option></c:when>
-    <c:otherwise><option value="nextMonth">Seuraava kuukausi</option></c:otherwise>
-    </c:choose>
     </select>
 	<sec:csrfInput />
   	</form>
