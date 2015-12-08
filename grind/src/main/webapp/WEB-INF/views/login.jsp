@@ -16,7 +16,7 @@
 <title>Tervetuloa</title>
 </head>
 
-<body onload="document.loginForm.username.focus();">
+<body onload="document.loginForm.u_user.focus();">
 
 	<div class="container" style="text-align: center !important;">
 		
