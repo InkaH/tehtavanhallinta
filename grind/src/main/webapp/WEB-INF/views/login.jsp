@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
-<%@page session="false"%>
 <html>
 
 <head>
@@ -26,9 +25,9 @@
 		<div class="row">
 			<div class="col-sm-offset-2 col-sm-8">
 				<h3>Kirjaudu sisään</h3>
-				<c:if test="${not empty error}">
-					<p style="color: red">${error}</p>
-				</c:if>
+				<c:if test="${'fail' eq param.auth}">
+    			<p style="color: red">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+   				</c:if>
 				<c:if test="${not empty msg}">
 					<p style="color: red">${msg}</p>
 				</c:if>
