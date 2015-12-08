@@ -33,17 +33,17 @@
 					<p style="color: green">${success}</p>
 				</c:if>
 				<c:if test="${'fail' eq param.auth}">
-				<c:set var="auth_errormsg" scope="session" value="${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"/>
-				<!-- Could not set custom messages in mymessages.properties for JDBC exception, hence must change the content 
-				of the message to more user-friendly right here -->
-				<c:choose>
-					<c:when test="${auth_errormsg.contains('Could not get JDBC')}">
-						<p style="color: red">Yhteysvirhe - yritä hetken kuluttua uudelleen</p>
-					</c:when>
-					<c:otherwise>
-						<p style="color: red">${auth_errormsg}</p>
-					</c:otherwise>
-				</c:choose>
+					<c:set var="auth_errormsg" scope="session" value="${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"/>
+					<!-- Could not set custom messages in mymessages.properties for JDBC exception, hence must change the content 
+					of the message to more user-friendly right here -->
+					<c:choose>
+						<c:when test="${auth_errormsg.contains('Could not get JDBC')}">
+							<p style="color: red">Yhteysvirhe - yritä hetken kuluttua uudelleen</p>
+						</c:when>
+						<c:otherwise>
+							<p style="color: red">${auth_errormsg}</p>
+						</c:otherwise>
+					</c:choose>
    				</c:if>
 			</div>
 		</div>

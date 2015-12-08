@@ -17,7 +17,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
       <!-- Spring loginin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-form-login-attributes -->
       <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?auth=fail" username-parameter="u_user" password-parameter="u_password" />
       <!-- Spring logoutin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-logout --> 
-	  <logout logout-success-url="/login?logout=true" delete-cookies="JSESSIONID"/>
+	  <logout logout-success-url="/login?logout" delete-cookies="JSESSIONID"/>
 	  <!-- Estetään yhden käyttäjän usea samanaikainen sisäänkirjautuminen. Toinen sisäänkirjautuminen invalidoi tällä ensimmäisen. -->
       <session-management invalid-session-url="/login">
 		<concurrency-control max-sessions="1" />
