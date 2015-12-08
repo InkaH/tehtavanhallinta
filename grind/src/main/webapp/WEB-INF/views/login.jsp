@@ -16,7 +16,7 @@
 <title>Tervetuloa</title>
 </head>
 
-<body onload='document.loginForm.username.focus();'>
+<body onload="document.loginForm.username.focus();">
 
 	<div class="container" style="text-align: center !important;">
 		
@@ -24,7 +24,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-offset-3 col-sm-6">
+			<div class="col-sm-offset-2 col-sm-8">
 				<h3>Kirjaudu sisään</h3>
 				<c:if test="${not empty error}">
 					<p style="color: red">${error}</p>
@@ -39,24 +39,24 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-offset-3 col-sm-6">
+			<div class="col-sm-offset-2 col-sm-8">
 				<form role="form" class="form-horizontal" name="loginForm" action="login" method="post">
 					
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6"><input class="form-control" type="text" name="u_user" placeholder="Käyttäjänimi" style="text-align: center !important;" /></div>
+					<div class="col-sm-offset-4 col-sm-4"><input class="form-control" type="text" name="u_user" placeholder="Käyttäjänimi" style="text-align: center !important;" /></div>
 					</div>
 					</div>
 					
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6"><input class="form-control" type="password" name="u_password" placeholder="Salasana" style="text-align: center !important;" /></div>
+					<div class="col-sm-offset-4 col-sm-4"><input class="form-control" type="password" name="u_password" placeholder="Salasana" style="text-align: center !important;" /></div>
 					</div>
 					</div>
 					
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6"><input class="btn btn-default form-control" name="submit" type="submit" value="KIRJAUDU" /></div>
+					<div class="col-sm-offset-4 col-sm-4"><input class="btn btn-default form-control" name="submit" type="submit" value="KIRJAUDU" /></div>
 					</div>
 					</div>
 					
@@ -67,7 +67,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-offset-3 col-sm-6">
+			<div class="col-sm-offset-2 col-sm-8">
 				<h3>Rekisteröidy</h3>
 				<c:if test="${not empty userExistsError}">
 					<p style="color: red">${userExistsError}</p>
@@ -76,34 +76,44 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-offset-3 col-sm-6">		
+			<div class="col-sm-offset-2 col-sm-8">		
 				<form:form role="form" cssClass="form-horizontal" modelAttribute="user" action="registration" method="post" enctype="utf8">
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6">	
-					<form:input path="username" class="form-control" type="text" placeholder="Käyttäjänimi" style="text-transform: lowercase; text-align: center !important;" />&nbsp;<span id='usrMsg'></span><form:errors path="username" style="color:red" /></div>
+					<div class="col-sm-offset-4 col-sm-4">	
+					<form:input path="username" class="form-control" type="text" placeholder="Käyttäjänimi" style="text-transform: lowercase; text-align: center !important;" />
+					</div>
+					<div class="col-sm-4" style="text-align: left !important; font-size: 14px;">
+					<span id="usrMsg"><form:errors path="username" style="color:red" />
+					</span></div>
 					</div>
 					</div>
 						
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6">
-					<form:input path="password" class="form-control" type="password" placeholder="Salasana"  style="text-align: center !important;" /><br><span id='pwMsg'></span><form:errors path="password" style="color:red" />
+					<div class="col-sm-offset-4 col-sm-4">
+					<form:input path="password" class="form-control" type="password" placeholder="Salasana"  style="text-align: center !important;" /><form:errors path="password" style="color:red" />
+					</div>
+					<div class="col-sm-4" style="text-align: left !important; font-size: 14px;">
+					<span id="pwMsg"></span><form:errors path="password" style="color:red" />
 					</div>
 					</div>
 					</div>
 						
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6">
-					<input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Salasana uudestaan"  style="text-align: center !important;" /><br><span id="cpwMsg"></span><form:errors path="password" style="color:red" />
+					<div class="col-sm-offset-4 col-sm-4">
+					<input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Salasana uudestaan"  style="text-align: center !important;" />
+					</div>
+					<div class="col-sm-4" style="text-align: left !important; font-size: 14px;">
+					<span id="cpwMsg"></span><form:errors path="password" style="color:red" />
 					</div>
 					</div>
 					</div>
 						
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-6"><input class="btn btn-default form-control" name="submit" type="submit" id="regSubmit" value="REKISTERÖIDY" disabled/>
+					<div class="col-sm-offset-4 col-sm-4"><input class="btn btn-default form-control" name="submit" type="submit" id="regSubmit" value="REKISTERÖIDY" disabled/>
 					</div>
 					</div>
 					</div>
