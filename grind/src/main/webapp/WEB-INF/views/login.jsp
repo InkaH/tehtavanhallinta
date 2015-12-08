@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
+<%@ page session="true" %>
 <html>
 
 <head>
@@ -25,7 +26,6 @@
 		<div class="row">
 			<div class="col-sm-offset-2 col-sm-8">
 				<h3>Kirjaudu sisään</h3>
-				
 				<c:if test="${not empty msg}">
 					<p style="color: red">${msg}</p>
 				</c:if>
