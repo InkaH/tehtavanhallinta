@@ -97,7 +97,6 @@ public class TaskController {
 			}
 		} else if (activeTab == 1) {
 			tasks = dao.getAllDone(username);
-
 		} else if (activeTab == 2) {
 			grouplist = dao.getGroupList();
 			if (!groupListDefault.equalsIgnoreCase("all")) {
