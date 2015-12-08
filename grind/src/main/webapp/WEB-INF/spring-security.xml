@@ -19,7 +19,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
       <!-- Spring logoutin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-logout --> 
 	  <logout logout-success-url="/login?logout" delete-cookies="JSESSIONID"/>
 	  <!-- Estetään yhden käyttäjän usea samanaikainen sisäänkirjautuminen. Toinen sisäänkirjautuminen invalidoi tällä ensimmäisen. -->
-      <session-management>
+      <session-management invalid-session-url="/login">
 		<concurrency-control max-sessions="1" />
 	  </session-management>
       <!-- Spring Security 4:stä lähtien CSRF -suojaus on oletuksena "enabled". -->
