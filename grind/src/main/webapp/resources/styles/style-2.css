@@ -85,10 +85,6 @@ ul.dropdown-menu li.theme-selected:nth-child(2) a {
 }
 
 .mark-note {
-	background-color: #6e8531;
-}
-
-.mark-warn {
 	background-color: #d10a3f;
 }
 

@@ -76,7 +76,7 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 	public void deleteTask(int id) {
-		final String sql = "DELETE FROM Task where t_id=?";
+		final String sql = "DELETE FROM Usertask where ut_task=?";
 		final int index = id;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {

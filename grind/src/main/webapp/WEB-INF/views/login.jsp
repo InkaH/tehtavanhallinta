@@ -20,10 +20,7 @@
 
 	<div class="container" style="text-align: center !important;">
 		
-		<div class="row">
-			<div class="col-sm-offset-3 col-sm-6">
-				<h1>G R I N D</h1>
-			</div>
+		<div id="loginylaosa">
 		</div>
 		
 		<div class="row">
@@ -159,5 +156,9 @@
 			});
 		</script>
 	</div>
+
+<div id="banner">
+<img id="grind-logo" src="<c:url value="/resources/img/grind-logo-blue-green.png" />" />
+</div>
 </body>
 </html>
