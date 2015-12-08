@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -59,14 +60,14 @@ public class TaskController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		if (error != null) {
-			model.addAttribute("error", "Virheellinen k�ytt�j�nimi tai salasana");
+			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
 		}
 		if (logout != null) {
 			activeTask = 0;
 			editingActive = 0;
 			startup = true;
 			activeTab = 0;
-			model.addAttribute("msg", "Olet kirjautunut ulos");
+			model.addAttribute("msg", "Olet kirjautunut ulos.");
 		}
 		// registration form is a Spring form so we have to place
 		// the User object values to it
@@ -140,10 +141,14 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String deleteTask(@RequestParam String delTask) {
+	public String deleteTask(@RequestParam String delTask, @RequestParam String user) {
 		int de = Integer.parseInt(delTask);
 		if (de > 0) {
-			dao.deleteTask(de);
+			if (user == username) {
+				dao.deletePrivateTask(de);
+			} else {
+				dao.deleteTask(de);
+			}
 		}
 		editingActive = 0;
 		activeTask = 0;
@@ -268,8 +273,8 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
-	
+
+
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String saveUser(Model model, @Valid User user, BindingResult bindingResult) {
@@ -296,12 +301,18 @@ public class TaskController {
 			// if username already exists, return to login page with
 			// error message and set regist. form values to empty
 			model.addAttribute("userExistsError",
-					"Antamallasi sähköpostiosoitteella on jo rekisteröidytty palveluun.");
+					"Antamallasi käyttäjänimellä on jo rekisteröidytty palveluun.");
 			user.setUsername("");
 			user.setEmptyPassword("");
 			model.addAttribute("user", user);
 			return "login";
 		}
+	}
+
+	//This method is needed only if custom authentication failure handler is in use
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String daeError() {
+		return "error";
 	}
 
 	// we're not needing this page right now but it's working as an example

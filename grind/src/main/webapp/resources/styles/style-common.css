@@ -40,7 +40,7 @@ input[type="checkbox"] {
 	float: left;
 	font: normal 10px Verdana;
 	margin-left: 15px;
-	text-transform: lowercase;
+	/* text-transform: lowercase; */
 }
 
 .groupid {
@@ -205,6 +205,10 @@ input[type="checkbox"] {
 	width: 200px;
 }
 
+#loginylaosa {
+	padding-top: 100px;-
+}
+
 #logged {
 	display: block;
 	color: #FFFFFF;
@@ -341,4 +345,5 @@ input[type="checkbox"] {
 	#logged-mobile {
 		display: block !important;
 	}
+}
 }

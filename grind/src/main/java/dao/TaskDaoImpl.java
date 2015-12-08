@@ -76,7 +76,19 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 	public void deleteTask(int id) {
-		final String sql = "DELETE FROM Task where t_id=?";
+		final String sql = "DELETE FROM Usertask WHERE ut_task=?";
+		final int index = id;
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setInt(1, index);
+				return ps;
+			}
+		});
+	}
+	
+	public void deletePrivateTask(int id) {
+		final String sql = "DELETE FROM Usertask WHERE ut_task=?";
 		final int index = id;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -88,7 +100,7 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 
 	public void shareTask(int id, String groupID, boolean status) {
-		final String sql = "UPDATE Task SET t_shared=?, t_group=? where t_id=?";
+		final String sql = "UPDATE Task SET t_shared=?, t_group=? WHERE t_id=?";
 		final boolean shareStatus = status;
 		final int index = id;
 		final String group = groupID;

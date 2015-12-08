@@ -4,14 +4,25 @@ xmlns="http://www.springframework.org/schema/security"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
    
+   <!-- Autentikaatiovirheen vaihtoehtoinen käsittely 
+    <beans:bean id="customAuthenticationFailureHandler" class="exception.CustomAuthenticationFailureHandler">
+	</beans:bean> 
+	JA MUUTA authentication-failure-url="/login?error" ominaisuus authentication-failure-handler-ref="customAuthenticationFailureHandler"-->
+	
    <http use-expressions="true">
       <!-- Rajoitetaan tiettyjä sivuja tietyille käyttäjärooleille -->
       <intercept-url pattern="/index" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
       <!-- 403-sivun määrittely -->
       <access-denied-handler error-page="/403" />
+      <!-- Spring loginin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-form-login-attributes -->
       <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error" username-parameter="u_user" password-parameter="u_password" />
-      <logout logout-success-url="/login?logout" />
-       <!-- Spring Security 4:stä lähtien CSRF -suojaus on oletuksena "enabled". -->
+      <!-- Spring logoutin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-logout --> 
+	  <logout logout-success-url="/login?logout" delete-cookies="JSESSIONID"/>
+	  <!-- Estetään yhden käyttäjän usea samanaikainen sisäänkirjautuminen. Toinen sisäänkirjautuminen invalidoi tällä ensimmäisen. -->
+      <session-management invalid-session-url="/login">
+		<concurrency-control max-sessions="1" />
+	  </session-management>
+      <!-- Spring Security 4:stä lähtien CSRF -suojaus on oletuksena "enabled". -->
    </http>
    
    <authentication-manager>

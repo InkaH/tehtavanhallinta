@@ -12,6 +12,8 @@ public interface TaskDAO {
 	
 	public abstract void deleteTask(int id);
 	
+	public abstract void deletePrivateTask(int id);
+	
 	public abstract void shareTask(int id, String group, boolean status);
 	
 	public abstract List<Task> getAllPrivate(String user); 
