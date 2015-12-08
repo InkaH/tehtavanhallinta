@@ -141,13 +141,13 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String deleteTask(@RequestParam String delTask, @RequestParam String user) {
-		int de = Integer.parseInt(delTask);
-		if (de > 0) {
-			if (user == username) {
-				dao.deletePrivateTask(de);
+	public String deleteTask(@RequestParam String delTask, @RequestParam String delType) {
+		int d = Integer.parseInt(delTask);
+		if (d > 0) {
+			if (delType.equalsIgnoreCase("destroy")) {
+				dao.deletePrivateTask(d);
 			} else {
-				dao.deleteTask(de);
+				dao.deleteTask(d);
 			}
 		}
 		editingActive = 0;
