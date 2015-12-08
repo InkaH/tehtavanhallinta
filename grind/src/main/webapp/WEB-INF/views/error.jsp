@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="refresh" content="5; <c:url value="/login" />">
 <title>Yhteysvirhe</title>
 </head>
 <body style="font: normal 18px 'Trebuchet MS';">
