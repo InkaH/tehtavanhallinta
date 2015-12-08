@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,6 +23,7 @@ font: normal 18px 'Trebuchet MS';
 <img src="<c:url value="/resources/img/grind-shattered.png" />"/>
 <p>Hae kahvia ja yritä hetken kuluttua uudelleen.</p>
 <p>Olemme erittäin pahoillamme!</p>
+<p>${exception}</p>
 </div>
 </body>
 </html>

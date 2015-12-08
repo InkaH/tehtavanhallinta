@@ -305,6 +305,7 @@ public class TaskController {
 		}
 	}
 
+	//This method is needed only if custom authentication failure handler is in use
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public String daeError() {
 		return "error";
