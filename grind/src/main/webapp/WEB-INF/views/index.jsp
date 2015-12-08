@@ -331,7 +331,7 @@
 		</c:if>	
 	</c:if>
 	
-	<c:if test="${(activeTab != 2 && !t.shared) || (activeTab == 1 && t.shared)}">
+	<c:if test="${!t.shared}">
 		<li role="separator" class="divider"></li>
 		<li>
 		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
