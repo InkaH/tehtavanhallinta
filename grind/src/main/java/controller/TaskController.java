@@ -36,7 +36,8 @@ public class TaskController {
 	private List<Task> tasks;
 	private List<Comment> comments;
 	private List<String> grouplist;
-	private String groupListDefault = "Kaikki";
+	private String groupListDefault = "all";
+	private String taskFilterDefault = "all";
 	private Comment newComment = new Comment();
 	private int editingActive = 0;
 	private int activeTask = 0;
@@ -84,13 +85,17 @@ public class TaskController {
 			startup = false;
 		}
 		if (activeTab == 0) {
-			tasks = dao.getAllPrivate(username);
+			if (!taskFilterDefault.equalsIgnoreCase("all")) {
+				// dao methods here
+			} else {
+				tasks = dao.getAllPrivate(username);
+			}
 		} else if (activeTab == 1) {
 			tasks = dao.getAllDone(username);
 
 		} else if (activeTab == 2) {
 			grouplist = dao.getGroupList();
-			if (!groupListDefault.equalsIgnoreCase("Kaikki")) {
+			if (!groupListDefault.equalsIgnoreCase("all")) {
 				tasks = dao.getAllSharedByGroup(groupListDefault);
 			} else {
 				tasks = dao.getAllShared();
@@ -109,6 +114,7 @@ public class TaskController {
 		model.put("comments", comments);
 		model.put("grouplist", grouplist);
 		model.put("groupListDefault", groupListDefault);
+		model.put("taskFilterDefault", taskFilterDefault);
 		model.put("newComment", newComment);
 		model.put("edit", Integer.toString(editingActive));
 		model.put("activeTask", activeTask);
@@ -238,14 +244,22 @@ public class TaskController {
 		activeTab = tID;
 		activeTask = 0;
 		editingActive = 0;
-		groupListDefault = "Kaikki";
+		groupListDefault = "all";
+		taskFilterDefault = "all";
 		return "redirect:/index";
 	}
 
 	@RequestMapping(value = "getGroupTasks", method = RequestMethod.POST)
 	public String getGroupTasks(@RequestParam String groupSelection) {
-		tasks = dao.getAllSharedByGroup(groupSelection);
 		groupListDefault = groupSelection;
+		activeTask = 0;
+		editingActive = 0;
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "getFilteredTasks", method = RequestMethod.POST)
+	public String getFilteredTasks(@RequestParam String taskFilter) {
+		taskFilterDefault = taskFilter;
 		activeTask = 0;
 		editingActive = 0;
 		return "redirect:/index";
@@ -273,8 +287,6 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-
-
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String saveUser(Model model, @Valid User user, BindingResult bindingResult) {

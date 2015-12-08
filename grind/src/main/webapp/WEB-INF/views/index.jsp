@@ -173,6 +173,31 @@
 	</div>
 	</c:if>
 	
+	<c:if test="${activeTab == 0}">
+	<div class="row" style="margin: 5px 0 10px 0;">
+  	<label class="col-sm-2" for="taskFilter" style="font-weight: normal; text-align: right;">Hakuehto:</label>
+  	<div class="col-sm-8">
+  	<form action="getFilteredTasks" method="post">
+  	<select id="taskFilter" name="taskFilter" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
+  	<c:choose>
+    <c:when test="${taskFilterDefault == 'all'}"><option value="all" selected>Kaikki</option></c:when>
+    <c:otherwise><option value="all">Kaikki</option></c:otherwise>
+    </c:choose>
+    <c:choose>
+    <c:when test="${taskFilterDefault == 'nextWeek'}"><option value="nextWeek" selected>Seuraava viikko</option></c:when>
+    <c:otherwise><option value="nextWeek">Seuraava viikko</option></c:otherwise>
+    </c:choose>
+    <c:choose>
+    <c:when test="${taskFilterDefault == 'nextMonth'}"><option value="nextMonth" selected>Seuraava kuukausi</option></c:when>
+    <c:otherwise><option value="nextMonth">Seuraava kuukausi</option></c:otherwise>
+    </c:choose>
+    </select>
+	<sec:csrfInput />
+  	</form>
+  	</div>
+	</div>
+	</c:if>
+	
 	<div class="row">
 	<div class="col-sm-12">
 	<div id="add" class="${edit=='0' ? 'collapse' : 'collapse in'}">
@@ -246,8 +271,8 @@
   	<form action="getGroupTasks" method="post">
   	<select id="groupSelection" name="groupSelection" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
     <c:choose>
-    <c:when test="${groupListDefault == 'Kaikki'}"><option value="Kaikki" selected>Kaikki julkiset tehtävät</option></c:when>
-    <c:otherwise><option value="Kaikki">Kaikki julkiset tehtävät</option></c:otherwise>
+    <c:when test="${groupListDefault == 'Kaikki'}"><option value="all" selected>Kaikki julkiset tehtävät</option></c:when>
+    <c:otherwise><option value="all">Kaikki julkiset tehtävät</option></c:otherwise>
     </c:choose>  
     <!-- <option value="Separator" disabled="disabled">&nbsp;</option> --> 
     <optgroup label="Julkiset ryhmät:">    
