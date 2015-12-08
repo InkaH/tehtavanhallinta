@@ -13,7 +13,13 @@
 <p><img src="<c:url value="/resources/img/grind-shattered.png" />" /></p>
 <p>Hae kahvia ja yritä hetken kuluttua uudelleen.</p>
 <p>Olemme erittäin pahoillamme!</p>
-<!-- <p>${exception}</p> -->
+<!--
+    Failed URL: ${url}
+    Exception:  ${exception}
+    Exception message: {exception.message}
+        <c:forEach items="${exception.stackTrace}" var="ste">    ${ste} 
+    </c:forEach>
+    -->
 </div>
 </body>
 </html>
