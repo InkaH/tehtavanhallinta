@@ -10,7 +10,6 @@ public class TimeWarp {
 		LocalDateTime startOfWeek = now.minusDays((long) (dayOfWeek - 1));
 		startOfWeek = LocalDateTime.of(startOfWeek.getYear(), startOfWeek.getMonthValue(), startOfWeek.getDayOfMonth(), 0, 0, 0);
 		LocalDateTime startOfNextWeek = startOfWeek.plusWeeks(1);
-		System.out.println(startOfNextWeek);
 		return startOfNextWeek;
 	}
 	
@@ -20,7 +19,6 @@ public class TimeWarp {
 		LocalDateTime endOfWeek = now.plusDays((long) (7 - dayOfWeek));
 		endOfWeek = LocalDateTime.of(endOfWeek.getYear(), endOfWeek.getMonthValue(), endOfWeek.getDayOfMonth(), 23, 59, 59);
 		LocalDateTime endOfNextWeek = endOfWeek.plusWeeks(1);
-		System.out.println(endOfNextWeek);
 		return endOfNextWeek;
 	}
 	
@@ -29,7 +27,6 @@ public class TimeWarp {
 		int dayOfWeek = now.getDayOfWeek().getValue(); // 1 monday ... 7 sunday
 		LocalDateTime startOfWeek = now.minusDays((long) (dayOfWeek - 1));
 		startOfWeek = LocalDateTime.of(startOfWeek.getYear(), startOfWeek.getMonthValue(), startOfWeek.getDayOfMonth(), 0, 0, 0);
-		System.out.println(startOfWeek);
 		return startOfWeek;
 	}
 	
@@ -38,7 +35,6 @@ public class TimeWarp {
 		int dayOfWeek = now.getDayOfWeek().getValue(); // 1 monday ... 7 sunday
 		LocalDateTime endOfWeek = now.plusDays((long) (7 - dayOfWeek));
 		endOfWeek = LocalDateTime.of(endOfWeek.getYear(), endOfWeek.getMonthValue(), endOfWeek.getDayOfMonth(), 23, 59, 59);
-		System.out.println(endOfWeek);
 		return endOfWeek;
 	}
 }
