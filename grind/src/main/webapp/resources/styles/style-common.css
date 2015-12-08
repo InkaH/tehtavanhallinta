@@ -205,6 +205,10 @@ input[type="checkbox"] {
 	width: 200px;
 }
 
+#loginylaosa {
+	padding-top: 100px;-
+}
+
 #logged {
 	display: block;
 	color: #FFFFFF;
