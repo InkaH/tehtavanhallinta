@@ -58,13 +58,10 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model, @RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
+	public String login(Model model, @RequestParam(value = "logout", required = false) String logout) {
 
-		if (error != null) {
-			//model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
-		}
 		if (logout != null) {
+			System.out.println("Logout ei ole null");
 			activeTask = 0;
 			editingActive = 0;
 			startup = true;
