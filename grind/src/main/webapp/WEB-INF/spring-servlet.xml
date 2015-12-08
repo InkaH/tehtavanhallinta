@@ -27,18 +27,14 @@
 	<!-- location of static content (images, js and css files) -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
-		
-	
+	<!-- Exception resolver for Data Access Exceptions -->
 	<bean
-    class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
- 
-    <property name="exceptionMappings">
-        <props>
-            <prop key="org.springframework.dao.DataAccessException">error</prop>
-        </props>
-    </property>
- 
+    	class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    	<property name="exceptionMappings">
+        	<props>
+            	<prop key="org.springframework.dao.DataAccessException">error</prop>
+        	</props>
+    	</property>
 	</bean>
- 
 
 </beans>

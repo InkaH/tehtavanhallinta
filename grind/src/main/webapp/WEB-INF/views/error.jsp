@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page session="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -16,10 +21,10 @@ font: normal 18px 'Trebuchet MS';
 </head>
 <body>
 <div class="centered">
-<p>Nyt sin‰ sen rikoit!</p>
-<img src="grind-shattered.png" alt="logo">
-<p>Hae kahvia ja yrit‰ hetken kuluttua uudelleen.</p>
-<p>Olemme eritt‰in pahoillamme!</p>
+<p>Nyt sin√§ sen rikoit!</p>
+<img src="<c:url value="/resources/img/grind-shattered.png" />"/>
+<p>Hae kahvia ja yrit√§ hetken kuluttua uudelleen.</p>
+<p>Olemme eritt√§in pahoillamme!</p>
 </div>
 </body>
 </html>

@@ -341,4 +341,13 @@ input[type="checkbox"] {
 	#logged-mobile {
 		display: block !important;
 	}
+	.errorpage {
+		text-align:center;
+		font: normal 18px 'Trebuchet MS';
+    	position: absolute;
+    	top: 50%;
+    	left: 50%;
+    	transform: translateX(-50%) translateY(-50%);	
+}
+	}
 }

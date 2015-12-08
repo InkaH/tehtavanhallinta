@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -268,8 +269,8 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
-	
+
+
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String saveUser(Model model, @Valid User user, BindingResult bindingResult) {
@@ -302,6 +303,11 @@ public class TaskController {
 			model.addAttribute("user", user);
 			return "login";
 		}
+	}
+
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String daeError() {
+		return "error";
 	}
 
 	// we're not needing this page right now but it's working as an example
