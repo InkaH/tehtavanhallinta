@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
+//import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -141,10 +141,14 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String deleteTask(@RequestParam String delTask) {
+	public String deleteTask(@RequestParam String delTask, @RequestParam String user) {
 		int de = Integer.parseInt(delTask);
 		if (de > 0) {
-			dao.deleteTask(de);
+			if (user == username) {
+				dao.deletePrivateTask(de);
+			} else {
+				dao.deleteTask(de);
+			}
 		}
 		editingActive = 0;
 		activeTask = 0;

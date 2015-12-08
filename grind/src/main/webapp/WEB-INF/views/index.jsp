@@ -57,6 +57,7 @@
 <!-- FORM[0]: DELETE TASK -->
 <form id="delForm" action="del" method="post">
 <input type="hidden" id="delTask" name="delTask" value="0" />
+<input type="hidden" id="user" name="user" value="" />
 <sec:csrfInput />
 </form>
 <!-- FORM[1]: EDIT -->
@@ -331,10 +332,10 @@
 		</c:if>	
 	</c:if>
 	
-	<c:if test="${(activeTab != 2 && !t.shared) || (activeTab == 1 && t.shared)}">
+	<c:if test="${activeTab != 2}">
 		<li role="separator" class="divider"></li>
 		<li>
-		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
+		<a href="#" onclick="if(!confirm('Haluatko poistaa tehtävän pysyvästi?')){return false;}else{document.forms[0].delTask.value='${t.id}';document.forms[0].user.value='${t.user}';document.forms[0].submit();}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Poista</a>
 		</li>
 	</c:if>
 	
