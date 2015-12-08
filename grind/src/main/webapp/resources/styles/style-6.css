@@ -76,11 +76,6 @@ ul.dropdown-menu li.theme-selected:nth-child(6) a {
 
 .mark-note {
 	background-color: #941010;
-	/* background-color: #595959; */
-}
-
-.mark-warn {
-	background-color: #941010;
 }
 
 .mark-task {
