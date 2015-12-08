@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import bean.Task;
@@ -15,6 +16,8 @@ public interface TaskDAO {
 	public abstract void deletePrivateTask(int id);
 	
 	public abstract void shareTask(int id, String group, boolean status);
+	
+	public abstract List<Task> getTasksOfNextWeek(String user, LocalDateTime startOfNextWeek, LocalDateTime endOfNextWeek);
 	
 	public abstract List<Task> getAllPrivate(String user); 
 	

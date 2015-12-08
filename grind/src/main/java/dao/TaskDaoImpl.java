@@ -74,6 +74,14 @@ public class TaskDaoImpl implements TaskDAO {
 			jdbcTemplate.update(sql_2, parameters);
 		}	
 	}
+	
+	public List<Task> getTasksOfNextWeek(String user, LocalDateTime startOfNextWeek, LocalDateTime endOfNextWeek) {
+		final String sql = "SELECT ta.t_id, ta.t_task, ut.ut_done, ta.t_expire, ta.t_group, ta.t_shared, ta.t_user, ut.ut_user, ta.t_created FROM Usertask AS ut "
+				+ "INNER JOIN Task AS ta ON ut.ut_task=ta.t_id WHERE ut.ut_user=? AND ut.ut_done='0' AND ta.t_expire >= ? AND ta.t_expire <= ? ORDER BY ta.t_expire";
+		RowMapper<Task> mapper = new UsertaskRowMapper();
+		List<Task> tasks = jdbcTemplate.query(sql, new Object[] {user, Timestamp.valueOf(startOfNextWeek), Timestamp.valueOf(endOfNextWeek)}, mapper);
+		return tasks;
+	}
 
 	public void deleteTask(int id) {
 		final String sql = "DELETE FROM Usertask WHERE ut_task=?";

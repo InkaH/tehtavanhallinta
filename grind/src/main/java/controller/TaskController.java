@@ -26,6 +26,7 @@ import dao.TaskDAO;
 import bean.User;
 import bean.Task;
 import bean.Comment;
+import tools.TimeWarp;
 
 @Controller
 @RequestMapping(value = "/")
@@ -86,7 +87,9 @@ public class TaskController {
 		}
 		if (activeTab == 0) {
 			if (!taskFilterDefault.equalsIgnoreCase("all")) {
-				// dao methods here
+				if (taskFilterDefault.equalsIgnoreCase("nextWeek")) {
+					tasks = dao.getTasksOfNextWeek(username, TimeWarp.startOfNextWeek(), TimeWarp.endOfNextWeek());
+				}
 			} else {
 				tasks = dao.getAllPrivate(username);
 			}

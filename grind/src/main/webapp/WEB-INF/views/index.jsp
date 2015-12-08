@@ -196,6 +196,13 @@
   	</form>
   	</div>
 	</div>
+	<c:if test="${activeTab == 0 && empty tasks}">
+	<div class="row">
+	<div class="col-sm-12">
+	<br>Sinulla ei ole tehtäviä ensi viikolla
+	</div>
+	</div>
+	</c:if>	
 	</c:if>
 	
 	<div class="row">
