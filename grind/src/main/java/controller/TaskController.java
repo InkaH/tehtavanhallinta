@@ -87,8 +87,10 @@ public class TaskController {
 		}
 		if (activeTab == 0) {
 			if (!taskFilterDefault.equalsIgnoreCase("all")) {
-				if (taskFilterDefault.equalsIgnoreCase("nextWeek")) {
-					tasks = dao.getTasksOfNextWeek(username, TimeWarp.startOfNextWeek(), TimeWarp.endOfNextWeek());
+				if (taskFilterDefault.equalsIgnoreCase("currentWeek")) {
+					tasks = dao.getTasksOfTimePeriod(username, TimeWarp.startOfCurrentWeek(), TimeWarp.endOfCurrentWeek());
+				} else if (taskFilterDefault.equalsIgnoreCase("nextWeek")) {			
+					tasks = dao.getTasksOfTimePeriod(username, TimeWarp.startOfNextWeek(), TimeWarp.endOfNextWeek());
 				}
 			} else {
 				tasks = dao.getAllPrivate(username);

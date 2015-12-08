@@ -17,7 +17,7 @@ public interface TaskDAO {
 	
 	public abstract void shareTask(int id, String group, boolean status);
 	
-	public abstract List<Task> getTasksOfNextWeek(String user, LocalDateTime startOfNextWeek, LocalDateTime endOfNextWeek);
+	public abstract List<Task> getTasksOfTimePeriod(String user, LocalDateTime startOfNextWeek, LocalDateTime endOfNextWeek);
 	
 	public abstract List<Task> getAllPrivate(String user); 
 	

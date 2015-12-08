@@ -184,6 +184,10 @@
     <c:otherwise><option value="all">Kaikki</option></c:otherwise>
     </c:choose>
     <c:choose>
+    <c:when test="${taskFilterDefault == 'currentWeek'}"><option value="currentWeek" selected>Kuluva viikko</option></c:when>
+    <c:otherwise><option value="currentWeek">Kuluva viikko</option></c:otherwise>
+    </c:choose>
+    <c:choose>
     <c:when test="${taskFilterDefault == 'nextWeek'}"><option value="nextWeek" selected>Seuraava viikko</option></c:when>
     <c:otherwise><option value="nextWeek">Seuraava viikko</option></c:otherwise>
     </c:choose>
