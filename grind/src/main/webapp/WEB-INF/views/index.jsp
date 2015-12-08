@@ -411,7 +411,7 @@
 	<c:when test="${activeTab == 2 || activeTab == 9}">	
 	<fmt:parseDate value="${t.createdDate}" pattern="yyyy-MM-dd" var="parsedCreatedDate" type="date" />
 	<fmt:parseDate value="${t.createdTime}" pattern="HH:mm" var="parsedCreatedTime" type="time" />
-	<div class="creator-stamp"><fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<c:out value="${t.user}" /></div>
+	<div class="creator-stamp">Lisätty:&nbsp;<fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<span style="text-transform: lowercase;"><c:out value="${t.user}" /></span></div>
 	</c:when>
 	</c:choose>				
 	<!-- comment counter -->
