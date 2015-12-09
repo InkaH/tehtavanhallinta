@@ -18,6 +18,7 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
             Authentication authentication) throws IOException, ServletException {
     	final Logger logger = LoggerFactory.getLogger(CustomLogoutSuccessHandler.class);
         if (authentication != null && authentication.getDetails() != null) {
+        	request.getSession().invalidate();
         	logger.info("**************************logout CustomLogoutSuccessHandlerilla onnistui******************************************");
         	//you can add more codez here when the user successfully logs out,
             //such as updating the database for last active.
