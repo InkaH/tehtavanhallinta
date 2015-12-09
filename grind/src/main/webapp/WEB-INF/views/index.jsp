@@ -330,7 +330,7 @@
 	<fmt:formatDate value="${nextD}" pattern="M" var="nextDD" />		
 	<c:if test="${loop.index == 0 && tasks[loop.index].date > '1970-01-01'}">
 	<fmt:setLocale value="fi_FI" scope="session"/>
-	<div class="month-label"><fmt:formatDate value="${curD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
+	<div class="month-label"><small><fmt:formatDate value="${curD}" pattern="MMM" />kuu&nbsp;<fmt:formatDate value="${curD}" pattern="yyyy" />&nbsp;</small><hr class="month-label-hr"></div>
 	</c:if>
 	
 	<div class="col-sm-12 well ${compTaskDate == compIdentifier ? 'mark-note' : 'mark-task'}">
@@ -485,11 +485,11 @@
 	<c:if test="${!loop.last}">	
 	<c:if test="${curDD == '1970-1-1' && nextDD > curDD}">
 	<fmt:setLocale value="fi_FI" scope="session"/>
-	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
+	<div class="month-label"><small><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<fmt:formatDate value="${nextD}" pattern="yyyy" />&nbsp;</small><hr class="month-label-hr"></div>
 	</c:if>	
 	<c:if test="${nextDD != curDD}">
 	<fmt:setLocale value="fi_FI" scope="session"/>
-	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
+	<div class="month-label"><small><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<fmt:formatDate value="${nextD}" pattern="yyyy" />&nbsp;</small><hr class="month-label-hr"></div>
 	</c:if>
 		
 	</c:if>	
