@@ -255,6 +255,7 @@ public class TaskController {
 		activeTab = tID;
 		activeTask = 0;
 		editingActive = 0;
+		editItem.resetTask();
 		groupListDefault = "all";
 		taskFilterDefault = "all";
 		return "redirect:/index";
