@@ -107,11 +107,11 @@ input[type="checkbox"] {
 
 .task-footer {
 	background-color: rgba(0, 0, 0, 0.2);
-	border-radius: 15px 0 5px 0;
+	border-radius: 12px 0 5px 0;
 	bottom: 0;
 	font: normal 10px Verdana;
 	height: 20px;
-	padding: 3px 0 0 18px;
+	padding: 3px 0 0 16px;
 	position: absolute;
 	right: 0;
 	vertical-align: middle;
