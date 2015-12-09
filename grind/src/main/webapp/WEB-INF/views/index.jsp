@@ -330,7 +330,7 @@
 	<fmt:formatDate value="${nextD}" pattern="M" var="nextDD" />		
 	<c:if test="${loop.index == 0 && tasks[loop.index].date > '1970-01-01'}">
 	<fmt:setLocale value="fi_FI" scope="session"/>
-	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
+	<div class="month-label"><fmt:formatDate value="${curD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
 	</c:if>
 	
 	<div class="col-sm-12 well ${compTaskDate == compIdentifier ? 'mark-note' : 'mark-task'}">
