@@ -333,7 +333,7 @@
 	<div class="month-label"><small><fmt:formatDate value="${curD}" pattern="MMM" />kuu&nbsp;<fmt:formatDate value="${curD}" pattern="yyyy" />&nbsp;</small><hr class="month-label-hr"></div>
 	</c:if>
 	
-	<div class="col-sm-12 well ${compTaskDate == compIdentifier ? 'mark-note' : 'mark-task'}">
+	<div class="col-sm-12 well ${compTaskDate == compIdentifier ? 'mark-note' : 'mark-task'}" style="${activeTask == t.id ? 'padding-bottom: 26px;' : ''}">
 	<div class="task-option-dropdown">
 	<div class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true"><span class="glyphicon glyphicon-triangle-bottom drop-glyph" aria-hidden="true" style="margin: 8px 8px 0 0;"></span></a>
@@ -456,12 +456,13 @@
 	</c:if>
 	
 	<!-- task footer -->
-	<div class="task-footer" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">	
+	<div class="task-footer" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer; ${activeTask == t.id ? 'width: 100%; border-radius: 0 0 5px 5px; left: 0; padding-left: 0;': ''}">	
 	
-	<!-- creator stamp -->
+	<c:if test="${activeTask == t.id}">
 	<fmt:parseDate value="${t.createdDate}" pattern="yyyy-MM-dd" var="parsedCreatedDate" type="date" />
 	<fmt:parseDate value="${t.createdTime}" pattern="HH:mm" var="parsedCreatedTime" type="time" />
 	<div class="creator-stamp" style="display: ${activeTask == t.id ? 'inline-block' : 'none'};">Tehtävä luotu:&nbsp;<fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<span style="text-transform: lowercase;"><c:out value="${t.user}" /></span></div>
+	</c:if>
 				
 	<!-- comment counter -->
 	<div class="comment-counter">
@@ -477,6 +478,7 @@
 	</c:choose>
 	</div>	
 	</div>
+	
 	</div>
 	
 	<!-- Month label -->	

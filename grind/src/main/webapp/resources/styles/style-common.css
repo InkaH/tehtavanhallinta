@@ -107,21 +107,21 @@ input[type="checkbox"] {
 
 .task-footer {
 	background-color: rgba(0, 0, 0, 0.2);
-	border-radius: 0 0 5px 5px;
+	border-radius: 15px 0 5px 0;
 	bottom: 0;
 	font: normal 10px Verdana;
 	height: 20px;
-	left: 0;
-	padding-top: 3px;
+	padding: 3px 0 0 18px;
 	position: absolute;
 	right: 0;
 	vertical-align: middle;
+	width: auto;
 }
 
 .task-text-content {
 	border: 0px dashed #FFFFFF;
 	display: block;
-	margin-right: 20px;
+	margin-right: 100px;
 	position: relative;
 }
 
@@ -141,7 +141,7 @@ input[type="checkbox"] {
 	font: normal 16px 'Trebuchet MS';
 	line-height: 22px;
 	margin-bottom: 3px;
-	padding: 12px 15px 22px 15px;
+	padding: 17px 20px 17px 20px;
 	text-decoration: none;
 	word-wrap: break-word;
 }
