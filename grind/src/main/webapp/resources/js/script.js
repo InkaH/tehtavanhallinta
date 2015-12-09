@@ -20,8 +20,9 @@ $(document).ready(function() {
         $counterText.text($(this).val().length + ' / 1000');
     }).keyup();
     
-    $('.tiedot').click(function (e) {
-    	$(this).next().toggle();
+    /*
+    $('.task-footer').click(function (e) {
+    	$('.creator-stamp').toggle();
     });
-    
+    */    
 });

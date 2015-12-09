@@ -457,14 +457,12 @@
 	
 	<!-- task footer -->
 	<div class="task-footer" onclick="document.forms[5].activeTask.value=${t.id};document.forms[5].submit();" style="white-space: initial; cursor: pointer;">	
+	
 	<!-- creator stamp -->
-	<c:choose>
-	<c:when test="${activeTab == 2 || activeTab == 9}">	
 	<fmt:parseDate value="${t.createdDate}" pattern="yyyy-MM-dd" var="parsedCreatedDate" type="date" />
 	<fmt:parseDate value="${t.createdTime}" pattern="HH:mm" var="parsedCreatedTime" type="time" />
-	<div class="creator-stamp">Lisätty:&nbsp;<fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<span style="text-transform: lowercase;"><c:out value="${t.user}" /></span></div>
-	</c:when>
-	</c:choose>				
+	<div class="creator-stamp" style="display: ${activeTask == t.id ? 'inline-block' : 'none'};">Tehtävä luotu:&nbsp;<fmt:formatDate value="${parsedCreatedDate}" pattern="d.M.yyyy" type="date" />&nbsp;<fmt:formatDate value="${parsedCreatedTime}" pattern="HH:mm" type="time" />&nbsp;&copy;<span style="text-transform: lowercase;"><c:out value="${t.user}" /></span></div>
+				
 	<!-- comment counter -->
 	<div class="comment-counter">
 	<c:choose>

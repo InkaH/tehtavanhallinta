@@ -36,11 +36,9 @@ input[type="checkbox"] {
 }
 
 .creator-stamp {
-	display: inline-block;
 	float: left;
 	font: normal 10px Verdana;
 	margin-left: 15px;
-	/* text-transform: lowercase; */
 }
 
 .groupid {
