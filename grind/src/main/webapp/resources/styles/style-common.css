@@ -360,8 +360,8 @@ input[type="checkbox"] {
 		margin: 0px !important;
 	}
 	.task-footer {
-	border-radius: 0 0 5px 5px !important;
-	left: 0 !important;	
+		border-radius: 0 0 5px 5px !important;
+		left: 0 !important;
 	}
 	.well {
 		border-radius: 0 !important;
