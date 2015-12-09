@@ -94,7 +94,7 @@
 </form>
 <!-- FORM[7]: LOGOUT -->
 <c:url var="logoutUrl" value="/logout"/>
-<form id="logoutForm" action="logout" method="post">
+<form id="logoutForm" action="logout?logout=true" method="post">
 <sec:csrfInput />
 </form>
 <!-- FORM[8]: TAB CHENGE -->

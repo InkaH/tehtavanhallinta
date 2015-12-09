@@ -61,7 +61,7 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model, @ModelAttribute("logout") String logout) {
+	public String login(Model model) {
 		
 		//säästetään entiset logout-toimenpiteet malliksi
 //		if (logout != null) {
@@ -77,7 +77,11 @@ public class TaskController {
 		logger.info("Suoritetaan controllerin login-metodia");
 		User user = new User("", "");
 		model.addAttribute("user", user);
-		model.addAttribute("logout", logout);
+		if (startup) {
+			model.addAttribute("logout", false);
+		} else {
+			model.addAttribute("logout", true);
+		}
 		return "login";
 	}
 
