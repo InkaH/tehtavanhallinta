@@ -173,38 +173,6 @@
 	</div>
 	</c:if>
 	
-	<c:if test="${activeTab == 0}">
-	<div class="row" style="margin: 5px 0 10px 0;">
-  	<label class="col-sm-2" for="taskFilter" style="font-weight: normal; text-align: right;">Aikahaku:</label>
-  	<div class="col-sm-8">
-  	<form action="getFilteredTasks" method="post">
-  	<select id="taskFilter" name="taskFilter" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
-  	<c:choose>
-    <c:when test="${taskFilterDefault == 'all'}"><option value="all" selected>Kaikki</option></c:when>
-    <c:otherwise><option value="all">Kaikki</option></c:otherwise>
-    </c:choose>
-    <c:choose>
-    <c:when test="${taskFilterDefault == 'currentWeek'}"><option value="currentWeek" selected>Kuluva viikko</option></c:when>
-    <c:otherwise><option value="currentWeek">Kuluva viikko</option></c:otherwise>
-    </c:choose>
-    <c:choose>
-    <c:when test="${taskFilterDefault == 'nextWeek'}"><option value="nextWeek" selected>Seuraava viikko</option></c:when>
-    <c:otherwise><option value="nextWeek">Seuraava viikko</option></c:otherwise>
-    </c:choose>
-    </select>
-	<sec:csrfInput />
-  	</form>
-  	</div>
-	</div>
-	<c:if test="${activeTab == 0 && empty tasks}">
-	<div class="row">
-	<div class="col-sm-12">
-	<br>Sinulla ei ole tehtäviä ensi viikolla
-	</div>
-	</div>
-	</c:if>	
-	</c:if>
-	
 	<div class="row">
 	<div class="col-sm-12">
 	<div id="add" class="${edit=='0' ? 'collapse' : 'collapse in'}">
@@ -270,6 +238,38 @@
 	</div>
 	</div>
 	</div>	
+	
+	<c:if test="${activeTab == 0}">
+	<div class="row" style="margin: 5px 0 10px 0;">
+  	<label class="col-sm-2" for="taskFilter" style="font-weight: normal; text-align: right;">Aikahaku:</label>
+  	<div class="col-sm-8">
+  	<form action="getFilteredTasks" method="post">
+  	<select id="taskFilter" name="taskFilter" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
+  	<c:choose>
+    <c:when test="${taskFilterDefault == 'all'}"><option value="all" selected>Kaikki</option></c:when>
+    <c:otherwise><option value="all">Kaikki</option></c:otherwise>
+    </c:choose>
+    <c:choose>
+    <c:when test="${taskFilterDefault == 'currentWeek'}"><option value="currentWeek" selected>Kuluva viikko</option></c:when>
+    <c:otherwise><option value="currentWeek">Kuluva viikko</option></c:otherwise>
+    </c:choose>
+    <c:choose>
+    <c:when test="${taskFilterDefault == 'nextWeek'}"><option value="nextWeek" selected>Seuraava viikko</option></c:when>
+    <c:otherwise><option value="nextWeek">Seuraava viikko</option></c:otherwise>
+    </c:choose>
+    </select>
+	<sec:csrfInput />
+  	</form>
+  	</div>
+	</div>
+	<c:if test="${activeTab == 0 && empty tasks}">
+	<div class="row">
+	<div class="col-sm-12">
+	<br>Sinulla ei ole tehtäviä ensi viikolla
+	</div>
+	</div>
+	</c:if>	
+	</c:if>
 
 	<c:if test="${activeTab == 2}">
 	<div class="row" style="margin: 5px 0 10px 0;">
