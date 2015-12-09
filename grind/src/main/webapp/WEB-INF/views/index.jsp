@@ -316,7 +316,7 @@
 	<!-- START OF TASK LOOP -->
 	<c:if test="${not empty tasks}">
 	<c:forEach var="t" items="${tasks}" varStatus="loop">
-	
+		
 	<fmt:parseDate value="${t.date} ${t.time}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
 	<fmt:parseDate value="${t.date}" var="compTaskDate" pattern="yyyy-MM-dd" />
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
@@ -468,8 +468,20 @@
 	</c:choose>
 	</div>	
 	</div>
-	
 	</div>
+	
+	<!-- Month label -->	
+	<c:if test="${!loop.last}">	
+	<fmt:parseDate value="${tasks[loop.index].date}" pattern="yyyy-MM-dd" var="curD" />
+	<fmt:formatDate value="${curD}" pattern="M" var="curDD" />
+	<fmt:parseDate value="${tasks[loop.index+1].date}" pattern="yyyy-MM-dd" var="nextD" />
+	<fmt:formatDate value="${nextD}" pattern="M" var="nextDD" />	
+	<c:if test="${nextDD != curDD}">
+	<fmt:setLocale value="fi_FI" scope="session"/>
+	<div style="white-space: nowrap; width: 100%; margin: 0 0 -9px 0; padding: 0; display: block; position: relative; top: -5px; text-transform: capitalize; overflow: hidden;"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr style="border-color: #808080; width: 100%; display: inline-block; vertical-align: middle; white-space: nowrap;"></div>
+	</c:if>
+	</c:if>	
+	
 	</div>
 	</c:forEach>
 	</c:if>
