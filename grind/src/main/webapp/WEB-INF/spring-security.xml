@@ -4,7 +4,7 @@ xmlns="http://www.springframework.org/schema/security"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 	
-   <http use-expressions="true">
+   <http auto-config="true" use-expressions="true">
       <!-- Rajoitetaan tiettyjä sivuja tietyille käyttäjärooleille -->
       <intercept-url pattern="/login" access="permitAll" />
       <intercept-url pattern="/logout" access="permitAll" />
@@ -16,7 +16,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
       <!-- Spring loginin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-form-login-attributes -->
       <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?auth=fail" username-parameter="u_user" password-parameter="u_password" />
       <!-- Spring logoutin oletusmäärityksistä: http://docs.spring.io/spring-security/site/docs/4.0.2.RELEASE/reference/html/appendix-namespace.html#nsa-logout --> 
-	  <logout delete-cookies="JSESSIONID" success-handler-ref="myCustomLogoutSuccessHandler" />
+	  <logout delete-cookies="JSESSIONID"/>
 	  <!-- Estetään yhden käyttäjän usea samanaikainen sisäänkirjautuminen. Toinen sisäänkirjautuminen invalidoi tällä ensimmäisen. -->
       <!-- <session-management invalid-session-url="/login">
 		<concurrency-control max-sessions="1" /> 
