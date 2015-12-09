@@ -47,7 +47,8 @@ public class TaskController {
 	private int activeTask = 0;
 	private int activeTab = 0;
 	private int theme = 1;
-	private boolean startup = true;
+	
+	public static boolean startup = true;
 
 	@Inject
 	private TaskDAO dao;
@@ -61,8 +62,7 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model) {
-		
+	public String login(Model model) {	
 		//säästetään entiset logout-toimenpiteet malliksi
 //		if (logout != null) {
 //			logger.info("logout ifin jälkeen:" + logout);
