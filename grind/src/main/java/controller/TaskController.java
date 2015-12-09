@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;
@@ -32,6 +34,7 @@ import tools.TimeWarp;
 @RequestMapping(value = "/")
 public class TaskController {
 
+	final static Logger logger = LoggerFactory.getLogger(TaskController.class);
 	private String username;
 	private Task editItem = new Task();
 	private List<Task> tasks;
@@ -60,11 +63,13 @@ public class TaskController {
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public String login(Model model, @RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
-
+		
+		logger.info("logout ennen ifiä:" + logout);
 		if (error != null) {
 			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
 		}
 		if (logout != null) {
+			logger.info("logout ifin jälkeen:" + logout);
 			activeTask = 0;
 			editingActive = 0;
 			startup = true;
