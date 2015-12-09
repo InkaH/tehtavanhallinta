@@ -61,23 +61,20 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model, @RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
+	public String login(Model model) {
 		
-		logger.info("logout ennen ifiä:" + logout);
-		if (error != null) {
-			model.addAttribute("error", "Virheellinen käyttäjänimi tai salasana.");
-		}
-		if (logout != null) {
-			logger.info("logout ifin jälkeen:" + logout);
-			activeTask = 0;
-			editingActive = 0;
-			startup = true;
-			activeTab = 0;
-			model.addAttribute("msg", "Olet kirjautunut ulos.");
-		}
+		//säästetään entiset logout-toimenpiteet malliksi
+//		if (logout != null) {
+//			logger.info("logout ifin jälkeen:" + logout);
+//			activeTask = 0;
+//			editingActive = 0;
+//			startup = true;
+//			activeTab = 0;
+//			model.addAttribute("logout", "Olet kirjautunut ulos.");
+//		}
 		// registration form is a Spring form so we have to place
 		// the User object values to it
+		logger.info("Suoritetaan controllerin login-metodia");
 		User user = new User("", "");
 		model.addAttribute("user", user);
 		return "login";
