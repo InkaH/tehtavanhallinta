@@ -478,7 +478,7 @@
 	<fmt:formatDate value="${nextD}" pattern="M" var="nextDD" />	
 	<c:if test="${nextDD != curDD}">
 	<fmt:setLocale value="fi_FI" scope="session"/>
-	<div style="white-space: nowrap; width: 100%; margin: 0 0 -9px 0; padding: 0; display: block; position: relative; top: -5px; text-transform: capitalize; overflow: hidden;"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr style="border-color: #808080; width: 100%; display: inline-block; vertical-align: middle; white-space: nowrap;"></div>
+	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
 	</c:if>
 	</c:if>	
 	

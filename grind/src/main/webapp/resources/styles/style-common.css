@@ -58,6 +58,26 @@ input[type="checkbox"] {
 	color: #FF0000;
 }
 
+.month-label {
+	display: block;
+	margin: 0 0 -9px 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	text-transform: capitalize;
+	top: -5px;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.month-label-hr {
+	display: inline-block;
+	border-color: #808080;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 100%;
+}
+
 .nav-tabs>li>a {
 	color: #8c8c8c;
 }
@@ -206,7 +226,8 @@ input[type="checkbox"] {
 }
 
 #loginylaosa {
-	padding-top: 100px;-
+	padding-top: 100px;
+	-
 }
 
 #logged {
@@ -288,12 +309,6 @@ input[type="checkbox"] {
 		margin: 5px 0 5px 0 !important;
 		padding: 0 3px 0 3px !important;
 	}
-	.comment-remove {
-		display: none;
-	}
-	.comment-remove-td {
-		width: 0px !important;
-	}
 	#comment-table tr {
 		width: 100% !important;
 	}
@@ -311,8 +326,20 @@ input[type="checkbox"] {
 		display: block !important;
 		margin: 0 !important;
 	}
+	#logged {
+		display: block !important;
+	}
+	#logged-mobile {
+		display: none !important;
+	}
 	#timepicker {
 		margin-top: 20px !important;
+	}
+	.comment-remove {
+		display: none;
+	}
+	.comment-remove-td {
+		width: 0px !important;
 	}
 	.container, body {
 		padding: 20px 0 0 0 !important;
@@ -324,11 +351,8 @@ input[type="checkbox"] {
 		top: initial !important;
 		right: initial !important;
 	}
-	#logged {
-		display: block !important;
-	}
-	#logged-mobile {
-		display: none !important;
+	.month-label {
+		padding-left: 10px;
 	}
 	.navbar-header {
 		margin: 0px !important;
