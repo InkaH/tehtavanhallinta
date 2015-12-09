@@ -17,7 +17,7 @@
 </head>
 
 <body onload="document.loginForm.u_user.focus();">
-
+	
 	<div class="container" style="text-align: center !important;">
 		
 		<div id="loginylaosa">
@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-sm-offset-2 col-sm-8">
 				<h3>Kirjaudu sisään</h3>
-				<c:if test="${logout}">
+				<c:if test="${logout == 'true'}">
 					<p style="color: red">Olet kirjautunut ulos</p>
 				</c:if>
 				<c:if test="${not empty success}">
