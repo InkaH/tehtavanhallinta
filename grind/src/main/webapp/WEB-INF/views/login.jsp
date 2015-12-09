@@ -93,7 +93,7 @@
 					<div class="col-sm-offset-4 col-sm-4">	
 					<form:input path="username" class="form-control" type="text" placeholder="Käyttäjänimi" autocomplete="off" style="text-transform: lowercase; text-align: center !important;" />
 					</div>
-					<div class="col-sm-4" style="text-align: left !important; font-size: 14px; line-height: 35px;">
+					<div class="col-sm-4" style="text-align: left !important; font-size: 14px; line-height: 34px;">
 					<span id="usrMsg"><form:errors path="username" style="color:red" />
 					</span></div>
 					</div>
@@ -104,7 +104,7 @@
 					<div class="col-sm-offset-4 col-sm-4">
 					<form:input path="password" class="form-control" type="password" placeholder="Salasana" autocomplete="off"  style="text-align: center !important;" /><form:errors path="password" style="color:red" />
 					</div>
-					<div class="col-sm-4" style="text-align: left !important; font-size: 14px; line-height: 35px;">
+					<div class="col-sm-4" style="text-align: left !important; font-size: 14px; line-height: 34px;">
 					<span id="pwMsg"></span><form:errors path="password" style="color:red" />
 					</div>
 					</div>
@@ -115,7 +115,7 @@
 					<div class="col-sm-offset-4 col-sm-4">
 					<input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Salasana uudestaan" autocomplete="off" style="text-align: center !important;" />
 					</div>
-					<div class="col-sm-4" style="text-align: left !important; font-size: 14px; line-height: 35px;">
+					<div class="col-sm-4" style="text-align: left !important; font-size: 14px; line-height: 34px;">
 					<span id="cpwMsg"></span><form:errors path="password" style="color:red" />
 					</div>
 					</div>
