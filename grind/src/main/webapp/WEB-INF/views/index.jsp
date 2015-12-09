@@ -175,7 +175,7 @@
 	
 	<c:if test="${activeTab == 0}">
 	<div class="row" style="margin: 5px 0 10px 0;">
-  	<label class="col-sm-2" for="taskFilter" style="font-weight: normal; text-align: right;">Hakuehto:</label>
+  	<label class="col-sm-2" for="taskFilter" style="font-weight: normal; text-align: right;">Aikahaku:</label>
   	<div class="col-sm-8">
   	<form action="getFilteredTasks" method="post">
   	<select id="taskFilter" name="taskFilter" onchange="this.form.submit();" style="width: 100%; padding: 0 5px 0 5px;">
@@ -383,14 +383,14 @@
 	</div>
 	
 	<span>
-	<small style="font-weight: bold;">
+	<small style="font-weight: bold; text-transform: capitalize;">
 	<c:if test="${parsedAjankohta < now && compTaskDate != compIdentifier}">
-	<span style="color: #FFFFFF;" class="glyphicon glyphicon-chevron-right" style=""></span>
+	<span style="color: #FFFFFF;" class="glyphicon glyphicon-chevron-right"></span>
 	</c:if>
 	<c:if test="${compTaskDate != compIdentifier}">
 	<fmt:parseDate value="${t.date}" pattern="yyyy-MM-dd" var="parsedAjankohtaPvm" type="date" />
 	<fmt:parseDate value="${t.time}" pattern="HH:mm" var="parsedAjankohtaKlo" type="time" />
-	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="d.M.yyyy" type="date" />&nbsp;
+	<fmt:formatDate value="${parsedAjankohtaPvm}" pattern="E d.M.yyyy" type="date" />&nbsp;
 	<fmt:formatDate value="${parsedAjankohtaKlo}" pattern="HH:mm" type="time" />
 	</c:if>
 	</small>
