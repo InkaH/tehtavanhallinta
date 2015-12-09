@@ -60,6 +60,7 @@ input[type="checkbox"] {
 
 .month-label {
 	display: block;
+	letter-spacing: 1px;
 	margin: 0 0 -9px 0;
 	overflow: hidden;
 	padding: 0;
