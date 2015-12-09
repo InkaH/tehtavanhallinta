@@ -320,8 +320,19 @@
 	<fmt:parseDate value="${t.date} ${t.time}" pattern="yyyy-MM-dd HH:mm" var="parsedAjankohta" type="date" />
 	<fmt:parseDate value="${t.date}" var="compTaskDate" pattern="yyyy-MM-dd" />
 	<fmt:parseDate value="1970-01-01" var="compIdentifier" pattern="yyyy-MM-dd" />
-	
+		
 	<div class="row">
+	
+	<!-- Month label (First) -->
+	<fmt:parseDate value="${tasks[loop.index].date}" pattern="yyyy-MM-dd" var="curD" />
+	<fmt:formatDate value="${curD}" pattern="M" var="curDD" />
+	<fmt:parseDate value="${tasks[loop.index+1].date}" pattern="yyyy-MM-dd" var="nextD" />
+	<fmt:formatDate value="${nextD}" pattern="M" var="nextDD" />		
+	<c:if test="${loop.index == 0 && tasks[loop.index].date > '1970-01-01'}">
+	<fmt:setLocale value="fi_FI" scope="session"/>
+	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
+	</c:if>
+	
 	<div class="col-sm-12 well ${compTaskDate == compIdentifier ? 'mark-note' : 'mark-task'}">
 	<div class="task-option-dropdown">
 	<div class="dropdown">
@@ -472,14 +483,15 @@
 	
 	<!-- Month label -->	
 	<c:if test="${!loop.last}">	
-	<fmt:parseDate value="${tasks[loop.index].date}" pattern="yyyy-MM-dd" var="curD" />
-	<fmt:formatDate value="${curD}" pattern="M" var="curDD" />
-	<fmt:parseDate value="${tasks[loop.index+1].date}" pattern="yyyy-MM-dd" var="nextD" />
-	<fmt:formatDate value="${nextD}" pattern="M" var="nextDD" />	
+	<c:if test="${curDD == '1970-1-1' && nextDD > curDD}">
+	<fmt:setLocale value="fi_FI" scope="session"/>
+	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
+	</c:if>	
 	<c:if test="${nextDD != curDD}">
 	<fmt:setLocale value="fi_FI" scope="session"/>
 	<div class="month-label"><fmt:formatDate value="${nextD}" pattern="MMM" />kuu&nbsp;<hr class="month-label-hr"></div>
 	</c:if>
+		
 	</c:if>	
 	
 	</div>
