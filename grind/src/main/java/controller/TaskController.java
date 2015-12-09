@@ -88,7 +88,19 @@ public class TaskController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String getView(Map<String, Object> model, Principal principal) {
 		if (startup) {
-			username = principal.getName();
+			this.username = null;
+			this.editItem = new Task();
+			this.tasks = null;
+			this.comments = null;
+			this.grouplist = null;
+			this.groupListDefault = "all";
+			this.taskFilterDefault = "all";
+			this.newComment = new Comment();
+			this.editingActive = 0;
+			this.activeTask = 0;
+			this.activeTab = 0;
+			this.username = principal.getName();
+			this.theme = 1;
 			this.theme = dao.getTheme(principal.getName());
 			startup = false;
 		}

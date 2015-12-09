@@ -25,7 +25,7 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
         if (authentication != null && authentication.getDetails() != null) {
         	logger.info("**************************logout CustomLogoutSuccessHandlerilla onnistui************************************");        	
 
-        	TaskController.startup = true;        	
+        	TaskController.startup = true;
         }
  
        

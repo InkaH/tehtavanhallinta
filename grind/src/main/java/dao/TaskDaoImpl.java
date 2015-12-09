@@ -96,7 +96,7 @@ public class TaskDaoImpl implements TaskDAO {
 	}
 	
 	public void deletePrivateTask(int id) {
-		final String sql = "DELETE FROM Usertask WHERE ut_task=?";
+		final String sql = "DELETE FROM Task WHERE t_task=?";
 		final int index = id;
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
