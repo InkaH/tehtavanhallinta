@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
 /* CSS HTML tags */
 body {
@@ -226,6 +226,10 @@ input[type="checkbox"] {
 
 #loginylaosa {
 	padding-top: 100px;
+}
+
+#rekisteroitymisnappi {
+	padding-bottom: 15px;	
 }
 
 #logged {
