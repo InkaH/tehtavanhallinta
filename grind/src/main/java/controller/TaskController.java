@@ -7,11 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import dao.TaskDAO;
 import bean.User;
@@ -47,7 +53,7 @@ public class TaskController {
 	private int activeTask = 0;
 	private int activeTab = 0;
 	private int theme = 1;
-	
+
 	public static boolean startup = true;
 
 	@Inject
@@ -62,27 +68,62 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model) {	
-		//säästetään entiset logout-toimenpiteet malliksi
-//		if (logout != null) {
-//			logger.info("logout ifin jälkeen:" + logout);
-//			activeTask = 0;
-//			editingActive = 0;
-//			startup = true;
-//			activeTab = 0;
-//			model.addAttribute("logout", "Olet kirjautunut ulos.");
-//		}
-		// registration form is a Spring form so we have to place
-		// the User object values to it
+	public String login(Model model,
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout,
+			HttpServletRequest request) {
+
+		if (error != null) {
+			model.addAttribute("error",
+					getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
+		}
+
+		if (logout != null) {
+			logger.info("logout ifin jälkeen:" + logout);
+			activeTask = 0;
+			editingActive = 0;
+			startup = true;
+			activeTab = 0;
+			model.addAttribute("logout", "Olet kirjautunut ulos.");
+		}
+
+		//registration form is a Spring form so we have to place
+		//the User object values to it
 		logger.info("Suoritetaan controllerin login-metodia");
 		User user = new User("", "");
 		model.addAttribute("user", user);
-		if (startup) {
-			model.addAttribute("logout", false);
-		} else {
-			model.addAttribute("logout", true);
-		}
+		
+//		if (startup) { model.addAttribute("logout", false); } else {
+//		model.addAttribute("logout", true); }
+		 
 		return "login";
+	}
+
+	/**
+	 * Method for customising the error message for user & commenting exception
+	 * for admin
+	 * 
+	 * @param request
+	 * @param key
+	 * @return customised error message
+	 */
+	private String getErrorMessage(HttpServletRequest request, String key) {
+
+		Exception exception = (Exception) request.getSession()
+				.getAttribute(key);
+
+		String error = "";
+		if (exception instanceof BadCredentialsException) {
+			error = "Virheellinen käyttäjätunnus ja/tai salasana" + "<!--VIRHEILMOITUS: " + exception.toString() + "-->";
+		} else if (exception instanceof LockedException) {
+			error = "Käyttäjätunnus lukittu liian monen kirjautumisyrityksen vuoksi" + "<!--VIRHEILMOITUS: " + exception.toString() + "-->";
+		} else if (exception instanceof InternalAuthenticationServiceException) {
+			error = "Yhteysvirhe - yritä hetken kuluttua uudelleen" + "<!--VIRHEILMOITUS: " + exception.toString() + "-->";
+		} else {
+			error = "Yhteysvirhe - yritä hetken kuluttua uudelleen" + "<!--VIRHEILMOITUS: " + exception.toString() + "-->";
+		}
+
+		return error;
 	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -107,9 +148,13 @@ public class TaskController {
 		if (activeTab == 0) {
 			if (!taskFilterDefault.equalsIgnoreCase("all")) {
 				if (taskFilterDefault.equalsIgnoreCase("currentWeek")) {
-					tasks = dao.getTasksOfTimePeriod(username, TimeWarp.startOfCurrentWeek(), TimeWarp.endOfCurrentWeek());
-				} else if (taskFilterDefault.equalsIgnoreCase("nextWeek")) {			
-					tasks = dao.getTasksOfTimePeriod(username, TimeWarp.startOfNextWeek(), TimeWarp.endOfNextWeek());
+					tasks = dao.getTasksOfTimePeriod(username,
+							TimeWarp.startOfCurrentWeek(),
+							TimeWarp.endOfCurrentWeek());
+				} else if (taskFilterDefault.equalsIgnoreCase("nextWeek")) {
+					tasks = dao.getTasksOfTimePeriod(username,
+							TimeWarp.startOfNextWeek(),
+							TimeWarp.endOfNextWeek());
 				}
 			} else {
 				tasks = dao.getAllPrivate(username);
@@ -148,7 +193,8 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String addTask(@ModelAttribute("newTask") Task task, Principal principal) {
+	public String addTask(@ModelAttribute("newTask") Task task,
+			Principal principal) {
 		if (!task.getTask().isEmpty()) {
 			if (task.getDate() == null) {
 				task.setDate(LocalDate.of(1970, 1, 1));
@@ -170,7 +216,8 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "del", method = RequestMethod.POST)
-	public String deleteTask(@RequestParam String delTask, @RequestParam String delType) {
+	public String deleteTask(@RequestParam String delTask,
+			@RequestParam String delType) {
 		int d = Integer.parseInt(delTask);
 		if (d > 0) {
 			if (delType.equalsIgnoreCase("destroy")) {
@@ -205,11 +252,12 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "share", method = RequestMethod.POST)
-	public String shareTask(@RequestParam String shareTask, @RequestParam String groupID,
-			@RequestParam String shareStatus) {
+	public String shareTask(@RequestParam String shareTask,
+			@RequestParam String groupID, @RequestParam String shareStatus) {
 		int sh = Integer.parseInt(shareTask);
 		if (sh > 0 && !groupID.equals("")) {
-			dao.shareTask(sh, groupID.toUpperCase(), (shareStatus.equalsIgnoreCase("true") ? true : false));
+			dao.shareTask(sh, groupID.toUpperCase(),
+					(shareStatus.equalsIgnoreCase("true") ? true : false));
 		}
 		activeTask = 0;
 		return "redirect:/index";
@@ -280,7 +328,7 @@ public class TaskController {
 		editingActive = 0;
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(value = "getFilteredTasks", method = RequestMethod.POST)
 	public String getFilteredTasks(@RequestParam String taskFilter) {
 		taskFilterDefault = taskFilter;
@@ -290,7 +338,8 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "setDone", method = RequestMethod.POST)
-	public String setDone(@RequestParam String doneID, @RequestParam String doneValue) {
+	public String setDone(@RequestParam String doneID,
+			@RequestParam String doneValue) {
 		int dID = Integer.parseInt(doneID);
 		int dVA = Integer.parseInt(doneValue);
 		if (dID > 0) {
@@ -302,7 +351,8 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "setLink", method = RequestMethod.POST)
-	public String setLink(@RequestParam String linkedID, @RequestParam String linkedUser) {
+	public String setLink(@RequestParam String linkedID,
+			@RequestParam String linkedUser) {
 		int liID = Integer.parseInt(linkedID);
 		if (liID > 0) {
 			dao.setLink(liID, linkedUser);
@@ -313,7 +363,8 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String saveUser(Model model, @Valid User user, BindingResult bindingResult) {
+	public String saveUser(Model model, @Valid User user,
+			BindingResult bindingResult) {
 		// if User class validation rules did not pass
 		// return to login and must set the hashed pw back to empty
 		if (bindingResult.hasErrors()) {
@@ -349,7 +400,8 @@ public class TaskController {
 	// in case we need it later + printing of user details is also an example
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			System.out.println(userDetail);
