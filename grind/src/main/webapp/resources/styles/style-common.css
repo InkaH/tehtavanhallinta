@@ -228,11 +228,23 @@ input[type="checkbox"] {
 	padding-top: 100px;
 }
 
+.login-submit {
+	border-width: 0 !important;
+	background-color: #c0c0c0 !important;
+}
+
+.login-submit:hover {
+	border-width: 0 !important;
+	background-color: #cccccc !important;
+}
+
 #rekisteroitymisnappi {
 	padding-bottom: 15px;
 	text-decoration: underline;
 	cursor:pointer;	
 }
+
+
 
 #logged {
 	display: block;

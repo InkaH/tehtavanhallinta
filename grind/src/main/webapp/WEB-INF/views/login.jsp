@@ -59,7 +59,7 @@
 					
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-4 col-sm-4"><input class="btn btn-default form-control" name="submit" type="submit" autocomplete="off" value="KIRJAUDU" /></div>
+					<div class="col-sm-offset-4 col-sm-4"><input style="background-color: #c0c0c0;" class="btn btn-default form-control login-submit" name="submit" type="submit" value="KIRJAUDU" /></div>
 					</div>
 					</div>
 					
@@ -116,7 +116,7 @@
 						
 					<div class="row">
 					<div class="form-group">
-					<div class="col-sm-offset-4 col-sm-4"><input class="btn btn-default form-control" name="submit" type="submit" id="regSubmit" value="REKISTERÖIDY" disabled/>
+					<div class="col-sm-offset-4 col-sm-4"><input class="btn btn-default form-control login-submit" name="submit" type="submit" id="regSubmit" value="REKISTERÖIDY" disabled/>
 					</div>
 					</div>
 					</div>
