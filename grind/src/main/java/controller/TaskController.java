@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
+//import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 
 import dao.TaskDAO;
 import bean.User;
@@ -84,7 +84,7 @@ public class TaskController {
 			editingActive = 0;
 			startup = true;
 			activeTab = 0;
-			model.addAttribute("logout", "Olet kirjautunut ulos.");
+			model.addAttribute("logout", "Olet kirjautunut ulos");
 		}
 
 		//registration form is a Spring form so we have to place
