@@ -202,7 +202,7 @@
 		<div class="row">
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">
-					<form:checkbox path="shared" value="" />&nbsp;&nbsp;Jaetaan julkisena
+					<form:checkbox path="shared" value="" />&nbsp;&nbsp;Jaetaan julkisena&nbsp;&nbsp;<span style="font-style: italic; color: #a6a6a6;"><small>( jos ryhmätunnus annettu )</small></span>
 				</div>
 			</div>
 		</div>
