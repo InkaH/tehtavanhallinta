@@ -229,7 +229,9 @@ input[type="checkbox"] {
 }
 
 #rekisteroitymisnappi {
-	padding-bottom: 15px;	
+	padding-bottom: 15px;
+	text-decoration: underline;
+	cursor:pointer;	
 }
 
 #logged {

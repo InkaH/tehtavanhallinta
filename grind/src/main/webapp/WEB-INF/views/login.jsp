@@ -71,7 +71,7 @@
 
 		<div class="row">
 			<div class="col-sm-offset-2 col-sm-8" >
-				<h3><span data-toggle="collapse" data-target="#rekisteroidy" id="rekisteroitymisnappi">Rekisteröidy</span></h3>
+				<h5><span data-toggle="collapse" data-target="#rekisteroidy" id="rekisteroitymisnappi">Rekisteröidy tästä</span></h5>
 				<c:if test="${not empty userExistsError}">
 					<p style="color: red">${userExistsError}</p>
 				</c:if>
