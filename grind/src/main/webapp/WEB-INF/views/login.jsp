@@ -9,11 +9,13 @@
 <html>
 
 <head>
-<!-- bootstrap libraries (jquery and css) -->
+<!-- bootstrap and other libraries (jquery and css) -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link href="<c:url value="/resources/styles/style-common.css" />" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="resources/js/script.js">"></script>
+
 <title>Tervetuloa</title>
 </head>
 
@@ -68,8 +70,8 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-offset-2 col-sm-8">
-				<h3>Rekisteröidy</h3>
+			<div class="col-sm-offset-2 col-sm-8" >
+				<h3><span data-toggle="collapse" data-target="#rekisteroidy" id="rekisteroitymisnappi">Rekisteröidy</span></h3>
 				<c:if test="${not empty userExistsError}">
 					<p style="color: red">${userExistsError}</p>
 				</c:if>
@@ -77,7 +79,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-offset-2 col-sm-8">		
+			<div class="col-sm-offset-2 col-sm-8 collapse" id="rekisteroidy">		
 				<form:form role="form" cssClass="form-horizontal" modelAttribute="user" action="registration" method="post" enctype="utf8">
 					<div class="row">
 					<div class="form-group">

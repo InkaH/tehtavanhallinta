@@ -20,6 +20,7 @@ $(document).ready(function() {
         $counterText.text($(this).val().length + ' / 1000');
     }).keyup();
     
+     
     /*
     $('.task-footer').click(function (e) {
     	$('.creator-stamp').toggle();
